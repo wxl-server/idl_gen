@@ -71,9 +71,9 @@ func (p *Item) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
-		case 4:
+		case 3:
 			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField4(buf[offset:])
+				l, err = p.FastReadField3(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
@@ -131,7 +131,7 @@ func (p *Item) FastReadField2(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *Item) FastReadField4(buf []byte) (int, error) {
+func (p *Item) FastReadField3(buf []byte) (int, error) {
 	offset := 0
 
 	var _field int64
@@ -153,7 +153,7 @@ func (p *Item) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
-		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField3(buf[offset:], w)
 		offset += p.fastWriteField2(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
@@ -165,7 +165,7 @@ func (p *Item) BLength() int {
 	if p != nil {
 		l += p.field1Length()
 		l += p.field2Length()
-		l += p.field4Length()
+		l += p.field3Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -185,9 +185,9 @@ func (p *Item) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
-func (p *Item) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
+func (p *Item) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 4)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 3)
 	offset += thrift.Binary.WriteI64(buf[offset:], p.Stock)
 	return offset
 }
@@ -206,7 +206,7 @@ func (p *Item) field2Length() int {
 	return l
 }
 
-func (p *Item) field4Length() int {
+func (p *Item) field3Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.I64Length()
