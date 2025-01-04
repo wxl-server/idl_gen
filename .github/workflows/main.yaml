@@ -48,7 +48,7 @@ jobs:
       - name: kitex gen
         run: |
           rm -rf kitex_gen
-          kitex -module github.com/qcq1/rpc_miner_core miner_core.thrift
+          kitex -module github.com/qcq1/rpc_miner_core idl/miner_core.thrift
 
       - name: Commit And Push
         run: |
