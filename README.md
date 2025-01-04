@@ -1,0 +1,1 @@
+# miner-core-gen
