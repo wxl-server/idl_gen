@@ -13,7 +13,7 @@ import (
 type Item struct {
 	Id    int64  `thrift:"id,1" frugal:"1,default,i64" json:"id"`
 	Title string `thrift:"title,2" frugal:"2,default,string" json:"title"`
-	Stock int64  `thrift:"stock,3" frugal:"3,default,i64" json:"stock"`
+	Stock string `thrift:"stock,3" frugal:"3,default,string" json:"stock"`
 }
 
 func NewItem() *Item {
@@ -31,7 +31,7 @@ func (p *Item) GetTitle() (v string) {
 	return p.Title
 }
 
-func (p *Item) GetStock() (v int64) {
+func (p *Item) GetStock() (v string) {
 	return p.Stock
 }
 func (p *Item) SetId(val int64) {
@@ -40,7 +40,7 @@ func (p *Item) SetId(val int64) {
 func (p *Item) SetTitle(val string) {
 	p.Title = val
 }
-func (p *Item) SetStock(val int64) {
+func (p *Item) SetStock(val string) {
 	p.Stock = val
 }
 
@@ -86,7 +86,7 @@ func (p *Item) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 3:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField3(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -146,8 +146,8 @@ func (p *Item) ReadField2(iprot thrift.TProtocol) error {
 }
 func (p *Item) ReadField3(iprot thrift.TProtocol) error {
 
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -228,10 +228,10 @@ WriteFieldEndError:
 }
 
 func (p *Item) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("stock", thrift.I64, 3); err != nil {
+	if err = oprot.WriteFieldBegin("stock", thrift.STRING, 3); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.Stock); err != nil {
+	if err := oprot.WriteString(p.Stock); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -284,9 +284,9 @@ func (p *Item) Field2DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *Item) Field3DeepEqual(src int64) bool {
+func (p *Item) Field3DeepEqual(src string) bool {
 
-	if p.Stock != src {
+	if strings.Compare(p.Stock, src) != 0 {
 		return false
 	}
 	return true
