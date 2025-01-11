@@ -1600,42 +1600,42 @@ func (p *QueryJobListResp) Field2DeepEqual(src int64) bool {
 	return true
 }
 
-type MinerCoreService interface {
+type MinerCore interface {
 	QueryJobList(ctx context.Context, req *QueryJobListReq) (r *QueryJobListResp, err error)
 }
 
-type MinerCoreServiceQueryJobListArgs struct {
+type MinerCoreQueryJobListArgs struct {
 	Req *QueryJobListReq `thrift:"req,1" frugal:"1,default,QueryJobListReq" json:"req"`
 }
 
-func NewMinerCoreServiceQueryJobListArgs() *MinerCoreServiceQueryJobListArgs {
-	return &MinerCoreServiceQueryJobListArgs{}
+func NewMinerCoreQueryJobListArgs() *MinerCoreQueryJobListArgs {
+	return &MinerCoreQueryJobListArgs{}
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) InitDefault() {
+func (p *MinerCoreQueryJobListArgs) InitDefault() {
 }
 
-var MinerCoreServiceQueryJobListArgs_Req_DEFAULT *QueryJobListReq
+var MinerCoreQueryJobListArgs_Req_DEFAULT *QueryJobListReq
 
-func (p *MinerCoreServiceQueryJobListArgs) GetReq() (v *QueryJobListReq) {
+func (p *MinerCoreQueryJobListArgs) GetReq() (v *QueryJobListReq) {
 	if !p.IsSetReq() {
-		return MinerCoreServiceQueryJobListArgs_Req_DEFAULT
+		return MinerCoreQueryJobListArgs_Req_DEFAULT
 	}
 	return p.Req
 }
-func (p *MinerCoreServiceQueryJobListArgs) SetReq(val *QueryJobListReq) {
+func (p *MinerCoreQueryJobListArgs) SetReq(val *QueryJobListReq) {
 	p.Req = val
 }
 
-var fieldIDToName_MinerCoreServiceQueryJobListArgs = map[int16]string{
+var fieldIDToName_MinerCoreQueryJobListArgs = map[int16]string{
 	1: "req",
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) IsSetReq() bool {
+func (p *MinerCoreQueryJobListArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) Read(iprot thrift.TProtocol) (err error) {
+func (p *MinerCoreQueryJobListArgs) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -1681,7 +1681,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_MinerCoreServiceQueryJobListArgs[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_MinerCoreQueryJobListArgs[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -1691,7 +1691,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) ReadField1(iprot thrift.TProtocol) error {
+func (p *MinerCoreQueryJobListArgs) ReadField1(iprot thrift.TProtocol) error {
 	_field := NewQueryJobListReq()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -1700,7 +1700,7 @@ func (p *MinerCoreServiceQueryJobListArgs) ReadField1(iprot thrift.TProtocol) er
 	return nil
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) Write(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreQueryJobListArgs) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("QueryJobList_args"); err != nil {
@@ -1729,7 +1729,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreQueryJobListArgs) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -1746,15 +1746,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) String() string {
+func (p *MinerCoreQueryJobListArgs) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("MinerCoreServiceQueryJobListArgs(%+v)", *p)
+	return fmt.Sprintf("MinerCoreQueryJobListArgs(%+v)", *p)
 
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) DeepEqual(ano *MinerCoreServiceQueryJobListArgs) bool {
+func (p *MinerCoreQueryJobListArgs) DeepEqual(ano *MinerCoreQueryJobListArgs) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -1766,7 +1766,7 @@ func (p *MinerCoreServiceQueryJobListArgs) DeepEqual(ano *MinerCoreServiceQueryJ
 	return true
 }
 
-func (p *MinerCoreServiceQueryJobListArgs) Field1DeepEqual(src *QueryJobListReq) bool {
+func (p *MinerCoreQueryJobListArgs) Field1DeepEqual(src *QueryJobListReq) bool {
 
 	if !p.Req.DeepEqual(src) {
 		return false
@@ -1774,38 +1774,38 @@ func (p *MinerCoreServiceQueryJobListArgs) Field1DeepEqual(src *QueryJobListReq)
 	return true
 }
 
-type MinerCoreServiceQueryJobListResult struct {
+type MinerCoreQueryJobListResult struct {
 	Success *QueryJobListResp `thrift:"success,0,optional" frugal:"0,optional,QueryJobListResp" json:"success,omitempty"`
 }
 
-func NewMinerCoreServiceQueryJobListResult() *MinerCoreServiceQueryJobListResult {
-	return &MinerCoreServiceQueryJobListResult{}
+func NewMinerCoreQueryJobListResult() *MinerCoreQueryJobListResult {
+	return &MinerCoreQueryJobListResult{}
 }
 
-func (p *MinerCoreServiceQueryJobListResult) InitDefault() {
+func (p *MinerCoreQueryJobListResult) InitDefault() {
 }
 
-var MinerCoreServiceQueryJobListResult_Success_DEFAULT *QueryJobListResp
+var MinerCoreQueryJobListResult_Success_DEFAULT *QueryJobListResp
 
-func (p *MinerCoreServiceQueryJobListResult) GetSuccess() (v *QueryJobListResp) {
+func (p *MinerCoreQueryJobListResult) GetSuccess() (v *QueryJobListResp) {
 	if !p.IsSetSuccess() {
-		return MinerCoreServiceQueryJobListResult_Success_DEFAULT
+		return MinerCoreQueryJobListResult_Success_DEFAULT
 	}
 	return p.Success
 }
-func (p *MinerCoreServiceQueryJobListResult) SetSuccess(x interface{}) {
+func (p *MinerCoreQueryJobListResult) SetSuccess(x interface{}) {
 	p.Success = x.(*QueryJobListResp)
 }
 
-var fieldIDToName_MinerCoreServiceQueryJobListResult = map[int16]string{
+var fieldIDToName_MinerCoreQueryJobListResult = map[int16]string{
 	0: "success",
 }
 
-func (p *MinerCoreServiceQueryJobListResult) IsSetSuccess() bool {
+func (p *MinerCoreQueryJobListResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *MinerCoreServiceQueryJobListResult) Read(iprot thrift.TProtocol) (err error) {
+func (p *MinerCoreQueryJobListResult) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -1851,7 +1851,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_MinerCoreServiceQueryJobListResult[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_MinerCoreQueryJobListResult[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -1861,7 +1861,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *MinerCoreServiceQueryJobListResult) ReadField0(iprot thrift.TProtocol) error {
+func (p *MinerCoreQueryJobListResult) ReadField0(iprot thrift.TProtocol) error {
 	_field := NewQueryJobListResp()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -1870,7 +1870,7 @@ func (p *MinerCoreServiceQueryJobListResult) ReadField0(iprot thrift.TProtocol) 
 	return nil
 }
 
-func (p *MinerCoreServiceQueryJobListResult) Write(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreQueryJobListResult) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("QueryJobList_result"); err != nil {
@@ -1899,7 +1899,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *MinerCoreServiceQueryJobListResult) writeField0(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreQueryJobListResult) writeField0(oprot thrift.TProtocol) (err error) {
 	if p.IsSetSuccess() {
 		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
 			goto WriteFieldBeginError
@@ -1918,15 +1918,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
 }
 
-func (p *MinerCoreServiceQueryJobListResult) String() string {
+func (p *MinerCoreQueryJobListResult) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("MinerCoreServiceQueryJobListResult(%+v)", *p)
+	return fmt.Sprintf("MinerCoreQueryJobListResult(%+v)", *p)
 
 }
 
-func (p *MinerCoreServiceQueryJobListResult) DeepEqual(ano *MinerCoreServiceQueryJobListResult) bool {
+func (p *MinerCoreQueryJobListResult) DeepEqual(ano *MinerCoreQueryJobListResult) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -1938,7 +1938,7 @@ func (p *MinerCoreServiceQueryJobListResult) DeepEqual(ano *MinerCoreServiceQuer
 	return true
 }
 
-func (p *MinerCoreServiceQueryJobListResult) Field0DeepEqual(src *QueryJobListResp) bool {
+func (p *MinerCoreQueryJobListResult) Field0DeepEqual(src *QueryJobListResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
