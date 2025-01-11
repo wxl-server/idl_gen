@@ -1352,8 +1352,8 @@ func (p *QueryJobListReq) Field8DeepEqual(src *int64) bool {
 }
 
 type QueryJobListResp struct {
-	Job   []*Job `thrift:"job,1" frugal:"1,default,list<Job>" json:"job"`
-	Total int64  `thrift:"total,2" frugal:"2,default,i64" json:"total"`
+	JobList []*Job `thrift:"job_list,1" frugal:"1,default,list<Job>" json:"job_list"`
+	Total   int64  `thrift:"total,2" frugal:"2,default,i64" json:"total"`
 }
 
 func NewQueryJobListResp() *QueryJobListResp {
@@ -1363,22 +1363,22 @@ func NewQueryJobListResp() *QueryJobListResp {
 func (p *QueryJobListResp) InitDefault() {
 }
 
-func (p *QueryJobListResp) GetJob() (v []*Job) {
-	return p.Job
+func (p *QueryJobListResp) GetJobList() (v []*Job) {
+	return p.JobList
 }
 
 func (p *QueryJobListResp) GetTotal() (v int64) {
 	return p.Total
 }
-func (p *QueryJobListResp) SetJob(val []*Job) {
-	p.Job = val
+func (p *QueryJobListResp) SetJobList(val []*Job) {
+	p.JobList = val
 }
 func (p *QueryJobListResp) SetTotal(val int64) {
 	p.Total = val
 }
 
 var fieldIDToName_QueryJobListResp = map[int16]string{
-	1: "job",
+	1: "job_list",
 	2: "total",
 }
 
@@ -1466,7 +1466,7 @@ func (p *QueryJobListResp) ReadField1(iprot thrift.TProtocol) error {
 	if err := iprot.ReadListEnd(); err != nil {
 		return err
 	}
-	p.Job = _field
+	p.JobList = _field
 	return nil
 }
 func (p *QueryJobListResp) ReadField2(iprot thrift.TProtocol) error {
@@ -1515,13 +1515,13 @@ WriteStructEndError:
 }
 
 func (p *QueryJobListResp) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("job", thrift.LIST, 1); err != nil {
+	if err = oprot.WriteFieldBegin("job_list", thrift.LIST, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.Job)); err != nil {
+	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.JobList)); err != nil {
 		return err
 	}
-	for _, v := range p.Job {
+	for _, v := range p.JobList {
 		if err := v.Write(oprot); err != nil {
 			return err
 		}
@@ -1570,7 +1570,7 @@ func (p *QueryJobListResp) DeepEqual(ano *QueryJobListResp) bool {
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.Job) {
+	if !p.Field1DeepEqual(ano.JobList) {
 		return false
 	}
 	if !p.Field2DeepEqual(ano.Total) {
@@ -1581,10 +1581,10 @@ func (p *QueryJobListResp) DeepEqual(ano *QueryJobListResp) bool {
 
 func (p *QueryJobListResp) Field1DeepEqual(src []*Job) bool {
 
-	if len(p.Job) != len(src) {
+	if len(p.JobList) != len(src) {
 		return false
 	}
-	for i, v := range p.Job {
+	for i, v := range p.JobList {
 		_src := src[i]
 		if !v.DeepEqual(_src) {
 			return false

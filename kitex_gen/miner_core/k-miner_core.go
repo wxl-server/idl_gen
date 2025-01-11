@@ -967,7 +967,7 @@ func (p *QueryJobListResp) FastReadField1(buf []byte) (int, error) {
 
 		_field = append(_field, _elem)
 	}
-	p.Job = _field
+	p.JobList = _field
 	return offset, nil
 }
 
@@ -1015,7 +1015,7 @@ func (p *QueryJobListResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) in
 	listBeginOffset := offset
 	offset += thrift.Binary.ListBeginLength()
 	var length int
-	for _, v := range p.Job {
+	for _, v := range p.JobList {
 		length++
 		offset += v.FastWriteNocopy(buf[offset:], w)
 	}
@@ -1034,7 +1034,7 @@ func (p *QueryJobListResp) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.ListBeginLength()
-	for _, v := range p.Job {
+	for _, v := range p.JobList {
 		_ = v
 		l += v.BLength()
 	}
