@@ -11,26 +11,26 @@ import (
 type Order int64
 
 const (
-	Order_DESC Order = 0
-	Order_ASC  Order = 1
+	Order_desc Order = 0
+	Order_asc  Order = 1
 )
 
 func (p Order) String() string {
 	switch p {
-	case Order_DESC:
-		return "DESC"
-	case Order_ASC:
-		return "ASC"
+	case Order_desc:
+		return "desc"
+	case Order_asc:
+		return "asc"
 	}
 	return "<UNSET>"
 }
 
 func OrderFromString(s string) (Order, error) {
 	switch s {
-	case "DESC":
-		return Order_DESC, nil
-	case "ASC":
-		return Order_ASC, nil
+	case "desc":
+		return Order_desc, nil
+	case "asc":
+		return Order_asc, nil
 	}
 	return Order(0), fmt.Errorf("not a valid Order string")
 }
