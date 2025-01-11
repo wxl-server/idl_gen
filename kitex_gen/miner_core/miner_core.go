@@ -4,53 +4,172 @@ package miner_core
 
 import (
 	"context"
+	"database/sql"
+	"database/sql/driver"
 	"fmt"
 	thrift "github.com/cloudwego/kitex/pkg/protocol/bthrift/apache"
-	"github.com/qcq1/rpc_miner_core/kitex_gen/base"
+	"github.com/qcq1/rpc_miner_core/kitex_gen/common"
 	"strings"
 )
 
-type Item struct {
-	Id    int64  `thrift:"id,1" frugal:"1,default,i64" json:"id"`
-	Title string `thrift:"title,2" frugal:"2,default,string" json:"title"`
-	Stock int64  `thrift:"stock,3" frugal:"3,default,i64" json:"stock"`
+type JobColumn int64
+
+const (
+	JobColumn_ID          JobColumn = 0
+	JobColumn_NAME        JobColumn = 1
+	JobColumn_DESCRIPTION JobColumn = 2
+	JobColumn_CREATED_BY  JobColumn = 3
+	JobColumn_UPDATED_BY  JobColumn = 4
+	JobColumn_CREATED_AT  JobColumn = 5
+	JobColumn_UPDATED_AT  JobColumn = 6
+	JobColumn_EXTRA       JobColumn = 7
+)
+
+func (p JobColumn) String() string {
+	switch p {
+	case JobColumn_ID:
+		return "ID"
+	case JobColumn_NAME:
+		return "NAME"
+	case JobColumn_DESCRIPTION:
+		return "DESCRIPTION"
+	case JobColumn_CREATED_BY:
+		return "CREATED_BY"
+	case JobColumn_UPDATED_BY:
+		return "UPDATED_BY"
+	case JobColumn_CREATED_AT:
+		return "CREATED_AT"
+	case JobColumn_UPDATED_AT:
+		return "UPDATED_AT"
+	case JobColumn_EXTRA:
+		return "EXTRA"
+	}
+	return "<UNSET>"
 }
 
-func NewItem() *Item {
-	return &Item{}
+func JobColumnFromString(s string) (JobColumn, error) {
+	switch s {
+	case "ID":
+		return JobColumn_ID, nil
+	case "NAME":
+		return JobColumn_NAME, nil
+	case "DESCRIPTION":
+		return JobColumn_DESCRIPTION, nil
+	case "CREATED_BY":
+		return JobColumn_CREATED_BY, nil
+	case "UPDATED_BY":
+		return JobColumn_UPDATED_BY, nil
+	case "CREATED_AT":
+		return JobColumn_CREATED_AT, nil
+	case "UPDATED_AT":
+		return JobColumn_UPDATED_AT, nil
+	case "EXTRA":
+		return JobColumn_EXTRA, nil
+	}
+	return JobColumn(0), fmt.Errorf("not a valid JobColumn string")
 }
 
-func (p *Item) InitDefault() {
+func JobColumnPtr(v JobColumn) *JobColumn { return &v }
+func (p *JobColumn) Scan(value interface{}) (err error) {
+	var result sql.NullInt64
+	err = result.Scan(value)
+	*p = JobColumn(result.Int64)
+	return
 }
 
-func (p *Item) GetId() (v int64) {
+func (p *JobColumn) Value() (driver.Value, error) {
+	if p == nil {
+		return nil, nil
+	}
+	return int64(*p), nil
+}
+
+type Job struct {
+	Id          int64  `thrift:"id,1" frugal:"1,default,i64" json:"id"`
+	Name        string `thrift:"name,2" frugal:"2,default,string" json:"name"`
+	Description string `thrift:"description,3" frugal:"3,default,string" json:"description"`
+	CreatedBy   int64  `thrift:"created_by,4" frugal:"4,default,i64" json:"created_by"`
+	UpdatedBy   int64  `thrift:"updated_by,5" frugal:"5,default,i64" json:"updated_by"`
+	CreatedAt   int64  `thrift:"created_at,6" frugal:"6,default,i64" json:"created_at"`
+	UpdatedAt   int64  `thrift:"updated_at,7" frugal:"7,default,i64" json:"updated_at"`
+	Extra       string `thrift:"extra,8" frugal:"8,default,string" json:"extra"`
+}
+
+func NewJob() *Job {
+	return &Job{}
+}
+
+func (p *Job) InitDefault() {
+}
+
+func (p *Job) GetId() (v int64) {
 	return p.Id
 }
 
-func (p *Item) GetTitle() (v string) {
-	return p.Title
+func (p *Job) GetName() (v string) {
+	return p.Name
 }
 
-func (p *Item) GetStock() (v int64) {
-	return p.Stock
+func (p *Job) GetDescription() (v string) {
+	return p.Description
 }
-func (p *Item) SetId(val int64) {
+
+func (p *Job) GetCreatedBy() (v int64) {
+	return p.CreatedBy
+}
+
+func (p *Job) GetUpdatedBy() (v int64) {
+	return p.UpdatedBy
+}
+
+func (p *Job) GetCreatedAt() (v int64) {
+	return p.CreatedAt
+}
+
+func (p *Job) GetUpdatedAt() (v int64) {
+	return p.UpdatedAt
+}
+
+func (p *Job) GetExtra() (v string) {
+	return p.Extra
+}
+func (p *Job) SetId(val int64) {
 	p.Id = val
 }
-func (p *Item) SetTitle(val string) {
-	p.Title = val
+func (p *Job) SetName(val string) {
+	p.Name = val
 }
-func (p *Item) SetStock(val int64) {
-	p.Stock = val
+func (p *Job) SetDescription(val string) {
+	p.Description = val
+}
+func (p *Job) SetCreatedBy(val int64) {
+	p.CreatedBy = val
+}
+func (p *Job) SetUpdatedBy(val int64) {
+	p.UpdatedBy = val
+}
+func (p *Job) SetCreatedAt(val int64) {
+	p.CreatedAt = val
+}
+func (p *Job) SetUpdatedAt(val int64) {
+	p.UpdatedAt = val
+}
+func (p *Job) SetExtra(val string) {
+	p.Extra = val
 }
 
-var fieldIDToName_Item = map[int16]string{
+var fieldIDToName_Job = map[int16]string{
 	1: "id",
-	2: "title",
-	3: "stock",
+	2: "name",
+	3: "description",
+	4: "created_by",
+	5: "updated_by",
+	6: "created_at",
+	7: "updated_at",
+	8: "extra",
 }
 
-func (p *Item) Read(iprot thrift.TProtocol) (err error) {
+func (p *Job) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -86,8 +205,48 @@ func (p *Item) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 3:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 6:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField6(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 7:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField7(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 8:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField8(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -112,7 +271,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_Item[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_Job[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -122,7 +281,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *Item) ReadField1(iprot thrift.TProtocol) error {
+func (p *Job) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field int64
 	if v, err := iprot.ReadI64(); err != nil {
@@ -133,7 +292,7 @@ func (p *Item) ReadField1(iprot thrift.TProtocol) error {
 	p.Id = _field
 	return nil
 }
-func (p *Item) ReadField2(iprot thrift.TProtocol) error {
+func (p *Job) ReadField2(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -141,10 +300,21 @@ func (p *Item) ReadField2(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.Title = _field
+	p.Name = _field
 	return nil
 }
-func (p *Item) ReadField3(iprot thrift.TProtocol) error {
+func (p *Job) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Description = _field
+	return nil
+}
+func (p *Job) ReadField4(iprot thrift.TProtocol) error {
 
 	var _field int64
 	if v, err := iprot.ReadI64(); err != nil {
@@ -152,14 +322,58 @@ func (p *Item) ReadField3(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.Stock = _field
+	p.CreatedBy = _field
+	return nil
+}
+func (p *Job) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.UpdatedBy = _field
+	return nil
+}
+func (p *Job) ReadField6(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.CreatedAt = _field
+	return nil
+}
+func (p *Job) ReadField7(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.UpdatedAt = _field
+	return nil
+}
+func (p *Job) ReadField8(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Extra = _field
 	return nil
 }
 
-func (p *Item) Write(oprot thrift.TProtocol) (err error) {
+func (p *Job) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("Item"); err != nil {
+	if err = oprot.WriteStructBegin("Job"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -175,6 +389,26 @@ func (p *Item) Write(oprot thrift.TProtocol) (err error) {
 			fieldId = 3
 			goto WriteFieldError
 		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
+			goto WriteFieldError
+		}
+		if err = p.writeField6(oprot); err != nil {
+			fieldId = 6
+			goto WriteFieldError
+		}
+		if err = p.writeField7(oprot); err != nil {
+			fieldId = 7
+			goto WriteFieldError
+		}
+		if err = p.writeField8(oprot); err != nil {
+			fieldId = 8
+			goto WriteFieldError
+		}
 	}
 	if err = oprot.WriteFieldStop(); err != nil {
 		goto WriteFieldStopError
@@ -193,7 +427,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *Item) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *Job) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("id", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -210,11 +444,11 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *Item) writeField2(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("title", thrift.STRING, 2); err != nil {
+func (p *Job) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("name", thrift.STRING, 2); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.Title); err != nil {
+	if err := oprot.WriteString(p.Name); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -227,11 +461,11 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
-func (p *Item) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("stock", thrift.I64, 3); err != nil {
+func (p *Job) writeField3(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("description", thrift.STRING, 3); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.Stock); err != nil {
+	if err := oprot.WriteString(p.Description); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -244,15 +478,100 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
 }
 
-func (p *Item) String() string {
+func (p *Job) writeField4(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("created_by", thrift.I64, 4); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI64(p.CreatedBy); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
+func (p *Job) writeField5(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("updated_by", thrift.I64, 5); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI64(p.UpdatedBy); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *Job) writeField6(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("created_at", thrift.I64, 6); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI64(p.CreatedAt); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
+}
+
+func (p *Job) writeField7(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("updated_at", thrift.I64, 7); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI64(p.UpdatedAt); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 end error: ", p), err)
+}
+
+func (p *Job) writeField8(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("extra", thrift.STRING, 8); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Extra); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 8 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 8 end error: ", p), err)
+}
+
+func (p *Job) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("Item(%+v)", *p)
+	return fmt.Sprintf("Job(%+v)", *p)
 
 }
 
-func (p *Item) DeepEqual(ano *Item) bool {
+func (p *Job) DeepEqual(ano *Job) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -261,82 +580,232 @@ func (p *Item) DeepEqual(ano *Item) bool {
 	if !p.Field1DeepEqual(ano.Id) {
 		return false
 	}
-	if !p.Field2DeepEqual(ano.Title) {
+	if !p.Field2DeepEqual(ano.Name) {
 		return false
 	}
-	if !p.Field3DeepEqual(ano.Stock) {
+	if !p.Field3DeepEqual(ano.Description) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.CreatedBy) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.UpdatedBy) {
+		return false
+	}
+	if !p.Field6DeepEqual(ano.CreatedAt) {
+		return false
+	}
+	if !p.Field7DeepEqual(ano.UpdatedAt) {
+		return false
+	}
+	if !p.Field8DeepEqual(ano.Extra) {
 		return false
 	}
 	return true
 }
 
-func (p *Item) Field1DeepEqual(src int64) bool {
+func (p *Job) Field1DeepEqual(src int64) bool {
 
 	if p.Id != src {
 		return false
 	}
 	return true
 }
-func (p *Item) Field2DeepEqual(src string) bool {
+func (p *Job) Field2DeepEqual(src string) bool {
 
-	if strings.Compare(p.Title, src) != 0 {
+	if strings.Compare(p.Name, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *Item) Field3DeepEqual(src int64) bool {
+func (p *Job) Field3DeepEqual(src string) bool {
 
-	if p.Stock != src {
+	if strings.Compare(p.Description, src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *Job) Field4DeepEqual(src int64) bool {
+
+	if p.CreatedBy != src {
+		return false
+	}
+	return true
+}
+func (p *Job) Field5DeepEqual(src int64) bool {
+
+	if p.UpdatedBy != src {
+		return false
+	}
+	return true
+}
+func (p *Job) Field6DeepEqual(src int64) bool {
+
+	if p.CreatedAt != src {
+		return false
+	}
+	return true
+}
+func (p *Job) Field7DeepEqual(src int64) bool {
+
+	if p.UpdatedAt != src {
+		return false
+	}
+	return true
+}
+func (p *Job) Field8DeepEqual(src string) bool {
+
+	if strings.Compare(p.Extra, src) != 0 {
 		return false
 	}
 	return true
 }
 
-type GetItemReq struct {
-	Id   int64      `thrift:"id,1,required" frugal:"1,required,i64" json:"id"`
-	Base *base.Base `thrift:"base,255" frugal:"255,default,base.Base" json:"base"`
+type QueryJobListReq struct {
+	PageNum        int64         `thrift:"page_num,1,required" frugal:"1,required,i64" json:"page_num"`
+	PageSize       int64         `thrift:"page_size,2,required" frugal:"2,required,i64" json:"page_size"`
+	OrderBy        *JobColumn    `thrift:"order_by,3,optional" frugal:"3,optional,JobColumn" json:"order_by,omitempty"`
+	Order          *common.Order `thrift:"order,4,optional" frugal:"4,optional,Order" json:"order,omitempty"`
+	Id             *int64        `thrift:"id,5,optional" frugal:"5,optional,i64" json:"id,omitempty"`
+	CreatedBy      *int64        `thrift:"created_by,6,optional" frugal:"6,optional,i64" json:"created_by,omitempty"`
+	CreatedAtStart *int64        `thrift:"created_at_start,7,optional" frugal:"7,optional,i64" json:"created_at_start,omitempty"`
+	CreatedAtEnd   *int64        `thrift:"created_at_end,8,optional" frugal:"8,optional,i64" json:"created_at_end,omitempty"`
 }
 
-func NewGetItemReq() *GetItemReq {
-	return &GetItemReq{}
+func NewQueryJobListReq() *QueryJobListReq {
+	return &QueryJobListReq{}
 }
 
-func (p *GetItemReq) InitDefault() {
+func (p *QueryJobListReq) InitDefault() {
 }
 
-func (p *GetItemReq) GetId() (v int64) {
-	return p.Id
+func (p *QueryJobListReq) GetPageNum() (v int64) {
+	return p.PageNum
 }
 
-var GetItemReq_Base_DEFAULT *base.Base
+func (p *QueryJobListReq) GetPageSize() (v int64) {
+	return p.PageSize
+}
 
-func (p *GetItemReq) GetBase() (v *base.Base) {
-	if !p.IsSetBase() {
-		return GetItemReq_Base_DEFAULT
+var QueryJobListReq_OrderBy_DEFAULT JobColumn
+
+func (p *QueryJobListReq) GetOrderBy() (v JobColumn) {
+	if !p.IsSetOrderBy() {
+		return QueryJobListReq_OrderBy_DEFAULT
 	}
-	return p.Base
+	return *p.OrderBy
 }
-func (p *GetItemReq) SetId(val int64) {
+
+var QueryJobListReq_Order_DEFAULT common.Order
+
+func (p *QueryJobListReq) GetOrder() (v common.Order) {
+	if !p.IsSetOrder() {
+		return QueryJobListReq_Order_DEFAULT
+	}
+	return *p.Order
+}
+
+var QueryJobListReq_Id_DEFAULT int64
+
+func (p *QueryJobListReq) GetId() (v int64) {
+	if !p.IsSetId() {
+		return QueryJobListReq_Id_DEFAULT
+	}
+	return *p.Id
+}
+
+var QueryJobListReq_CreatedBy_DEFAULT int64
+
+func (p *QueryJobListReq) GetCreatedBy() (v int64) {
+	if !p.IsSetCreatedBy() {
+		return QueryJobListReq_CreatedBy_DEFAULT
+	}
+	return *p.CreatedBy
+}
+
+var QueryJobListReq_CreatedAtStart_DEFAULT int64
+
+func (p *QueryJobListReq) GetCreatedAtStart() (v int64) {
+	if !p.IsSetCreatedAtStart() {
+		return QueryJobListReq_CreatedAtStart_DEFAULT
+	}
+	return *p.CreatedAtStart
+}
+
+var QueryJobListReq_CreatedAtEnd_DEFAULT int64
+
+func (p *QueryJobListReq) GetCreatedAtEnd() (v int64) {
+	if !p.IsSetCreatedAtEnd() {
+		return QueryJobListReq_CreatedAtEnd_DEFAULT
+	}
+	return *p.CreatedAtEnd
+}
+func (p *QueryJobListReq) SetPageNum(val int64) {
+	p.PageNum = val
+}
+func (p *QueryJobListReq) SetPageSize(val int64) {
+	p.PageSize = val
+}
+func (p *QueryJobListReq) SetOrderBy(val *JobColumn) {
+	p.OrderBy = val
+}
+func (p *QueryJobListReq) SetOrder(val *common.Order) {
+	p.Order = val
+}
+func (p *QueryJobListReq) SetId(val *int64) {
 	p.Id = val
 }
-func (p *GetItemReq) SetBase(val *base.Base) {
-	p.Base = val
+func (p *QueryJobListReq) SetCreatedBy(val *int64) {
+	p.CreatedBy = val
+}
+func (p *QueryJobListReq) SetCreatedAtStart(val *int64) {
+	p.CreatedAtStart = val
+}
+func (p *QueryJobListReq) SetCreatedAtEnd(val *int64) {
+	p.CreatedAtEnd = val
 }
 
-var fieldIDToName_GetItemReq = map[int16]string{
-	1:   "id",
-	255: "base",
+var fieldIDToName_QueryJobListReq = map[int16]string{
+	1: "page_num",
+	2: "page_size",
+	3: "order_by",
+	4: "order",
+	5: "id",
+	6: "created_by",
+	7: "created_at_start",
+	8: "created_at_end",
 }
 
-func (p *GetItemReq) IsSetBase() bool {
-	return p.Base != nil
+func (p *QueryJobListReq) IsSetOrderBy() bool {
+	return p.OrderBy != nil
 }
 
-func (p *GetItemReq) Read(iprot thrift.TProtocol) (err error) {
+func (p *QueryJobListReq) IsSetOrder() bool {
+	return p.Order != nil
+}
+
+func (p *QueryJobListReq) IsSetId() bool {
+	return p.Id != nil
+}
+
+func (p *QueryJobListReq) IsSetCreatedBy() bool {
+	return p.CreatedBy != nil
+}
+
+func (p *QueryJobListReq) IsSetCreatedAtStart() bool {
+	return p.CreatedAtStart != nil
+}
+
+func (p *QueryJobListReq) IsSetCreatedAtEnd() bool {
+	return p.CreatedAtEnd != nil
+}
+
+func (p *QueryJobListReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
-	var issetId bool = false
+	var issetPageNum bool = false
+	var issetPageSize bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -357,13 +826,62 @@ func (p *GetItemReq) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetId = true
+				issetPageNum = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
-		case 255:
-			if fieldTypeId == thrift.STRUCT {
-				if err = p.ReadField255(iprot); err != nil {
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetPageSize = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 3:
+			if fieldTypeId == thrift.I32 {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.I32 {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 6:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField6(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 7:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField7(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 8:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField8(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -382,8 +900,13 @@ func (p *GetItemReq) Read(iprot thrift.TProtocol) (err error) {
 		goto ReadStructEndError
 	}
 
-	if !issetId {
+	if !issetPageNum {
 		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPageSize {
+		fieldId = 2
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -392,7 +915,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetItemReq[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_QueryJobListReq[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -401,10 +924,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_GetItemReq[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_QueryJobListReq[fieldId]))
 }
 
-func (p *GetItemReq) ReadField1(iprot thrift.TProtocol) error {
+func (p *QueryJobListReq) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field int64
 	if v, err := iprot.ReadI64(); err != nil {
@@ -412,22 +935,93 @@ func (p *GetItemReq) ReadField1(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
+	p.PageNum = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.PageSize = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field *JobColumn
+	if v, err := iprot.ReadI32(); err != nil {
+		return err
+	} else {
+		tmp := JobColumn(v)
+		_field = &tmp
+	}
+	p.OrderBy = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *common.Order
+	if v, err := iprot.ReadI32(); err != nil {
+		return err
+	} else {
+		tmp := common.Order(v)
+		_field = &tmp
+	}
+	p.Order = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
 	p.Id = _field
 	return nil
 }
-func (p *GetItemReq) ReadField255(iprot thrift.TProtocol) error {
-	_field := base.NewBase()
-	if err := _field.Read(iprot); err != nil {
+func (p *QueryJobListReq) ReadField6(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
 		return err
+	} else {
+		_field = &v
 	}
-	p.Base = _field
+	p.CreatedBy = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField7(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.CreatedAtStart = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField8(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.CreatedAtEnd = _field
 	return nil
 }
 
-func (p *GetItemReq) Write(oprot thrift.TProtocol) (err error) {
+func (p *QueryJobListReq) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetItemReq"); err != nil {
+	if err = oprot.WriteStructBegin("QueryJobListReq"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -435,8 +1029,32 @@ func (p *GetItemReq) Write(oprot thrift.TProtocol) (err error) {
 			fieldId = 1
 			goto WriteFieldError
 		}
-		if err = p.writeField255(oprot); err != nil {
-			fieldId = 255
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
+			goto WriteFieldError
+		}
+		if err = p.writeField6(oprot); err != nil {
+			fieldId = 6
+			goto WriteFieldError
+		}
+		if err = p.writeField7(oprot); err != nil {
+			fieldId = 7
+			goto WriteFieldError
+		}
+		if err = p.writeField8(oprot); err != nil {
+			fieldId = 8
 			goto WriteFieldError
 		}
 	}
@@ -457,11 +1075,11 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *GetItemReq) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("id", thrift.I64, 1); err != nil {
+func (p *QueryJobListReq) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("page_num", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.Id); err != nil {
+	if err := oprot.WriteI64(p.PageNum); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -474,11 +1092,11 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *GetItemReq) writeField255(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("base", thrift.STRUCT, 255); err != nil {
+func (p *QueryJobListReq) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("page_size", thrift.I64, 2); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := p.Base.Write(oprot); err != nil {
+	if err := oprot.WriteI64(p.PageSize); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -486,99 +1104,285 @@ func (p *GetItemReq) writeField255(oprot thrift.TProtocol) (err error) {
 	}
 	return nil
 WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 255 begin error: ", p), err)
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
 WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 255 end error: ", p), err)
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
-func (p *GetItemReq) String() string {
+func (p *QueryJobListReq) writeField3(oprot thrift.TProtocol) (err error) {
+	if p.IsSetOrderBy() {
+		if err = oprot.WriteFieldBegin("order_by", thrift.I32, 3); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI32(int32(*p.OrderBy)); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetOrder() {
+		if err = oprot.WriteFieldBegin("order", thrift.I32, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI32(int32(*p.Order)); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) writeField5(oprot thrift.TProtocol) (err error) {
+	if p.IsSetId() {
+		if err = oprot.WriteFieldBegin("id", thrift.I64, 5); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.Id); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) writeField6(oprot thrift.TProtocol) (err error) {
+	if p.IsSetCreatedBy() {
+		if err = oprot.WriteFieldBegin("created_by", thrift.I64, 6); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedBy); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) writeField7(oprot thrift.TProtocol) (err error) {
+	if p.IsSetCreatedAtStart() {
+		if err = oprot.WriteFieldBegin("created_at_start", thrift.I64, 7); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedAtStart); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) writeField8(oprot thrift.TProtocol) (err error) {
+	if p.IsSetCreatedAtEnd() {
+		if err = oprot.WriteFieldBegin("created_at_end", thrift.I64, 8); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedAtEnd); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 8 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 8 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("GetItemReq(%+v)", *p)
+	return fmt.Sprintf("QueryJobListReq(%+v)", *p)
 
 }
 
-func (p *GetItemReq) DeepEqual(ano *GetItemReq) bool {
+func (p *QueryJobListReq) DeepEqual(ano *QueryJobListReq) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.Id) {
+	if !p.Field1DeepEqual(ano.PageNum) {
 		return false
 	}
-	if !p.Field255DeepEqual(ano.Base) {
+	if !p.Field2DeepEqual(ano.PageSize) {
+		return false
+	}
+	if !p.Field3DeepEqual(ano.OrderBy) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.Order) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.Id) {
+		return false
+	}
+	if !p.Field6DeepEqual(ano.CreatedBy) {
+		return false
+	}
+	if !p.Field7DeepEqual(ano.CreatedAtStart) {
+		return false
+	}
+	if !p.Field8DeepEqual(ano.CreatedAtEnd) {
 		return false
 	}
 	return true
 }
 
-func (p *GetItemReq) Field1DeepEqual(src int64) bool {
+func (p *QueryJobListReq) Field1DeepEqual(src int64) bool {
 
-	if p.Id != src {
+	if p.PageNum != src {
 		return false
 	}
 	return true
 }
-func (p *GetItemReq) Field255DeepEqual(src *base.Base) bool {
+func (p *QueryJobListReq) Field2DeepEqual(src int64) bool {
 
-	if !p.Base.DeepEqual(src) {
+	if p.PageSize != src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field3DeepEqual(src *JobColumn) bool {
+
+	if p.OrderBy == src {
+		return true
+	} else if p.OrderBy == nil || src == nil {
+		return false
+	}
+	if *p.OrderBy != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field4DeepEqual(src *common.Order) bool {
+
+	if p.Order == src {
+		return true
+	} else if p.Order == nil || src == nil {
+		return false
+	}
+	if *p.Order != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field5DeepEqual(src *int64) bool {
+
+	if p.Id == src {
+		return true
+	} else if p.Id == nil || src == nil {
+		return false
+	}
+	if *p.Id != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field6DeepEqual(src *int64) bool {
+
+	if p.CreatedBy == src {
+		return true
+	} else if p.CreatedBy == nil || src == nil {
+		return false
+	}
+	if *p.CreatedBy != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field7DeepEqual(src *int64) bool {
+
+	if p.CreatedAtStart == src {
+		return true
+	} else if p.CreatedAtStart == nil || src == nil {
+		return false
+	}
+	if *p.CreatedAtStart != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field8DeepEqual(src *int64) bool {
+
+	if p.CreatedAtEnd == src {
+		return true
+	} else if p.CreatedAtEnd == nil || src == nil {
+		return false
+	}
+	if *p.CreatedAtEnd != *src {
 		return false
 	}
 	return true
 }
 
-type GetItemResp struct {
-	Item     *Item          `thrift:"item,1" frugal:"1,default,Item" json:"item"`
-	BaseResp *base.BaseResp `thrift:"baseResp,255" frugal:"255,default,base.BaseResp" json:"baseResp"`
+type QueryJobListResp struct {
+	Job   []*Job `thrift:"job,1" frugal:"1,default,list<Job>" json:"job"`
+	Total int64  `thrift:"total,2" frugal:"2,default,i64" json:"total"`
 }
 
-func NewGetItemResp() *GetItemResp {
-	return &GetItemResp{}
+func NewQueryJobListResp() *QueryJobListResp {
+	return &QueryJobListResp{}
 }
 
-func (p *GetItemResp) InitDefault() {
+func (p *QueryJobListResp) InitDefault() {
 }
 
-var GetItemResp_Item_DEFAULT *Item
-
-func (p *GetItemResp) GetItem() (v *Item) {
-	if !p.IsSetItem() {
-		return GetItemResp_Item_DEFAULT
-	}
-	return p.Item
+func (p *QueryJobListResp) GetJob() (v []*Job) {
+	return p.Job
 }
 
-var GetItemResp_BaseResp_DEFAULT *base.BaseResp
-
-func (p *GetItemResp) GetBaseResp() (v *base.BaseResp) {
-	if !p.IsSetBaseResp() {
-		return GetItemResp_BaseResp_DEFAULT
-	}
-	return p.BaseResp
+func (p *QueryJobListResp) GetTotal() (v int64) {
+	return p.Total
 }
-func (p *GetItemResp) SetItem(val *Item) {
-	p.Item = val
+func (p *QueryJobListResp) SetJob(val []*Job) {
+	p.Job = val
 }
-func (p *GetItemResp) SetBaseResp(val *base.BaseResp) {
-	p.BaseResp = val
+func (p *QueryJobListResp) SetTotal(val int64) {
+	p.Total = val
 }
 
-var fieldIDToName_GetItemResp = map[int16]string{
-	1:   "item",
-	255: "baseResp",
+var fieldIDToName_QueryJobListResp = map[int16]string{
+	1: "job",
+	2: "total",
 }
 
-func (p *GetItemResp) IsSetItem() bool {
-	return p.Item != nil
-}
-
-func (p *GetItemResp) IsSetBaseResp() bool {
-	return p.BaseResp != nil
-}
-
-func (p *GetItemResp) Read(iprot thrift.TProtocol) (err error) {
+func (p *QueryJobListResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -598,16 +1402,16 @@ func (p *GetItemResp) Read(iprot thrift.TProtocol) (err error) {
 
 		switch fieldId {
 		case 1:
-			if fieldTypeId == thrift.STRUCT {
+			if fieldTypeId == thrift.LIST {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
-		case 255:
-			if fieldTypeId == thrift.STRUCT {
-				if err = p.ReadField255(iprot); err != nil {
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField2(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -632,7 +1436,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetItemResp[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_QueryJobListResp[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -642,27 +1446,45 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *GetItemResp) ReadField1(iprot thrift.TProtocol) error {
-	_field := NewItem()
-	if err := _field.Read(iprot); err != nil {
+func (p *QueryJobListResp) ReadField1(iprot thrift.TProtocol) error {
+	_, size, err := iprot.ReadListBegin()
+	if err != nil {
 		return err
 	}
-	p.Item = _field
+	_field := make([]*Job, 0, size)
+	values := make([]Job, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+
+		if err := _elem.Read(iprot); err != nil {
+			return err
+		}
+
+		_field = append(_field, _elem)
+	}
+	if err := iprot.ReadListEnd(); err != nil {
+		return err
+	}
+	p.Job = _field
 	return nil
 }
-func (p *GetItemResp) ReadField255(iprot thrift.TProtocol) error {
-	_field := base.NewBaseResp()
-	if err := _field.Read(iprot); err != nil {
+func (p *QueryJobListResp) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
 		return err
+	} else {
+		_field = v
 	}
-	p.BaseResp = _field
+	p.Total = _field
 	return nil
 }
 
-func (p *GetItemResp) Write(oprot thrift.TProtocol) (err error) {
+func (p *QueryJobListResp) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetItemResp"); err != nil {
+	if err = oprot.WriteStructBegin("QueryJobListResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -670,8 +1492,8 @@ func (p *GetItemResp) Write(oprot thrift.TProtocol) (err error) {
 			fieldId = 1
 			goto WriteFieldError
 		}
-		if err = p.writeField255(oprot); err != nil {
-			fieldId = 255
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
 			goto WriteFieldError
 		}
 	}
@@ -692,11 +1514,19 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *GetItemResp) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("item", thrift.STRUCT, 1); err != nil {
+func (p *QueryJobListResp) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("job", thrift.LIST, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := p.Item.Write(oprot); err != nil {
+	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.Job)); err != nil {
+		return err
+	}
+	for _, v := range p.Job {
+		if err := v.Write(oprot); err != nil {
+			return err
+		}
+	}
+	if err := oprot.WriteListEnd(); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -709,11 +1539,11 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *GetItemResp) writeField255(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("baseResp", thrift.STRUCT, 255); err != nil {
+func (p *QueryJobListResp) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("total", thrift.I64, 2); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := p.BaseResp.Write(oprot); err != nil {
+	if err := oprot.WriteI64(p.Total); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -721,85 +1551,91 @@ func (p *GetItemResp) writeField255(oprot thrift.TProtocol) (err error) {
 	}
 	return nil
 WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 255 begin error: ", p), err)
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
 WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 255 end error: ", p), err)
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
-func (p *GetItemResp) String() string {
+func (p *QueryJobListResp) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("GetItemResp(%+v)", *p)
+	return fmt.Sprintf("QueryJobListResp(%+v)", *p)
 
 }
 
-func (p *GetItemResp) DeepEqual(ano *GetItemResp) bool {
+func (p *QueryJobListResp) DeepEqual(ano *QueryJobListResp) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.Item) {
+	if !p.Field1DeepEqual(ano.Job) {
 		return false
 	}
-	if !p.Field255DeepEqual(ano.BaseResp) {
-		return false
-	}
-	return true
-}
-
-func (p *GetItemResp) Field1DeepEqual(src *Item) bool {
-
-	if !p.Item.DeepEqual(src) {
-		return false
-	}
-	return true
-}
-func (p *GetItemResp) Field255DeepEqual(src *base.BaseResp) bool {
-
-	if !p.BaseResp.DeepEqual(src) {
+	if !p.Field2DeepEqual(ano.Total) {
 		return false
 	}
 	return true
 }
 
-type ItemService interface {
-	GetItem(ctx context.Context, req *GetItemReq) (r *GetItemResp, err error)
+func (p *QueryJobListResp) Field1DeepEqual(src []*Job) bool {
+
+	if len(p.Job) != len(src) {
+		return false
+	}
+	for i, v := range p.Job {
+		_src := src[i]
+		if !v.DeepEqual(_src) {
+			return false
+		}
+	}
+	return true
+}
+func (p *QueryJobListResp) Field2DeepEqual(src int64) bool {
+
+	if p.Total != src {
+		return false
+	}
+	return true
 }
 
-type ItemServiceGetItemArgs struct {
-	Req *GetItemReq `thrift:"req,1" frugal:"1,default,GetItemReq" json:"req"`
+type MinerCoreService interface {
+	QueryJobList(ctx context.Context, req *QueryJobListReq) (r *QueryJobListResp, err error)
 }
 
-func NewItemServiceGetItemArgs() *ItemServiceGetItemArgs {
-	return &ItemServiceGetItemArgs{}
+type MinerCoreServiceQueryJobListArgs struct {
+	Req *QueryJobListReq `thrift:"req,1" frugal:"1,default,QueryJobListReq" json:"req"`
 }
 
-func (p *ItemServiceGetItemArgs) InitDefault() {
+func NewMinerCoreServiceQueryJobListArgs() *MinerCoreServiceQueryJobListArgs {
+	return &MinerCoreServiceQueryJobListArgs{}
 }
 
-var ItemServiceGetItemArgs_Req_DEFAULT *GetItemReq
+func (p *MinerCoreServiceQueryJobListArgs) InitDefault() {
+}
 
-func (p *ItemServiceGetItemArgs) GetReq() (v *GetItemReq) {
+var MinerCoreServiceQueryJobListArgs_Req_DEFAULT *QueryJobListReq
+
+func (p *MinerCoreServiceQueryJobListArgs) GetReq() (v *QueryJobListReq) {
 	if !p.IsSetReq() {
-		return ItemServiceGetItemArgs_Req_DEFAULT
+		return MinerCoreServiceQueryJobListArgs_Req_DEFAULT
 	}
 	return p.Req
 }
-func (p *ItemServiceGetItemArgs) SetReq(val *GetItemReq) {
+func (p *MinerCoreServiceQueryJobListArgs) SetReq(val *QueryJobListReq) {
 	p.Req = val
 }
 
-var fieldIDToName_ItemServiceGetItemArgs = map[int16]string{
+var fieldIDToName_MinerCoreServiceQueryJobListArgs = map[int16]string{
 	1: "req",
 }
 
-func (p *ItemServiceGetItemArgs) IsSetReq() bool {
+func (p *MinerCoreServiceQueryJobListArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *ItemServiceGetItemArgs) Read(iprot thrift.TProtocol) (err error) {
+func (p *MinerCoreServiceQueryJobListArgs) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -845,7 +1681,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ItemServiceGetItemArgs[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_MinerCoreServiceQueryJobListArgs[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -855,8 +1691,8 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *ItemServiceGetItemArgs) ReadField1(iprot thrift.TProtocol) error {
-	_field := NewGetItemReq()
+func (p *MinerCoreServiceQueryJobListArgs) ReadField1(iprot thrift.TProtocol) error {
+	_field := NewQueryJobListReq()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -864,10 +1700,10 @@ func (p *ItemServiceGetItemArgs) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *ItemServiceGetItemArgs) Write(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreServiceQueryJobListArgs) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetItem_args"); err != nil {
+	if err = oprot.WriteStructBegin("QueryJobList_args"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -893,7 +1729,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *ItemServiceGetItemArgs) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreServiceQueryJobListArgs) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -910,15 +1746,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *ItemServiceGetItemArgs) String() string {
+func (p *MinerCoreServiceQueryJobListArgs) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("ItemServiceGetItemArgs(%+v)", *p)
+	return fmt.Sprintf("MinerCoreServiceQueryJobListArgs(%+v)", *p)
 
 }
 
-func (p *ItemServiceGetItemArgs) DeepEqual(ano *ItemServiceGetItemArgs) bool {
+func (p *MinerCoreServiceQueryJobListArgs) DeepEqual(ano *MinerCoreServiceQueryJobListArgs) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -930,7 +1766,7 @@ func (p *ItemServiceGetItemArgs) DeepEqual(ano *ItemServiceGetItemArgs) bool {
 	return true
 }
 
-func (p *ItemServiceGetItemArgs) Field1DeepEqual(src *GetItemReq) bool {
+func (p *MinerCoreServiceQueryJobListArgs) Field1DeepEqual(src *QueryJobListReq) bool {
 
 	if !p.Req.DeepEqual(src) {
 		return false
@@ -938,38 +1774,38 @@ func (p *ItemServiceGetItemArgs) Field1DeepEqual(src *GetItemReq) bool {
 	return true
 }
 
-type ItemServiceGetItemResult struct {
-	Success *GetItemResp `thrift:"success,0,optional" frugal:"0,optional,GetItemResp" json:"success,omitempty"`
+type MinerCoreServiceQueryJobListResult struct {
+	Success *QueryJobListResp `thrift:"success,0,optional" frugal:"0,optional,QueryJobListResp" json:"success,omitempty"`
 }
 
-func NewItemServiceGetItemResult() *ItemServiceGetItemResult {
-	return &ItemServiceGetItemResult{}
+func NewMinerCoreServiceQueryJobListResult() *MinerCoreServiceQueryJobListResult {
+	return &MinerCoreServiceQueryJobListResult{}
 }
 
-func (p *ItemServiceGetItemResult) InitDefault() {
+func (p *MinerCoreServiceQueryJobListResult) InitDefault() {
 }
 
-var ItemServiceGetItemResult_Success_DEFAULT *GetItemResp
+var MinerCoreServiceQueryJobListResult_Success_DEFAULT *QueryJobListResp
 
-func (p *ItemServiceGetItemResult) GetSuccess() (v *GetItemResp) {
+func (p *MinerCoreServiceQueryJobListResult) GetSuccess() (v *QueryJobListResp) {
 	if !p.IsSetSuccess() {
-		return ItemServiceGetItemResult_Success_DEFAULT
+		return MinerCoreServiceQueryJobListResult_Success_DEFAULT
 	}
 	return p.Success
 }
-func (p *ItemServiceGetItemResult) SetSuccess(x interface{}) {
-	p.Success = x.(*GetItemResp)
+func (p *MinerCoreServiceQueryJobListResult) SetSuccess(x interface{}) {
+	p.Success = x.(*QueryJobListResp)
 }
 
-var fieldIDToName_ItemServiceGetItemResult = map[int16]string{
+var fieldIDToName_MinerCoreServiceQueryJobListResult = map[int16]string{
 	0: "success",
 }
 
-func (p *ItemServiceGetItemResult) IsSetSuccess() bool {
+func (p *MinerCoreServiceQueryJobListResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *ItemServiceGetItemResult) Read(iprot thrift.TProtocol) (err error) {
+func (p *MinerCoreServiceQueryJobListResult) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -1015,7 +1851,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ItemServiceGetItemResult[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_MinerCoreServiceQueryJobListResult[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -1025,8 +1861,8 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *ItemServiceGetItemResult) ReadField0(iprot thrift.TProtocol) error {
-	_field := NewGetItemResp()
+func (p *MinerCoreServiceQueryJobListResult) ReadField0(iprot thrift.TProtocol) error {
+	_field := NewQueryJobListResp()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -1034,10 +1870,10 @@ func (p *ItemServiceGetItemResult) ReadField0(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *ItemServiceGetItemResult) Write(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreServiceQueryJobListResult) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetItem_result"); err != nil {
+	if err = oprot.WriteStructBegin("QueryJobList_result"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -1063,7 +1899,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *ItemServiceGetItemResult) writeField0(oprot thrift.TProtocol) (err error) {
+func (p *MinerCoreServiceQueryJobListResult) writeField0(oprot thrift.TProtocol) (err error) {
 	if p.IsSetSuccess() {
 		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
 			goto WriteFieldBeginError
@@ -1082,15 +1918,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
 }
 
-func (p *ItemServiceGetItemResult) String() string {
+func (p *MinerCoreServiceQueryJobListResult) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("ItemServiceGetItemResult(%+v)", *p)
+	return fmt.Sprintf("MinerCoreServiceQueryJobListResult(%+v)", *p)
 
 }
 
-func (p *ItemServiceGetItemResult) DeepEqual(ano *ItemServiceGetItemResult) bool {
+func (p *MinerCoreServiceQueryJobListResult) DeepEqual(ano *MinerCoreServiceQueryJobListResult) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -1102,7 +1938,7 @@ func (p *ItemServiceGetItemResult) DeepEqual(ano *ItemServiceGetItemResult) bool
 	return true
 }
 
-func (p *ItemServiceGetItemResult) Field0DeepEqual(src *GetItemResp) bool {
+func (p *MinerCoreServiceQueryJobListResult) Field0DeepEqual(src *QueryJobListResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
