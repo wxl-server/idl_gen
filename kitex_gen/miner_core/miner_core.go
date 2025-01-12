@@ -6,19 +6,18 @@ import (
 	"context"
 	"fmt"
 	thrift "github.com/cloudwego/kitex/pkg/protocol/bthrift/apache"
-	"github.com/qcq1/rpc_miner_core/kitex_gen/common"
-	"github.com/qcq1/rpc_miner_core/kitex_gen/domain"
+	"github.com/qcq1/rpc_miner_core/kitex_gen/dto"
 )
 
 type QueryJobListReq struct {
-	PageNum        int64             `thrift:"page_num,1,required" frugal:"1,required,i64" json:"page_num"`
-	PageSize       int64             `thrift:"page_size,2,required" frugal:"2,required,i64" json:"page_size"`
-	OrderBy        *domain.JobColumn `thrift:"order_by,3,optional" frugal:"3,optional,JobColumn" json:"order_by,omitempty"`
-	Order          *common.Order     `thrift:"order,4,optional" frugal:"4,optional,Order" json:"order,omitempty"`
-	Id             *int64            `thrift:"id,5,optional" frugal:"5,optional,i64" json:"id,omitempty"`
-	CreatedBy      *int64            `thrift:"created_by,6,optional" frugal:"6,optional,i64" json:"created_by,omitempty"`
-	CreatedAtStart *int64            `thrift:"created_at_start,7,optional" frugal:"7,optional,i64" json:"created_at_start,omitempty"`
-	CreatedAtEnd   *int64            `thrift:"created_at_end,8,optional" frugal:"8,optional,i64" json:"created_at_end,omitempty"`
+	PageNum        int64          `thrift:"page_num,1,required" frugal:"1,required,i64" json:"page_num"`
+	PageSize       int64          `thrift:"page_size,2,required" frugal:"2,required,i64" json:"page_size"`
+	OrderBy        *dto.JobColumn `thrift:"order_by,3,optional" frugal:"3,optional,JobColumn" json:"order_by,omitempty"`
+	Order          *dto.Order     `thrift:"order,4,optional" frugal:"4,optional,Order" json:"order,omitempty"`
+	Id             *int64         `thrift:"id,5,optional" frugal:"5,optional,i64" json:"id,omitempty"`
+	CreatedBy      *int64         `thrift:"created_by,6,optional" frugal:"6,optional,i64" json:"created_by,omitempty"`
+	CreatedAtStart *int64         `thrift:"created_at_start,7,optional" frugal:"7,optional,i64" json:"created_at_start,omitempty"`
+	CreatedAtEnd   *int64         `thrift:"created_at_end,8,optional" frugal:"8,optional,i64" json:"created_at_end,omitempty"`
 }
 
 func NewQueryJobListReq() *QueryJobListReq {
@@ -36,18 +35,18 @@ func (p *QueryJobListReq) GetPageSize() (v int64) {
 	return p.PageSize
 }
 
-var QueryJobListReq_OrderBy_DEFAULT domain.JobColumn
+var QueryJobListReq_OrderBy_DEFAULT dto.JobColumn
 
-func (p *QueryJobListReq) GetOrderBy() (v domain.JobColumn) {
+func (p *QueryJobListReq) GetOrderBy() (v dto.JobColumn) {
 	if !p.IsSetOrderBy() {
 		return QueryJobListReq_OrderBy_DEFAULT
 	}
 	return *p.OrderBy
 }
 
-var QueryJobListReq_Order_DEFAULT common.Order
+var QueryJobListReq_Order_DEFAULT dto.Order
 
-func (p *QueryJobListReq) GetOrder() (v common.Order) {
+func (p *QueryJobListReq) GetOrder() (v dto.Order) {
 	if !p.IsSetOrder() {
 		return QueryJobListReq_Order_DEFAULT
 	}
@@ -95,10 +94,10 @@ func (p *QueryJobListReq) SetPageNum(val int64) {
 func (p *QueryJobListReq) SetPageSize(val int64) {
 	p.PageSize = val
 }
-func (p *QueryJobListReq) SetOrderBy(val *domain.JobColumn) {
+func (p *QueryJobListReq) SetOrderBy(val *dto.JobColumn) {
 	p.OrderBy = val
 }
-func (p *QueryJobListReq) SetOrder(val *common.Order) {
+func (p *QueryJobListReq) SetOrder(val *dto.Order) {
 	p.Order = val
 }
 func (p *QueryJobListReq) SetId(val *int64) {
@@ -300,11 +299,11 @@ func (p *QueryJobListReq) ReadField2(iprot thrift.TProtocol) error {
 }
 func (p *QueryJobListReq) ReadField3(iprot thrift.TProtocol) error {
 
-	var _field *domain.JobColumn
+	var _field *dto.JobColumn
 	if v, err := iprot.ReadI32(); err != nil {
 		return err
 	} else {
-		tmp := domain.JobColumn(v)
+		tmp := dto.JobColumn(v)
 		_field = &tmp
 	}
 	p.OrderBy = _field
@@ -312,11 +311,11 @@ func (p *QueryJobListReq) ReadField3(iprot thrift.TProtocol) error {
 }
 func (p *QueryJobListReq) ReadField4(iprot thrift.TProtocol) error {
 
-	var _field *common.Order
+	var _field *dto.Order
 	if v, err := iprot.ReadI32(); err != nil {
 		return err
 	} else {
-		tmp := common.Order(v)
+		tmp := dto.Order(v)
 		_field = &tmp
 	}
 	p.Order = _field
@@ -627,7 +626,7 @@ func (p *QueryJobListReq) Field2DeepEqual(src int64) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field3DeepEqual(src *domain.JobColumn) bool {
+func (p *QueryJobListReq) Field3DeepEqual(src *dto.JobColumn) bool {
 
 	if p.OrderBy == src {
 		return true
@@ -639,7 +638,7 @@ func (p *QueryJobListReq) Field3DeepEqual(src *domain.JobColumn) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field4DeepEqual(src *common.Order) bool {
+func (p *QueryJobListReq) Field4DeepEqual(src *dto.Order) bool {
 
 	if p.Order == src {
 		return true
@@ -701,8 +700,8 @@ func (p *QueryJobListReq) Field8DeepEqual(src *int64) bool {
 }
 
 type QueryJobListResp struct {
-	JobList []*domain.Job `thrift:"job_list,1,required" frugal:"1,required,list<domain.Job>" json:"job_list"`
-	Total   int64         `thrift:"total,2,required" frugal:"2,required,i64" json:"total"`
+	JobList []*dto.Job `thrift:"job_list,1,required" frugal:"1,required,list<dto.Job>" json:"job_list"`
+	Total   int64      `thrift:"total,2,required" frugal:"2,required,i64" json:"total"`
 }
 
 func NewQueryJobListResp() *QueryJobListResp {
@@ -712,14 +711,14 @@ func NewQueryJobListResp() *QueryJobListResp {
 func (p *QueryJobListResp) InitDefault() {
 }
 
-func (p *QueryJobListResp) GetJobList() (v []*domain.Job) {
+func (p *QueryJobListResp) GetJobList() (v []*dto.Job) {
 	return p.JobList
 }
 
 func (p *QueryJobListResp) GetTotal() (v int64) {
 	return p.Total
 }
-func (p *QueryJobListResp) SetJobList(val []*domain.Job) {
+func (p *QueryJobListResp) SetJobList(val []*dto.Job) {
 	p.JobList = val
 }
 func (p *QueryJobListResp) SetTotal(val int64) {
@@ -815,8 +814,8 @@ func (p *QueryJobListResp) ReadField1(iprot thrift.TProtocol) error {
 	if err != nil {
 		return err
 	}
-	_field := make([]*domain.Job, 0, size)
-	values := make([]domain.Job, size)
+	_field := make([]*dto.Job, 0, size)
+	values := make([]dto.Job, size)
 	for i := 0; i < size; i++ {
 		_elem := &values[i]
 		_elem.InitDefault()
@@ -943,7 +942,7 @@ func (p *QueryJobListResp) DeepEqual(ano *QueryJobListResp) bool {
 	return true
 }
 
-func (p *QueryJobListResp) Field1DeepEqual(src []*domain.Job) bool {
+func (p *QueryJobListResp) Field1DeepEqual(src []*dto.Job) bool {
 
 	if len(p.JobList) != len(src) {
 		return false

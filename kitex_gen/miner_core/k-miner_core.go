@@ -10,13 +10,11 @@ import (
 
 	"github.com/cloudwego/gopkg/protocol/thrift"
 
-	"github.com/qcq1/rpc_miner_core/kitex_gen/common"
-	"github.com/qcq1/rpc_miner_core/kitex_gen/domain"
+	"github.com/qcq1/rpc_miner_core/kitex_gen/dto"
 )
 
 var (
-	_ = common.KitexUnusedProtection
-	_ = domain.KitexUnusedProtection
+	_ = dto.KitexUnusedProtection
 )
 
 // unused protection
@@ -221,13 +219,13 @@ func (p *QueryJobListReq) FastReadField2(buf []byte) (int, error) {
 func (p *QueryJobListReq) FastReadField3(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *domain.JobColumn
+	var _field *dto.JobColumn
 	if v, l, err := thrift.Binary.ReadI32(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
 
-		tmp := domain.JobColumn(v)
+		tmp := dto.JobColumn(v)
 		_field = &tmp
 	}
 	p.OrderBy = _field
@@ -237,13 +235,13 @@ func (p *QueryJobListReq) FastReadField3(buf []byte) (int, error) {
 func (p *QueryJobListReq) FastReadField4(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *common.Order
+	var _field *dto.Order
 	if v, l, err := thrift.Binary.ReadI32(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
 
-		tmp := common.Order(v)
+		tmp := dto.Order(v)
 		_field = &tmp
 	}
 	p.Order = _field
@@ -564,8 +562,8 @@ func (p *QueryJobListResp) FastReadField1(buf []byte) (int, error) {
 	if err != nil {
 		return offset, err
 	}
-	_field := make([]*domain.Job, 0, size)
-	values := make([]domain.Job, size)
+	_field := make([]*dto.Job, 0, size)
+	values := make([]dto.Job, size)
 	for i := 0; i < size; i++ {
 		_elem := &values[i]
 		_elem.InitDefault()
