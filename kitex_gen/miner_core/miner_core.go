@@ -14,26 +14,26 @@ import (
 type Order int64
 
 const (
-	Order_desc Order = 0
-	Order_asc  Order = 1
+	Order_DESC Order = 0
+	Order_ASC  Order = 1
 )
 
 func (p Order) String() string {
 	switch p {
-	case Order_desc:
-		return "desc"
-	case Order_asc:
-		return "asc"
+	case Order_DESC:
+		return "DESC"
+	case Order_ASC:
+		return "ASC"
 	}
 	return "<UNSET>"
 }
 
 func OrderFromString(s string) (Order, error) {
 	switch s {
-	case "desc":
-		return Order_desc, nil
-	case "asc":
-		return Order_asc, nil
+	case "DESC":
+		return Order_DESC, nil
+	case "ASC":
+		return Order_ASC, nil
 	}
 	return Order(0), fmt.Errorf("not a valid Order string")
 }
@@ -56,56 +56,56 @@ func (p *Order) Value() (driver.Value, error) {
 type JobColumn int64
 
 const (
-	JobColumn_id          JobColumn = 0
-	JobColumn_name        JobColumn = 1
-	JobColumn_description JobColumn = 2
-	JobColumn_created_by  JobColumn = 3
-	JobColumn_updated_by  JobColumn = 4
-	JobColumn_created_at  JobColumn = 5
-	JobColumn_updated_at  JobColumn = 6
-	JobColumn_extra       JobColumn = 7
+	JobColumn_ID          JobColumn = 0
+	JobColumn_NAME        JobColumn = 1
+	JobColumn_DESCRIPTION JobColumn = 2
+	JobColumn_CREATED_BY  JobColumn = 3
+	JobColumn_UPDATED_BY  JobColumn = 4
+	JobColumn_CREATED_AT  JobColumn = 5
+	JobColumn_UPDATED_AT  JobColumn = 6
+	JobColumn_EXTRA       JobColumn = 7
 )
 
 func (p JobColumn) String() string {
 	switch p {
-	case JobColumn_id:
-		return "id"
-	case JobColumn_name:
-		return "name"
-	case JobColumn_description:
-		return "description"
-	case JobColumn_created_by:
-		return "created_by"
-	case JobColumn_updated_by:
-		return "updated_by"
-	case JobColumn_created_at:
-		return "created_at"
-	case JobColumn_updated_at:
-		return "updated_at"
-	case JobColumn_extra:
-		return "extra"
+	case JobColumn_ID:
+		return "ID"
+	case JobColumn_NAME:
+		return "NAME"
+	case JobColumn_DESCRIPTION:
+		return "DESCRIPTION"
+	case JobColumn_CREATED_BY:
+		return "CREATED_BY"
+	case JobColumn_UPDATED_BY:
+		return "UPDATED_BY"
+	case JobColumn_CREATED_AT:
+		return "CREATED_AT"
+	case JobColumn_UPDATED_AT:
+		return "UPDATED_AT"
+	case JobColumn_EXTRA:
+		return "EXTRA"
 	}
 	return "<UNSET>"
 }
 
 func JobColumnFromString(s string) (JobColumn, error) {
 	switch s {
-	case "id":
-		return JobColumn_id, nil
-	case "name":
-		return JobColumn_name, nil
-	case "description":
-		return JobColumn_description, nil
-	case "created_by":
-		return JobColumn_created_by, nil
-	case "updated_by":
-		return JobColumn_updated_by, nil
-	case "created_at":
-		return JobColumn_created_at, nil
-	case "updated_at":
-		return JobColumn_updated_at, nil
-	case "extra":
-		return JobColumn_extra, nil
+	case "ID":
+		return JobColumn_ID, nil
+	case "NAME":
+		return JobColumn_NAME, nil
+	case "DESCRIPTION":
+		return JobColumn_DESCRIPTION, nil
+	case "CREATED_BY":
+		return JobColumn_CREATED_BY, nil
+	case "UPDATED_BY":
+		return JobColumn_UPDATED_BY, nil
+	case "CREATED_AT":
+		return JobColumn_CREATED_AT, nil
+	case "UPDATED_AT":
+		return JobColumn_UPDATED_AT, nil
+	case "EXTRA":
+		return JobColumn_EXTRA, nil
 	}
 	return JobColumn(0), fmt.Errorf("not a valid JobColumn string")
 }
