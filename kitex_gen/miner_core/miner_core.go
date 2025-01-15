@@ -3,7 +3,6 @@
 package miner_core
 
 import (
-	apache_warning "code.byted.org/kitex/apache_monitor"
 	"context"
 	"database/sql"
 	"database/sql/driver"
@@ -267,8 +266,6 @@ func (p *QueryJobListReq) IsSetCreatedAtEnd() bool {
 
 func (p *QueryJobListReq) Read(iprot thrift.TProtocol) (err error) {
 
-	apache_warning.WarningApache("QueryJobListReq")
-
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetPageNum bool = false
@@ -486,8 +483,6 @@ func (p *QueryJobListReq) ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *QueryJobListReq) Write(oprot thrift.TProtocol) (err error) {
-
-	apache_warning.WarningApache("QueryJobListReq")
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("QueryJobListReq"); err != nil {
@@ -853,8 +848,6 @@ var fieldIDToName_QueryJobListResp = map[int16]string{
 
 func (p *QueryJobListResp) Read(iprot thrift.TProtocol) (err error) {
 
-	apache_warning.WarningApache("QueryJobListResp")
-
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetJobList bool = false
@@ -968,8 +961,6 @@ func (p *QueryJobListResp) ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *QueryJobListResp) Write(oprot thrift.TProtocol) (err error) {
-
-	apache_warning.WarningApache("QueryJobListResp")
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("QueryJobListResp"); err != nil {
@@ -1183,8 +1174,6 @@ func (p *Job) IsSetExtra() bool {
 }
 
 func (p *Job) Read(iprot thrift.TProtocol) (err error) {
-
-	apache_warning.WarningApache("Job")
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -1436,8 +1425,6 @@ func (p *Job) ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *Job) Write(oprot thrift.TProtocol) (err error) {
-
-	apache_warning.WarningApache("Job")
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("Job"); err != nil {
@@ -1772,8 +1759,6 @@ func (p *MinerCoreQueryJobListArgs) IsSetReq() bool {
 
 func (p *MinerCoreQueryJobListArgs) Read(iprot thrift.TProtocol) (err error) {
 
-	apache_warning.WarningApache("MinerCoreQueryJobListArgs")
-
 	var fieldTypeId thrift.TType
 	var fieldId int16
 
@@ -1838,8 +1823,6 @@ func (p *MinerCoreQueryJobListArgs) ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *MinerCoreQueryJobListArgs) Write(oprot thrift.TProtocol) (err error) {
-
-	apache_warning.WarningApache("MinerCoreQueryJobListArgs")
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("QueryJobList_args"); err != nil {
@@ -1946,8 +1929,6 @@ func (p *MinerCoreQueryJobListResult) IsSetSuccess() bool {
 
 func (p *MinerCoreQueryJobListResult) Read(iprot thrift.TProtocol) (err error) {
 
-	apache_warning.WarningApache("MinerCoreQueryJobListResult")
-
 	var fieldTypeId thrift.TType
 	var fieldId int16
 
@@ -2012,8 +1993,6 @@ func (p *MinerCoreQueryJobListResult) ReadField0(iprot thrift.TProtocol) error {
 }
 
 func (p *MinerCoreQueryJobListResult) Write(oprot thrift.TProtocol) (err error) {
-
-	apache_warning.WarningApache("MinerCoreQueryJobListResult")
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("QueryJobList_result"); err != nil {
