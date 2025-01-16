@@ -1,4 +1,4 @@
-module github.com/qcq1/rpc_miner_core
+module github.com/qcq1/idl_gen
 
 go 1.20
 
