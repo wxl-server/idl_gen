@@ -19,9 +19,6 @@ jobs:
       id-token: write
 
     steps:
-      - name: Print a message
-        run: echo ${{ github.event.client_payload.modified_files }}
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -51,13 +48,13 @@ jobs:
       - name: kitex gen
         run: |
           rm -rf kitex_gen
-          kitex -module github.com/qcq1/rpc_miner_core idl/rpc_idl/miner_core.thrift
+          export IDL_DIR=./idl
+          sh kitex_gen.sh
 
       - name: Commit And Push
         run: |
           git config --global user.email "bot@wxl475.cn"
           git config --global user.name "${{ github.actor }}"
           git add kitex_gen
-          git add go.mod
           git commit -m "${{ github.event.client_payload.commit_msg }}"
           git push --force origin ${{ github.event.client_payload.ref }}
