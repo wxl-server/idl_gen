@@ -19,6 +19,9 @@ jobs:
       id-token: write
 
     steps:
+      - name: Print a message
+        run: echo ${{ github.event.client_payload.modified_files }}
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
