@@ -285,7 +285,7 @@ func (p *SignUpResp) field1Length() int {
 	return l
 }
 
-func (p *LoginResp) FastRead(buf []byte) (int, error) {
+func (p *LoginReq) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -356,14 +356,14 @@ func (p *LoginResp) FastRead(buf []byte) (int, error) {
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginResp[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginReq[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_LoginResp[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_LoginReq[fieldId]))
 }
 
-func (p *LoginResp) FastReadField1(buf []byte) (int, error) {
+func (p *LoginReq) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -377,7 +377,7 @@ func (p *LoginResp) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *LoginResp) FastReadField2(buf []byte) (int, error) {
+func (p *LoginReq) FastReadField2(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -391,11 +391,11 @@ func (p *LoginResp) FastReadField2(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *LoginResp) FastWrite(buf []byte) int {
+func (p *LoginReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *LoginResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *LoginReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -405,7 +405,7 @@ func (p *LoginResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
-func (p *LoginResp) BLength() int {
+func (p *LoginReq) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -415,35 +415,35 @@ func (p *LoginResp) BLength() int {
 	return l
 }
 
-func (p *LoginResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *LoginReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Email)
 	return offset
 }
 
-func (p *LoginResp) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+func (p *LoginReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Password)
 	return offset
 }
 
-func (p *LoginResp) field1Length() int {
+func (p *LoginReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.Email)
 	return l
 }
 
-func (p *LoginResp) field2Length() int {
+func (p *LoginReq) field2Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.Password)
 	return l
 }
 
-func (p *LoginReq) FastRead(buf []byte) (int, error) {
+func (p *LoginResp) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -493,14 +493,14 @@ func (p *LoginReq) FastRead(buf []byte) (int, error) {
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginReq[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginResp[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_LoginReq[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_LoginResp[fieldId]))
 }
 
-func (p *LoginReq) FastReadField1(buf []byte) (int, error) {
+func (p *LoginResp) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -514,11 +514,11 @@ func (p *LoginReq) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *LoginReq) FastWrite(buf []byte) int {
+func (p *LoginResp) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *LoginReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *LoginResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -527,7 +527,7 @@ func (p *LoginReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
-func (p *LoginReq) BLength() int {
+func (p *LoginResp) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -536,14 +536,14 @@ func (p *LoginReq) BLength() int {
 	return l
 }
 
-func (p *LoginReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *LoginResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
 	return offset
 }
 
-func (p *LoginReq) field1Length() int {
+func (p *LoginResp) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.Token)

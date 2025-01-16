@@ -419,38 +419,38 @@ func (p *SignUpResp) Field1DeepEqual(src int64) bool {
 	return true
 }
 
-type LoginResp struct {
+type LoginReq struct {
 	Email    string `thrift:"email,1,required" frugal:"1,required,string" json:"email"`
 	Password string `thrift:"password,2,required" frugal:"2,required,string" json:"password"`
 }
 
-func NewLoginResp() *LoginResp {
-	return &LoginResp{}
+func NewLoginReq() *LoginReq {
+	return &LoginReq{}
 }
 
-func (p *LoginResp) InitDefault() {
+func (p *LoginReq) InitDefault() {
 }
 
-func (p *LoginResp) GetEmail() (v string) {
+func (p *LoginReq) GetEmail() (v string) {
 	return p.Email
 }
 
-func (p *LoginResp) GetPassword() (v string) {
+func (p *LoginReq) GetPassword() (v string) {
 	return p.Password
 }
-func (p *LoginResp) SetEmail(val string) {
+func (p *LoginReq) SetEmail(val string) {
 	p.Email = val
 }
-func (p *LoginResp) SetPassword(val string) {
+func (p *LoginReq) SetPassword(val string) {
 	p.Password = val
 }
 
-var fieldIDToName_LoginResp = map[int16]string{
+var fieldIDToName_LoginReq = map[int16]string{
 	1: "email",
 	2: "password",
 }
 
-func (p *LoginResp) Read(iprot thrift.TProtocol) (err error) {
+func (p *LoginReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -517,7 +517,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginResp[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginReq[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -526,10 +526,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_LoginResp[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_LoginReq[fieldId]))
 }
 
-func (p *LoginResp) ReadField1(iprot thrift.TProtocol) error {
+func (p *LoginReq) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -540,7 +540,7 @@ func (p *LoginResp) ReadField1(iprot thrift.TProtocol) error {
 	p.Email = _field
 	return nil
 }
-func (p *LoginResp) ReadField2(iprot thrift.TProtocol) error {
+func (p *LoginReq) ReadField2(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -552,10 +552,10 @@ func (p *LoginResp) ReadField2(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *LoginResp) Write(oprot thrift.TProtocol) (err error) {
+func (p *LoginReq) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("LoginResp"); err != nil {
+	if err = oprot.WriteStructBegin("LoginReq"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -585,7 +585,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *LoginResp) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *LoginReq) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("email", thrift.STRING, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -602,7 +602,7 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *LoginResp) writeField2(oprot thrift.TProtocol) (err error) {
+func (p *LoginReq) writeField2(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("password", thrift.STRING, 2); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -619,15 +619,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
-func (p *LoginResp) String() string {
+func (p *LoginReq) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("LoginResp(%+v)", *p)
+	return fmt.Sprintf("LoginReq(%+v)", *p)
 
 }
 
-func (p *LoginResp) DeepEqual(ano *LoginResp) bool {
+func (p *LoginReq) DeepEqual(ano *LoginReq) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -642,14 +642,14 @@ func (p *LoginResp) DeepEqual(ano *LoginResp) bool {
 	return true
 }
 
-func (p *LoginResp) Field1DeepEqual(src string) bool {
+func (p *LoginReq) Field1DeepEqual(src string) bool {
 
 	if strings.Compare(p.Email, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *LoginResp) Field2DeepEqual(src string) bool {
+func (p *LoginReq) Field2DeepEqual(src string) bool {
 
 	if strings.Compare(p.Password, src) != 0 {
 		return false
@@ -657,29 +657,29 @@ func (p *LoginResp) Field2DeepEqual(src string) bool {
 	return true
 }
 
-type LoginReq struct {
+type LoginResp struct {
 	Token string `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
 }
 
-func NewLoginReq() *LoginReq {
-	return &LoginReq{}
+func NewLoginResp() *LoginResp {
+	return &LoginResp{}
 }
 
-func (p *LoginReq) InitDefault() {
+func (p *LoginResp) InitDefault() {
 }
 
-func (p *LoginReq) GetToken() (v string) {
+func (p *LoginResp) GetToken() (v string) {
 	return p.Token
 }
-func (p *LoginReq) SetToken(val string) {
+func (p *LoginResp) SetToken(val string) {
 	p.Token = val
 }
 
-var fieldIDToName_LoginReq = map[int16]string{
+var fieldIDToName_LoginResp = map[int16]string{
 	1: "token",
 }
 
-func (p *LoginReq) Read(iprot thrift.TProtocol) (err error) {
+func (p *LoginResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -731,7 +731,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginReq[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_LoginResp[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -740,10 +740,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_LoginReq[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_LoginResp[fieldId]))
 }
 
-func (p *LoginReq) ReadField1(iprot thrift.TProtocol) error {
+func (p *LoginResp) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -755,10 +755,10 @@ func (p *LoginReq) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *LoginReq) Write(oprot thrift.TProtocol) (err error) {
+func (p *LoginResp) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("LoginReq"); err != nil {
+	if err = oprot.WriteStructBegin("LoginResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -784,7 +784,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *LoginReq) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *LoginResp) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("token", thrift.STRING, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -801,15 +801,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *LoginReq) String() string {
+func (p *LoginResp) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("LoginReq(%+v)", *p)
+	return fmt.Sprintf("LoginResp(%+v)", *p)
 
 }
 
-func (p *LoginReq) DeepEqual(ano *LoginReq) bool {
+func (p *LoginResp) DeepEqual(ano *LoginResp) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -821,7 +821,7 @@ func (p *LoginReq) DeepEqual(ano *LoginReq) bool {
 	return true
 }
 
-func (p *LoginReq) Field1DeepEqual(src string) bool {
+func (p *LoginResp) Field1DeepEqual(src string) bool {
 
 	if strings.Compare(p.Token, src) != 0 {
 		return false
