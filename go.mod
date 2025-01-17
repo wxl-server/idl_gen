@@ -1,4 +1,4 @@
-module github.com/qcq1/idl_gen
+module github.com/wxl-server/idl_gen
 
 go 1.20
 
