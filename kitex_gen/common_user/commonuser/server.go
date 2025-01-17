@@ -3,7 +3,7 @@ package commonuser
 
 import (
 	server "github.com/cloudwego/kitex/server"
-	common_user "github.com/qcq1/idl_gen/kitex_gen/common_user"
+	common_user "github.com/wxl-server/idl_gen/kitex_gen/common_user"
 )
 
 // NewServer creates a server.Server with the given handler and options.

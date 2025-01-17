@@ -3,7 +3,7 @@ package minercore
 
 import (
 	server "github.com/cloudwego/kitex/server"
-	miner_core "github.com/qcq1/idl_gen/kitex_gen/miner_core"
+	miner_core "github.com/wxl-server/idl_gen/kitex_gen/miner_core"
 )
 
 // NewServer creates a server.Server with the given handler and options.

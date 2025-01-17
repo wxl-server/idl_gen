@@ -6,7 +6,7 @@ import (
 	"context"
 	client "github.com/cloudwego/kitex/client"
 	callopt "github.com/cloudwego/kitex/client/callopt"
-	miner_core "github.com/qcq1/idl_gen/kitex_gen/miner_core"
+	miner_core "github.com/wxl-server/idl_gen/kitex_gen/miner_core"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
