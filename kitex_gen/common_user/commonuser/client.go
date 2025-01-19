@@ -12,6 +12,7 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	SignUp(ctx context.Context, req *common_user.SignUpReq, callOptions ...callopt.Option) (r *common_user.SignUpResp, err error)
+	UpdatePassword(ctx context.Context, req *common_user.UpdatePasswordReq, callOptions ...callopt.Option) (r *common_user.UpdatePasswordResp, err error)
 	Login(ctx context.Context, req *common_user.LoginReq, callOptions ...callopt.Option) (r *common_user.LoginResp, err error)
 }
 
@@ -47,6 +48,11 @@ type kCommonUserClient struct {
 func (p *kCommonUserClient) SignUp(ctx context.Context, req *common_user.SignUpReq, callOptions ...callopt.Option) (r *common_user.SignUpResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.SignUp(ctx, req)
+}
+
+func (p *kCommonUserClient) UpdatePassword(ctx context.Context, req *common_user.UpdatePasswordReq, callOptions ...callopt.Option) (r *common_user.UpdatePasswordResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.UpdatePassword(ctx, req)
 }
 
 func (p *kCommonUserClient) Login(ctx context.Context, req *common_user.LoginReq, callOptions ...callopt.Option) (r *common_user.LoginResp, err error) {

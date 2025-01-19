@@ -20,6 +20,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"UpdatePassword": kitex.NewMethodInfo(
+		updatePasswordHandler,
+		newCommonUserUpdatePasswordArgs,
+		newCommonUserUpdatePasswordResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 	"Login": kitex.NewMethodInfo(
 		loginHandler,
 		newCommonUserLoginArgs,
@@ -111,6 +118,24 @@ func newCommonUserSignUpResult() interface{} {
 	return common_user.NewCommonUserSignUpResult()
 }
 
+func updatePasswordHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*common_user.CommonUserUpdatePasswordArgs)
+	realResult := result.(*common_user.CommonUserUpdatePasswordResult)
+	success, err := handler.(common_user.CommonUser).UpdatePassword(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newCommonUserUpdatePasswordArgs() interface{} {
+	return common_user.NewCommonUserUpdatePasswordArgs()
+}
+
+func newCommonUserUpdatePasswordResult() interface{} {
+	return common_user.NewCommonUserUpdatePasswordResult()
+}
+
 func loginHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	realArg := arg.(*common_user.CommonUserLoginArgs)
 	realResult := result.(*common_user.CommonUserLoginResult)
@@ -144,6 +169,16 @@ func (p *kClient) SignUp(ctx context.Context, req *common_user.SignUpReq) (r *co
 	_args.Req = req
 	var _result common_user.CommonUserSignUpResult
 	if err = p.c.Call(ctx, "SignUp", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) UpdatePassword(ctx context.Context, req *common_user.UpdatePasswordReq) (r *common_user.UpdatePasswordResp, err error) {
+	var _args common_user.CommonUserUpdatePasswordArgs
+	_args.Req = req
+	var _result common_user.CommonUserUpdatePasswordResult
+	if err = p.c.Call(ctx, "UpdatePassword", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
