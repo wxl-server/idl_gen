@@ -559,7 +559,7 @@ func (p *UpdatePasswordReq) FastRead(buf []byte) (int, error) {
 	var fieldId int16
 	var issetEmail bool = false
 	var issetOldPassword bool = false
-	var issetNewPassword_ bool = false
+	var issetPassword bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -607,7 +607,7 @@ func (p *UpdatePasswordReq) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetNewPassword_ = true
+				issetPassword = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -634,7 +634,7 @@ func (p *UpdatePasswordReq) FastRead(buf []byte) (int, error) {
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNewPassword_ {
+	if !issetPassword {
 		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
@@ -687,7 +687,7 @@ func (p *UpdatePasswordReq) FastReadField3(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.NewPassword_ = _field
+	p.Password = _field
 	return offset, nil
 }
 
@@ -734,7 +734,7 @@ func (p *UpdatePasswordReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) i
 func (p *UpdatePasswordReq) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NewPassword_)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Password)
 	return offset
 }
 
@@ -755,7 +755,7 @@ func (p *UpdatePasswordReq) field2Length() int {
 func (p *UpdatePasswordReq) field3Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.NewPassword_)
+	l += thrift.Binary.StringLengthNocopy(p.Password)
 	return l
 }
 

@@ -830,9 +830,9 @@ func (p *LoginResp) Field1DeepEqual(src string) bool {
 }
 
 type UpdatePasswordReq struct {
-	Email        string `thrift:"email,1,required" frugal:"1,required,string" json:"email"`
-	OldPassword  string `thrift:"old_password,2,required" frugal:"2,required,string" json:"old_password"`
-	NewPassword_ string `thrift:"new_password,3,required" frugal:"3,required,string" json:"new_password"`
+	Email       string `thrift:"email,1,required" frugal:"1,required,string" json:"email"`
+	OldPassword string `thrift:"old_password,2,required" frugal:"2,required,string" json:"old_password"`
+	Password    string `thrift:"password,3,required" frugal:"3,required,string" json:"password"`
 }
 
 func NewUpdatePasswordReq() *UpdatePasswordReq {
@@ -850,8 +850,8 @@ func (p *UpdatePasswordReq) GetOldPassword() (v string) {
 	return p.OldPassword
 }
 
-func (p *UpdatePasswordReq) GetNewPassword_() (v string) {
-	return p.NewPassword_
+func (p *UpdatePasswordReq) GetPassword() (v string) {
+	return p.Password
 }
 func (p *UpdatePasswordReq) SetEmail(val string) {
 	p.Email = val
@@ -859,14 +859,14 @@ func (p *UpdatePasswordReq) SetEmail(val string) {
 func (p *UpdatePasswordReq) SetOldPassword(val string) {
 	p.OldPassword = val
 }
-func (p *UpdatePasswordReq) SetNewPassword_(val string) {
-	p.NewPassword_ = val
+func (p *UpdatePasswordReq) SetPassword(val string) {
+	p.Password = val
 }
 
 var fieldIDToName_UpdatePasswordReq = map[int16]string{
 	1: "email",
 	2: "old_password",
-	3: "new_password",
+	3: "password",
 }
 
 func (p *UpdatePasswordReq) Read(iprot thrift.TProtocol) (err error) {
@@ -875,7 +875,7 @@ func (p *UpdatePasswordReq) Read(iprot thrift.TProtocol) (err error) {
 	var fieldId int16
 	var issetEmail bool = false
 	var issetOldPassword bool = false
-	var issetNewPassword_ bool = false
+	var issetPassword bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -914,7 +914,7 @@ func (p *UpdatePasswordReq) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField3(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetNewPassword_ = true
+				issetPassword = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -941,7 +941,7 @@ func (p *UpdatePasswordReq) Read(iprot thrift.TProtocol) (err error) {
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNewPassword_ {
+	if !issetPassword {
 		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
@@ -993,7 +993,7 @@ func (p *UpdatePasswordReq) ReadField3(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.NewPassword_ = _field
+	p.Password = _field
 	return nil
 }
 
@@ -1069,10 +1069,10 @@ WriteFieldEndError:
 }
 
 func (p *UpdatePasswordReq) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("new_password", thrift.STRING, 3); err != nil {
+	if err = oprot.WriteFieldBegin("password", thrift.STRING, 3); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.NewPassword_); err != nil {
+	if err := oprot.WriteString(p.Password); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -1105,7 +1105,7 @@ func (p *UpdatePasswordReq) DeepEqual(ano *UpdatePasswordReq) bool {
 	if !p.Field2DeepEqual(ano.OldPassword) {
 		return false
 	}
-	if !p.Field3DeepEqual(ano.NewPassword_) {
+	if !p.Field3DeepEqual(ano.Password) {
 		return false
 	}
 	return true
@@ -1127,7 +1127,7 @@ func (p *UpdatePasswordReq) Field2DeepEqual(src string) bool {
 }
 func (p *UpdatePasswordReq) Field3DeepEqual(src string) bool {
 
-	if strings.Compare(p.NewPassword_, src) != 0 {
+	if strings.Compare(p.Password, src) != 0 {
 		return false
 	}
 	return true
