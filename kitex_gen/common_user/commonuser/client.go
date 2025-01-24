@@ -14,6 +14,7 @@ type Client interface {
 	SignUp(ctx context.Context, req *common_user.SignUpReq, callOptions ...callopt.Option) (r *common_user.SignUpResp, err error)
 	UpdatePassword(ctx context.Context, req *common_user.UpdatePasswordReq, callOptions ...callopt.Option) (r *common_user.UpdatePasswordResp, err error)
 	Login(ctx context.Context, req *common_user.LoginReq, callOptions ...callopt.Option) (r *common_user.LoginResp, err error)
+	ValidateToken(ctx context.Context, req *common_user.ValidateTokenReq, callOptions ...callopt.Option) (r *common_user.ValidateTokenResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -58,4 +59,9 @@ func (p *kCommonUserClient) UpdatePassword(ctx context.Context, req *common_user
 func (p *kCommonUserClient) Login(ctx context.Context, req *common_user.LoginReq, callOptions ...callopt.Option) (r *common_user.LoginResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.Login(ctx, req)
+}
+
+func (p *kCommonUserClient) ValidateToken(ctx context.Context, req *common_user.ValidateTokenReq, callOptions ...callopt.Option) (r *common_user.ValidateTokenResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.ValidateToken(ctx, req)
 }

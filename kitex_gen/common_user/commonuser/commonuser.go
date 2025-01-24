@@ -34,6 +34,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"ValidateToken": kitex.NewMethodInfo(
+		validateTokenHandler,
+		newCommonUserValidateTokenArgs,
+		newCommonUserValidateTokenResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -154,6 +161,24 @@ func newCommonUserLoginResult() interface{} {
 	return common_user.NewCommonUserLoginResult()
 }
 
+func validateTokenHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*common_user.CommonUserValidateTokenArgs)
+	realResult := result.(*common_user.CommonUserValidateTokenResult)
+	success, err := handler.(common_user.CommonUser).ValidateToken(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newCommonUserValidateTokenArgs() interface{} {
+	return common_user.NewCommonUserValidateTokenArgs()
+}
+
+func newCommonUserValidateTokenResult() interface{} {
+	return common_user.NewCommonUserValidateTokenResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -189,6 +214,16 @@ func (p *kClient) Login(ctx context.Context, req *common_user.LoginReq) (r *comm
 	_args.Req = req
 	var _result common_user.CommonUserLoginResult
 	if err = p.c.Call(ctx, "Login", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) ValidateToken(ctx context.Context, req *common_user.ValidateTokenReq) (r *common_user.ValidateTokenResp, err error) {
+	var _args common_user.CommonUserValidateTokenArgs
+	_args.Req = req
+	var _result common_user.CommonUserValidateTokenResult
+	if err = p.c.Call(ctx, "ValidateToken", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
