@@ -1399,6 +1399,7 @@ func (p *ValidateTokenReq) Field1DeepEqual(src string) bool {
 }
 
 type ValidateTokenResp struct {
+	Claims map[string]string `thrift:"claims,1,required" frugal:"1,required,map<string:string>" json:"claims"`
 }
 
 func NewValidateTokenResp() *ValidateTokenResp {
@@ -1408,12 +1409,22 @@ func NewValidateTokenResp() *ValidateTokenResp {
 func (p *ValidateTokenResp) InitDefault() {
 }
 
-var fieldIDToName_ValidateTokenResp = map[int16]string{}
+func (p *ValidateTokenResp) GetClaims() (v map[string]string) {
+	return p.Claims
+}
+func (p *ValidateTokenResp) SetClaims(val map[string]string) {
+	p.Claims = val
+}
+
+var fieldIDToName_ValidateTokenResp = map[int16]string{
+	1: "claims",
+}
 
 func (p *ValidateTokenResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
+	var issetClaims bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -1427,8 +1438,21 @@ func (p *ValidateTokenResp) Read(iprot thrift.TProtocol) (err error) {
 		if fieldTypeId == thrift.STOP {
 			break
 		}
-		if err = iprot.Skip(fieldTypeId); err != nil {
-			goto SkipFieldTypeError
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.MAP {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetClaims = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		}
 		if err = iprot.ReadFieldEnd(); err != nil {
 			goto ReadFieldEndError
@@ -1438,26 +1462,69 @@ func (p *ValidateTokenResp) Read(iprot thrift.TProtocol) (err error) {
 		goto ReadStructEndError
 	}
 
+	if !issetClaims {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
 	return nil
 ReadStructBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
-SkipFieldTypeError:
-	return thrift.PrependError(fmt.Sprintf("%T skip field type %d error", p, fieldTypeId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ValidateTokenResp[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
 ReadFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+RequiredFieldNotSetError:
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_ValidateTokenResp[fieldId]))
+}
+
+func (p *ValidateTokenResp) ReadField1(iprot thrift.TProtocol) error {
+	_, _, size, err := iprot.ReadMapBegin()
+	if err != nil {
+		return err
+	}
+	_field := make(map[string]string, size)
+	for i := 0; i < size; i++ {
+		var _key string
+		if v, err := iprot.ReadString(); err != nil {
+			return err
+		} else {
+			_key = v
+		}
+
+		var _val string
+		if v, err := iprot.ReadString(); err != nil {
+			return err
+		} else {
+			_val = v
+		}
+
+		_field[_key] = _val
+	}
+	if err := iprot.ReadMapEnd(); err != nil {
+		return err
+	}
+	p.Claims = _field
+	return nil
 }
 
 func (p *ValidateTokenResp) Write(oprot thrift.TProtocol) (err error) {
 
+	var fieldId int16
 	if err = oprot.WriteStructBegin("ValidateTokenResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
 	}
 	if err = oprot.WriteFieldStop(); err != nil {
 		goto WriteFieldStopError
@@ -1468,10 +1535,40 @@ func (p *ValidateTokenResp) Write(oprot thrift.TProtocol) (err error) {
 	return nil
 WriteStructBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
 WriteFieldStopError:
 	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
 WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *ValidateTokenResp) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("claims", thrift.MAP, 1); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteMapBegin(thrift.STRING, thrift.STRING, len(p.Claims)); err != nil {
+		return err
+	}
+	for k, v := range p.Claims {
+		if err := oprot.WriteString(k); err != nil {
+			return err
+		}
+		if err := oprot.WriteString(v); err != nil {
+			return err
+		}
+	}
+	if err := oprot.WriteMapEnd(); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
 func (p *ValidateTokenResp) String() string {
@@ -1487,6 +1584,23 @@ func (p *ValidateTokenResp) DeepEqual(ano *ValidateTokenResp) bool {
 		return true
 	} else if p == nil || ano == nil {
 		return false
+	}
+	if !p.Field1DeepEqual(ano.Claims) {
+		return false
+	}
+	return true
+}
+
+func (p *ValidateTokenResp) Field1DeepEqual(src map[string]string) bool {
+
+	if len(p.Claims) != len(src) {
+		return false
+	}
+	for k, v := range p.Claims {
+		_src := src[k]
+		if strings.Compare(v, _src) != 0 {
+			return false
+		}
 	}
 	return true
 }
