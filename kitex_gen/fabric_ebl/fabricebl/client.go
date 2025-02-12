@@ -11,7 +11,7 @@ import (
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
-	SignUp(ctx context.Context, req *fabric_ebl.CreateCompanyReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyResp, err error)
+	CreateCompany(ctx context.Context, req *fabric_ebl.CreateCompanyReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -43,7 +43,7 @@ type kFabricEblClient struct {
 	*kClient
 }
 
-func (p *kFabricEblClient) SignUp(ctx context.Context, req *fabric_ebl.CreateCompanyReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyResp, err error) {
+func (p *kFabricEblClient) CreateCompany(ctx context.Context, req *fabric_ebl.CreateCompanyReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.SignUp(ctx, req)
+	return p.kClient.CreateCompany(ctx, req)
 }

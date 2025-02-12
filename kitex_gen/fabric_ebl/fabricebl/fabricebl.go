@@ -13,10 +13,10 @@ import (
 var errInvalidMessageType = errors.New("invalid message type for service method handler")
 
 var serviceMethods = map[string]kitex.MethodInfo{
-	"SignUp": kitex.NewMethodInfo(
-		signUpHandler,
-		newFabricEblSignUpArgs,
-		newFabricEblSignUpResult,
+	"CreateCompany": kitex.NewMethodInfo(
+		createCompanyHandler,
+		newFabricEblCreateCompanyArgs,
+		newFabricEblCreateCompanyResult,
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
@@ -86,22 +86,22 @@ func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreami
 	return svcInfo
 }
 
-func signUpHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*fabric_ebl.FabricEblSignUpArgs)
-	realResult := result.(*fabric_ebl.FabricEblSignUpResult)
-	success, err := handler.(fabric_ebl.FabricEbl).SignUp(ctx, realArg.Req)
+func createCompanyHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCreateCompanyArgs)
+	realResult := result.(*fabric_ebl.FabricEblCreateCompanyResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CreateCompany(ctx, realArg.Req)
 	if err != nil {
 		return err
 	}
 	realResult.Success = success
 	return nil
 }
-func newFabricEblSignUpArgs() interface{} {
-	return fabric_ebl.NewFabricEblSignUpArgs()
+func newFabricEblCreateCompanyArgs() interface{} {
+	return fabric_ebl.NewFabricEblCreateCompanyArgs()
 }
 
-func newFabricEblSignUpResult() interface{} {
-	return fabric_ebl.NewFabricEblSignUpResult()
+func newFabricEblCreateCompanyResult() interface{} {
+	return fabric_ebl.NewFabricEblCreateCompanyResult()
 }
 
 type kClient struct {
@@ -114,11 +114,11 @@ func newServiceClient(c client.Client) *kClient {
 	}
 }
 
-func (p *kClient) SignUp(ctx context.Context, req *fabric_ebl.CreateCompanyReq) (r *fabric_ebl.CreateCompanyResp, err error) {
-	var _args fabric_ebl.FabricEblSignUpArgs
+func (p *kClient) CreateCompany(ctx context.Context, req *fabric_ebl.CreateCompanyReq) (r *fabric_ebl.CreateCompanyResp, err error) {
+	var _args fabric_ebl.FabricEblCreateCompanyArgs
 	_args.Req = req
-	var _result fabric_ebl.FabricEblSignUpResult
-	if err = p.c.Call(ctx, "SignUp", &_args, &_result); err != nil {
+	var _result fabric_ebl.FabricEblCreateCompanyResult
+	if err = p.c.Call(ctx, "CreateCompany", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

@@ -588,41 +588,41 @@ func (p *CreateCompanyResp) DeepEqual(ano *CreateCompanyResp) bool {
 }
 
 type FabricEbl interface {
-	SignUp(ctx context.Context, req *CreateCompanyReq) (r *CreateCompanyResp, err error)
+	CreateCompany(ctx context.Context, req *CreateCompanyReq) (r *CreateCompanyResp, err error)
 }
 
-type FabricEblSignUpArgs struct {
+type FabricEblCreateCompanyArgs struct {
 	Req *CreateCompanyReq `thrift:"req,1" frugal:"1,default,CreateCompanyReq" json:"req"`
 }
 
-func NewFabricEblSignUpArgs() *FabricEblSignUpArgs {
-	return &FabricEblSignUpArgs{}
+func NewFabricEblCreateCompanyArgs() *FabricEblCreateCompanyArgs {
+	return &FabricEblCreateCompanyArgs{}
 }
 
-func (p *FabricEblSignUpArgs) InitDefault() {
+func (p *FabricEblCreateCompanyArgs) InitDefault() {
 }
 
-var FabricEblSignUpArgs_Req_DEFAULT *CreateCompanyReq
+var FabricEblCreateCompanyArgs_Req_DEFAULT *CreateCompanyReq
 
-func (p *FabricEblSignUpArgs) GetReq() (v *CreateCompanyReq) {
+func (p *FabricEblCreateCompanyArgs) GetReq() (v *CreateCompanyReq) {
 	if !p.IsSetReq() {
-		return FabricEblSignUpArgs_Req_DEFAULT
+		return FabricEblCreateCompanyArgs_Req_DEFAULT
 	}
 	return p.Req
 }
-func (p *FabricEblSignUpArgs) SetReq(val *CreateCompanyReq) {
+func (p *FabricEblCreateCompanyArgs) SetReq(val *CreateCompanyReq) {
 	p.Req = val
 }
 
-var fieldIDToName_FabricEblSignUpArgs = map[int16]string{
+var fieldIDToName_FabricEblCreateCompanyArgs = map[int16]string{
 	1: "req",
 }
 
-func (p *FabricEblSignUpArgs) IsSetReq() bool {
+func (p *FabricEblCreateCompanyArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *FabricEblSignUpArgs) Read(iprot thrift.TProtocol) (err error) {
+func (p *FabricEblCreateCompanyArgs) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -668,7 +668,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblSignUpArgs[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblCreateCompanyArgs[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -678,7 +678,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *FabricEblSignUpArgs) ReadField1(iprot thrift.TProtocol) error {
+func (p *FabricEblCreateCompanyArgs) ReadField1(iprot thrift.TProtocol) error {
 	_field := NewCreateCompanyReq()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -687,10 +687,10 @@ func (p *FabricEblSignUpArgs) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *FabricEblSignUpArgs) Write(oprot thrift.TProtocol) (err error) {
+func (p *FabricEblCreateCompanyArgs) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("SignUp_args"); err != nil {
+	if err = oprot.WriteStructBegin("CreateCompany_args"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -716,7 +716,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *FabricEblSignUpArgs) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *FabricEblCreateCompanyArgs) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -733,15 +733,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *FabricEblSignUpArgs) String() string {
+func (p *FabricEblCreateCompanyArgs) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("FabricEblSignUpArgs(%+v)", *p)
+	return fmt.Sprintf("FabricEblCreateCompanyArgs(%+v)", *p)
 
 }
 
-func (p *FabricEblSignUpArgs) DeepEqual(ano *FabricEblSignUpArgs) bool {
+func (p *FabricEblCreateCompanyArgs) DeepEqual(ano *FabricEblCreateCompanyArgs) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -753,7 +753,7 @@ func (p *FabricEblSignUpArgs) DeepEqual(ano *FabricEblSignUpArgs) bool {
 	return true
 }
 
-func (p *FabricEblSignUpArgs) Field1DeepEqual(src *CreateCompanyReq) bool {
+func (p *FabricEblCreateCompanyArgs) Field1DeepEqual(src *CreateCompanyReq) bool {
 
 	if !p.Req.DeepEqual(src) {
 		return false
@@ -761,38 +761,38 @@ func (p *FabricEblSignUpArgs) Field1DeepEqual(src *CreateCompanyReq) bool {
 	return true
 }
 
-type FabricEblSignUpResult struct {
+type FabricEblCreateCompanyResult struct {
 	Success *CreateCompanyResp `thrift:"success,0,optional" frugal:"0,optional,CreateCompanyResp" json:"success,omitempty"`
 }
 
-func NewFabricEblSignUpResult() *FabricEblSignUpResult {
-	return &FabricEblSignUpResult{}
+func NewFabricEblCreateCompanyResult() *FabricEblCreateCompanyResult {
+	return &FabricEblCreateCompanyResult{}
 }
 
-func (p *FabricEblSignUpResult) InitDefault() {
+func (p *FabricEblCreateCompanyResult) InitDefault() {
 }
 
-var FabricEblSignUpResult_Success_DEFAULT *CreateCompanyResp
+var FabricEblCreateCompanyResult_Success_DEFAULT *CreateCompanyResp
 
-func (p *FabricEblSignUpResult) GetSuccess() (v *CreateCompanyResp) {
+func (p *FabricEblCreateCompanyResult) GetSuccess() (v *CreateCompanyResp) {
 	if !p.IsSetSuccess() {
-		return FabricEblSignUpResult_Success_DEFAULT
+		return FabricEblCreateCompanyResult_Success_DEFAULT
 	}
 	return p.Success
 }
-func (p *FabricEblSignUpResult) SetSuccess(x interface{}) {
+func (p *FabricEblCreateCompanyResult) SetSuccess(x interface{}) {
 	p.Success = x.(*CreateCompanyResp)
 }
 
-var fieldIDToName_FabricEblSignUpResult = map[int16]string{
+var fieldIDToName_FabricEblCreateCompanyResult = map[int16]string{
 	0: "success",
 }
 
-func (p *FabricEblSignUpResult) IsSetSuccess() bool {
+func (p *FabricEblCreateCompanyResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *FabricEblSignUpResult) Read(iprot thrift.TProtocol) (err error) {
+func (p *FabricEblCreateCompanyResult) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -838,7 +838,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblSignUpResult[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblCreateCompanyResult[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -848,7 +848,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *FabricEblSignUpResult) ReadField0(iprot thrift.TProtocol) error {
+func (p *FabricEblCreateCompanyResult) ReadField0(iprot thrift.TProtocol) error {
 	_field := NewCreateCompanyResp()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -857,10 +857,10 @@ func (p *FabricEblSignUpResult) ReadField0(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *FabricEblSignUpResult) Write(oprot thrift.TProtocol) (err error) {
+func (p *FabricEblCreateCompanyResult) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("SignUp_result"); err != nil {
+	if err = oprot.WriteStructBegin("CreateCompany_result"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -886,7 +886,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *FabricEblSignUpResult) writeField0(oprot thrift.TProtocol) (err error) {
+func (p *FabricEblCreateCompanyResult) writeField0(oprot thrift.TProtocol) (err error) {
 	if p.IsSetSuccess() {
 		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
 			goto WriteFieldBeginError
@@ -905,15 +905,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
 }
 
-func (p *FabricEblSignUpResult) String() string {
+func (p *FabricEblCreateCompanyResult) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("FabricEblSignUpResult(%+v)", *p)
+	return fmt.Sprintf("FabricEblCreateCompanyResult(%+v)", *p)
 
 }
 
-func (p *FabricEblSignUpResult) DeepEqual(ano *FabricEblSignUpResult) bool {
+func (p *FabricEblCreateCompanyResult) DeepEqual(ano *FabricEblCreateCompanyResult) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -925,7 +925,7 @@ func (p *FabricEblSignUpResult) DeepEqual(ano *FabricEblSignUpResult) bool {
 	return true
 }
 
-func (p *FabricEblSignUpResult) Field0DeepEqual(src *CreateCompanyResp) bool {
+func (p *FabricEblCreateCompanyResult) Field0DeepEqual(src *CreateCompanyResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
