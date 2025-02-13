@@ -64,6 +64,7 @@ type CreateCompanyReq struct {
 	CompanyType   CompanyType `thrift:"company_type,3,required" frugal:"3,required,CompanyType" json:"company_type"`
 	AdminEmail    string      `thrift:"admin_email,4,required" frugal:"4,required,string" json:"admin_email"`
 	AdminPassword string      `thrift:"admin_password,5,required" frugal:"5,required,string" json:"admin_password"`
+	AdminName     string      `thrift:"admin_name,6,required" frugal:"6,required,string" json:"admin_name"`
 }
 
 func NewCreateCompanyReq() *CreateCompanyReq {
@@ -92,6 +93,10 @@ func (p *CreateCompanyReq) GetAdminEmail() (v string) {
 func (p *CreateCompanyReq) GetAdminPassword() (v string) {
 	return p.AdminPassword
 }
+
+func (p *CreateCompanyReq) GetAdminName() (v string) {
+	return p.AdminName
+}
 func (p *CreateCompanyReq) SetCompanyCode(val string) {
 	p.CompanyCode = val
 }
@@ -107,6 +112,9 @@ func (p *CreateCompanyReq) SetAdminEmail(val string) {
 func (p *CreateCompanyReq) SetAdminPassword(val string) {
 	p.AdminPassword = val
 }
+func (p *CreateCompanyReq) SetAdminName(val string) {
+	p.AdminName = val
+}
 
 var fieldIDToName_CreateCompanyReq = map[int16]string{
 	1: "company_code",
@@ -114,6 +122,7 @@ var fieldIDToName_CreateCompanyReq = map[int16]string{
 	3: "company_type",
 	4: "admin_email",
 	5: "admin_password",
+	6: "admin_name",
 }
 
 func (p *CreateCompanyReq) Read(iprot thrift.TProtocol) (err error) {
@@ -125,6 +134,7 @@ func (p *CreateCompanyReq) Read(iprot thrift.TProtocol) (err error) {
 	var issetCompanyType bool = false
 	var issetAdminEmail bool = false
 	var issetAdminPassword bool = false
+	var issetAdminName bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -185,6 +195,15 @@ func (p *CreateCompanyReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField6(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetAdminName = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -220,6 +239,11 @@ func (p *CreateCompanyReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetAdminPassword {
 		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetAdminName {
+		fieldId = 6
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -295,6 +319,17 @@ func (p *CreateCompanyReq) ReadField5(iprot thrift.TProtocol) error {
 	p.AdminPassword = _field
 	return nil
 }
+func (p *CreateCompanyReq) ReadField6(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.AdminName = _field
+	return nil
+}
 
 func (p *CreateCompanyReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -321,6 +356,10 @@ func (p *CreateCompanyReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField5(oprot); err != nil {
 			fieldId = 5
+			goto WriteFieldError
+		}
+		if err = p.writeField6(oprot); err != nil {
+			fieldId = 6
 			goto WriteFieldError
 		}
 	}
@@ -426,6 +465,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
 }
 
+func (p *CreateCompanyReq) writeField6(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("admin_name", thrift.STRING, 6); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.AdminName); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
+}
+
 func (p *CreateCompanyReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -453,6 +509,9 @@ func (p *CreateCompanyReq) DeepEqual(ano *CreateCompanyReq) bool {
 		return false
 	}
 	if !p.Field5DeepEqual(ano.AdminPassword) {
+		return false
+	}
+	if !p.Field6DeepEqual(ano.AdminName) {
 		return false
 	}
 	return true
@@ -489,6 +548,13 @@ func (p *CreateCompanyReq) Field4DeepEqual(src string) bool {
 func (p *CreateCompanyReq) Field5DeepEqual(src string) bool {
 
 	if strings.Compare(p.AdminPassword, src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *CreateCompanyReq) Field6DeepEqual(src string) bool {
+
+	if strings.Compare(p.AdminName, src) != 0 {
 		return false
 	}
 	return true
