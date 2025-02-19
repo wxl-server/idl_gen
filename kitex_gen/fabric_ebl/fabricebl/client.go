@@ -13,6 +13,7 @@ import (
 type Client interface {
 	CreateCompany(ctx context.Context, req *fabric_ebl.CreateCompanyReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyResp, err error)
 	Login(ctx context.Context, req *fabric_ebl.LoginReq, callOptions ...callopt.Option) (r *fabric_ebl.LoginResp, err error)
+	GetUserInfo(ctx context.Context, req *fabric_ebl.GetUserInfoReq, callOptions ...callopt.Option) (r *fabric_ebl.GetUserInfoResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -52,4 +53,9 @@ func (p *kFabricEblClient) CreateCompany(ctx context.Context, req *fabric_ebl.Cr
 func (p *kFabricEblClient) Login(ctx context.Context, req *fabric_ebl.LoginReq, callOptions ...callopt.Option) (r *fabric_ebl.LoginResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.Login(ctx, req)
+}
+
+func (p *kFabricEblClient) GetUserInfo(ctx context.Context, req *fabric_ebl.GetUserInfoReq, callOptions ...callopt.Option) (r *fabric_ebl.GetUserInfoResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetUserInfo(ctx, req)
 }

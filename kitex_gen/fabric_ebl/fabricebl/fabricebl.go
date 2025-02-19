@@ -27,6 +27,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"GetUserInfo": kitex.NewMethodInfo(
+		getUserInfoHandler,
+		newFabricEblGetUserInfoArgs,
+		newFabricEblGetUserInfoResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -129,6 +136,24 @@ func newFabricEblLoginResult() interface{} {
 	return fabric_ebl.NewFabricEblLoginResult()
 }
 
+func getUserInfoHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblGetUserInfoArgs)
+	realResult := result.(*fabric_ebl.FabricEblGetUserInfoResult)
+	success, err := handler.(fabric_ebl.FabricEbl).GetUserInfo(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblGetUserInfoArgs() interface{} {
+	return fabric_ebl.NewFabricEblGetUserInfoArgs()
+}
+
+func newFabricEblGetUserInfoResult() interface{} {
+	return fabric_ebl.NewFabricEblGetUserInfoResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -154,6 +179,16 @@ func (p *kClient) Login(ctx context.Context, req *fabric_ebl.LoginReq) (r *fabri
 	_args.Req = req
 	var _result fabric_ebl.FabricEblLoginResult
 	if err = p.c.Call(ctx, "Login", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetUserInfo(ctx context.Context, req *fabric_ebl.GetUserInfoReq) (r *fabric_ebl.GetUserInfoResp, err error) {
+	var _args fabric_ebl.FabricEblGetUserInfoArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblGetUserInfoResult
+	if err = p.c.Call(ctx, "GetUserInfo", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
