@@ -41,6 +41,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"CreateEbl": kitex.NewMethodInfo(
+		createEblHandler,
+		newFabricEblCreateEblArgs,
+		newFabricEblCreateEblResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -179,6 +186,24 @@ func newFabricEblGetCompanyAllListResult() interface{} {
 	return fabric_ebl.NewFabricEblGetCompanyAllListResult()
 }
 
+func createEblHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCreateEblArgs)
+	realResult := result.(*fabric_ebl.FabricEblCreateEblResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CreateEbl(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblCreateEblArgs() interface{} {
+	return fabric_ebl.NewFabricEblCreateEblArgs()
+}
+
+func newFabricEblCreateEblResult() interface{} {
+	return fabric_ebl.NewFabricEblCreateEblResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -224,6 +249,16 @@ func (p *kClient) GetCompanyAllList(ctx context.Context, req *fabric_ebl.GetComp
 	_args.Req = req
 	var _result fabric_ebl.FabricEblGetCompanyAllListResult
 	if err = p.c.Call(ctx, "GetCompanyAllList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CreateEbl(ctx context.Context, req *fabric_ebl.CreateEblReq) (r *fabric_ebl.CreateEblResp, err error) {
+	var _args fabric_ebl.FabricEblCreateEblArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblCreateEblResult
+	if err = p.c.Call(ctx, "CreateEbl", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
