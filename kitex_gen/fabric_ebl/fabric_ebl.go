@@ -2084,7 +2084,7 @@ func (p *GetCompanyAllListReq) DeepEqual(ano *GetCompanyAllListReq) bool {
 }
 
 type GetCompanyAllListResp struct {
-	CompanyType []*Company `thrift:"company_type,1,required" frugal:"1,required,list<Company>" json:"company_type"`
+	CompanyList []*Company `thrift:"company_list,1,required" frugal:"1,required,list<Company>" json:"company_list"`
 }
 
 func NewGetCompanyAllListResp() *GetCompanyAllListResp {
@@ -2094,22 +2094,22 @@ func NewGetCompanyAllListResp() *GetCompanyAllListResp {
 func (p *GetCompanyAllListResp) InitDefault() {
 }
 
-func (p *GetCompanyAllListResp) GetCompanyType() (v []*Company) {
-	return p.CompanyType
+func (p *GetCompanyAllListResp) GetCompanyList() (v []*Company) {
+	return p.CompanyList
 }
-func (p *GetCompanyAllListResp) SetCompanyType(val []*Company) {
-	p.CompanyType = val
+func (p *GetCompanyAllListResp) SetCompanyList(val []*Company) {
+	p.CompanyList = val
 }
 
 var fieldIDToName_GetCompanyAllListResp = map[int16]string{
-	1: "company_type",
+	1: "company_list",
 }
 
 func (p *GetCompanyAllListResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
-	var issetCompanyType bool = false
+	var issetCompanyList bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -2130,7 +2130,7 @@ func (p *GetCompanyAllListResp) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetCompanyType = true
+				issetCompanyList = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -2147,7 +2147,7 @@ func (p *GetCompanyAllListResp) Read(iprot thrift.TProtocol) (err error) {
 		goto ReadStructEndError
 	}
 
-	if !issetCompanyType {
+	if !issetCompanyList {
 		fieldId = 1
 		goto RequiredFieldNotSetError
 	}
@@ -2189,7 +2189,7 @@ func (p *GetCompanyAllListResp) ReadField1(iprot thrift.TProtocol) error {
 	if err := iprot.ReadListEnd(); err != nil {
 		return err
 	}
-	p.CompanyType = _field
+	p.CompanyList = _field
 	return nil
 }
 
@@ -2223,13 +2223,13 @@ WriteStructEndError:
 }
 
 func (p *GetCompanyAllListResp) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("company_type", thrift.LIST, 1); err != nil {
+	if err = oprot.WriteFieldBegin("company_list", thrift.LIST, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.CompanyType)); err != nil {
+	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.CompanyList)); err != nil {
 		return err
 	}
-	for _, v := range p.CompanyType {
+	for _, v := range p.CompanyList {
 		if err := v.Write(oprot); err != nil {
 			return err
 		}
@@ -2261,7 +2261,7 @@ func (p *GetCompanyAllListResp) DeepEqual(ano *GetCompanyAllListResp) bool {
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.CompanyType) {
+	if !p.Field1DeepEqual(ano.CompanyList) {
 		return false
 	}
 	return true
@@ -2269,10 +2269,10 @@ func (p *GetCompanyAllListResp) DeepEqual(ano *GetCompanyAllListResp) bool {
 
 func (p *GetCompanyAllListResp) Field1DeepEqual(src []*Company) bool {
 
-	if len(p.CompanyType) != len(src) {
+	if len(p.CompanyList) != len(src) {
 		return false
 	}
-	for i, v := range p.CompanyType {
+	for i, v := range p.CompanyList {
 		_src := src[i]
 		if !v.DeepEqual(_src) {
 			return false

@@ -1385,7 +1385,7 @@ func (p *GetCompanyAllListResp) FastRead(buf []byte) (int, error) {
 	var l int
 	var fieldTypeId thrift.TType
 	var fieldId int16
-	var issetCompanyType bool = false
+	var issetCompanyList bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -1403,7 +1403,7 @@ func (p *GetCompanyAllListResp) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetCompanyType = true
+				issetCompanyList = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -1420,7 +1420,7 @@ func (p *GetCompanyAllListResp) FastRead(buf []byte) (int, error) {
 		}
 	}
 
-	if !issetCompanyType {
+	if !issetCompanyList {
 		fieldId = 1
 		goto RequiredFieldNotSetError
 	}
@@ -1456,7 +1456,7 @@ func (p *GetCompanyAllListResp) FastReadField1(buf []byte) (int, error) {
 
 		_field = append(_field, _elem)
 	}
-	p.CompanyType = _field
+	p.CompanyList = _field
 	return offset, nil
 }
 
@@ -1488,7 +1488,7 @@ func (p *GetCompanyAllListResp) fastWriteField1(buf []byte, w thrift.NocopyWrite
 	listBeginOffset := offset
 	offset += thrift.Binary.ListBeginLength()
 	var length int
-	for _, v := range p.CompanyType {
+	for _, v := range p.CompanyList {
 		length++
 		offset += v.FastWriteNocopy(buf[offset:], w)
 	}
@@ -1500,7 +1500,7 @@ func (p *GetCompanyAllListResp) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.ListBeginLength()
-	for _, v := range p.CompanyType {
+	for _, v := range p.CompanyList {
 		_ = v
 		l += v.BLength()
 	}
