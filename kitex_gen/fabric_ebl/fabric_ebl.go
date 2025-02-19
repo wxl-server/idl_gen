@@ -1990,19 +1990,19 @@ func (p *GetUserInfoResp) Field8DeepEqual(src CompanyType) bool {
 	return true
 }
 
-type GetCompanyAllListResp struct {
+type GetCompanyAllListReq struct {
 }
 
-func NewGetCompanyAllListResp() *GetCompanyAllListResp {
-	return &GetCompanyAllListResp{}
+func NewGetCompanyAllListReq() *GetCompanyAllListReq {
+	return &GetCompanyAllListReq{}
 }
 
-func (p *GetCompanyAllListResp) InitDefault() {
+func (p *GetCompanyAllListReq) InitDefault() {
 }
 
-var fieldIDToName_GetCompanyAllListResp = map[int16]string{}
+var fieldIDToName_GetCompanyAllListReq = map[int16]string{}
 
-func (p *GetCompanyAllListResp) Read(iprot thrift.TProtocol) (err error) {
+func (p *GetCompanyAllListReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -2044,9 +2044,9 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *GetCompanyAllListResp) Write(oprot thrift.TProtocol) (err error) {
+func (p *GetCompanyAllListReq) Write(oprot thrift.TProtocol) (err error) {
 
-	if err = oprot.WriteStructBegin("GetCompanyAllListResp"); err != nil {
+	if err = oprot.WriteStructBegin("GetCompanyAllListReq"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -2066,15 +2066,15 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *GetCompanyAllListResp) String() string {
+func (p *GetCompanyAllListReq) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("GetCompanyAllListResp(%+v)", *p)
+	return fmt.Sprintf("GetCompanyAllListReq(%+v)", *p)
 
 }
 
-func (p *GetCompanyAllListResp) DeepEqual(ano *GetCompanyAllListResp) bool {
+func (p *GetCompanyAllListReq) DeepEqual(ano *GetCompanyAllListReq) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -2083,29 +2083,29 @@ func (p *GetCompanyAllListResp) DeepEqual(ano *GetCompanyAllListResp) bool {
 	return true
 }
 
-type GetCompanyAllListReq struct {
+type GetCompanyAllListResp struct {
 	CompanyType []*Company `thrift:"company_type,1,required" frugal:"1,required,list<Company>" json:"company_type"`
 }
 
-func NewGetCompanyAllListReq() *GetCompanyAllListReq {
-	return &GetCompanyAllListReq{}
+func NewGetCompanyAllListResp() *GetCompanyAllListResp {
+	return &GetCompanyAllListResp{}
 }
 
-func (p *GetCompanyAllListReq) InitDefault() {
+func (p *GetCompanyAllListResp) InitDefault() {
 }
 
-func (p *GetCompanyAllListReq) GetCompanyType() (v []*Company) {
+func (p *GetCompanyAllListResp) GetCompanyType() (v []*Company) {
 	return p.CompanyType
 }
-func (p *GetCompanyAllListReq) SetCompanyType(val []*Company) {
+func (p *GetCompanyAllListResp) SetCompanyType(val []*Company) {
 	p.CompanyType = val
 }
 
-var fieldIDToName_GetCompanyAllListReq = map[int16]string{
+var fieldIDToName_GetCompanyAllListResp = map[int16]string{
 	1: "company_type",
 }
 
-func (p *GetCompanyAllListReq) Read(iprot thrift.TProtocol) (err error) {
+func (p *GetCompanyAllListResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -2157,7 +2157,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetCompanyAllListReq[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetCompanyAllListResp[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -2166,10 +2166,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_GetCompanyAllListReq[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_GetCompanyAllListResp[fieldId]))
 }
 
-func (p *GetCompanyAllListReq) ReadField1(iprot thrift.TProtocol) error {
+func (p *GetCompanyAllListResp) ReadField1(iprot thrift.TProtocol) error {
 	_, size, err := iprot.ReadListBegin()
 	if err != nil {
 		return err
@@ -2193,10 +2193,10 @@ func (p *GetCompanyAllListReq) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *GetCompanyAllListReq) Write(oprot thrift.TProtocol) (err error) {
+func (p *GetCompanyAllListResp) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("GetCompanyAllListReq"); err != nil {
+	if err = oprot.WriteStructBegin("GetCompanyAllListResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -2222,7 +2222,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *GetCompanyAllListReq) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *GetCompanyAllListResp) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("company_type", thrift.LIST, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -2247,15 +2247,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *GetCompanyAllListReq) String() string {
+func (p *GetCompanyAllListResp) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("GetCompanyAllListReq(%+v)", *p)
+	return fmt.Sprintf("GetCompanyAllListResp(%+v)", *p)
 
 }
 
-func (p *GetCompanyAllListReq) DeepEqual(ano *GetCompanyAllListReq) bool {
+func (p *GetCompanyAllListResp) DeepEqual(ano *GetCompanyAllListResp) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -2267,7 +2267,7 @@ func (p *GetCompanyAllListReq) DeepEqual(ano *GetCompanyAllListReq) bool {
 	return true
 }
 
-func (p *GetCompanyAllListReq) Field1DeepEqual(src []*Company) bool {
+func (p *GetCompanyAllListResp) Field1DeepEqual(src []*Company) bool {
 
 	if len(p.CompanyType) != len(src) {
 		return false
