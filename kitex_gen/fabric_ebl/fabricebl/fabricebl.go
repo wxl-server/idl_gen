@@ -34,6 +34,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"GetCompanyAllList": kitex.NewMethodInfo(
+		getCompanyAllListHandler,
+		newFabricEblGetCompanyAllListArgs,
+		newFabricEblGetCompanyAllListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -154,6 +161,24 @@ func newFabricEblGetUserInfoResult() interface{} {
 	return fabric_ebl.NewFabricEblGetUserInfoResult()
 }
 
+func getCompanyAllListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblGetCompanyAllListArgs)
+	realResult := result.(*fabric_ebl.FabricEblGetCompanyAllListResult)
+	success, err := handler.(fabric_ebl.FabricEbl).GetCompanyAllList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblGetCompanyAllListArgs() interface{} {
+	return fabric_ebl.NewFabricEblGetCompanyAllListArgs()
+}
+
+func newFabricEblGetCompanyAllListResult() interface{} {
+	return fabric_ebl.NewFabricEblGetCompanyAllListResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -189,6 +214,16 @@ func (p *kClient) GetUserInfo(ctx context.Context, req *fabric_ebl.GetUserInfoRe
 	_args.Req = req
 	var _result fabric_ebl.FabricEblGetUserInfoResult
 	if err = p.c.Call(ctx, "GetUserInfo", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetCompanyAllList(ctx context.Context, req *fabric_ebl.GetCompanyAllListReq) (r *fabric_ebl.GetCompanyAllListResp, err error) {
+	var _args fabric_ebl.FabricEblGetCompanyAllListArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblGetCompanyAllListResult
+	if err = p.c.Call(ctx, "GetCompanyAllList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
