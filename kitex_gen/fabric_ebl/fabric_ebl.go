@@ -1278,11 +1278,11 @@ func (p *GetUserInfoReq) DeepEqual(ano *GetUserInfoReq) bool {
 }
 
 type GetUserInfoResp struct {
-	UserId      string      `thrift:"user_id,1,required" frugal:"1,required,string" json:"user_id"`
+	UserId      int64       `thrift:"user_id,1,required" frugal:"1,required,i64" json:"user_id"`
 	UserEmail   string      `thrift:"user_email,2,required" frugal:"2,required,string" json:"user_email"`
 	UserName    string      `thrift:"user_name,3,required" frugal:"3,required,string" json:"user_name"`
 	UserType    UserType    `thrift:"user_type,4,required" frugal:"4,required,UserType" json:"user_type"`
-	CompanyId   string      `thrift:"company_id,5,required" frugal:"5,required,string" json:"company_id"`
+	CompanyId   int64       `thrift:"company_id,5,required" frugal:"5,required,i64" json:"company_id"`
 	CompanyName string      `thrift:"company_name,6,required" frugal:"6,required,string" json:"company_name"`
 	CompanyCode string      `thrift:"company_code,7,required" frugal:"7,required,string" json:"company_code"`
 	CompanyType CompanyType `thrift:"company_type,8,required" frugal:"8,required,CompanyType" json:"company_type"`
@@ -1295,7 +1295,7 @@ func NewGetUserInfoResp() *GetUserInfoResp {
 func (p *GetUserInfoResp) InitDefault() {
 }
 
-func (p *GetUserInfoResp) GetUserId() (v string) {
+func (p *GetUserInfoResp) GetUserId() (v int64) {
 	return p.UserId
 }
 
@@ -1311,7 +1311,7 @@ func (p *GetUserInfoResp) GetUserType() (v UserType) {
 	return p.UserType
 }
 
-func (p *GetUserInfoResp) GetCompanyId() (v string) {
+func (p *GetUserInfoResp) GetCompanyId() (v int64) {
 	return p.CompanyId
 }
 
@@ -1326,7 +1326,7 @@ func (p *GetUserInfoResp) GetCompanyCode() (v string) {
 func (p *GetUserInfoResp) GetCompanyType() (v CompanyType) {
 	return p.CompanyType
 }
-func (p *GetUserInfoResp) SetUserId(val string) {
+func (p *GetUserInfoResp) SetUserId(val int64) {
 	p.UserId = val
 }
 func (p *GetUserInfoResp) SetUserEmail(val string) {
@@ -1338,7 +1338,7 @@ func (p *GetUserInfoResp) SetUserName(val string) {
 func (p *GetUserInfoResp) SetUserType(val UserType) {
 	p.UserType = val
 }
-func (p *GetUserInfoResp) SetCompanyId(val string) {
+func (p *GetUserInfoResp) SetCompanyId(val int64) {
 	p.CompanyId = val
 }
 func (p *GetUserInfoResp) SetCompanyName(val string) {
@@ -1390,7 +1390,7 @@ func (p *GetUserInfoResp) Read(iprot thrift.TProtocol) (err error) {
 
 		switch fieldId {
 		case 1:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -1426,7 +1426,7 @@ func (p *GetUserInfoResp) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 5:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField5(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -1533,8 +1533,8 @@ RequiredFieldNotSetError:
 
 func (p *GetUserInfoResp) ReadField1(iprot thrift.TProtocol) error {
 
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -1577,8 +1577,8 @@ func (p *GetUserInfoResp) ReadField4(iprot thrift.TProtocol) error {
 }
 func (p *GetUserInfoResp) ReadField5(iprot thrift.TProtocol) error {
 
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -1678,10 +1678,10 @@ WriteStructEndError:
 }
 
 func (p *GetUserInfoResp) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("user_id", thrift.STRING, 1); err != nil {
+	if err = oprot.WriteFieldBegin("user_id", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.UserId); err != nil {
+	if err := oprot.WriteI64(p.UserId); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -1746,10 +1746,10 @@ WriteFieldEndError:
 }
 
 func (p *GetUserInfoResp) writeField5(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("company_id", thrift.STRING, 5); err != nil {
+	if err = oprot.WriteFieldBegin("company_id", thrift.I64, 5); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.CompanyId); err != nil {
+	if err := oprot.WriteI64(p.CompanyId); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -1854,9 +1854,9 @@ func (p *GetUserInfoResp) DeepEqual(ano *GetUserInfoResp) bool {
 	return true
 }
 
-func (p *GetUserInfoResp) Field1DeepEqual(src string) bool {
+func (p *GetUserInfoResp) Field1DeepEqual(src int64) bool {
 
-	if strings.Compare(p.UserId, src) != 0 {
+	if p.UserId != src {
 		return false
 	}
 	return true
@@ -1882,9 +1882,9 @@ func (p *GetUserInfoResp) Field4DeepEqual(src UserType) bool {
 	}
 	return true
 }
-func (p *GetUserInfoResp) Field5DeepEqual(src string) bool {
+func (p *GetUserInfoResp) Field5DeepEqual(src int64) bool {
 
-	if strings.Compare(p.CompanyId, src) != 0 {
+	if p.CompanyId != src {
 		return false
 	}
 	return true
