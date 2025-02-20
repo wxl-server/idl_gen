@@ -2282,7 +2282,8 @@ func (p *GetCompanyAllListResp) Field1DeepEqual(src []*Company) bool {
 }
 
 type CreateEblReq struct {
-	Ebl *Ebl `thrift:"ebl,1,required" frugal:"1,required,Ebl" json:"ebl"`
+	Ebl   *Ebl   `thrift:"ebl,1,required" frugal:"1,required,Ebl" json:"ebl"`
+	Token string `thrift:"token,2,required" frugal:"2,required,string" json:"token"`
 }
 
 func NewCreateEblReq() *CreateEblReq {
@@ -2300,12 +2301,20 @@ func (p *CreateEblReq) GetEbl() (v *Ebl) {
 	}
 	return p.Ebl
 }
+
+func (p *CreateEblReq) GetToken() (v string) {
+	return p.Token
+}
 func (p *CreateEblReq) SetEbl(val *Ebl) {
 	p.Ebl = val
+}
+func (p *CreateEblReq) SetToken(val string) {
+	p.Token = val
 }
 
 var fieldIDToName_CreateEblReq = map[int16]string{
 	1: "ebl",
+	2: "token",
 }
 
 func (p *CreateEblReq) IsSetEbl() bool {
@@ -2317,6 +2326,7 @@ func (p *CreateEblReq) Read(iprot thrift.TProtocol) (err error) {
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetEbl bool = false
+	var issetToken bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -2341,6 +2351,15 @@ func (p *CreateEblReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -2356,6 +2375,11 @@ func (p *CreateEblReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetEbl {
 		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetToken {
+		fieldId = 2
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -2384,6 +2408,17 @@ func (p *CreateEblReq) ReadField1(iprot thrift.TProtocol) error {
 	p.Ebl = _field
 	return nil
 }
+func (p *CreateEblReq) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Token = _field
+	return nil
+}
 
 func (p *CreateEblReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -2394,6 +2429,10 @@ func (p *CreateEblReq) Write(oprot thrift.TProtocol) (err error) {
 	if p != nil {
 		if err = p.writeField1(oprot); err != nil {
 			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
 			goto WriteFieldError
 		}
 	}
@@ -2431,6 +2470,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
+func (p *CreateEblReq) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("token", thrift.STRING, 2); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Token); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
 func (p *CreateEblReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -2448,12 +2504,22 @@ func (p *CreateEblReq) DeepEqual(ano *CreateEblReq) bool {
 	if !p.Field1DeepEqual(ano.Ebl) {
 		return false
 	}
+	if !p.Field2DeepEqual(ano.Token) {
+		return false
+	}
 	return true
 }
 
 func (p *CreateEblReq) Field1DeepEqual(src *Ebl) bool {
 
 	if !p.Ebl.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+func (p *CreateEblReq) Field2DeepEqual(src string) bool {
+
+	if strings.Compare(p.Token, src) != 0 {
 		return false
 	}
 	return true
