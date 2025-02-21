@@ -48,6 +48,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"QueryAllEblList": kitex.NewMethodInfo(
+		queryAllEblListHandler,
+		newFabricEblQueryAllEblListArgs,
+		newFabricEblQueryAllEblListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -204,6 +211,24 @@ func newFabricEblCreateEblResult() interface{} {
 	return fabric_ebl.NewFabricEblCreateEblResult()
 }
 
+func queryAllEblListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryAllEblListArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryAllEblListResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryAllEblList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryAllEblListArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryAllEblListArgs()
+}
+
+func newFabricEblQueryAllEblListResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryAllEblListResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -259,6 +284,16 @@ func (p *kClient) CreateEbl(ctx context.Context, req *fabric_ebl.CreateEblReq) (
 	_args.Req = req
 	var _result fabric_ebl.FabricEblCreateEblResult
 	if err = p.c.Call(ctx, "CreateEbl", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryAllEblList(ctx context.Context, req *fabric_ebl.QueryAllEblListReq) (r *fabric_ebl.QueryAllEblListResp, err error) {
+	var _args fabric_ebl.FabricEblQueryAllEblListArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryAllEblListResult
+	if err = p.c.Call(ctx, "QueryAllEblList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
