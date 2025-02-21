@@ -5949,6 +5949,730 @@ func (p *QueryAllEblListResp) Field3DeepEqual(src string) bool {
 	return true
 }
 
+type QueryEblListReq struct {
+	Token     string  `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	PageSize  *int64  `thrift:"pageSize,2,optional" frugal:"2,optional,i64" json:"pageSize,omitempty"`
+	Bookmark  *string `thrift:"bookmark,3,optional" frugal:"3,optional,string" json:"bookmark,omitempty"`
+	EblFilter *Ebl    `thrift:"eblFilter,4,required" frugal:"4,required,Ebl" json:"eblFilter"`
+}
+
+func NewQueryEblListReq() *QueryEblListReq {
+	return &QueryEblListReq{}
+}
+
+func (p *QueryEblListReq) InitDefault() {
+}
+
+func (p *QueryEblListReq) GetToken() (v string) {
+	return p.Token
+}
+
+var QueryEblListReq_PageSize_DEFAULT int64
+
+func (p *QueryEblListReq) GetPageSize() (v int64) {
+	if !p.IsSetPageSize() {
+		return QueryEblListReq_PageSize_DEFAULT
+	}
+	return *p.PageSize
+}
+
+var QueryEblListReq_Bookmark_DEFAULT string
+
+func (p *QueryEblListReq) GetBookmark() (v string) {
+	if !p.IsSetBookmark() {
+		return QueryEblListReq_Bookmark_DEFAULT
+	}
+	return *p.Bookmark
+}
+
+var QueryEblListReq_EblFilter_DEFAULT *Ebl
+
+func (p *QueryEblListReq) GetEblFilter() (v *Ebl) {
+	if !p.IsSetEblFilter() {
+		return QueryEblListReq_EblFilter_DEFAULT
+	}
+	return p.EblFilter
+}
+func (p *QueryEblListReq) SetToken(val string) {
+	p.Token = val
+}
+func (p *QueryEblListReq) SetPageSize(val *int64) {
+	p.PageSize = val
+}
+func (p *QueryEblListReq) SetBookmark(val *string) {
+	p.Bookmark = val
+}
+func (p *QueryEblListReq) SetEblFilter(val *Ebl) {
+	p.EblFilter = val
+}
+
+var fieldIDToName_QueryEblListReq = map[int16]string{
+	1: "token",
+	2: "pageSize",
+	3: "bookmark",
+	4: "eblFilter",
+}
+
+func (p *QueryEblListReq) IsSetPageSize() bool {
+	return p.PageSize != nil
+}
+
+func (p *QueryEblListReq) IsSetBookmark() bool {
+	return p.Bookmark != nil
+}
+
+func (p *QueryEblListReq) IsSetEblFilter() bool {
+	return p.EblFilter != nil
+}
+
+func (p *QueryEblListReq) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetToken bool = false
+	var issetEblFilter bool = false
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetEblFilter = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	if !issetToken {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetEblFilter {
+		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_QueryEblListReq[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+RequiredFieldNotSetError:
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_QueryEblListReq[fieldId]))
+}
+
+func (p *QueryEblListReq) ReadField1(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Token = _field
+	return nil
+}
+func (p *QueryEblListReq) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.PageSize = _field
+	return nil
+}
+func (p *QueryEblListReq) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Bookmark = _field
+	return nil
+}
+func (p *QueryEblListReq) ReadField4(iprot thrift.TProtocol) error {
+	_field := NewEbl()
+	if err := _field.Read(iprot); err != nil {
+		return err
+	}
+	p.EblFilter = _field
+	return nil
+}
+
+func (p *QueryEblListReq) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("QueryEblListReq"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *QueryEblListReq) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("token", thrift.STRING, 1); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Token); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *QueryEblListReq) writeField2(oprot thrift.TProtocol) (err error) {
+	if p.IsSetPageSize() {
+		if err = oprot.WriteFieldBegin("pageSize", thrift.I64, 2); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.PageSize); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
+func (p *QueryEblListReq) writeField3(oprot thrift.TProtocol) (err error) {
+	if p.IsSetBookmark() {
+		if err = oprot.WriteFieldBegin("bookmark", thrift.STRING, 3); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.Bookmark); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *QueryEblListReq) writeField4(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("eblFilter", thrift.STRUCT, 4); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := p.EblFilter.Write(oprot); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
+func (p *QueryEblListReq) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("QueryEblListReq(%+v)", *p)
+
+}
+
+func (p *QueryEblListReq) DeepEqual(ano *QueryEblListReq) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.Token) {
+		return false
+	}
+	if !p.Field2DeepEqual(ano.PageSize) {
+		return false
+	}
+	if !p.Field3DeepEqual(ano.Bookmark) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.EblFilter) {
+		return false
+	}
+	return true
+}
+
+func (p *QueryEblListReq) Field1DeepEqual(src string) bool {
+
+	if strings.Compare(p.Token, src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *QueryEblListReq) Field2DeepEqual(src *int64) bool {
+
+	if p.PageSize == src {
+		return true
+	} else if p.PageSize == nil || src == nil {
+		return false
+	}
+	if *p.PageSize != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryEblListReq) Field3DeepEqual(src *string) bool {
+
+	if p.Bookmark == src {
+		return true
+	} else if p.Bookmark == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.Bookmark, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *QueryEblListReq) Field4DeepEqual(src *Ebl) bool {
+
+	if !p.EblFilter.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+
+type QueryEblListResp struct {
+	EblList             []*Ebl `thrift:"eblList,1,required" frugal:"1,required,list<Ebl>" json:"eblList"`
+	FetchedRecordsCount int64  `thrift:"fetchedRecordsCount,2,required" frugal:"2,required,i64" json:"fetchedRecordsCount"`
+	Bookmark            string `thrift:"bookmark,3,required" frugal:"3,required,string" json:"bookmark"`
+}
+
+func NewQueryEblListResp() *QueryEblListResp {
+	return &QueryEblListResp{}
+}
+
+func (p *QueryEblListResp) InitDefault() {
+}
+
+func (p *QueryEblListResp) GetEblList() (v []*Ebl) {
+	return p.EblList
+}
+
+func (p *QueryEblListResp) GetFetchedRecordsCount() (v int64) {
+	return p.FetchedRecordsCount
+}
+
+func (p *QueryEblListResp) GetBookmark() (v string) {
+	return p.Bookmark
+}
+func (p *QueryEblListResp) SetEblList(val []*Ebl) {
+	p.EblList = val
+}
+func (p *QueryEblListResp) SetFetchedRecordsCount(val int64) {
+	p.FetchedRecordsCount = val
+}
+func (p *QueryEblListResp) SetBookmark(val string) {
+	p.Bookmark = val
+}
+
+var fieldIDToName_QueryEblListResp = map[int16]string{
+	1: "eblList",
+	2: "fetchedRecordsCount",
+	3: "bookmark",
+}
+
+func (p *QueryEblListResp) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetEblList bool = false
+	var issetFetchedRecordsCount bool = false
+	var issetBookmark bool = false
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.LIST {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetEblList = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetFetchedRecordsCount = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetBookmark = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	if !issetEblList {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFetchedRecordsCount {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetBookmark {
+		fieldId = 3
+		goto RequiredFieldNotSetError
+	}
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_QueryEblListResp[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+RequiredFieldNotSetError:
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_QueryEblListResp[fieldId]))
+}
+
+func (p *QueryEblListResp) ReadField1(iprot thrift.TProtocol) error {
+	_, size, err := iprot.ReadListBegin()
+	if err != nil {
+		return err
+	}
+	_field := make([]*Ebl, 0, size)
+	values := make([]Ebl, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+
+		if err := _elem.Read(iprot); err != nil {
+			return err
+		}
+
+		_field = append(_field, _elem)
+	}
+	if err := iprot.ReadListEnd(); err != nil {
+		return err
+	}
+	p.EblList = _field
+	return nil
+}
+func (p *QueryEblListResp) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.FetchedRecordsCount = _field
+	return nil
+}
+func (p *QueryEblListResp) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Bookmark = _field
+	return nil
+}
+
+func (p *QueryEblListResp) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("QueryEblListResp"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *QueryEblListResp) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("eblList", thrift.LIST, 1); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.EblList)); err != nil {
+		return err
+	}
+	for _, v := range p.EblList {
+		if err := v.Write(oprot); err != nil {
+			return err
+		}
+	}
+	if err := oprot.WriteListEnd(); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *QueryEblListResp) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("fetchedRecordsCount", thrift.I64, 2); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI64(p.FetchedRecordsCount); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
+func (p *QueryEblListResp) writeField3(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("bookmark", thrift.STRING, 3); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Bookmark); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *QueryEblListResp) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("QueryEblListResp(%+v)", *p)
+
+}
+
+func (p *QueryEblListResp) DeepEqual(ano *QueryEblListResp) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.EblList) {
+		return false
+	}
+	if !p.Field2DeepEqual(ano.FetchedRecordsCount) {
+		return false
+	}
+	if !p.Field3DeepEqual(ano.Bookmark) {
+		return false
+	}
+	return true
+}
+
+func (p *QueryEblListResp) Field1DeepEqual(src []*Ebl) bool {
+
+	if len(p.EblList) != len(src) {
+		return false
+	}
+	for i, v := range p.EblList {
+		_src := src[i]
+		if !v.DeepEqual(_src) {
+			return false
+		}
+	}
+	return true
+}
+func (p *QueryEblListResp) Field2DeepEqual(src int64) bool {
+
+	if p.FetchedRecordsCount != src {
+		return false
+	}
+	return true
+}
+func (p *QueryEblListResp) Field3DeepEqual(src string) bool {
+
+	if strings.Compare(p.Bookmark, src) != 0 {
+		return false
+	}
+	return true
+}
+
 type Company struct {
 	Id          int64       `thrift:"id,1,required" frugal:"1,required,i64" json:"id"`
 	CompanyCode string      `thrift:"company_code,2,required" frugal:"2,required,string" json:"company_code"`
@@ -6331,6 +7055,8 @@ type FabricEbl interface {
 	CreateEbl(ctx context.Context, req *CreateEblReq) (r *CreateEblResp, err error)
 
 	QueryAllEblList(ctx context.Context, req *QueryAllEblListReq) (r *QueryAllEblListResp, err error)
+
+	QueryEblList(ctx context.Context, req *QueryEblListReq) (r *QueryEblListResp, err error)
 }
 
 type FabricEblCreateCompanyArgs struct {
@@ -8378,6 +9104,348 @@ func (p *FabricEblQueryAllEblListResult) DeepEqual(ano *FabricEblQueryAllEblList
 }
 
 func (p *FabricEblQueryAllEblListResult) Field0DeepEqual(src *QueryAllEblListResp) bool {
+
+	if !p.Success.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+
+type FabricEblQueryEblListArgs struct {
+	Req *QueryEblListReq `thrift:"req,1" frugal:"1,default,QueryEblListReq" json:"req"`
+}
+
+func NewFabricEblQueryEblListArgs() *FabricEblQueryEblListArgs {
+	return &FabricEblQueryEblListArgs{}
+}
+
+func (p *FabricEblQueryEblListArgs) InitDefault() {
+}
+
+var FabricEblQueryEblListArgs_Req_DEFAULT *QueryEblListReq
+
+func (p *FabricEblQueryEblListArgs) GetReq() (v *QueryEblListReq) {
+	if !p.IsSetReq() {
+		return FabricEblQueryEblListArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+func (p *FabricEblQueryEblListArgs) SetReq(val *QueryEblListReq) {
+	p.Req = val
+}
+
+var fieldIDToName_FabricEblQueryEblListArgs = map[int16]string{
+	1: "req",
+}
+
+func (p *FabricEblQueryEblListArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *FabricEblQueryEblListArgs) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblQueryEblListArgs[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblListArgs) ReadField1(iprot thrift.TProtocol) error {
+	_field := NewQueryEblListReq()
+	if err := _field.Read(iprot); err != nil {
+		return err
+	}
+	p.Req = _field
+	return nil
+}
+
+func (p *FabricEblQueryEblListArgs) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("QueryEblList_args"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblListArgs) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := p.Req.Write(oprot); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblListArgs) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("FabricEblQueryEblListArgs(%+v)", *p)
+
+}
+
+func (p *FabricEblQueryEblListArgs) DeepEqual(ano *FabricEblQueryEblListArgs) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.Req) {
+		return false
+	}
+	return true
+}
+
+func (p *FabricEblQueryEblListArgs) Field1DeepEqual(src *QueryEblListReq) bool {
+
+	if !p.Req.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+
+type FabricEblQueryEblListResult struct {
+	Success *QueryEblListResp `thrift:"success,0,optional" frugal:"0,optional,QueryEblListResp" json:"success,omitempty"`
+}
+
+func NewFabricEblQueryEblListResult() *FabricEblQueryEblListResult {
+	return &FabricEblQueryEblListResult{}
+}
+
+func (p *FabricEblQueryEblListResult) InitDefault() {
+}
+
+var FabricEblQueryEblListResult_Success_DEFAULT *QueryEblListResp
+
+func (p *FabricEblQueryEblListResult) GetSuccess() (v *QueryEblListResp) {
+	if !p.IsSetSuccess() {
+		return FabricEblQueryEblListResult_Success_DEFAULT
+	}
+	return p.Success
+}
+func (p *FabricEblQueryEblListResult) SetSuccess(x interface{}) {
+	p.Success = x.(*QueryEblListResp)
+}
+
+var fieldIDToName_FabricEblQueryEblListResult = map[int16]string{
+	0: "success",
+}
+
+func (p *FabricEblQueryEblListResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *FabricEblQueryEblListResult) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 0:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField0(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblQueryEblListResult[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblListResult) ReadField0(iprot thrift.TProtocol) error {
+	_field := NewQueryEblListResp()
+	if err := _field.Read(iprot); err != nil {
+		return err
+	}
+	p.Success = _field
+	return nil
+}
+
+func (p *FabricEblQueryEblListResult) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("QueryEblList_result"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField0(oprot); err != nil {
+			fieldId = 0
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblListResult) writeField0(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSuccess() {
+		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := p.Success.Write(oprot); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 0 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblListResult) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("FabricEblQueryEblListResult(%+v)", *p)
+
+}
+
+func (p *FabricEblQueryEblListResult) DeepEqual(ano *FabricEblQueryEblListResult) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field0DeepEqual(ano.Success) {
+		return false
+	}
+	return true
+}
+
+func (p *FabricEblQueryEblListResult) Field0DeepEqual(src *QueryEblListResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
