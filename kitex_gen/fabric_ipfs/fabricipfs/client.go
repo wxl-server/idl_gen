@@ -11,7 +11,7 @@ import (
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
-	CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ipfs.CreateCreateEblDocxDocxReq, callOptions ...callopt.Option) (r *fabric_ipfs.CreateCreateEblDocxDocxResp, err error)
+	CreateEblDocx(ctx context.Context, req *fabric_ipfs.CreateEblDocxReq, callOptions ...callopt.Option) (r *fabric_ipfs.CreateEblDocxResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -43,7 +43,7 @@ type kFabricIpfsClient struct {
 	*kClient
 }
 
-func (p *kFabricIpfsClient) CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ipfs.CreateCreateEblDocxDocxReq, callOptions ...callopt.Option) (r *fabric_ipfs.CreateCreateEblDocxDocxResp, err error) {
+func (p *kFabricIpfsClient) CreateEblDocx(ctx context.Context, req *fabric_ipfs.CreateEblDocxReq, callOptions ...callopt.Option) (r *fabric_ipfs.CreateEblDocxResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
-	return p.kClient.CreateCreateEblDocxDocx(ctx, req)
+	return p.kClient.CreateEblDocx(ctx, req)
 }

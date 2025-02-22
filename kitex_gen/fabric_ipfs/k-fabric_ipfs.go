@@ -20,7 +20,7 @@ var (
 	_ = thrift.STOP
 )
 
-func (p *CreateCreateEblDocxDocxReq) FastRead(buf []byte) (int, error) {
+func (p *CreateEblDocxReq) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -70,14 +70,14 @@ func (p *CreateCreateEblDocxDocxReq) FastRead(buf []byte) (int, error) {
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_CreateCreateEblDocxDocxReq[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_CreateEblDocxReq[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_CreateCreateEblDocxDocxReq[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_CreateEblDocxReq[fieldId]))
 }
 
-func (p *CreateCreateEblDocxDocxReq) FastReadField1(buf []byte) (int, error) {
+func (p *CreateEblDocxReq) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 	_field := NewCreateEblDocx()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
@@ -89,11 +89,11 @@ func (p *CreateCreateEblDocxDocxReq) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *CreateCreateEblDocxDocxReq) FastWrite(buf []byte) int {
+func (p *CreateEblDocxReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *CreateCreateEblDocxDocxReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *CreateEblDocxReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -102,7 +102,7 @@ func (p *CreateCreateEblDocxDocxReq) FastWriteNocopy(buf []byte, w thrift.Nocopy
 	return offset
 }
 
-func (p *CreateCreateEblDocxDocxReq) BLength() int {
+func (p *CreateEblDocxReq) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -111,21 +111,21 @@ func (p *CreateCreateEblDocxDocxReq) BLength() int {
 	return l
 }
 
-func (p *CreateCreateEblDocxDocxReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *CreateEblDocxReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
 	offset += p.Ebl.FastWriteNocopy(buf[offset:], w)
 	return offset
 }
 
-func (p *CreateCreateEblDocxDocxReq) field1Length() int {
+func (p *CreateEblDocxReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += p.Ebl.BLength()
 	return l
 }
 
-func (p *CreateCreateEblDocxDocxResp) FastRead(buf []byte) (int, error) {
+func (p *CreateEblDocxResp) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -175,14 +175,14 @@ func (p *CreateCreateEblDocxDocxResp) FastRead(buf []byte) (int, error) {
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_CreateCreateEblDocxDocxResp[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_CreateEblDocxResp[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_CreateCreateEblDocxDocxResp[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_CreateEblDocxResp[fieldId]))
 }
 
-func (p *CreateCreateEblDocxDocxResp) FastReadField1(buf []byte) (int, error) {
+func (p *CreateEblDocxResp) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -196,11 +196,11 @@ func (p *CreateCreateEblDocxDocxResp) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *CreateCreateEblDocxDocxResp) FastWrite(buf []byte) int {
+func (p *CreateEblDocxResp) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *CreateCreateEblDocxDocxResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *CreateEblDocxResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -209,7 +209,7 @@ func (p *CreateCreateEblDocxDocxResp) FastWriteNocopy(buf []byte, w thrift.Nocop
 	return offset
 }
 
-func (p *CreateCreateEblDocxDocxResp) BLength() int {
+func (p *CreateEblDocxResp) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -218,14 +218,14 @@ func (p *CreateCreateEblDocxDocxResp) BLength() int {
 	return l
 }
 
-func (p *CreateCreateEblDocxDocxResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *CreateEblDocxResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FileHash)
 	return offset
 }
 
-func (p *CreateCreateEblDocxDocxResp) field1Length() int {
+func (p *CreateEblDocxResp) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.FileHash)
@@ -2217,7 +2217,7 @@ func (p *CreateEblDocx) field37Length() int {
 	return l
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastRead(buf []byte) (int, error) {
+func (p *FabricIpfsCreateEblDocxArgs) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -2261,14 +2261,14 @@ func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastRead(buf []byte) (int, error
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricIpfsCreateCreateEblDocxDocxArgs[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricIpfsCreateEblDocxArgs[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastReadField1(buf []byte) (int, error) {
+func (p *FabricIpfsCreateEblDocxArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
-	_field := NewCreateCreateEblDocxDocxReq()
+	_field := NewCreateEblDocxReq()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {
@@ -2278,11 +2278,11 @@ func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastReadField1(buf []byte) (int,
 	return offset, nil
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastWrite(buf []byte) int {
+func (p *FabricIpfsCreateEblDocxArgs) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *FabricIpfsCreateEblDocxArgs) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -2291,7 +2291,7 @@ func (p *FabricIpfsCreateCreateEblDocxDocxArgs) FastWriteNocopy(buf []byte, w th
 	return offset
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) BLength() int {
+func (p *FabricIpfsCreateEblDocxArgs) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -2300,21 +2300,21 @@ func (p *FabricIpfsCreateCreateEblDocxDocxArgs) BLength() int {
 	return l
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *FabricIpfsCreateEblDocxArgs) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
 	offset += p.Req.FastWriteNocopy(buf[offset:], w)
 	return offset
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) field1Length() int {
+func (p *FabricIpfsCreateEblDocxArgs) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += p.Req.BLength()
 	return l
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastRead(buf []byte) (int, error) {
+func (p *FabricIpfsCreateEblDocxResult) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -2358,14 +2358,14 @@ func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastRead(buf []byte) (int, err
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricIpfsCreateCreateEblDocxDocxResult[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricIpfsCreateEblDocxResult[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastReadField0(buf []byte) (int, error) {
+func (p *FabricIpfsCreateEblDocxResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
-	_field := NewCreateCreateEblDocxDocxResp()
+	_field := NewCreateEblDocxResp()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {
@@ -2375,11 +2375,11 @@ func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastReadField0(buf []byte) (in
 	return offset, nil
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastWrite(buf []byte) int {
+func (p *FabricIpfsCreateEblDocxResult) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *FabricIpfsCreateEblDocxResult) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField0(buf[offset:], w)
@@ -2388,7 +2388,7 @@ func (p *FabricIpfsCreateCreateEblDocxDocxResult) FastWriteNocopy(buf []byte, w 
 	return offset
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) BLength() int {
+func (p *FabricIpfsCreateEblDocxResult) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field0Length()
@@ -2397,7 +2397,7 @@ func (p *FabricIpfsCreateCreateEblDocxDocxResult) BLength() int {
 	return l
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) fastWriteField0(buf []byte, w thrift.NocopyWriter) int {
+func (p *FabricIpfsCreateEblDocxResult) fastWriteField0(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p.IsSetSuccess() {
 		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 0)
@@ -2406,7 +2406,7 @@ func (p *FabricIpfsCreateCreateEblDocxDocxResult) fastWriteField0(buf []byte, w 
 	return offset
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) field0Length() int {
+func (p *FabricIpfsCreateEblDocxResult) field0Length() int {
 	l := 0
 	if p.IsSetSuccess() {
 		l += thrift.Binary.FieldBeginLength()
@@ -2415,10 +2415,10 @@ func (p *FabricIpfsCreateCreateEblDocxDocxResult) field0Length() int {
 	return l
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxArgs) GetFirstArgument() interface{} {
+func (p *FabricIpfsCreateEblDocxArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
 
-func (p *FabricIpfsCreateCreateEblDocxDocxResult) GetResult() interface{} {
+func (p *FabricIpfsCreateEblDocxResult) GetResult() interface{} {
 	return p.Success
 }
