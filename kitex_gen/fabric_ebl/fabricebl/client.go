@@ -19,6 +19,7 @@ type Client interface {
 	QueryAllEblList(ctx context.Context, req *fabric_ebl.QueryAllEblListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryAllEblListResp, err error)
 	QueryEblList(ctx context.Context, req *fabric_ebl.QueryEblListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblListResp, err error)
 	OperateEbl(ctx context.Context, req *fabric_ebl.OperateEblReq, callOptions ...callopt.Option) (r *fabric_ebl.OperateEblResp, err error)
+	UploadSeal(ctx context.Context, req *fabric_ebl.UploadSealReq, callOptions ...callopt.Option) (r *fabric_ebl.UploadSealResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -88,4 +89,9 @@ func (p *kFabricEblClient) QueryEblList(ctx context.Context, req *fabric_ebl.Que
 func (p *kFabricEblClient) OperateEbl(ctx context.Context, req *fabric_ebl.OperateEblReq, callOptions ...callopt.Option) (r *fabric_ebl.OperateEblResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.OperateEbl(ctx, req)
+}
+
+func (p *kFabricEblClient) UploadSeal(ctx context.Context, req *fabric_ebl.UploadSealReq, callOptions ...callopt.Option) (r *fabric_ebl.UploadSealResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.UploadSeal(ctx, req)
 }

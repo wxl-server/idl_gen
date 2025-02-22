@@ -69,6 +69,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"UploadSeal": kitex.NewMethodInfo(
+		uploadSealHandler,
+		newFabricEblUploadSealArgs,
+		newFabricEblUploadSealResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -279,6 +286,24 @@ func newFabricEblOperateEblResult() interface{} {
 	return fabric_ebl.NewFabricEblOperateEblResult()
 }
 
+func uploadSealHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblUploadSealArgs)
+	realResult := result.(*fabric_ebl.FabricEblUploadSealResult)
+	success, err := handler.(fabric_ebl.FabricEbl).UploadSeal(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblUploadSealArgs() interface{} {
+	return fabric_ebl.NewFabricEblUploadSealArgs()
+}
+
+func newFabricEblUploadSealResult() interface{} {
+	return fabric_ebl.NewFabricEblUploadSealResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -364,6 +389,16 @@ func (p *kClient) OperateEbl(ctx context.Context, req *fabric_ebl.OperateEblReq)
 	_args.Req = req
 	var _result fabric_ebl.FabricEblOperateEblResult
 	if err = p.c.Call(ctx, "OperateEbl", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) UploadSeal(ctx context.Context, req *fabric_ebl.UploadSealReq) (r *fabric_ebl.UploadSealResp, err error) {
+	var _args fabric_ebl.FabricEblUploadSealArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblUploadSealResult
+	if err = p.c.Call(ctx, "UploadSeal", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
