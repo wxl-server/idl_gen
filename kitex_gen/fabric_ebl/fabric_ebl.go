@@ -6673,47 +6673,47 @@ func (p *QueryEblListResp) Field3DeepEqual(src string) bool {
 	return true
 }
 
-type SubmitEblReq struct {
+type OperateEblReq struct {
 	Token string `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
 	EblNo string `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
 	Type  string `thrift:"type,3,required" frugal:"3,required,string" json:"type"`
 }
 
-func NewSubmitEblReq() *SubmitEblReq {
-	return &SubmitEblReq{}
+func NewOperateEblReq() *OperateEblReq {
+	return &OperateEblReq{}
 }
 
-func (p *SubmitEblReq) InitDefault() {
+func (p *OperateEblReq) InitDefault() {
 }
 
-func (p *SubmitEblReq) GetToken() (v string) {
+func (p *OperateEblReq) GetToken() (v string) {
 	return p.Token
 }
 
-func (p *SubmitEblReq) GetEblNo() (v string) {
+func (p *OperateEblReq) GetEblNo() (v string) {
 	return p.EblNo
 }
 
-func (p *SubmitEblReq) GetType() (v string) {
+func (p *OperateEblReq) GetType() (v string) {
 	return p.Type
 }
-func (p *SubmitEblReq) SetToken(val string) {
+func (p *OperateEblReq) SetToken(val string) {
 	p.Token = val
 }
-func (p *SubmitEblReq) SetEblNo(val string) {
+func (p *OperateEblReq) SetEblNo(val string) {
 	p.EblNo = val
 }
-func (p *SubmitEblReq) SetType(val string) {
+func (p *OperateEblReq) SetType(val string) {
 	p.Type = val
 }
 
-var fieldIDToName_SubmitEblReq = map[int16]string{
+var fieldIDToName_OperateEblReq = map[int16]string{
 	1: "token",
 	2: "eblNo",
 	3: "type",
 }
 
-func (p *SubmitEblReq) Read(iprot thrift.TProtocol) (err error) {
+func (p *OperateEblReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -6795,7 +6795,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SubmitEblReq[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_OperateEblReq[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -6804,10 +6804,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_SubmitEblReq[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_OperateEblReq[fieldId]))
 }
 
-func (p *SubmitEblReq) ReadField1(iprot thrift.TProtocol) error {
+func (p *OperateEblReq) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -6818,7 +6818,7 @@ func (p *SubmitEblReq) ReadField1(iprot thrift.TProtocol) error {
 	p.Token = _field
 	return nil
 }
-func (p *SubmitEblReq) ReadField2(iprot thrift.TProtocol) error {
+func (p *OperateEblReq) ReadField2(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -6829,7 +6829,7 @@ func (p *SubmitEblReq) ReadField2(iprot thrift.TProtocol) error {
 	p.EblNo = _field
 	return nil
 }
-func (p *SubmitEblReq) ReadField3(iprot thrift.TProtocol) error {
+func (p *OperateEblReq) ReadField3(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -6841,10 +6841,10 @@ func (p *SubmitEblReq) ReadField3(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *SubmitEblReq) Write(oprot thrift.TProtocol) (err error) {
+func (p *OperateEblReq) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("SubmitEblReq"); err != nil {
+	if err = oprot.WriteStructBegin("OperateEblReq"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -6878,7 +6878,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *SubmitEblReq) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *OperateEblReq) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("token", thrift.STRING, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -6895,7 +6895,7 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *SubmitEblReq) writeField2(oprot thrift.TProtocol) (err error) {
+func (p *OperateEblReq) writeField2(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("eblNo", thrift.STRING, 2); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -6912,7 +6912,7 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
-func (p *SubmitEblReq) writeField3(oprot thrift.TProtocol) (err error) {
+func (p *OperateEblReq) writeField3(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("type", thrift.STRING, 3); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -6929,15 +6929,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
 }
 
-func (p *SubmitEblReq) String() string {
+func (p *OperateEblReq) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("SubmitEblReq(%+v)", *p)
+	return fmt.Sprintf("OperateEblReq(%+v)", *p)
 
 }
 
-func (p *SubmitEblReq) DeepEqual(ano *SubmitEblReq) bool {
+func (p *OperateEblReq) DeepEqual(ano *OperateEblReq) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -6955,21 +6955,21 @@ func (p *SubmitEblReq) DeepEqual(ano *SubmitEblReq) bool {
 	return true
 }
 
-func (p *SubmitEblReq) Field1DeepEqual(src string) bool {
+func (p *OperateEblReq) Field1DeepEqual(src string) bool {
 
 	if strings.Compare(p.Token, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *SubmitEblReq) Field2DeepEqual(src string) bool {
+func (p *OperateEblReq) Field2DeepEqual(src string) bool {
 
 	if strings.Compare(p.EblNo, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *SubmitEblReq) Field3DeepEqual(src string) bool {
+func (p *OperateEblReq) Field3DeepEqual(src string) bool {
 
 	if strings.Compare(p.Type, src) != 0 {
 		return false
@@ -6977,29 +6977,29 @@ func (p *SubmitEblReq) Field3DeepEqual(src string) bool {
 	return true
 }
 
-type SubmitEblResp struct {
+type OperateEblResp struct {
 	Id int64 `thrift:"id,1,required" frugal:"1,required,i64" json:"id"`
 }
 
-func NewSubmitEblResp() *SubmitEblResp {
-	return &SubmitEblResp{}
+func NewOperateEblResp() *OperateEblResp {
+	return &OperateEblResp{}
 }
 
-func (p *SubmitEblResp) InitDefault() {
+func (p *OperateEblResp) InitDefault() {
 }
 
-func (p *SubmitEblResp) GetId() (v int64) {
+func (p *OperateEblResp) GetId() (v int64) {
 	return p.Id
 }
-func (p *SubmitEblResp) SetId(val int64) {
+func (p *OperateEblResp) SetId(val int64) {
 	p.Id = val
 }
 
-var fieldIDToName_SubmitEblResp = map[int16]string{
+var fieldIDToName_OperateEblResp = map[int16]string{
 	1: "id",
 }
 
-func (p *SubmitEblResp) Read(iprot thrift.TProtocol) (err error) {
+func (p *OperateEblResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -7051,7 +7051,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SubmitEblResp[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_OperateEblResp[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -7060,10 +7060,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_SubmitEblResp[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_OperateEblResp[fieldId]))
 }
 
-func (p *SubmitEblResp) ReadField1(iprot thrift.TProtocol) error {
+func (p *OperateEblResp) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field int64
 	if v, err := iprot.ReadI64(); err != nil {
@@ -7075,10 +7075,10 @@ func (p *SubmitEblResp) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 
-func (p *SubmitEblResp) Write(oprot thrift.TProtocol) (err error) {
+func (p *OperateEblResp) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("SubmitEblResp"); err != nil {
+	if err = oprot.WriteStructBegin("OperateEblResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -7104,7 +7104,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *SubmitEblResp) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *OperateEblResp) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("id", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -7121,15 +7121,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *SubmitEblResp) String() string {
+func (p *OperateEblResp) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("SubmitEblResp(%+v)", *p)
+	return fmt.Sprintf("OperateEblResp(%+v)", *p)
 
 }
 
-func (p *SubmitEblResp) DeepEqual(ano *SubmitEblResp) bool {
+func (p *OperateEblResp) DeepEqual(ano *OperateEblResp) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -7141,7 +7141,7 @@ func (p *SubmitEblResp) DeepEqual(ano *SubmitEblResp) bool {
 	return true
 }
 
-func (p *SubmitEblResp) Field1DeepEqual(src int64) bool {
+func (p *OperateEblResp) Field1DeepEqual(src int64) bool {
 
 	if p.Id != src {
 		return false
@@ -7534,7 +7534,7 @@ type FabricEbl interface {
 
 	QueryEblList(ctx context.Context, req *QueryEblListReq) (r *QueryEblListResp, err error)
 
-	SubmitEbl(ctx context.Context, req *SubmitEblReq) (r *SubmitEblResp, err error)
+	SubmitEbl(ctx context.Context, req *OperateEblReq) (r *OperateEblResp, err error)
 }
 
 type FabricEblCreateCompanyArgs struct {
@@ -9932,7 +9932,7 @@ func (p *FabricEblQueryEblListResult) Field0DeepEqual(src *QueryEblListResp) boo
 }
 
 type FabricEblSubmitEblArgs struct {
-	Req *SubmitEblReq `thrift:"req,1" frugal:"1,default,SubmitEblReq" json:"req"`
+	Req *OperateEblReq `thrift:"req,1" frugal:"1,default,OperateEblReq" json:"req"`
 }
 
 func NewFabricEblSubmitEblArgs() *FabricEblSubmitEblArgs {
@@ -9942,15 +9942,15 @@ func NewFabricEblSubmitEblArgs() *FabricEblSubmitEblArgs {
 func (p *FabricEblSubmitEblArgs) InitDefault() {
 }
 
-var FabricEblSubmitEblArgs_Req_DEFAULT *SubmitEblReq
+var FabricEblSubmitEblArgs_Req_DEFAULT *OperateEblReq
 
-func (p *FabricEblSubmitEblArgs) GetReq() (v *SubmitEblReq) {
+func (p *FabricEblSubmitEblArgs) GetReq() (v *OperateEblReq) {
 	if !p.IsSetReq() {
 		return FabricEblSubmitEblArgs_Req_DEFAULT
 	}
 	return p.Req
 }
-func (p *FabricEblSubmitEblArgs) SetReq(val *SubmitEblReq) {
+func (p *FabricEblSubmitEblArgs) SetReq(val *OperateEblReq) {
 	p.Req = val
 }
 
@@ -10019,7 +10019,7 @@ ReadStructEndError:
 }
 
 func (p *FabricEblSubmitEblArgs) ReadField1(iprot thrift.TProtocol) error {
-	_field := NewSubmitEblReq()
+	_field := NewOperateEblReq()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -10093,7 +10093,7 @@ func (p *FabricEblSubmitEblArgs) DeepEqual(ano *FabricEblSubmitEblArgs) bool {
 	return true
 }
 
-func (p *FabricEblSubmitEblArgs) Field1DeepEqual(src *SubmitEblReq) bool {
+func (p *FabricEblSubmitEblArgs) Field1DeepEqual(src *OperateEblReq) bool {
 
 	if !p.Req.DeepEqual(src) {
 		return false
@@ -10102,7 +10102,7 @@ func (p *FabricEblSubmitEblArgs) Field1DeepEqual(src *SubmitEblReq) bool {
 }
 
 type FabricEblSubmitEblResult struct {
-	Success *SubmitEblResp `thrift:"success,0,optional" frugal:"0,optional,SubmitEblResp" json:"success,omitempty"`
+	Success *OperateEblResp `thrift:"success,0,optional" frugal:"0,optional,OperateEblResp" json:"success,omitempty"`
 }
 
 func NewFabricEblSubmitEblResult() *FabricEblSubmitEblResult {
@@ -10112,16 +10112,16 @@ func NewFabricEblSubmitEblResult() *FabricEblSubmitEblResult {
 func (p *FabricEblSubmitEblResult) InitDefault() {
 }
 
-var FabricEblSubmitEblResult_Success_DEFAULT *SubmitEblResp
+var FabricEblSubmitEblResult_Success_DEFAULT *OperateEblResp
 
-func (p *FabricEblSubmitEblResult) GetSuccess() (v *SubmitEblResp) {
+func (p *FabricEblSubmitEblResult) GetSuccess() (v *OperateEblResp) {
 	if !p.IsSetSuccess() {
 		return FabricEblSubmitEblResult_Success_DEFAULT
 	}
 	return p.Success
 }
 func (p *FabricEblSubmitEblResult) SetSuccess(x interface{}) {
-	p.Success = x.(*SubmitEblResp)
+	p.Success = x.(*OperateEblResp)
 }
 
 var fieldIDToName_FabricEblSubmitEblResult = map[int16]string{
@@ -10189,7 +10189,7 @@ ReadStructEndError:
 }
 
 func (p *FabricEblSubmitEblResult) ReadField0(iprot thrift.TProtocol) error {
-	_field := NewSubmitEblResp()
+	_field := NewOperateEblResp()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -10265,7 +10265,7 @@ func (p *FabricEblSubmitEblResult) DeepEqual(ano *FabricEblSubmitEblResult) bool
 	return true
 }
 
-func (p *FabricEblSubmitEblResult) Field0DeepEqual(src *SubmitEblResp) bool {
+func (p *FabricEblSubmitEblResult) Field0DeepEqual(src *OperateEblResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false

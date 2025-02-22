@@ -4672,7 +4672,7 @@ func (p *QueryEblListResp) field3Length() int {
 	return l
 }
 
-func (p *SubmitEblReq) FastRead(buf []byte) (int, error) {
+func (p *OperateEblReq) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -4764,14 +4764,14 @@ func (p *SubmitEblReq) FastRead(buf []byte) (int, error) {
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SubmitEblReq[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_OperateEblReq[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_SubmitEblReq[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_OperateEblReq[fieldId]))
 }
 
-func (p *SubmitEblReq) FastReadField1(buf []byte) (int, error) {
+func (p *OperateEblReq) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -4785,7 +4785,7 @@ func (p *SubmitEblReq) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *SubmitEblReq) FastReadField2(buf []byte) (int, error) {
+func (p *OperateEblReq) FastReadField2(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -4799,7 +4799,7 @@ func (p *SubmitEblReq) FastReadField2(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *SubmitEblReq) FastReadField3(buf []byte) (int, error) {
+func (p *OperateEblReq) FastReadField3(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -4813,11 +4813,11 @@ func (p *SubmitEblReq) FastReadField3(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *SubmitEblReq) FastWrite(buf []byte) int {
+func (p *OperateEblReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *SubmitEblReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *OperateEblReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -4828,7 +4828,7 @@ func (p *SubmitEblReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
-func (p *SubmitEblReq) BLength() int {
+func (p *OperateEblReq) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -4839,49 +4839,49 @@ func (p *SubmitEblReq) BLength() int {
 	return l
 }
 
-func (p *SubmitEblReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *OperateEblReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
 	return offset
 }
 
-func (p *SubmitEblReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+func (p *OperateEblReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.EblNo)
 	return offset
 }
 
-func (p *SubmitEblReq) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+func (p *OperateEblReq) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
 	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Type)
 	return offset
 }
 
-func (p *SubmitEblReq) field1Length() int {
+func (p *OperateEblReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.Token)
 	return l
 }
 
-func (p *SubmitEblReq) field2Length() int {
+func (p *OperateEblReq) field2Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.EblNo)
 	return l
 }
 
-func (p *SubmitEblReq) field3Length() int {
+func (p *OperateEblReq) field3Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.StringLengthNocopy(p.Type)
 	return l
 }
 
-func (p *SubmitEblResp) FastRead(buf []byte) (int, error) {
+func (p *OperateEblResp) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -4931,14 +4931,14 @@ func (p *SubmitEblResp) FastRead(buf []byte) (int, error) {
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_SubmitEblResp[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_OperateEblResp[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_SubmitEblResp[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_OperateEblResp[fieldId]))
 }
 
-func (p *SubmitEblResp) FastReadField1(buf []byte) (int, error) {
+func (p *OperateEblResp) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	var _field int64
@@ -4952,11 +4952,11 @@ func (p *SubmitEblResp) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *SubmitEblResp) FastWrite(buf []byte) int {
+func (p *OperateEblResp) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *SubmitEblResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *OperateEblResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
@@ -4965,7 +4965,7 @@ func (p *SubmitEblResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
-func (p *SubmitEblResp) BLength() int {
+func (p *OperateEblResp) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
@@ -4974,14 +4974,14 @@ func (p *SubmitEblResp) BLength() int {
 	return l
 }
 
-func (p *SubmitEblResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *OperateEblResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 1)
 	offset += thrift.Binary.WriteI64(buf[offset:], p.Id)
 	return offset
 }
 
-func (p *SubmitEblResp) field1Length() int {
+func (p *OperateEblResp) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.I64Length()
@@ -6686,7 +6686,7 @@ SkipFieldError:
 
 func (p *FabricEblSubmitEblArgs) FastReadField1(buf []byte) (int, error) {
 	offset := 0
-	_field := NewSubmitEblReq()
+	_field := NewOperateEblReq()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {
@@ -6783,7 +6783,7 @@ SkipFieldError:
 
 func (p *FabricEblSubmitEblResult) FastReadField0(buf []byte) (int, error) {
 	offset := 0
-	_field := NewSubmitEblResp()
+	_field := NewOperateEblResp()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {

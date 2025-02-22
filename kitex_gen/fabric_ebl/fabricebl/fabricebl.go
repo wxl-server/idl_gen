@@ -359,7 +359,7 @@ func (p *kClient) QueryEblList(ctx context.Context, req *fabric_ebl.QueryEblList
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) SubmitEbl(ctx context.Context, req *fabric_ebl.SubmitEblReq) (r *fabric_ebl.SubmitEblResp, err error) {
+func (p *kClient) SubmitEbl(ctx context.Context, req *fabric_ebl.OperateEblReq) (r *fabric_ebl.OperateEblResp, err error) {
 	var _args fabric_ebl.FabricEblSubmitEblArgs
 	_args.Req = req
 	var _result fabric_ebl.FabricEblSubmitEblResult
