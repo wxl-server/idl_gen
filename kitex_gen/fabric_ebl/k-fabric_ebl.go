@@ -4723,7 +4723,7 @@ func (p *OperateEblReq) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 3:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I32 {
 				l, err = p.FastReadField3(buf[offset:])
 				offset += l
 				if err != nil {
@@ -4802,12 +4802,13 @@ func (p *OperateEblReq) FastReadField2(buf []byte) (int, error) {
 func (p *OperateEblReq) FastReadField3(buf []byte) (int, error) {
 	offset := 0
 
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+	var _field OperationType
+	if v, l, err := thrift.Binary.ReadI32(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
-		_field = v
+
+		_field = OperationType(v)
 	}
 	p.Type = _field
 	return offset, nil
@@ -4855,8 +4856,8 @@ func (p *OperateEblReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *OperateEblReq) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Type)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I32, 3)
+	offset += thrift.Binary.WriteI32(buf[offset:], int32(p.Type))
 	return offset
 }
 
@@ -4877,7 +4878,7 @@ func (p *OperateEblReq) field2Length() int {
 func (p *OperateEblReq) field3Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.Type)
+	l += thrift.Binary.I32Length()
 	return l
 }
 

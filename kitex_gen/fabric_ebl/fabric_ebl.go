@@ -11,6 +11,83 @@ import (
 	"strings"
 )
 
+type OperationType int64
+
+const (
+	OperationType_Submit   OperationType = 1
+	OperationType_Approve  OperationType = 2
+	OperationType_Reject   OperationType = 3
+	OperationType_Retreat  OperationType = 4
+	OperationType_Seal     OperationType = 5
+	OperationType_Issue    OperationType = 6
+	OperationType_Accept   OperationType = 7
+	OperationType_Transfer OperationType = 8
+	OperationType_Redeem   OperationType = 9
+)
+
+func (p OperationType) String() string {
+	switch p {
+	case OperationType_Submit:
+		return "Submit"
+	case OperationType_Approve:
+		return "Approve"
+	case OperationType_Reject:
+		return "Reject"
+	case OperationType_Retreat:
+		return "Retreat"
+	case OperationType_Seal:
+		return "Seal"
+	case OperationType_Issue:
+		return "Issue"
+	case OperationType_Accept:
+		return "Accept"
+	case OperationType_Transfer:
+		return "Transfer"
+	case OperationType_Redeem:
+		return "Redeem"
+	}
+	return "<UNSET>"
+}
+
+func OperationTypeFromString(s string) (OperationType, error) {
+	switch s {
+	case "Submit":
+		return OperationType_Submit, nil
+	case "Approve":
+		return OperationType_Approve, nil
+	case "Reject":
+		return OperationType_Reject, nil
+	case "Retreat":
+		return OperationType_Retreat, nil
+	case "Seal":
+		return OperationType_Seal, nil
+	case "Issue":
+		return OperationType_Issue, nil
+	case "Accept":
+		return OperationType_Accept, nil
+	case "Transfer":
+		return OperationType_Transfer, nil
+	case "Redeem":
+		return OperationType_Redeem, nil
+	}
+	return OperationType(0), fmt.Errorf("not a valid OperationType string")
+}
+
+func OperationTypePtr(v OperationType) *OperationType { return &v }
+func (p *OperationType) Scan(value interface{}) (err error) {
+	var result sql.NullInt64
+	err = result.Scan(value)
+	*p = OperationType(result.Int64)
+	return
+}
+
+func (p *OperationType) Value() (driver.Value, error) {
+	if p == nil {
+		return nil, nil
+	}
+	return int64(*p), nil
+}
+
 type CompanyType int64
 
 const (
@@ -6674,9 +6751,9 @@ func (p *QueryEblListResp) Field3DeepEqual(src string) bool {
 }
 
 type OperateEblReq struct {
-	Token string `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	EblNo string `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
-	Type  string `thrift:"type,3,required" frugal:"3,required,string" json:"type"`
+	Token string        `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	EblNo string        `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
+	Type  OperationType `thrift:"type,3,required" frugal:"3,required,OperationType" json:"type"`
 }
 
 func NewOperateEblReq() *OperateEblReq {
@@ -6694,7 +6771,7 @@ func (p *OperateEblReq) GetEblNo() (v string) {
 	return p.EblNo
 }
 
-func (p *OperateEblReq) GetType() (v string) {
+func (p *OperateEblReq) GetType() (v OperationType) {
 	return p.Type
 }
 func (p *OperateEblReq) SetToken(val string) {
@@ -6703,7 +6780,7 @@ func (p *OperateEblReq) SetToken(val string) {
 func (p *OperateEblReq) SetEblNo(val string) {
 	p.EblNo = val
 }
-func (p *OperateEblReq) SetType(val string) {
+func (p *OperateEblReq) SetType(val OperationType) {
 	p.Type = val
 }
 
@@ -6754,7 +6831,7 @@ func (p *OperateEblReq) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 3:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I32 {
 				if err = p.ReadField3(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -6831,11 +6908,11 @@ func (p *OperateEblReq) ReadField2(iprot thrift.TProtocol) error {
 }
 func (p *OperateEblReq) ReadField3(iprot thrift.TProtocol) error {
 
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
+	var _field OperationType
+	if v, err := iprot.ReadI32(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = OperationType(v)
 	}
 	p.Type = _field
 	return nil
@@ -6913,10 +6990,10 @@ WriteFieldEndError:
 }
 
 func (p *OperateEblReq) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("type", thrift.STRING, 3); err != nil {
+	if err = oprot.WriteFieldBegin("type", thrift.I32, 3); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.Type); err != nil {
+	if err := oprot.WriteI32(int32(p.Type)); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -6969,9 +7046,9 @@ func (p *OperateEblReq) Field2DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *OperateEblReq) Field3DeepEqual(src string) bool {
+func (p *OperateEblReq) Field3DeepEqual(src OperationType) bool {
 
-	if strings.Compare(p.Type, src) != 0 {
+	if p.Type != src {
 		return false
 	}
 	return true
