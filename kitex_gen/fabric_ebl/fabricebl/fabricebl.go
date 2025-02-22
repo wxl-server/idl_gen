@@ -62,10 +62,10 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
-	"SubmitEbl": kitex.NewMethodInfo(
-		submitEblHandler,
-		newFabricEblSubmitEblArgs,
-		newFabricEblSubmitEblResult,
+	"OperateEbl": kitex.NewMethodInfo(
+		operateEblHandler,
+		newFabricEblOperateEblArgs,
+		newFabricEblOperateEblResult,
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
@@ -261,22 +261,22 @@ func newFabricEblQueryEblListResult() interface{} {
 	return fabric_ebl.NewFabricEblQueryEblListResult()
 }
 
-func submitEblHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*fabric_ebl.FabricEblSubmitEblArgs)
-	realResult := result.(*fabric_ebl.FabricEblSubmitEblResult)
-	success, err := handler.(fabric_ebl.FabricEbl).SubmitEbl(ctx, realArg.Req)
+func operateEblHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblOperateEblArgs)
+	realResult := result.(*fabric_ebl.FabricEblOperateEblResult)
+	success, err := handler.(fabric_ebl.FabricEbl).OperateEbl(ctx, realArg.Req)
 	if err != nil {
 		return err
 	}
 	realResult.Success = success
 	return nil
 }
-func newFabricEblSubmitEblArgs() interface{} {
-	return fabric_ebl.NewFabricEblSubmitEblArgs()
+func newFabricEblOperateEblArgs() interface{} {
+	return fabric_ebl.NewFabricEblOperateEblArgs()
 }
 
-func newFabricEblSubmitEblResult() interface{} {
-	return fabric_ebl.NewFabricEblSubmitEblResult()
+func newFabricEblOperateEblResult() interface{} {
+	return fabric_ebl.NewFabricEblOperateEblResult()
 }
 
 type kClient struct {
@@ -359,11 +359,11 @@ func (p *kClient) QueryEblList(ctx context.Context, req *fabric_ebl.QueryEblList
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) SubmitEbl(ctx context.Context, req *fabric_ebl.OperateEblReq) (r *fabric_ebl.OperateEblResp, err error) {
-	var _args fabric_ebl.FabricEblSubmitEblArgs
+func (p *kClient) OperateEbl(ctx context.Context, req *fabric_ebl.OperateEblReq) (r *fabric_ebl.OperateEblResp, err error) {
+	var _args fabric_ebl.FabricEblOperateEblArgs
 	_args.Req = req
-	var _result fabric_ebl.FabricEblSubmitEblResult
-	if err = p.c.Call(ctx, "SubmitEbl", &_args, &_result); err != nil {
+	var _result fabric_ebl.FabricEblOperateEblResult
+	if err = p.c.Call(ctx, "OperateEbl", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
