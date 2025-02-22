@@ -2959,42 +2959,42 @@ func (p *CreateEblDocx) Field37DeepEqual(src string) bool {
 	return true
 }
 
-type FabricCreateEblDocx interface {
+type FabricIpfs interface {
 	CreateCreateEblDocxDocx(ctx context.Context, req *CreateCreateEblDocxDocxReq) (r *CreateCreateEblDocxDocxResp, err error)
 }
 
-type FabricCreateEblDocxCreateCreateEblDocxDocxArgs struct {
+type FabricIpfsCreateCreateEblDocxDocxArgs struct {
 	Req *CreateCreateEblDocxDocxReq `thrift:"req,1" frugal:"1,default,CreateCreateEblDocxDocxReq" json:"req"`
 }
 
-func NewFabricCreateEblDocxCreateCreateEblDocxDocxArgs() *FabricCreateEblDocxCreateCreateEblDocxDocxArgs {
-	return &FabricCreateEblDocxCreateCreateEblDocxDocxArgs{}
+func NewFabricIpfsCreateCreateEblDocxDocxArgs() *FabricIpfsCreateCreateEblDocxDocxArgs {
+	return &FabricIpfsCreateCreateEblDocxDocxArgs{}
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) InitDefault() {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) InitDefault() {
 }
 
-var FabricCreateEblDocxCreateCreateEblDocxDocxArgs_Req_DEFAULT *CreateCreateEblDocxDocxReq
+var FabricIpfsCreateCreateEblDocxDocxArgs_Req_DEFAULT *CreateCreateEblDocxDocxReq
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) GetReq() (v *CreateCreateEblDocxDocxReq) {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) GetReq() (v *CreateCreateEblDocxDocxReq) {
 	if !p.IsSetReq() {
-		return FabricCreateEblDocxCreateCreateEblDocxDocxArgs_Req_DEFAULT
+		return FabricIpfsCreateCreateEblDocxDocxArgs_Req_DEFAULT
 	}
 	return p.Req
 }
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) SetReq(val *CreateCreateEblDocxDocxReq) {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) SetReq(val *CreateCreateEblDocxDocxReq) {
 	p.Req = val
 }
 
-var fieldIDToName_FabricCreateEblDocxCreateCreateEblDocxDocxArgs = map[int16]string{
+var fieldIDToName_FabricIpfsCreateCreateEblDocxDocxArgs = map[int16]string{
 	1: "req",
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) IsSetReq() bool {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) IsSetReq() bool {
 	return p.Req != nil
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) Read(iprot thrift.TProtocol) (err error) {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -3040,7 +3040,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricCreateEblDocxCreateCreateEblDocxDocxArgs[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricIpfsCreateCreateEblDocxDocxArgs[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -3050,7 +3050,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) ReadField1(iprot thrift.TProtocol) error {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) ReadField1(iprot thrift.TProtocol) error {
 	_field := NewCreateCreateEblDocxDocxReq()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -3059,7 +3059,7 @@ func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) ReadField1(iprot thrift
 	return nil
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) Write(oprot thrift.TProtocol) (err error) {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("CreateCreateEblDocxDocx_args"); err != nil {
@@ -3088,7 +3088,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -3105,15 +3105,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) String() string {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("FabricCreateEblDocxCreateCreateEblDocxDocxArgs(%+v)", *p)
+	return fmt.Sprintf("FabricIpfsCreateCreateEblDocxDocxArgs(%+v)", *p)
 
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) DeepEqual(ano *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) bool {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) DeepEqual(ano *FabricIpfsCreateCreateEblDocxDocxArgs) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -3125,7 +3125,7 @@ func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) DeepEqual(ano *FabricCr
 	return true
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) Field1DeepEqual(src *CreateCreateEblDocxDocxReq) bool {
+func (p *FabricIpfsCreateCreateEblDocxDocxArgs) Field1DeepEqual(src *CreateCreateEblDocxDocxReq) bool {
 
 	if !p.Req.DeepEqual(src) {
 		return false
@@ -3133,38 +3133,38 @@ func (p *FabricCreateEblDocxCreateCreateEblDocxDocxArgs) Field1DeepEqual(src *Cr
 	return true
 }
 
-type FabricCreateEblDocxCreateCreateEblDocxDocxResult struct {
+type FabricIpfsCreateCreateEblDocxDocxResult struct {
 	Success *CreateCreateEblDocxDocxResp `thrift:"success,0,optional" frugal:"0,optional,CreateCreateEblDocxDocxResp" json:"success,omitempty"`
 }
 
-func NewFabricCreateEblDocxCreateCreateEblDocxDocxResult() *FabricCreateEblDocxCreateCreateEblDocxDocxResult {
-	return &FabricCreateEblDocxCreateCreateEblDocxDocxResult{}
+func NewFabricIpfsCreateCreateEblDocxDocxResult() *FabricIpfsCreateCreateEblDocxDocxResult {
+	return &FabricIpfsCreateCreateEblDocxDocxResult{}
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) InitDefault() {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) InitDefault() {
 }
 
-var FabricCreateEblDocxCreateCreateEblDocxDocxResult_Success_DEFAULT *CreateCreateEblDocxDocxResp
+var FabricIpfsCreateCreateEblDocxDocxResult_Success_DEFAULT *CreateCreateEblDocxDocxResp
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) GetSuccess() (v *CreateCreateEblDocxDocxResp) {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) GetSuccess() (v *CreateCreateEblDocxDocxResp) {
 	if !p.IsSetSuccess() {
-		return FabricCreateEblDocxCreateCreateEblDocxDocxResult_Success_DEFAULT
+		return FabricIpfsCreateCreateEblDocxDocxResult_Success_DEFAULT
 	}
 	return p.Success
 }
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) SetSuccess(x interface{}) {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) SetSuccess(x interface{}) {
 	p.Success = x.(*CreateCreateEblDocxDocxResp)
 }
 
-var fieldIDToName_FabricCreateEblDocxCreateCreateEblDocxDocxResult = map[int16]string{
+var fieldIDToName_FabricIpfsCreateCreateEblDocxDocxResult = map[int16]string{
 	0: "success",
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) IsSetSuccess() bool {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) IsSetSuccess() bool {
 	return p.Success != nil
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) Read(iprot thrift.TProtocol) (err error) {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -3210,7 +3210,7 @@ ReadStructBeginError:
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricCreateEblDocxCreateCreateEblDocxDocxResult[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricIpfsCreateCreateEblDocxDocxResult[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -3220,7 +3220,7 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) ReadField0(iprot thrift.TProtocol) error {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) ReadField0(iprot thrift.TProtocol) error {
 	_field := NewCreateCreateEblDocxDocxResp()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -3229,7 +3229,7 @@ func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) ReadField0(iprot thri
 	return nil
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) Write(oprot thrift.TProtocol) (err error) {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
 	if err = oprot.WriteStructBegin("CreateCreateEblDocxDocx_result"); err != nil {
@@ -3258,7 +3258,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) writeField0(oprot thrift.TProtocol) (err error) {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) writeField0(oprot thrift.TProtocol) (err error) {
 	if p.IsSetSuccess() {
 		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
 			goto WriteFieldBeginError
@@ -3277,15 +3277,15 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) String() string {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("FabricCreateEblDocxCreateCreateEblDocxDocxResult(%+v)", *p)
+	return fmt.Sprintf("FabricIpfsCreateCreateEblDocxDocxResult(%+v)", *p)
 
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) DeepEqual(ano *FabricCreateEblDocxCreateCreateEblDocxDocxResult) bool {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) DeepEqual(ano *FabricIpfsCreateCreateEblDocxDocxResult) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -3297,7 +3297,7 @@ func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) DeepEqual(ano *Fabric
 	return true
 }
 
-func (p *FabricCreateEblDocxCreateCreateEblDocxDocxResult) Field0DeepEqual(src *CreateCreateEblDocxDocxResp) bool {
+func (p *FabricIpfsCreateCreateEblDocxDocxResult) Field0DeepEqual(src *CreateCreateEblDocxDocxResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
