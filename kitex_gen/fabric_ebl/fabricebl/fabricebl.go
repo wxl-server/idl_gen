@@ -62,6 +62,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"SubmitEbl": kitex.NewMethodInfo(
+		submitEblHandler,
+		newFabricEblSubmitEblArgs,
+		newFabricEblSubmitEblResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -254,6 +261,24 @@ func newFabricEblQueryEblListResult() interface{} {
 	return fabric_ebl.NewFabricEblQueryEblListResult()
 }
 
+func submitEblHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblSubmitEblArgs)
+	realResult := result.(*fabric_ebl.FabricEblSubmitEblResult)
+	success, err := handler.(fabric_ebl.FabricEbl).SubmitEbl(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblSubmitEblArgs() interface{} {
+	return fabric_ebl.NewFabricEblSubmitEblArgs()
+}
+
+func newFabricEblSubmitEblResult() interface{} {
+	return fabric_ebl.NewFabricEblSubmitEblResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -329,6 +354,16 @@ func (p *kClient) QueryEblList(ctx context.Context, req *fabric_ebl.QueryEblList
 	_args.Req = req
 	var _result fabric_ebl.FabricEblQueryEblListResult
 	if err = p.c.Call(ctx, "QueryEblList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) SubmitEbl(ctx context.Context, req *fabric_ebl.SubmitEblReq) (r *fabric_ebl.SubmitEblResp, err error) {
+	var _args fabric_ebl.FabricEblSubmitEblArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblSubmitEblResult
+	if err = p.c.Call(ctx, "SubmitEbl", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

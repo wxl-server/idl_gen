@@ -18,6 +18,7 @@ type Client interface {
 	CreateEbl(ctx context.Context, req *fabric_ebl.CreateEblReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateEblResp, err error)
 	QueryAllEblList(ctx context.Context, req *fabric_ebl.QueryAllEblListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryAllEblListResp, err error)
 	QueryEblList(ctx context.Context, req *fabric_ebl.QueryEblListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblListResp, err error)
+	SubmitEbl(ctx context.Context, req *fabric_ebl.SubmitEblReq, callOptions ...callopt.Option) (r *fabric_ebl.SubmitEblResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -82,4 +83,9 @@ func (p *kFabricEblClient) QueryAllEblList(ctx context.Context, req *fabric_ebl.
 func (p *kFabricEblClient) QueryEblList(ctx context.Context, req *fabric_ebl.QueryEblListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblListResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.QueryEblList(ctx, req)
+}
+
+func (p *kFabricEblClient) SubmitEbl(ctx context.Context, req *fabric_ebl.SubmitEblReq, callOptions ...callopt.Option) (r *fabric_ebl.SubmitEblResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.SubmitEbl(ctx, req)
 }
