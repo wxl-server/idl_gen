@@ -6675,7 +6675,7 @@ func (p *QueryEblListResp) Field3DeepEqual(src string) bool {
 
 type SubmitEblReq struct {
 	Token string `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	EblNo int64  `thrift:"eblNo,2,required" frugal:"2,required,i64" json:"eblNo"`
+	EblNo string `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
 }
 
 func NewSubmitEblReq() *SubmitEblReq {
@@ -6689,13 +6689,13 @@ func (p *SubmitEblReq) GetToken() (v string) {
 	return p.Token
 }
 
-func (p *SubmitEblReq) GetEblNo() (v int64) {
+func (p *SubmitEblReq) GetEblNo() (v string) {
 	return p.EblNo
 }
 func (p *SubmitEblReq) SetToken(val string) {
 	p.Token = val
 }
-func (p *SubmitEblReq) SetEblNo(val int64) {
+func (p *SubmitEblReq) SetEblNo(val string) {
 	p.EblNo = val
 }
 
@@ -6735,7 +6735,7 @@ func (p *SubmitEblReq) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 2:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField2(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -6796,8 +6796,8 @@ func (p *SubmitEblReq) ReadField1(iprot thrift.TProtocol) error {
 }
 func (p *SubmitEblReq) ReadField2(iprot thrift.TProtocol) error {
 
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -6857,10 +6857,10 @@ WriteFieldEndError:
 }
 
 func (p *SubmitEblReq) writeField2(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("eblNo", thrift.I64, 2); err != nil {
+	if err = oprot.WriteFieldBegin("eblNo", thrift.STRING, 2); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.EblNo); err != nil {
+	if err := oprot.WriteString(p.EblNo); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -6903,9 +6903,9 @@ func (p *SubmitEblReq) Field1DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *SubmitEblReq) Field2DeepEqual(src int64) bool {
+func (p *SubmitEblReq) Field2DeepEqual(src string) bool {
 
-	if p.EblNo != src {
+	if strings.Compare(p.EblNo, src) != 0 {
 		return false
 	}
 	return true
