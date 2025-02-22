@@ -7,7 +7,7 @@ import (
 	"errors"
 	client "github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
-	fabric_ebl "github.com/wxl-server/idl_gen/kitex_gen/fabric_ebl"
+	fabric_ipfs "github.com/wxl-server/idl_gen/kitex_gen/fabric_ipfs"
 )
 
 var errInvalidMessageType = errors.New("invalid message type for service method handler")
@@ -58,7 +58,7 @@ func NewServiceInfoForStreamClient() *kitex.ServiceInfo {
 
 func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreamingMethods bool) *kitex.ServiceInfo {
 	serviceName := "FabricCreateEblDocx"
-	handlerType := (*fabric_ebl.FabricCreateEblDocx)(nil)
+	handlerType := (*fabric_ipfs.FabricCreateEblDocx)(nil)
 	methods := map[string]kitex.MethodInfo{}
 	for name, m := range serviceMethods {
 		if m.IsStreaming() && !keepStreamingMethods {
@@ -70,7 +70,7 @@ func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreami
 		methods[name] = m
 	}
 	extra := map[string]interface{}{
-		"PackageName": "fabric_ebl",
+		"PackageName": "fabric_ipfs",
 	}
 	if hasStreaming {
 		extra["streaming"] = hasStreaming
@@ -87,9 +87,9 @@ func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreami
 }
 
 func createCreateEblDocxDocxHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*fabric_ebl.FabricCreateEblDocxCreateCreateEblDocxDocxArgs)
-	realResult := result.(*fabric_ebl.FabricCreateEblDocxCreateCreateEblDocxDocxResult)
-	success, err := handler.(fabric_ebl.FabricCreateEblDocx).CreateCreateEblDocxDocx(ctx, realArg.Req)
+	realArg := arg.(*fabric_ipfs.FabricCreateEblDocxCreateCreateEblDocxDocxArgs)
+	realResult := result.(*fabric_ipfs.FabricCreateEblDocxCreateCreateEblDocxDocxResult)
+	success, err := handler.(fabric_ipfs.FabricCreateEblDocx).CreateCreateEblDocxDocx(ctx, realArg.Req)
 	if err != nil {
 		return err
 	}
@@ -97,11 +97,11 @@ func createCreateEblDocxDocxHandler(ctx context.Context, handler interface{}, ar
 	return nil
 }
 func newFabricCreateEblDocxCreateCreateEblDocxDocxArgs() interface{} {
-	return fabric_ebl.NewFabricCreateEblDocxCreateCreateEblDocxDocxArgs()
+	return fabric_ipfs.NewFabricCreateEblDocxCreateCreateEblDocxDocxArgs()
 }
 
 func newFabricCreateEblDocxCreateCreateEblDocxDocxResult() interface{} {
-	return fabric_ebl.NewFabricCreateEblDocxCreateCreateEblDocxDocxResult()
+	return fabric_ipfs.NewFabricCreateEblDocxCreateCreateEblDocxDocxResult()
 }
 
 type kClient struct {
@@ -114,10 +114,10 @@ func newServiceClient(c client.Client) *kClient {
 	}
 }
 
-func (p *kClient) CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ebl.CreateCreateEblDocxDocxReq) (r *fabric_ebl.CreateCreateEblDocxDocxResp, err error) {
-	var _args fabric_ebl.FabricCreateEblDocxCreateCreateEblDocxDocxArgs
+func (p *kClient) CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ipfs.CreateCreateEblDocxDocxReq) (r *fabric_ipfs.CreateCreateEblDocxDocxResp, err error) {
+	var _args fabric_ipfs.FabricCreateEblDocxCreateCreateEblDocxDocxArgs
 	_args.Req = req
-	var _result fabric_ebl.FabricCreateEblDocxCreateCreateEblDocxDocxResult
+	var _result fabric_ipfs.FabricCreateEblDocxCreateCreateEblDocxDocxResult
 	if err = p.c.Call(ctx, "CreateCreateEblDocxDocx", &_args, &_result); err != nil {
 		return
 	}

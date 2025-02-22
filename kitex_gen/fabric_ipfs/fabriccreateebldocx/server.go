@@ -3,11 +3,11 @@ package fabriccreateebldocx
 
 import (
 	server "github.com/cloudwego/kitex/server"
-	fabric_ebl "github.com/wxl-server/idl_gen/kitex_gen/fabric_ebl"
+	fabric_ipfs "github.com/wxl-server/idl_gen/kitex_gen/fabric_ipfs"
 )
 
 // NewServer creates a server.Server with the given handler and options.
-func NewServer(handler fabric_ebl.FabricCreateEblDocx, opts ...server.Option) server.Server {
+func NewServer(handler fabric_ipfs.FabricCreateEblDocx, opts ...server.Option) server.Server {
 	var options []server.Option
 
 	options = append(options, opts...)
@@ -20,6 +20,6 @@ func NewServer(handler fabric_ebl.FabricCreateEblDocx, opts ...server.Option) se
 	return svr
 }
 
-func RegisterService(svr server.Server, handler fabric_ebl.FabricCreateEblDocx, opts ...server.RegisterOption) error {
+func RegisterService(svr server.Server, handler fabric_ipfs.FabricCreateEblDocx, opts ...server.RegisterOption) error {
 	return svr.RegisterService(serviceInfo(), handler, opts...)
 }

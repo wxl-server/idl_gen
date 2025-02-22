@@ -6,12 +6,12 @@ import (
 	"context"
 	client "github.com/cloudwego/kitex/client"
 	callopt "github.com/cloudwego/kitex/client/callopt"
-	fabric_ebl "github.com/wxl-server/idl_gen/kitex_gen/fabric_ebl"
+	fabric_ipfs "github.com/wxl-server/idl_gen/kitex_gen/fabric_ipfs"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
-	CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ebl.CreateCreateEblDocxDocxReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCreateEblDocxDocxResp, err error)
+	CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ipfs.CreateCreateEblDocxDocxReq, callOptions ...callopt.Option) (r *fabric_ipfs.CreateCreateEblDocxDocxResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -43,7 +43,7 @@ type kFabricCreateEblDocxClient struct {
 	*kClient
 }
 
-func (p *kFabricCreateEblDocxClient) CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ebl.CreateCreateEblDocxDocxReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCreateEblDocxDocxResp, err error) {
+func (p *kFabricCreateEblDocxClient) CreateCreateEblDocxDocx(ctx context.Context, req *fabric_ipfs.CreateCreateEblDocxDocxReq, callOptions ...callopt.Option) (r *fabric_ipfs.CreateCreateEblDocxDocxResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.CreateCreateEblDocxDocx(ctx, req)
 }
