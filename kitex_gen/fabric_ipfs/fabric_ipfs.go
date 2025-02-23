@@ -387,7 +387,7 @@ type CreateEblDocx struct {
 	DateOfIssue            int64    `thrift:"dateOfIssue,25,required" frugal:"25,required,i64" json:"dateOfIssue"`
 	DeliveryAgent          string   `thrift:"deliveryAgent,26,required" frugal:"26,required,string" json:"deliveryAgent"`
 	ShippedOnBoard         int64    `thrift:"shippedOnBoard,27,required" frugal:"27,required,i64" json:"shippedOnBoard"`
-	NumOfEBL               int64    `thrift:"numOfEBL,28,required" frugal:"28,required,i64" json:"numOfEBL"`
+	NumOfEbl               int64    `thrift:"numOfEbl,28,required" frugal:"28,required,i64" json:"numOfEbl"`
 	DateOfIssueDeadline    int64    `thrift:"dateOfIssueDeadline,29,required" frugal:"29,required,i64" json:"dateOfIssueDeadline"`
 	Status                 string   `thrift:"status,30,required" frugal:"30,required,string" json:"status"`
 	File                   string   `thrift:"file,31,required" frugal:"31,required,string" json:"file"`
@@ -514,8 +514,8 @@ func (p *CreateEblDocx) GetShippedOnBoard() (v int64) {
 	return p.ShippedOnBoard
 }
 
-func (p *CreateEblDocx) GetNumOfEBL() (v int64) {
-	return p.NumOfEBL
+func (p *CreateEblDocx) GetNumOfEbl() (v int64) {
+	return p.NumOfEbl
 }
 
 func (p *CreateEblDocx) GetDateOfIssueDeadline() (v int64) {
@@ -634,8 +634,8 @@ func (p *CreateEblDocx) SetDeliveryAgent(val string) {
 func (p *CreateEblDocx) SetShippedOnBoard(val int64) {
 	p.ShippedOnBoard = val
 }
-func (p *CreateEblDocx) SetNumOfEBL(val int64) {
-	p.NumOfEBL = val
+func (p *CreateEblDocx) SetNumOfEbl(val int64) {
+	p.NumOfEbl = val
 }
 func (p *CreateEblDocx) SetDateOfIssueDeadline(val int64) {
 	p.DateOfIssueDeadline = val
@@ -693,7 +693,7 @@ var fieldIDToName_CreateEblDocx = map[int16]string{
 	25: "dateOfIssue",
 	26: "deliveryAgent",
 	27: "shippedOnBoard",
-	28: "numOfEBL",
+	28: "numOfEbl",
 	29: "dateOfIssueDeadline",
 	30: "status",
 	31: "file",
@@ -736,7 +736,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 	var issetDateOfIssue bool = false
 	var issetDeliveryAgent bool = false
 	var issetShippedOnBoard bool = false
-	var issetNumOfEBL bool = false
+	var issetNumOfEbl bool = false
 	var issetDateOfIssueDeadline bool = false
 	var issetStatus bool = false
 	var issetFile bool = false
@@ -1009,7 +1009,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField28(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetNumOfEBL = true
+				issetNumOfEbl = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -1242,7 +1242,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNumOfEBL {
+	if !issetNumOfEbl {
 		fieldId = 28
 		goto RequiredFieldNotSetError
 	}
@@ -1614,7 +1614,7 @@ func (p *CreateEblDocx) ReadField28(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.NumOfEBL = _field
+	p.NumOfEbl = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField29(iprot thrift.TProtocol) error {
@@ -2374,10 +2374,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField28(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("numOfEBL", thrift.I64, 28); err != nil {
+	if err = oprot.WriteFieldBegin("numOfEbl", thrift.I64, 28); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.NumOfEBL); err != nil {
+	if err := oprot.WriteI64(p.NumOfEbl); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2654,7 +2654,7 @@ func (p *CreateEblDocx) DeepEqual(ano *CreateEblDocx) bool {
 	if !p.Field27DeepEqual(ano.ShippedOnBoard) {
 		return false
 	}
-	if !p.Field28DeepEqual(ano.NumOfEBL) {
+	if !p.Field28DeepEqual(ano.NumOfEbl) {
 		return false
 	}
 	if !p.Field29DeepEqual(ano.DateOfIssueDeadline) {
@@ -2878,7 +2878,7 @@ func (p *CreateEblDocx) Field27DeepEqual(src int64) bool {
 }
 func (p *CreateEblDocx) Field28DeepEqual(src int64) bool {
 
-	if p.NumOfEBL != src {
+	if p.NumOfEbl != src {
 		return false
 	}
 	return true

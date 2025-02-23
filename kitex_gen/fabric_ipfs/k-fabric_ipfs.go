@@ -266,7 +266,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 	var issetDateOfIssue bool = false
 	var issetDeliveryAgent bool = false
 	var issetShippedOnBoard bool = false
-	var issetNumOfEBL bool = false
+	var issetNumOfEbl bool = false
 	var issetDateOfIssueDeadline bool = false
 	var issetStatus bool = false
 	var issetFile bool = false
@@ -698,7 +698,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetNumOfEBL = true
+				issetNumOfEbl = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -985,7 +985,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNumOfEBL {
+	if !issetNumOfEbl {
 		fieldId = 28
 		goto RequiredFieldNotSetError
 	}
@@ -1433,7 +1433,7 @@ func (p *CreateEblDocx) FastReadField28(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.NumOfEBL = _field
+	p.NumOfEbl = _field
 	return offset, nil
 }
 
@@ -1869,7 +1869,7 @@ func (p *CreateEblDocx) fastWriteField27(buf []byte, w thrift.NocopyWriter) int 
 func (p *CreateEblDocx) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 28)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEBL)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
 	return offset
 }
 
