@@ -395,7 +395,7 @@ type CreateEblDocx struct {
 	InvoiceFiles           []string `thrift:"invoiceFiles,33,required" frugal:"33,required,list<string>" json:"invoiceFiles"`
 	TransferCompanyID      string   `thrift:"transferCompanyID,34,required" frugal:"34,required,string" json:"transferCompanyID"`
 	TransferCompanyName    string   `thrift:"transferCompanyName,35,required" frugal:"35,required,string" json:"transferCompanyName"`
-	CompanyID              int64    `thrift:"companyID,36,required" frugal:"36,required,i64" json:"companyID"`
+	CompanyID              string   `thrift:"companyID,36,required" frugal:"36,required,string" json:"companyID"`
 	CompanyName            string   `thrift:"companyName,37,required" frugal:"37,required,string" json:"companyName"`
 }
 
@@ -546,7 +546,7 @@ func (p *CreateEblDocx) GetTransferCompanyName() (v string) {
 	return p.TransferCompanyName
 }
 
-func (p *CreateEblDocx) GetCompanyID() (v int64) {
+func (p *CreateEblDocx) GetCompanyID() (v string) {
 	return p.CompanyID
 }
 
@@ -658,7 +658,7 @@ func (p *CreateEblDocx) SetTransferCompanyID(val string) {
 func (p *CreateEblDocx) SetTransferCompanyName(val string) {
 	p.TransferCompanyName = val
 }
-func (p *CreateEblDocx) SetCompanyID(val int64) {
+func (p *CreateEblDocx) SetCompanyID(val string) {
 	p.CompanyID = val
 }
 func (p *CreateEblDocx) SetCompanyName(val string) {
@@ -1077,7 +1077,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 36:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField36(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -1720,8 +1720,8 @@ func (p *CreateEblDocx) ReadField35(iprot thrift.TProtocol) error {
 }
 func (p *CreateEblDocx) ReadField36(iprot thrift.TProtocol) error {
 
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -2526,10 +2526,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField36(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("companyID", thrift.I64, 36); err != nil {
+	if err = oprot.WriteFieldBegin("companyID", thrift.STRING, 36); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.CompanyID); err != nil {
+	if err := oprot.WriteString(p.CompanyID); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2944,9 +2944,9 @@ func (p *CreateEblDocx) Field35DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *CreateEblDocx) Field36DeepEqual(src int64) bool {
+func (p *CreateEblDocx) Field36DeepEqual(src string) bool {
 
-	if p.CompanyID != src {
+	if strings.Compare(p.CompanyID, src) != 0 {
 		return false
 	}
 	return true
