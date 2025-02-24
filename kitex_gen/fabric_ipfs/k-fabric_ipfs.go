@@ -240,13 +240,9 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetEblNo bool = false
-	var issetOriginCompanyID bool = false
 	var issetOriginCompanyName bool = false
-	var issetShipperCompanyID bool = false
 	var issetShipperCompanyName bool = false
-	var issetConsigneeCompanyID bool = false
 	var issetConsigneeCompanyName bool = false
-	var issetNotifyPartyCompanyID bool = false
 	var issetNotifyPartyCompanyName bool = false
 	var issetPlaceOfReceipt bool = false
 	var issetOceanVessel bool = false
@@ -268,14 +264,6 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 	var issetShippedOnBoard bool = false
 	var issetNumOfEbl bool = false
 	var issetDateOfIssueDeadline bool = false
-	var issetStatus bool = false
-	var issetFile bool = false
-	var issetContractFiles bool = false
-	var issetInvoiceFiles bool = false
-	var issetTransferCompanyID bool = false
-	var issetTransferCompanyName bool = false
-	var issetCompanyID bool = false
-	var issetCompanyName bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -308,7 +296,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetOriginCompanyID = true
+				issetOriginCompanyName = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -323,7 +311,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetOriginCompanyName = true
+				issetShipperCompanyName = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -338,7 +326,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetShipperCompanyID = true
+				issetConsigneeCompanyName = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -353,7 +341,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetShipperCompanyName = true
+				issetNotifyPartyCompanyName = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -368,7 +356,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetConsigneeCompanyID = true
+				issetPlaceOfReceipt = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -383,7 +371,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetConsigneeCompanyName = true
+				issetOceanVessel = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -398,7 +386,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetNotifyPartyCompanyID = true
+				issetPortOfLoading = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -413,7 +401,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetNotifyPartyCompanyName = true
+				issetPortOfDescharge = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -428,7 +416,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfReceipt = true
+				issetPlaceOfDestination = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -443,7 +431,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetOceanVessel = true
+				issetPlaceOfDelivery = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -458,7 +446,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetPortOfLoading = true
+				issetShippingMarkes = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -473,7 +461,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetPortOfDescharge = true
+				issetQuantityOfPackages = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -488,7 +476,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfDestination = true
+				issetKindOfPackagesGW = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -503,7 +491,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfDelivery = true
+				issetKindOfPackagesM = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -518,7 +506,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetShippingMarkes = true
+				issetDescriptionOfGoods = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -527,13 +515,13 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 17:
-			if fieldTypeId == thrift.DOUBLE {
+			if fieldTypeId == thrift.STRING {
 				l, err = p.FastReadField17(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetQuantityOfPackages = true
+				issetGrossWeight = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -548,7 +536,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetKindOfPackagesGW = true
+				issetMeasurement = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -563,7 +551,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetKindOfPackagesM = true
+				issetFreightAndCharges = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -578,7 +566,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetDescriptionOfGoods = true
+				issetPlaceOfIssue = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -587,13 +575,13 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 21:
-			if fieldTypeId == thrift.DOUBLE {
+			if fieldTypeId == thrift.STRING {
 				l, err = p.FastReadField21(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetGrossWeight = true
+				issetDateOfIssue = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -602,13 +590,13 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 22:
-			if fieldTypeId == thrift.DOUBLE {
+			if fieldTypeId == thrift.STRING {
 				l, err = p.FastReadField22(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetMeasurement = true
+				issetDeliveryAgent = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -623,7 +611,7 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetFreightAndCharges = true
+				issetShippedOnBoard = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -638,66 +626,6 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfIssue = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 25:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField25(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDateOfIssue = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 26:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField26(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDeliveryAgent = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 27:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField27(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShippedOnBoard = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 28:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField28(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
 				issetNumOfEbl = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
@@ -706,134 +634,14 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
-		case 29:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField29(buf[offset:])
+		case 25:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField25(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
 				}
 				issetDateOfIssueDeadline = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 30:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField30(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetStatus = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 31:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField31(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetFile = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 32:
-			if fieldTypeId == thrift.LIST {
-				l, err = p.FastReadField32(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetContractFiles = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 33:
-			if fieldTypeId == thrift.LIST {
-				l, err = p.FastReadField33(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetInvoiceFiles = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 34:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField34(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 35:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField35(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 36:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField36(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 37:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField37(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyName = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -855,183 +663,123 @@ func (p *CreateEblDocx) FastRead(buf []byte) (int, error) {
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetOriginCompanyID {
+	if !issetOriginCompanyName {
 		fieldId = 2
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetOriginCompanyName {
+	if !issetShipperCompanyName {
 		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetShipperCompanyID {
+	if !issetConsigneeCompanyName {
 		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetShipperCompanyName {
+	if !issetNotifyPartyCompanyName {
 		fieldId = 5
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetConsigneeCompanyID {
+	if !issetPlaceOfReceipt {
 		fieldId = 6
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetConsigneeCompanyName {
+	if !issetOceanVessel {
 		fieldId = 7
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNotifyPartyCompanyID {
+	if !issetPortOfLoading {
 		fieldId = 8
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNotifyPartyCompanyName {
+	if !issetPortOfDescharge {
 		fieldId = 9
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfReceipt {
+	if !issetPlaceOfDestination {
 		fieldId = 10
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetOceanVessel {
+	if !issetPlaceOfDelivery {
 		fieldId = 11
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPortOfLoading {
+	if !issetShippingMarkes {
 		fieldId = 12
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPortOfDescharge {
+	if !issetQuantityOfPackages {
 		fieldId = 13
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfDestination {
+	if !issetKindOfPackagesGW {
 		fieldId = 14
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfDelivery {
+	if !issetKindOfPackagesM {
 		fieldId = 15
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetShippingMarkes {
+	if !issetDescriptionOfGoods {
 		fieldId = 16
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetQuantityOfPackages {
+	if !issetGrossWeight {
 		fieldId = 17
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetKindOfPackagesGW {
+	if !issetMeasurement {
 		fieldId = 18
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetKindOfPackagesM {
+	if !issetFreightAndCharges {
 		fieldId = 19
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetDescriptionOfGoods {
+	if !issetPlaceOfIssue {
 		fieldId = 20
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetGrossWeight {
+	if !issetDateOfIssue {
 		fieldId = 21
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetMeasurement {
+	if !issetDeliveryAgent {
 		fieldId = 22
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetFreightAndCharges {
+	if !issetShippedOnBoard {
 		fieldId = 23
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfIssue {
+	if !issetNumOfEbl {
 		fieldId = 24
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetDateOfIssue {
-		fieldId = 25
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDeliveryAgent {
-		fieldId = 26
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShippedOnBoard {
-		fieldId = 27
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNumOfEbl {
-		fieldId = 28
-		goto RequiredFieldNotSetError
-	}
-
 	if !issetDateOfIssueDeadline {
-		fieldId = 29
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetStatus {
-		fieldId = 30
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetFile {
-		fieldId = 31
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetContractFiles {
-		fieldId = 32
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetInvoiceFiles {
-		fieldId = 33
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyID {
-		fieldId = 34
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyName {
-		fieldId = 35
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyID {
-		fieldId = 36
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyName {
-		fieldId = 37
+		fieldId = 25
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -1069,7 +817,7 @@ func (p *CreateEblDocx) FastReadField2(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.OriginCompanyID = _field
+	p.OriginCompanyName = _field
 	return offset, nil
 }
 
@@ -1083,7 +831,7 @@ func (p *CreateEblDocx) FastReadField3(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.OriginCompanyName = _field
+	p.ShipperCompanyName = _field
 	return offset, nil
 }
 
@@ -1097,7 +845,7 @@ func (p *CreateEblDocx) FastReadField4(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.ShipperCompanyID = _field
+	p.ConsigneeCompanyName = _field
 	return offset, nil
 }
 
@@ -1111,7 +859,7 @@ func (p *CreateEblDocx) FastReadField5(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.ShipperCompanyName = _field
+	p.NotifyPartyCompanyName = _field
 	return offset, nil
 }
 
@@ -1125,7 +873,7 @@ func (p *CreateEblDocx) FastReadField6(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.ConsigneeCompanyID = _field
+	p.PlaceOfReceipt = _field
 	return offset, nil
 }
 
@@ -1139,7 +887,7 @@ func (p *CreateEblDocx) FastReadField7(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.ConsigneeCompanyName = _field
+	p.OceanVessel = _field
 	return offset, nil
 }
 
@@ -1153,7 +901,7 @@ func (p *CreateEblDocx) FastReadField8(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.NotifyPartyCompanyID = _field
+	p.PortOfLoading = _field
 	return offset, nil
 }
 
@@ -1167,7 +915,7 @@ func (p *CreateEblDocx) FastReadField9(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.NotifyPartyCompanyName = _field
+	p.PortOfDescharge = _field
 	return offset, nil
 }
 
@@ -1181,7 +929,7 @@ func (p *CreateEblDocx) FastReadField10(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.PlaceOfReceipt = _field
+	p.PlaceOfDestination = _field
 	return offset, nil
 }
 
@@ -1195,7 +943,7 @@ func (p *CreateEblDocx) FastReadField11(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.OceanVessel = _field
+	p.PlaceOfDelivery = _field
 	return offset, nil
 }
 
@@ -1209,7 +957,7 @@ func (p *CreateEblDocx) FastReadField12(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.PortOfLoading = _field
+	p.ShippingMarkes = _field
 	return offset, nil
 }
 
@@ -1223,7 +971,7 @@ func (p *CreateEblDocx) FastReadField13(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.PortOfDescharge = _field
+	p.QuantityOfPackages = _field
 	return offset, nil
 }
 
@@ -1237,7 +985,7 @@ func (p *CreateEblDocx) FastReadField14(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.PlaceOfDestination = _field
+	p.KindOfPackagesGW = _field
 	return offset, nil
 }
 
@@ -1251,7 +999,7 @@ func (p *CreateEblDocx) FastReadField15(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.PlaceOfDelivery = _field
+	p.KindOfPackagesM = _field
 	return offset, nil
 }
 
@@ -1265,21 +1013,21 @@ func (p *CreateEblDocx) FastReadField16(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.ShippingMarkes = _field
+	p.DescriptionOfGoods = _field
 	return offset, nil
 }
 
 func (p *CreateEblDocx) FastReadField17(buf []byte) (int, error) {
 	offset := 0
 
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
 		_field = v
 	}
-	p.QuantityOfPackages = _field
+	p.GrossWeight = _field
 	return offset, nil
 }
 
@@ -1293,7 +1041,7 @@ func (p *CreateEblDocx) FastReadField18(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.KindOfPackagesGW = _field
+	p.Measurement = _field
 	return offset, nil
 }
 
@@ -1307,7 +1055,7 @@ func (p *CreateEblDocx) FastReadField19(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.KindOfPackagesM = _field
+	p.FreightAndCharges = _field
 	return offset, nil
 }
 
@@ -1321,71 +1069,15 @@ func (p *CreateEblDocx) FastReadField20(buf []byte) (int, error) {
 		offset += l
 		_field = v
 	}
-	p.DescriptionOfGoods = _field
+	p.PlaceOfIssue = _field
 	return offset, nil
 }
 
 func (p *CreateEblDocx) FastReadField21(buf []byte) (int, error) {
 	offset := 0
 
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.GrossWeight = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField22(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.Measurement = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField23(buf []byte) (int, error) {
-	offset := 0
-
 	var _field string
 	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.FreightAndCharges = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField24(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfIssue = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField25(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
@@ -1395,7 +1087,7 @@ func (p *CreateEblDocx) FastReadField25(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *CreateEblDocx) FastReadField26(buf []byte) (int, error) {
+func (p *CreateEblDocx) FastReadField22(buf []byte) (int, error) {
 	offset := 0
 
 	var _field string
@@ -1409,11 +1101,11 @@ func (p *CreateEblDocx) FastReadField26(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *CreateEblDocx) FastReadField27(buf []byte) (int, error) {
+func (p *CreateEblDocx) FastReadField23(buf []byte) (int, error) {
 	offset := 0
 
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
@@ -1423,11 +1115,11 @@ func (p *CreateEblDocx) FastReadField27(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *CreateEblDocx) FastReadField28(buf []byte) (int, error) {
+func (p *CreateEblDocx) FastReadField24(buf []byte) (int, error) {
 	offset := 0
 
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
@@ -1437,149 +1129,17 @@ func (p *CreateEblDocx) FastReadField28(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *CreateEblDocx) FastReadField29(buf []byte) (int, error) {
+func (p *CreateEblDocx) FastReadField25(buf []byte) (int, error) {
 	offset := 0
 
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
 		_field = v
 	}
 	p.DateOfIssueDeadline = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField30(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.Status = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField31(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.File = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField32(buf []byte) (int, error) {
-	offset := 0
-
-	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
-	offset += l
-	if err != nil {
-		return offset, err
-	}
-	_field := make([]string, 0, size)
-	for i := 0; i < size; i++ {
-		var _elem string
-		if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-			return offset, err
-		} else {
-			offset += l
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	p.ContractFiles = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField33(buf []byte) (int, error) {
-	offset := 0
-
-	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
-	offset += l
-	if err != nil {
-		return offset, err
-	}
-	_field := make([]string, 0, size)
-	for i := 0; i < size; i++ {
-		var _elem string
-		if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-			return offset, err
-		} else {
-			offset += l
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	p.InvoiceFiles = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField34(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.TransferCompanyID = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField35(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.TransferCompanyName = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField36(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.CompanyID = _field
-	return offset, nil
-}
-
-func (p *CreateEblDocx) FastReadField37(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.CompanyName = _field
 	return offset, nil
 }
 
@@ -1590,13 +1150,6 @@ func (p *CreateEblDocx) FastWrite(buf []byte) int {
 func (p *CreateEblDocx) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
-		offset += p.fastWriteField17(buf[offset:], w)
-		offset += p.fastWriteField21(buf[offset:], w)
-		offset += p.fastWriteField22(buf[offset:], w)
-		offset += p.fastWriteField25(buf[offset:], w)
-		offset += p.fastWriteField27(buf[offset:], w)
-		offset += p.fastWriteField28(buf[offset:], w)
-		offset += p.fastWriteField29(buf[offset:], w)
 		offset += p.fastWriteField1(buf[offset:], w)
 		offset += p.fastWriteField2(buf[offset:], w)
 		offset += p.fastWriteField3(buf[offset:], w)
@@ -1613,20 +1166,15 @@ func (p *CreateEblDocx) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 		offset += p.fastWriteField14(buf[offset:], w)
 		offset += p.fastWriteField15(buf[offset:], w)
 		offset += p.fastWriteField16(buf[offset:], w)
+		offset += p.fastWriteField17(buf[offset:], w)
 		offset += p.fastWriteField18(buf[offset:], w)
 		offset += p.fastWriteField19(buf[offset:], w)
 		offset += p.fastWriteField20(buf[offset:], w)
+		offset += p.fastWriteField21(buf[offset:], w)
+		offset += p.fastWriteField22(buf[offset:], w)
 		offset += p.fastWriteField23(buf[offset:], w)
 		offset += p.fastWriteField24(buf[offset:], w)
-		offset += p.fastWriteField26(buf[offset:], w)
-		offset += p.fastWriteField30(buf[offset:], w)
-		offset += p.fastWriteField31(buf[offset:], w)
-		offset += p.fastWriteField32(buf[offset:], w)
-		offset += p.fastWriteField33(buf[offset:], w)
-		offset += p.fastWriteField34(buf[offset:], w)
-		offset += p.fastWriteField35(buf[offset:], w)
-		offset += p.fastWriteField36(buf[offset:], w)
-		offset += p.fastWriteField37(buf[offset:], w)
+		offset += p.fastWriteField25(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -1660,18 +1208,6 @@ func (p *CreateEblDocx) BLength() int {
 		l += p.field23Length()
 		l += p.field24Length()
 		l += p.field25Length()
-		l += p.field26Length()
-		l += p.field27Length()
-		l += p.field28Length()
-		l += p.field29Length()
-		l += p.field30Length()
-		l += p.field31Length()
-		l += p.field32Length()
-		l += p.field33Length()
-		l += p.field34Length()
-		l += p.field35Length()
-		l += p.field36Length()
-		l += p.field37Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -1687,266 +1223,168 @@ func (p *CreateEblDocx) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 func (p *CreateEblDocx) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyID)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyName)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyName)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyName)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyID)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyName)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyName)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyName)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyID)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyName)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 8)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyID)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 9)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyName)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField10(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 10)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField11(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 11)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField12(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 12)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField13(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 13)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.QuantityOfPackages)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField14(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 14)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField15(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 15)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField16(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 16)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField17(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 17)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.QuantityOfPackages)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 17)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.GrossWeight)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField18(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 18)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Measurement)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField19(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 19)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField20(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 20)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField21(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 21)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.GrossWeight)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 21)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DateOfIssue)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField22(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 22)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.Measurement)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 22)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField23(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 23)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippedOnBoard)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField24(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 24)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NumOfEbl)
 	return offset
 }
 
 func (p *CreateEblDocx) fastWriteField25(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 25)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssue)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField26(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 26)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField27(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 27)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.ShippedOnBoard)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 28)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField29(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 29)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssueDeadline)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField30(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 30)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Status)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField31(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 31)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.File)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField32(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 32)
-	listBeginOffset := offset
-	offset += thrift.Binary.ListBeginLength()
-	var length int
-	for _, v := range p.ContractFiles {
-		length++
-		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, v)
-	}
-	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRING, length)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField33(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 33)
-	listBeginOffset := offset
-	offset += thrift.Binary.ListBeginLength()
-	var length int
-	for _, v := range p.InvoiceFiles {
-		length++
-		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, v)
-	}
-	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRING, length)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField34(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 34)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyID)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField35(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 35)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyName)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField36(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 36)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyID)
-	return offset
-}
-
-func (p *CreateEblDocx) fastWriteField37(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 37)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyName)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 25)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DateOfIssueDeadline)
 	return offset
 }
 
@@ -1960,260 +1398,168 @@ func (p *CreateEblDocx) field1Length() int {
 func (p *CreateEblDocx) field2Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyID)
+	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyName)
 	return l
 }
 
 func (p *CreateEblDocx) field3Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyName)
+	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyName)
 	return l
 }
 
 func (p *CreateEblDocx) field4Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyID)
+	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyName)
 	return l
 }
 
 func (p *CreateEblDocx) field5Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyName)
+	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyName)
 	return l
 }
 
 func (p *CreateEblDocx) field6Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyID)
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
 	return l
 }
 
 func (p *CreateEblDocx) field7Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyName)
+	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
 	return l
 }
 
 func (p *CreateEblDocx) field8Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyID)
+	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
 	return l
 }
 
 func (p *CreateEblDocx) field9Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyName)
+	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
 	return l
 }
 
 func (p *CreateEblDocx) field10Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
 	return l
 }
 
 func (p *CreateEblDocx) field11Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
 	return l
 }
 
 func (p *CreateEblDocx) field12Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
+	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
 	return l
 }
 
 func (p *CreateEblDocx) field13Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
+	l += thrift.Binary.StringLengthNocopy(p.QuantityOfPackages)
 	return l
 }
 
 func (p *CreateEblDocx) field14Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
 	return l
 }
 
 func (p *CreateEblDocx) field15Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
 	return l
 }
 
 func (p *CreateEblDocx) field16Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
+	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
 	return l
 }
 
 func (p *CreateEblDocx) field17Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
+	l += thrift.Binary.StringLengthNocopy(p.GrossWeight)
 	return l
 }
 
 func (p *CreateEblDocx) field18Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
+	l += thrift.Binary.StringLengthNocopy(p.Measurement)
 	return l
 }
 
 func (p *CreateEblDocx) field19Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
+	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
 	return l
 }
 
 func (p *CreateEblDocx) field20Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
 	return l
 }
 
 func (p *CreateEblDocx) field21Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
+	l += thrift.Binary.StringLengthNocopy(p.DateOfIssue)
 	return l
 }
 
 func (p *CreateEblDocx) field22Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
+	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
 	return l
 }
 
 func (p *CreateEblDocx) field23Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
+	l += thrift.Binary.StringLengthNocopy(p.ShippedOnBoard)
 	return l
 }
 
 func (p *CreateEblDocx) field24Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
+	l += thrift.Binary.StringLengthNocopy(p.NumOfEbl)
 	return l
 }
 
 func (p *CreateEblDocx) field25Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *CreateEblDocx) field26Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
-	return l
-}
-
-func (p *CreateEblDocx) field27Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *CreateEblDocx) field28Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *CreateEblDocx) field29Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *CreateEblDocx) field30Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.Status)
-	return l
-}
-
-func (p *CreateEblDocx) field31Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.File)
-	return l
-}
-
-func (p *CreateEblDocx) field32Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.ListBeginLength()
-	for _, v := range p.ContractFiles {
-		_ = v
-		l += thrift.Binary.StringLengthNocopy(v)
-	}
-	return l
-}
-
-func (p *CreateEblDocx) field33Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.ListBeginLength()
-	for _, v := range p.InvoiceFiles {
-		_ = v
-		l += thrift.Binary.StringLengthNocopy(v)
-	}
-	return l
-}
-
-func (p *CreateEblDocx) field34Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyID)
-	return l
-}
-
-func (p *CreateEblDocx) field35Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyName)
-	return l
-}
-
-func (p *CreateEblDocx) field36Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.CompanyID)
-	return l
-}
-
-func (p *CreateEblDocx) field37Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.CompanyName)
+	l += thrift.Binary.StringLengthNocopy(p.DateOfIssueDeadline)
 	return l
 }
 

@@ -360,43 +360,31 @@ func (p *CreateEblDocxResp) Field1DeepEqual(src string) bool {
 }
 
 type CreateEblDocx struct {
-	EblNo                  string   `thrift:"eblNo,1,required" frugal:"1,required,string" json:"eblNo"`
-	OriginCompanyID        string   `thrift:"originCompanyID,2,required" frugal:"2,required,string" json:"originCompanyID"`
-	OriginCompanyName      string   `thrift:"originCompanyName,3,required" frugal:"3,required,string" json:"originCompanyName"`
-	ShipperCompanyID       string   `thrift:"shipperCompanyID,4,required" frugal:"4,required,string" json:"shipperCompanyID"`
-	ShipperCompanyName     string   `thrift:"shipperCompanyName,5,required" frugal:"5,required,string" json:"shipperCompanyName"`
-	ConsigneeCompanyID     string   `thrift:"consigneeCompanyID,6,required" frugal:"6,required,string" json:"consigneeCompanyID"`
-	ConsigneeCompanyName   string   `thrift:"consigneeCompanyName,7,required" frugal:"7,required,string" json:"consigneeCompanyName"`
-	NotifyPartyCompanyID   string   `thrift:"notifyPartyCompanyID,8,required" frugal:"8,required,string" json:"notifyPartyCompanyID"`
-	NotifyPartyCompanyName string   `thrift:"notifyPartyCompanyName,9,required" frugal:"9,required,string" json:"notifyPartyCompanyName"`
-	PlaceOfReceipt         string   `thrift:"placeOfReceipt,10,required" frugal:"10,required,string" json:"placeOfReceipt"`
-	OceanVessel            string   `thrift:"oceanVessel,11,required" frugal:"11,required,string" json:"oceanVessel"`
-	PortOfLoading          string   `thrift:"portOfLoading,12,required" frugal:"12,required,string" json:"portOfLoading"`
-	PortOfDescharge        string   `thrift:"portOfDescharge,13,required" frugal:"13,required,string" json:"portOfDescharge"`
-	PlaceOfDestination     string   `thrift:"placeOfDestination,14,required" frugal:"14,required,string" json:"placeOfDestination"`
-	PlaceOfDelivery        string   `thrift:"placeOfDelivery,15,required" frugal:"15,required,string" json:"placeOfDelivery"`
-	ShippingMarkes         string   `thrift:"shippingMarkes,16,required" frugal:"16,required,string" json:"shippingMarkes"`
-	QuantityOfPackages     float64  `thrift:"quantityOfPackages,17,required" frugal:"17,required,double" json:"quantityOfPackages"`
-	KindOfPackagesGW       string   `thrift:"kindOfPackagesGW,18,required" frugal:"18,required,string" json:"kindOfPackagesGW"`
-	KindOfPackagesM        string   `thrift:"kindOfPackagesM,19,required" frugal:"19,required,string" json:"kindOfPackagesM"`
-	DescriptionOfGoods     string   `thrift:"descriptionOfGoods,20,required" frugal:"20,required,string" json:"descriptionOfGoods"`
-	GrossWeight            float64  `thrift:"grossWeight,21,required" frugal:"21,required,double" json:"grossWeight"`
-	Measurement            float64  `thrift:"measurement,22,required" frugal:"22,required,double" json:"measurement"`
-	FreightAndCharges      string   `thrift:"freightAndCharges,23,required" frugal:"23,required,string" json:"freightAndCharges"`
-	PlaceOfIssue           string   `thrift:"placeOfIssue,24,required" frugal:"24,required,string" json:"placeOfIssue"`
-	DateOfIssue            int64    `thrift:"dateOfIssue,25,required" frugal:"25,required,i64" json:"dateOfIssue"`
-	DeliveryAgent          string   `thrift:"deliveryAgent,26,required" frugal:"26,required,string" json:"deliveryAgent"`
-	ShippedOnBoard         int64    `thrift:"shippedOnBoard,27,required" frugal:"27,required,i64" json:"shippedOnBoard"`
-	NumOfEbl               int64    `thrift:"numOfEbl,28,required" frugal:"28,required,i64" json:"numOfEbl"`
-	DateOfIssueDeadline    int64    `thrift:"dateOfIssueDeadline,29,required" frugal:"29,required,i64" json:"dateOfIssueDeadline"`
-	Status                 string   `thrift:"status,30,required" frugal:"30,required,string" json:"status"`
-	File                   string   `thrift:"file,31,required" frugal:"31,required,string" json:"file"`
-	ContractFiles          []string `thrift:"contractFiles,32,required" frugal:"32,required,list<string>" json:"contractFiles"`
-	InvoiceFiles           []string `thrift:"invoiceFiles,33,required" frugal:"33,required,list<string>" json:"invoiceFiles"`
-	TransferCompanyID      string   `thrift:"transferCompanyID,34,required" frugal:"34,required,string" json:"transferCompanyID"`
-	TransferCompanyName    string   `thrift:"transferCompanyName,35,required" frugal:"35,required,string" json:"transferCompanyName"`
-	CompanyID              string   `thrift:"companyID,36,required" frugal:"36,required,string" json:"companyID"`
-	CompanyName            string   `thrift:"companyName,37,required" frugal:"37,required,string" json:"companyName"`
+	EblNo                  string `thrift:"eblNo,1,required" frugal:"1,required,string" json:"eblNo"`
+	OriginCompanyName      string `thrift:"originCompanyName,2,required" frugal:"2,required,string" json:"originCompanyName"`
+	ShipperCompanyName     string `thrift:"shipperCompanyName,3,required" frugal:"3,required,string" json:"shipperCompanyName"`
+	ConsigneeCompanyName   string `thrift:"consigneeCompanyName,4,required" frugal:"4,required,string" json:"consigneeCompanyName"`
+	NotifyPartyCompanyName string `thrift:"notifyPartyCompanyName,5,required" frugal:"5,required,string" json:"notifyPartyCompanyName"`
+	PlaceOfReceipt         string `thrift:"placeOfReceipt,6,required" frugal:"6,required,string" json:"placeOfReceipt"`
+	OceanVessel            string `thrift:"oceanVessel,7,required" frugal:"7,required,string" json:"oceanVessel"`
+	PortOfLoading          string `thrift:"portOfLoading,8,required" frugal:"8,required,string" json:"portOfLoading"`
+	PortOfDescharge        string `thrift:"portOfDescharge,9,required" frugal:"9,required,string" json:"portOfDescharge"`
+	PlaceOfDestination     string `thrift:"placeOfDestination,10,required" frugal:"10,required,string" json:"placeOfDestination"`
+	PlaceOfDelivery        string `thrift:"placeOfDelivery,11,required" frugal:"11,required,string" json:"placeOfDelivery"`
+	ShippingMarkes         string `thrift:"shippingMarkes,12,required" frugal:"12,required,string" json:"shippingMarkes"`
+	QuantityOfPackages     string `thrift:"quantityOfPackages,13,required" frugal:"13,required,string" json:"quantityOfPackages"`
+	KindOfPackagesGW       string `thrift:"kindOfPackagesGW,14,required" frugal:"14,required,string" json:"kindOfPackagesGW"`
+	KindOfPackagesM        string `thrift:"kindOfPackagesM,15,required" frugal:"15,required,string" json:"kindOfPackagesM"`
+	DescriptionOfGoods     string `thrift:"descriptionOfGoods,16,required" frugal:"16,required,string" json:"descriptionOfGoods"`
+	GrossWeight            string `thrift:"grossWeight,17,required" frugal:"17,required,string" json:"grossWeight"`
+	Measurement            string `thrift:"measurement,18,required" frugal:"18,required,string" json:"measurement"`
+	FreightAndCharges      string `thrift:"freightAndCharges,19,required" frugal:"19,required,string" json:"freightAndCharges"`
+	PlaceOfIssue           string `thrift:"placeOfIssue,20,required" frugal:"20,required,string" json:"placeOfIssue"`
+	DateOfIssue            string `thrift:"dateOfIssue,21,required" frugal:"21,required,string" json:"dateOfIssue"`
+	DeliveryAgent          string `thrift:"deliveryAgent,22,required" frugal:"22,required,string" json:"deliveryAgent"`
+	ShippedOnBoard         string `thrift:"shippedOnBoard,23,required" frugal:"23,required,string" json:"shippedOnBoard"`
+	NumOfEbl               string `thrift:"numOfEbl,24,required" frugal:"24,required,string" json:"numOfEbl"`
+	DateOfIssueDeadline    string `thrift:"dateOfIssueDeadline,25,required" frugal:"25,required,string" json:"dateOfIssueDeadline"`
 }
 
 func NewCreateEblDocx() *CreateEblDocx {
@@ -410,32 +398,16 @@ func (p *CreateEblDocx) GetEblNo() (v string) {
 	return p.EblNo
 }
 
-func (p *CreateEblDocx) GetOriginCompanyID() (v string) {
-	return p.OriginCompanyID
-}
-
 func (p *CreateEblDocx) GetOriginCompanyName() (v string) {
 	return p.OriginCompanyName
-}
-
-func (p *CreateEblDocx) GetShipperCompanyID() (v string) {
-	return p.ShipperCompanyID
 }
 
 func (p *CreateEblDocx) GetShipperCompanyName() (v string) {
 	return p.ShipperCompanyName
 }
 
-func (p *CreateEblDocx) GetConsigneeCompanyID() (v string) {
-	return p.ConsigneeCompanyID
-}
-
 func (p *CreateEblDocx) GetConsigneeCompanyName() (v string) {
 	return p.ConsigneeCompanyName
-}
-
-func (p *CreateEblDocx) GetNotifyPartyCompanyID() (v string) {
-	return p.NotifyPartyCompanyID
 }
 
 func (p *CreateEblDocx) GetNotifyPartyCompanyName() (v string) {
@@ -470,7 +442,7 @@ func (p *CreateEblDocx) GetShippingMarkes() (v string) {
 	return p.ShippingMarkes
 }
 
-func (p *CreateEblDocx) GetQuantityOfPackages() (v float64) {
+func (p *CreateEblDocx) GetQuantityOfPackages() (v string) {
 	return p.QuantityOfPackages
 }
 
@@ -486,11 +458,11 @@ func (p *CreateEblDocx) GetDescriptionOfGoods() (v string) {
 	return p.DescriptionOfGoods
 }
 
-func (p *CreateEblDocx) GetGrossWeight() (v float64) {
+func (p *CreateEblDocx) GetGrossWeight() (v string) {
 	return p.GrossWeight
 }
 
-func (p *CreateEblDocx) GetMeasurement() (v float64) {
+func (p *CreateEblDocx) GetMeasurement() (v string) {
 	return p.Measurement
 }
 
@@ -502,7 +474,7 @@ func (p *CreateEblDocx) GetPlaceOfIssue() (v string) {
 	return p.PlaceOfIssue
 }
 
-func (p *CreateEblDocx) GetDateOfIssue() (v int64) {
+func (p *CreateEblDocx) GetDateOfIssue() (v string) {
 	return p.DateOfIssue
 }
 
@@ -510,72 +482,28 @@ func (p *CreateEblDocx) GetDeliveryAgent() (v string) {
 	return p.DeliveryAgent
 }
 
-func (p *CreateEblDocx) GetShippedOnBoard() (v int64) {
+func (p *CreateEblDocx) GetShippedOnBoard() (v string) {
 	return p.ShippedOnBoard
 }
 
-func (p *CreateEblDocx) GetNumOfEbl() (v int64) {
+func (p *CreateEblDocx) GetNumOfEbl() (v string) {
 	return p.NumOfEbl
 }
 
-func (p *CreateEblDocx) GetDateOfIssueDeadline() (v int64) {
+func (p *CreateEblDocx) GetDateOfIssueDeadline() (v string) {
 	return p.DateOfIssueDeadline
-}
-
-func (p *CreateEblDocx) GetStatus() (v string) {
-	return p.Status
-}
-
-func (p *CreateEblDocx) GetFile() (v string) {
-	return p.File
-}
-
-func (p *CreateEblDocx) GetContractFiles() (v []string) {
-	return p.ContractFiles
-}
-
-func (p *CreateEblDocx) GetInvoiceFiles() (v []string) {
-	return p.InvoiceFiles
-}
-
-func (p *CreateEblDocx) GetTransferCompanyID() (v string) {
-	return p.TransferCompanyID
-}
-
-func (p *CreateEblDocx) GetTransferCompanyName() (v string) {
-	return p.TransferCompanyName
-}
-
-func (p *CreateEblDocx) GetCompanyID() (v string) {
-	return p.CompanyID
-}
-
-func (p *CreateEblDocx) GetCompanyName() (v string) {
-	return p.CompanyName
 }
 func (p *CreateEblDocx) SetEblNo(val string) {
 	p.EblNo = val
 }
-func (p *CreateEblDocx) SetOriginCompanyID(val string) {
-	p.OriginCompanyID = val
-}
 func (p *CreateEblDocx) SetOriginCompanyName(val string) {
 	p.OriginCompanyName = val
-}
-func (p *CreateEblDocx) SetShipperCompanyID(val string) {
-	p.ShipperCompanyID = val
 }
 func (p *CreateEblDocx) SetShipperCompanyName(val string) {
 	p.ShipperCompanyName = val
 }
-func (p *CreateEblDocx) SetConsigneeCompanyID(val string) {
-	p.ConsigneeCompanyID = val
-}
 func (p *CreateEblDocx) SetConsigneeCompanyName(val string) {
 	p.ConsigneeCompanyName = val
-}
-func (p *CreateEblDocx) SetNotifyPartyCompanyID(val string) {
-	p.NotifyPartyCompanyID = val
 }
 func (p *CreateEblDocx) SetNotifyPartyCompanyName(val string) {
 	p.NotifyPartyCompanyName = val
@@ -601,7 +529,7 @@ func (p *CreateEblDocx) SetPlaceOfDelivery(val string) {
 func (p *CreateEblDocx) SetShippingMarkes(val string) {
 	p.ShippingMarkes = val
 }
-func (p *CreateEblDocx) SetQuantityOfPackages(val float64) {
+func (p *CreateEblDocx) SetQuantityOfPackages(val string) {
 	p.QuantityOfPackages = val
 }
 func (p *CreateEblDocx) SetKindOfPackagesGW(val string) {
@@ -613,10 +541,10 @@ func (p *CreateEblDocx) SetKindOfPackagesM(val string) {
 func (p *CreateEblDocx) SetDescriptionOfGoods(val string) {
 	p.DescriptionOfGoods = val
 }
-func (p *CreateEblDocx) SetGrossWeight(val float64) {
+func (p *CreateEblDocx) SetGrossWeight(val string) {
 	p.GrossWeight = val
 }
-func (p *CreateEblDocx) SetMeasurement(val float64) {
+func (p *CreateEblDocx) SetMeasurement(val string) {
 	p.Measurement = val
 }
 func (p *CreateEblDocx) SetFreightAndCharges(val string) {
@@ -625,84 +553,48 @@ func (p *CreateEblDocx) SetFreightAndCharges(val string) {
 func (p *CreateEblDocx) SetPlaceOfIssue(val string) {
 	p.PlaceOfIssue = val
 }
-func (p *CreateEblDocx) SetDateOfIssue(val int64) {
+func (p *CreateEblDocx) SetDateOfIssue(val string) {
 	p.DateOfIssue = val
 }
 func (p *CreateEblDocx) SetDeliveryAgent(val string) {
 	p.DeliveryAgent = val
 }
-func (p *CreateEblDocx) SetShippedOnBoard(val int64) {
+func (p *CreateEblDocx) SetShippedOnBoard(val string) {
 	p.ShippedOnBoard = val
 }
-func (p *CreateEblDocx) SetNumOfEbl(val int64) {
+func (p *CreateEblDocx) SetNumOfEbl(val string) {
 	p.NumOfEbl = val
 }
-func (p *CreateEblDocx) SetDateOfIssueDeadline(val int64) {
+func (p *CreateEblDocx) SetDateOfIssueDeadline(val string) {
 	p.DateOfIssueDeadline = val
-}
-func (p *CreateEblDocx) SetStatus(val string) {
-	p.Status = val
-}
-func (p *CreateEblDocx) SetFile(val string) {
-	p.File = val
-}
-func (p *CreateEblDocx) SetContractFiles(val []string) {
-	p.ContractFiles = val
-}
-func (p *CreateEblDocx) SetInvoiceFiles(val []string) {
-	p.InvoiceFiles = val
-}
-func (p *CreateEblDocx) SetTransferCompanyID(val string) {
-	p.TransferCompanyID = val
-}
-func (p *CreateEblDocx) SetTransferCompanyName(val string) {
-	p.TransferCompanyName = val
-}
-func (p *CreateEblDocx) SetCompanyID(val string) {
-	p.CompanyID = val
-}
-func (p *CreateEblDocx) SetCompanyName(val string) {
-	p.CompanyName = val
 }
 
 var fieldIDToName_CreateEblDocx = map[int16]string{
 	1:  "eblNo",
-	2:  "originCompanyID",
-	3:  "originCompanyName",
-	4:  "shipperCompanyID",
-	5:  "shipperCompanyName",
-	6:  "consigneeCompanyID",
-	7:  "consigneeCompanyName",
-	8:  "notifyPartyCompanyID",
-	9:  "notifyPartyCompanyName",
-	10: "placeOfReceipt",
-	11: "oceanVessel",
-	12: "portOfLoading",
-	13: "portOfDescharge",
-	14: "placeOfDestination",
-	15: "placeOfDelivery",
-	16: "shippingMarkes",
-	17: "quantityOfPackages",
-	18: "kindOfPackagesGW",
-	19: "kindOfPackagesM",
-	20: "descriptionOfGoods",
-	21: "grossWeight",
-	22: "measurement",
-	23: "freightAndCharges",
-	24: "placeOfIssue",
-	25: "dateOfIssue",
-	26: "deliveryAgent",
-	27: "shippedOnBoard",
-	28: "numOfEbl",
-	29: "dateOfIssueDeadline",
-	30: "status",
-	31: "file",
-	32: "contractFiles",
-	33: "invoiceFiles",
-	34: "transferCompanyID",
-	35: "transferCompanyName",
-	36: "companyID",
-	37: "companyName",
+	2:  "originCompanyName",
+	3:  "shipperCompanyName",
+	4:  "consigneeCompanyName",
+	5:  "notifyPartyCompanyName",
+	6:  "placeOfReceipt",
+	7:  "oceanVessel",
+	8:  "portOfLoading",
+	9:  "portOfDescharge",
+	10: "placeOfDestination",
+	11: "placeOfDelivery",
+	12: "shippingMarkes",
+	13: "quantityOfPackages",
+	14: "kindOfPackagesGW",
+	15: "kindOfPackagesM",
+	16: "descriptionOfGoods",
+	17: "grossWeight",
+	18: "measurement",
+	19: "freightAndCharges",
+	20: "placeOfIssue",
+	21: "dateOfIssue",
+	22: "deliveryAgent",
+	23: "shippedOnBoard",
+	24: "numOfEbl",
+	25: "dateOfIssueDeadline",
 }
 
 func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
@@ -710,13 +602,9 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetEblNo bool = false
-	var issetOriginCompanyID bool = false
 	var issetOriginCompanyName bool = false
-	var issetShipperCompanyID bool = false
 	var issetShipperCompanyName bool = false
-	var issetConsigneeCompanyID bool = false
 	var issetConsigneeCompanyName bool = false
-	var issetNotifyPartyCompanyID bool = false
 	var issetNotifyPartyCompanyName bool = false
 	var issetPlaceOfReceipt bool = false
 	var issetOceanVessel bool = false
@@ -738,14 +626,6 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 	var issetShippedOnBoard bool = false
 	var issetNumOfEbl bool = false
 	var issetDateOfIssueDeadline bool = false
-	var issetStatus bool = false
-	var issetFile bool = false
-	var issetContractFiles bool = false
-	var issetInvoiceFiles bool = false
-	var issetTransferCompanyID bool = false
-	var issetTransferCompanyName bool = false
-	var issetCompanyID bool = false
-	var issetCompanyName bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -775,7 +655,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField2(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetOriginCompanyID = true
+				issetOriginCompanyName = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -784,7 +664,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField3(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetOriginCompanyName = true
+				issetShipperCompanyName = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -793,7 +673,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField4(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetShipperCompanyID = true
+				issetConsigneeCompanyName = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -802,7 +682,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField5(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetShipperCompanyName = true
+				issetNotifyPartyCompanyName = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -811,7 +691,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField6(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetConsigneeCompanyID = true
+				issetPlaceOfReceipt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -820,7 +700,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField7(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetConsigneeCompanyName = true
+				issetOceanVessel = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -829,7 +709,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField8(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetNotifyPartyCompanyID = true
+				issetPortOfLoading = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -838,7 +718,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField9(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetNotifyPartyCompanyName = true
+				issetPortOfDescharge = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -847,7 +727,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField10(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfReceipt = true
+				issetPlaceOfDestination = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -856,7 +736,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField11(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetOceanVessel = true
+				issetPlaceOfDelivery = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -865,7 +745,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField12(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetPortOfLoading = true
+				issetShippingMarkes = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -874,7 +754,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField13(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetPortOfDescharge = true
+				issetQuantityOfPackages = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -883,7 +763,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField14(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfDestination = true
+				issetKindOfPackagesGW = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -892,7 +772,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField15(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfDelivery = true
+				issetKindOfPackagesM = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -901,16 +781,16 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField16(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetShippingMarkes = true
+				issetDescriptionOfGoods = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
 		case 17:
-			if fieldTypeId == thrift.DOUBLE {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField17(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetQuantityOfPackages = true
+				issetGrossWeight = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -919,7 +799,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField18(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetKindOfPackagesGW = true
+				issetMeasurement = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -928,7 +808,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField19(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetKindOfPackagesM = true
+				issetFreightAndCharges = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -937,25 +817,25 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField20(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetDescriptionOfGoods = true
+				issetPlaceOfIssue = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
 		case 21:
-			if fieldTypeId == thrift.DOUBLE {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField21(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetGrossWeight = true
+				issetDateOfIssue = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
 		case 22:
-			if fieldTypeId == thrift.DOUBLE {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField22(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetMeasurement = true
+				issetDeliveryAgent = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -964,7 +844,7 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField23(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetFreightAndCharges = true
+				issetShippedOnBoard = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -973,124 +853,16 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField24(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetPlaceOfIssue = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 25:
-			if fieldTypeId == thrift.I64 {
-				if err = p.ReadField25(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetDateOfIssue = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 26:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField26(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetDeliveryAgent = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 27:
-			if fieldTypeId == thrift.I64 {
-				if err = p.ReadField27(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetShippedOnBoard = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 28:
-			if fieldTypeId == thrift.I64 {
-				if err = p.ReadField28(iprot); err != nil {
-					goto ReadFieldError
-				}
 				issetNumOfEbl = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
-		case 29:
-			if fieldTypeId == thrift.I64 {
-				if err = p.ReadField29(iprot); err != nil {
+		case 25:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField25(iprot); err != nil {
 					goto ReadFieldError
 				}
 				issetDateOfIssueDeadline = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 30:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField30(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetStatus = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 31:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField31(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetFile = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 32:
-			if fieldTypeId == thrift.LIST {
-				if err = p.ReadField32(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetContractFiles = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 33:
-			if fieldTypeId == thrift.LIST {
-				if err = p.ReadField33(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetInvoiceFiles = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 34:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField34(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyID = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 35:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField35(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyName = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 36:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField36(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyID = true
-			} else if err = iprot.Skip(fieldTypeId); err != nil {
-				goto SkipFieldError
-			}
-		case 37:
-			if fieldTypeId == thrift.STRING {
-				if err = p.ReadField37(iprot); err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyName = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -1112,183 +884,123 @@ func (p *CreateEblDocx) Read(iprot thrift.TProtocol) (err error) {
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetOriginCompanyID {
+	if !issetOriginCompanyName {
 		fieldId = 2
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetOriginCompanyName {
+	if !issetShipperCompanyName {
 		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetShipperCompanyID {
+	if !issetConsigneeCompanyName {
 		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetShipperCompanyName {
+	if !issetNotifyPartyCompanyName {
 		fieldId = 5
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetConsigneeCompanyID {
+	if !issetPlaceOfReceipt {
 		fieldId = 6
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetConsigneeCompanyName {
+	if !issetOceanVessel {
 		fieldId = 7
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNotifyPartyCompanyID {
+	if !issetPortOfLoading {
 		fieldId = 8
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetNotifyPartyCompanyName {
+	if !issetPortOfDescharge {
 		fieldId = 9
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfReceipt {
+	if !issetPlaceOfDestination {
 		fieldId = 10
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetOceanVessel {
+	if !issetPlaceOfDelivery {
 		fieldId = 11
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPortOfLoading {
+	if !issetShippingMarkes {
 		fieldId = 12
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPortOfDescharge {
+	if !issetQuantityOfPackages {
 		fieldId = 13
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfDestination {
+	if !issetKindOfPackagesGW {
 		fieldId = 14
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfDelivery {
+	if !issetKindOfPackagesM {
 		fieldId = 15
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetShippingMarkes {
+	if !issetDescriptionOfGoods {
 		fieldId = 16
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetQuantityOfPackages {
+	if !issetGrossWeight {
 		fieldId = 17
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetKindOfPackagesGW {
+	if !issetMeasurement {
 		fieldId = 18
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetKindOfPackagesM {
+	if !issetFreightAndCharges {
 		fieldId = 19
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetDescriptionOfGoods {
+	if !issetPlaceOfIssue {
 		fieldId = 20
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetGrossWeight {
+	if !issetDateOfIssue {
 		fieldId = 21
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetMeasurement {
+	if !issetDeliveryAgent {
 		fieldId = 22
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetFreightAndCharges {
+	if !issetShippedOnBoard {
 		fieldId = 23
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetPlaceOfIssue {
+	if !issetNumOfEbl {
 		fieldId = 24
 		goto RequiredFieldNotSetError
 	}
 
-	if !issetDateOfIssue {
-		fieldId = 25
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDeliveryAgent {
-		fieldId = 26
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShippedOnBoard {
-		fieldId = 27
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNumOfEbl {
-		fieldId = 28
-		goto RequiredFieldNotSetError
-	}
-
 	if !issetDateOfIssueDeadline {
-		fieldId = 29
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetStatus {
-		fieldId = 30
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetFile {
-		fieldId = 31
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetContractFiles {
-		fieldId = 32
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetInvoiceFiles {
-		fieldId = 33
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyID {
-		fieldId = 34
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyName {
-		fieldId = 35
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyID {
-		fieldId = 36
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyName {
-		fieldId = 37
+		fieldId = 25
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -1328,7 +1040,7 @@ func (p *CreateEblDocx) ReadField2(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.OriginCompanyID = _field
+	p.OriginCompanyName = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField3(iprot thrift.TProtocol) error {
@@ -1339,7 +1051,7 @@ func (p *CreateEblDocx) ReadField3(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.OriginCompanyName = _field
+	p.ShipperCompanyName = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField4(iprot thrift.TProtocol) error {
@@ -1350,7 +1062,7 @@ func (p *CreateEblDocx) ReadField4(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.ShipperCompanyID = _field
+	p.ConsigneeCompanyName = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField5(iprot thrift.TProtocol) error {
@@ -1361,7 +1073,7 @@ func (p *CreateEblDocx) ReadField5(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.ShipperCompanyName = _field
+	p.NotifyPartyCompanyName = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField6(iprot thrift.TProtocol) error {
@@ -1372,7 +1084,7 @@ func (p *CreateEblDocx) ReadField6(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.ConsigneeCompanyID = _field
+	p.PlaceOfReceipt = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField7(iprot thrift.TProtocol) error {
@@ -1383,7 +1095,7 @@ func (p *CreateEblDocx) ReadField7(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.ConsigneeCompanyName = _field
+	p.OceanVessel = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField8(iprot thrift.TProtocol) error {
@@ -1394,7 +1106,7 @@ func (p *CreateEblDocx) ReadField8(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.NotifyPartyCompanyID = _field
+	p.PortOfLoading = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField9(iprot thrift.TProtocol) error {
@@ -1405,7 +1117,7 @@ func (p *CreateEblDocx) ReadField9(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.NotifyPartyCompanyName = _field
+	p.PortOfDescharge = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField10(iprot thrift.TProtocol) error {
@@ -1416,7 +1128,7 @@ func (p *CreateEblDocx) ReadField10(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.PlaceOfReceipt = _field
+	p.PlaceOfDestination = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField11(iprot thrift.TProtocol) error {
@@ -1427,7 +1139,7 @@ func (p *CreateEblDocx) ReadField11(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.OceanVessel = _field
+	p.PlaceOfDelivery = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField12(iprot thrift.TProtocol) error {
@@ -1438,7 +1150,7 @@ func (p *CreateEblDocx) ReadField12(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.PortOfLoading = _field
+	p.ShippingMarkes = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField13(iprot thrift.TProtocol) error {
@@ -1449,7 +1161,7 @@ func (p *CreateEblDocx) ReadField13(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.PortOfDescharge = _field
+	p.QuantityOfPackages = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField14(iprot thrift.TProtocol) error {
@@ -1460,7 +1172,7 @@ func (p *CreateEblDocx) ReadField14(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.PlaceOfDestination = _field
+	p.KindOfPackagesGW = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField15(iprot thrift.TProtocol) error {
@@ -1471,7 +1183,7 @@ func (p *CreateEblDocx) ReadField15(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.PlaceOfDelivery = _field
+	p.KindOfPackagesM = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField16(iprot thrift.TProtocol) error {
@@ -1482,18 +1194,18 @@ func (p *CreateEblDocx) ReadField16(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.ShippingMarkes = _field
+	p.DescriptionOfGoods = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField17(iprot thrift.TProtocol) error {
 
-	var _field float64
-	if v, err := iprot.ReadDouble(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
 	}
-	p.QuantityOfPackages = _field
+	p.GrossWeight = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField18(iprot thrift.TProtocol) error {
@@ -1504,7 +1216,7 @@ func (p *CreateEblDocx) ReadField18(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.KindOfPackagesGW = _field
+	p.Measurement = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField19(iprot thrift.TProtocol) error {
@@ -1515,7 +1227,7 @@ func (p *CreateEblDocx) ReadField19(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.KindOfPackagesM = _field
+	p.FreightAndCharges = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField20(iprot thrift.TProtocol) error {
@@ -1526,57 +1238,13 @@ func (p *CreateEblDocx) ReadField20(iprot thrift.TProtocol) error {
 	} else {
 		_field = v
 	}
-	p.DescriptionOfGoods = _field
+	p.PlaceOfIssue = _field
 	return nil
 }
 func (p *CreateEblDocx) ReadField21(iprot thrift.TProtocol) error {
 
-	var _field float64
-	if v, err := iprot.ReadDouble(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.GrossWeight = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField22(iprot thrift.TProtocol) error {
-
-	var _field float64
-	if v, err := iprot.ReadDouble(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.Measurement = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField23(iprot thrift.TProtocol) error {
-
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.FreightAndCharges = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField24(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.PlaceOfIssue = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField25(iprot thrift.TProtocol) error {
-
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -1584,7 +1252,7 @@ func (p *CreateEblDocx) ReadField25(iprot thrift.TProtocol) error {
 	p.DateOfIssue = _field
 	return nil
 }
-func (p *CreateEblDocx) ReadField26(iprot thrift.TProtocol) error {
+func (p *CreateEblDocx) ReadField22(iprot thrift.TProtocol) error {
 
 	var _field string
 	if v, err := iprot.ReadString(); err != nil {
@@ -1595,10 +1263,10 @@ func (p *CreateEblDocx) ReadField26(iprot thrift.TProtocol) error {
 	p.DeliveryAgent = _field
 	return nil
 }
-func (p *CreateEblDocx) ReadField27(iprot thrift.TProtocol) error {
+func (p *CreateEblDocx) ReadField23(iprot thrift.TProtocol) error {
 
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -1606,10 +1274,10 @@ func (p *CreateEblDocx) ReadField27(iprot thrift.TProtocol) error {
 	p.ShippedOnBoard = _field
 	return nil
 }
-func (p *CreateEblDocx) ReadField28(iprot thrift.TProtocol) error {
+func (p *CreateEblDocx) ReadField24(iprot thrift.TProtocol) error {
 
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
@@ -1617,127 +1285,15 @@ func (p *CreateEblDocx) ReadField28(iprot thrift.TProtocol) error {
 	p.NumOfEbl = _field
 	return nil
 }
-func (p *CreateEblDocx) ReadField29(iprot thrift.TProtocol) error {
+func (p *CreateEblDocx) ReadField25(iprot thrift.TProtocol) error {
 
-	var _field int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = v
 	}
 	p.DateOfIssueDeadline = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField30(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.Status = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField31(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.File = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField32(iprot thrift.TProtocol) error {
-	_, size, err := iprot.ReadListBegin()
-	if err != nil {
-		return err
-	}
-	_field := make([]string, 0, size)
-	for i := 0; i < size; i++ {
-
-		var _elem string
-		if v, err := iprot.ReadString(); err != nil {
-			return err
-		} else {
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	if err := iprot.ReadListEnd(); err != nil {
-		return err
-	}
-	p.ContractFiles = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField33(iprot thrift.TProtocol) error {
-	_, size, err := iprot.ReadListBegin()
-	if err != nil {
-		return err
-	}
-	_field := make([]string, 0, size)
-	for i := 0; i < size; i++ {
-
-		var _elem string
-		if v, err := iprot.ReadString(); err != nil {
-			return err
-		} else {
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	if err := iprot.ReadListEnd(); err != nil {
-		return err
-	}
-	p.InvoiceFiles = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField34(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.TransferCompanyID = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField35(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.TransferCompanyName = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField36(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.CompanyID = _field
-	return nil
-}
-func (p *CreateEblDocx) ReadField37(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
-		return err
-	} else {
-		_field = v
-	}
-	p.CompanyName = _field
 	return nil
 }
 
@@ -1848,54 +1404,6 @@ func (p *CreateEblDocx) Write(oprot thrift.TProtocol) (err error) {
 			fieldId = 25
 			goto WriteFieldError
 		}
-		if err = p.writeField26(oprot); err != nil {
-			fieldId = 26
-			goto WriteFieldError
-		}
-		if err = p.writeField27(oprot); err != nil {
-			fieldId = 27
-			goto WriteFieldError
-		}
-		if err = p.writeField28(oprot); err != nil {
-			fieldId = 28
-			goto WriteFieldError
-		}
-		if err = p.writeField29(oprot); err != nil {
-			fieldId = 29
-			goto WriteFieldError
-		}
-		if err = p.writeField30(oprot); err != nil {
-			fieldId = 30
-			goto WriteFieldError
-		}
-		if err = p.writeField31(oprot); err != nil {
-			fieldId = 31
-			goto WriteFieldError
-		}
-		if err = p.writeField32(oprot); err != nil {
-			fieldId = 32
-			goto WriteFieldError
-		}
-		if err = p.writeField33(oprot); err != nil {
-			fieldId = 33
-			goto WriteFieldError
-		}
-		if err = p.writeField34(oprot); err != nil {
-			fieldId = 34
-			goto WriteFieldError
-		}
-		if err = p.writeField35(oprot); err != nil {
-			fieldId = 35
-			goto WriteFieldError
-		}
-		if err = p.writeField36(oprot); err != nil {
-			fieldId = 36
-			goto WriteFieldError
-		}
-		if err = p.writeField37(oprot); err != nil {
-			fieldId = 37
-			goto WriteFieldError
-		}
 	}
 	if err = oprot.WriteFieldStop(); err != nil {
 		goto WriteFieldStopError
@@ -1932,10 +1440,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField2(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("originCompanyID", thrift.STRING, 2); err != nil {
+	if err = oprot.WriteFieldBegin("originCompanyName", thrift.STRING, 2); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.OriginCompanyID); err != nil {
+	if err := oprot.WriteString(p.OriginCompanyName); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -1949,10 +1457,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("originCompanyName", thrift.STRING, 3); err != nil {
+	if err = oprot.WriteFieldBegin("shipperCompanyName", thrift.STRING, 3); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.OriginCompanyName); err != nil {
+	if err := oprot.WriteString(p.ShipperCompanyName); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -1966,10 +1474,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField4(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("shipperCompanyID", thrift.STRING, 4); err != nil {
+	if err = oprot.WriteFieldBegin("consigneeCompanyName", thrift.STRING, 4); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.ShipperCompanyID); err != nil {
+	if err := oprot.WriteString(p.ConsigneeCompanyName); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -1983,10 +1491,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField5(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("shipperCompanyName", thrift.STRING, 5); err != nil {
+	if err = oprot.WriteFieldBegin("notifyPartyCompanyName", thrift.STRING, 5); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.ShipperCompanyName); err != nil {
+	if err := oprot.WriteString(p.NotifyPartyCompanyName); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2000,10 +1508,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField6(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("consigneeCompanyID", thrift.STRING, 6); err != nil {
+	if err = oprot.WriteFieldBegin("placeOfReceipt", thrift.STRING, 6); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.ConsigneeCompanyID); err != nil {
+	if err := oprot.WriteString(p.PlaceOfReceipt); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2017,10 +1525,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField7(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("consigneeCompanyName", thrift.STRING, 7); err != nil {
+	if err = oprot.WriteFieldBegin("oceanVessel", thrift.STRING, 7); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.ConsigneeCompanyName); err != nil {
+	if err := oprot.WriteString(p.OceanVessel); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2034,10 +1542,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField8(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("notifyPartyCompanyID", thrift.STRING, 8); err != nil {
+	if err = oprot.WriteFieldBegin("portOfLoading", thrift.STRING, 8); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.NotifyPartyCompanyID); err != nil {
+	if err := oprot.WriteString(p.PortOfLoading); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2051,10 +1559,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField9(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("notifyPartyCompanyName", thrift.STRING, 9); err != nil {
+	if err = oprot.WriteFieldBegin("portOfDescharge", thrift.STRING, 9); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.NotifyPartyCompanyName); err != nil {
+	if err := oprot.WriteString(p.PortOfDescharge); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2068,10 +1576,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField10(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("placeOfReceipt", thrift.STRING, 10); err != nil {
+	if err = oprot.WriteFieldBegin("placeOfDestination", thrift.STRING, 10); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.PlaceOfReceipt); err != nil {
+	if err := oprot.WriteString(p.PlaceOfDestination); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2085,10 +1593,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField11(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("oceanVessel", thrift.STRING, 11); err != nil {
+	if err = oprot.WriteFieldBegin("placeOfDelivery", thrift.STRING, 11); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.OceanVessel); err != nil {
+	if err := oprot.WriteString(p.PlaceOfDelivery); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2102,10 +1610,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField12(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("portOfLoading", thrift.STRING, 12); err != nil {
+	if err = oprot.WriteFieldBegin("shippingMarkes", thrift.STRING, 12); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.PortOfLoading); err != nil {
+	if err := oprot.WriteString(p.ShippingMarkes); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2119,10 +1627,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField13(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("portOfDescharge", thrift.STRING, 13); err != nil {
+	if err = oprot.WriteFieldBegin("quantityOfPackages", thrift.STRING, 13); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.PortOfDescharge); err != nil {
+	if err := oprot.WriteString(p.QuantityOfPackages); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2136,10 +1644,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField14(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("placeOfDestination", thrift.STRING, 14); err != nil {
+	if err = oprot.WriteFieldBegin("kindOfPackagesGW", thrift.STRING, 14); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.PlaceOfDestination); err != nil {
+	if err := oprot.WriteString(p.KindOfPackagesGW); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2153,10 +1661,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField15(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("placeOfDelivery", thrift.STRING, 15); err != nil {
+	if err = oprot.WriteFieldBegin("kindOfPackagesM", thrift.STRING, 15); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.PlaceOfDelivery); err != nil {
+	if err := oprot.WriteString(p.KindOfPackagesM); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2170,10 +1678,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField16(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("shippingMarkes", thrift.STRING, 16); err != nil {
+	if err = oprot.WriteFieldBegin("descriptionOfGoods", thrift.STRING, 16); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.ShippingMarkes); err != nil {
+	if err := oprot.WriteString(p.DescriptionOfGoods); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2187,10 +1695,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField17(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("quantityOfPackages", thrift.DOUBLE, 17); err != nil {
+	if err = oprot.WriteFieldBegin("grossWeight", thrift.STRING, 17); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteDouble(p.QuantityOfPackages); err != nil {
+	if err := oprot.WriteString(p.GrossWeight); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2204,10 +1712,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField18(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("kindOfPackagesGW", thrift.STRING, 18); err != nil {
+	if err = oprot.WriteFieldBegin("measurement", thrift.STRING, 18); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.KindOfPackagesGW); err != nil {
+	if err := oprot.WriteString(p.Measurement); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2221,10 +1729,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField19(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("kindOfPackagesM", thrift.STRING, 19); err != nil {
+	if err = oprot.WriteFieldBegin("freightAndCharges", thrift.STRING, 19); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.KindOfPackagesM); err != nil {
+	if err := oprot.WriteString(p.FreightAndCharges); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2238,10 +1746,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField20(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("descriptionOfGoods", thrift.STRING, 20); err != nil {
+	if err = oprot.WriteFieldBegin("placeOfIssue", thrift.STRING, 20); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.DescriptionOfGoods); err != nil {
+	if err := oprot.WriteString(p.PlaceOfIssue); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2255,10 +1763,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField21(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("grossWeight", thrift.DOUBLE, 21); err != nil {
+	if err = oprot.WriteFieldBegin("dateOfIssue", thrift.STRING, 21); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteDouble(p.GrossWeight); err != nil {
+	if err := oprot.WriteString(p.DateOfIssue); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2272,10 +1780,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField22(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("measurement", thrift.DOUBLE, 22); err != nil {
+	if err = oprot.WriteFieldBegin("deliveryAgent", thrift.STRING, 22); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteDouble(p.Measurement); err != nil {
+	if err := oprot.WriteString(p.DeliveryAgent); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2289,10 +1797,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField23(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("freightAndCharges", thrift.STRING, 23); err != nil {
+	if err = oprot.WriteFieldBegin("shippedOnBoard", thrift.STRING, 23); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.FreightAndCharges); err != nil {
+	if err := oprot.WriteString(p.ShippedOnBoard); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2306,10 +1814,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField24(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("placeOfIssue", thrift.STRING, 24); err != nil {
+	if err = oprot.WriteFieldBegin("numOfEbl", thrift.STRING, 24); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.PlaceOfIssue); err != nil {
+	if err := oprot.WriteString(p.NumOfEbl); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2323,10 +1831,10 @@ WriteFieldEndError:
 }
 
 func (p *CreateEblDocx) writeField25(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("dateOfIssue", thrift.I64, 25); err != nil {
+	if err = oprot.WriteFieldBegin("dateOfIssueDeadline", thrift.STRING, 25); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.DateOfIssue); err != nil {
+	if err := oprot.WriteString(p.DateOfIssueDeadline); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -2337,226 +1845,6 @@ WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 25 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 25 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField26(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("deliveryAgent", thrift.STRING, 26); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.DeliveryAgent); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 26 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 26 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField27(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("shippedOnBoard", thrift.I64, 27); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.ShippedOnBoard); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 27 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 27 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField28(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("numOfEbl", thrift.I64, 28); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.NumOfEbl); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 28 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 28 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField29(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("dateOfIssueDeadline", thrift.I64, 29); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.DateOfIssueDeadline); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 29 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 29 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField30(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("status", thrift.STRING, 30); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.Status); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 30 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 30 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField31(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("file", thrift.STRING, 31); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.File); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 31 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 31 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField32(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("contractFiles", thrift.LIST, 32); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteListBegin(thrift.STRING, len(p.ContractFiles)); err != nil {
-		return err
-	}
-	for _, v := range p.ContractFiles {
-		if err := oprot.WriteString(v); err != nil {
-			return err
-		}
-	}
-	if err := oprot.WriteListEnd(); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 32 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 32 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField33(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("invoiceFiles", thrift.LIST, 33); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteListBegin(thrift.STRING, len(p.InvoiceFiles)); err != nil {
-		return err
-	}
-	for _, v := range p.InvoiceFiles {
-		if err := oprot.WriteString(v); err != nil {
-			return err
-		}
-	}
-	if err := oprot.WriteListEnd(); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 33 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 33 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField34(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("transferCompanyID", thrift.STRING, 34); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.TransferCompanyID); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 34 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 34 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField35(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("transferCompanyName", thrift.STRING, 35); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.TransferCompanyName); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 35 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 35 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField36(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("companyID", thrift.STRING, 36); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.CompanyID); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 36 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 36 end error: ", p), err)
-}
-
-func (p *CreateEblDocx) writeField37(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("companyName", thrift.STRING, 37); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteString(p.CompanyName); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
-	}
-	return nil
-WriteFieldBeginError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 37 begin error: ", p), err)
-WriteFieldEndError:
-	return thrift.PrependError(fmt.Sprintf("%T write field 37 end error: ", p), err)
 }
 
 func (p *CreateEblDocx) String() string {
@@ -2576,112 +1864,76 @@ func (p *CreateEblDocx) DeepEqual(ano *CreateEblDocx) bool {
 	if !p.Field1DeepEqual(ano.EblNo) {
 		return false
 	}
-	if !p.Field2DeepEqual(ano.OriginCompanyID) {
+	if !p.Field2DeepEqual(ano.OriginCompanyName) {
 		return false
 	}
-	if !p.Field3DeepEqual(ano.OriginCompanyName) {
+	if !p.Field3DeepEqual(ano.ShipperCompanyName) {
 		return false
 	}
-	if !p.Field4DeepEqual(ano.ShipperCompanyID) {
+	if !p.Field4DeepEqual(ano.ConsigneeCompanyName) {
 		return false
 	}
-	if !p.Field5DeepEqual(ano.ShipperCompanyName) {
+	if !p.Field5DeepEqual(ano.NotifyPartyCompanyName) {
 		return false
 	}
-	if !p.Field6DeepEqual(ano.ConsigneeCompanyID) {
+	if !p.Field6DeepEqual(ano.PlaceOfReceipt) {
 		return false
 	}
-	if !p.Field7DeepEqual(ano.ConsigneeCompanyName) {
+	if !p.Field7DeepEqual(ano.OceanVessel) {
 		return false
 	}
-	if !p.Field8DeepEqual(ano.NotifyPartyCompanyID) {
+	if !p.Field8DeepEqual(ano.PortOfLoading) {
 		return false
 	}
-	if !p.Field9DeepEqual(ano.NotifyPartyCompanyName) {
+	if !p.Field9DeepEqual(ano.PortOfDescharge) {
 		return false
 	}
-	if !p.Field10DeepEqual(ano.PlaceOfReceipt) {
+	if !p.Field10DeepEqual(ano.PlaceOfDestination) {
 		return false
 	}
-	if !p.Field11DeepEqual(ano.OceanVessel) {
+	if !p.Field11DeepEqual(ano.PlaceOfDelivery) {
 		return false
 	}
-	if !p.Field12DeepEqual(ano.PortOfLoading) {
+	if !p.Field12DeepEqual(ano.ShippingMarkes) {
 		return false
 	}
-	if !p.Field13DeepEqual(ano.PortOfDescharge) {
+	if !p.Field13DeepEqual(ano.QuantityOfPackages) {
 		return false
 	}
-	if !p.Field14DeepEqual(ano.PlaceOfDestination) {
+	if !p.Field14DeepEqual(ano.KindOfPackagesGW) {
 		return false
 	}
-	if !p.Field15DeepEqual(ano.PlaceOfDelivery) {
+	if !p.Field15DeepEqual(ano.KindOfPackagesM) {
 		return false
 	}
-	if !p.Field16DeepEqual(ano.ShippingMarkes) {
+	if !p.Field16DeepEqual(ano.DescriptionOfGoods) {
 		return false
 	}
-	if !p.Field17DeepEqual(ano.QuantityOfPackages) {
+	if !p.Field17DeepEqual(ano.GrossWeight) {
 		return false
 	}
-	if !p.Field18DeepEqual(ano.KindOfPackagesGW) {
+	if !p.Field18DeepEqual(ano.Measurement) {
 		return false
 	}
-	if !p.Field19DeepEqual(ano.KindOfPackagesM) {
+	if !p.Field19DeepEqual(ano.FreightAndCharges) {
 		return false
 	}
-	if !p.Field20DeepEqual(ano.DescriptionOfGoods) {
+	if !p.Field20DeepEqual(ano.PlaceOfIssue) {
 		return false
 	}
-	if !p.Field21DeepEqual(ano.GrossWeight) {
+	if !p.Field21DeepEqual(ano.DateOfIssue) {
 		return false
 	}
-	if !p.Field22DeepEqual(ano.Measurement) {
+	if !p.Field22DeepEqual(ano.DeliveryAgent) {
 		return false
 	}
-	if !p.Field23DeepEqual(ano.FreightAndCharges) {
+	if !p.Field23DeepEqual(ano.ShippedOnBoard) {
 		return false
 	}
-	if !p.Field24DeepEqual(ano.PlaceOfIssue) {
+	if !p.Field24DeepEqual(ano.NumOfEbl) {
 		return false
 	}
-	if !p.Field25DeepEqual(ano.DateOfIssue) {
-		return false
-	}
-	if !p.Field26DeepEqual(ano.DeliveryAgent) {
-		return false
-	}
-	if !p.Field27DeepEqual(ano.ShippedOnBoard) {
-		return false
-	}
-	if !p.Field28DeepEqual(ano.NumOfEbl) {
-		return false
-	}
-	if !p.Field29DeepEqual(ano.DateOfIssueDeadline) {
-		return false
-	}
-	if !p.Field30DeepEqual(ano.Status) {
-		return false
-	}
-	if !p.Field31DeepEqual(ano.File) {
-		return false
-	}
-	if !p.Field32DeepEqual(ano.ContractFiles) {
-		return false
-	}
-	if !p.Field33DeepEqual(ano.InvoiceFiles) {
-		return false
-	}
-	if !p.Field34DeepEqual(ano.TransferCompanyID) {
-		return false
-	}
-	if !p.Field35DeepEqual(ano.TransferCompanyName) {
-		return false
-	}
-	if !p.Field36DeepEqual(ano.CompanyID) {
-		return false
-	}
-	if !p.Field37DeepEqual(ano.CompanyName) {
+	if !p.Field25DeepEqual(ano.DateOfIssueDeadline) {
 		return false
 	}
 	return true
@@ -2696,264 +1948,168 @@ func (p *CreateEblDocx) Field1DeepEqual(src string) bool {
 }
 func (p *CreateEblDocx) Field2DeepEqual(src string) bool {
 
-	if strings.Compare(p.OriginCompanyID, src) != 0 {
+	if strings.Compare(p.OriginCompanyName, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field3DeepEqual(src string) bool {
 
-	if strings.Compare(p.OriginCompanyName, src) != 0 {
+	if strings.Compare(p.ShipperCompanyName, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field4DeepEqual(src string) bool {
 
-	if strings.Compare(p.ShipperCompanyID, src) != 0 {
+	if strings.Compare(p.ConsigneeCompanyName, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field5DeepEqual(src string) bool {
 
-	if strings.Compare(p.ShipperCompanyName, src) != 0 {
+	if strings.Compare(p.NotifyPartyCompanyName, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field6DeepEqual(src string) bool {
 
-	if strings.Compare(p.ConsigneeCompanyID, src) != 0 {
+	if strings.Compare(p.PlaceOfReceipt, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field7DeepEqual(src string) bool {
 
-	if strings.Compare(p.ConsigneeCompanyName, src) != 0 {
+	if strings.Compare(p.OceanVessel, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field8DeepEqual(src string) bool {
 
-	if strings.Compare(p.NotifyPartyCompanyID, src) != 0 {
+	if strings.Compare(p.PortOfLoading, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field9DeepEqual(src string) bool {
 
-	if strings.Compare(p.NotifyPartyCompanyName, src) != 0 {
+	if strings.Compare(p.PortOfDescharge, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field10DeepEqual(src string) bool {
 
-	if strings.Compare(p.PlaceOfReceipt, src) != 0 {
+	if strings.Compare(p.PlaceOfDestination, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field11DeepEqual(src string) bool {
 
-	if strings.Compare(p.OceanVessel, src) != 0 {
+	if strings.Compare(p.PlaceOfDelivery, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field12DeepEqual(src string) bool {
 
-	if strings.Compare(p.PortOfLoading, src) != 0 {
+	if strings.Compare(p.ShippingMarkes, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field13DeepEqual(src string) bool {
 
-	if strings.Compare(p.PortOfDescharge, src) != 0 {
+	if strings.Compare(p.QuantityOfPackages, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field14DeepEqual(src string) bool {
 
-	if strings.Compare(p.PlaceOfDestination, src) != 0 {
+	if strings.Compare(p.KindOfPackagesGW, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field15DeepEqual(src string) bool {
 
-	if strings.Compare(p.PlaceOfDelivery, src) != 0 {
+	if strings.Compare(p.KindOfPackagesM, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field16DeepEqual(src string) bool {
 
-	if strings.Compare(p.ShippingMarkes, src) != 0 {
+	if strings.Compare(p.DescriptionOfGoods, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *CreateEblDocx) Field17DeepEqual(src float64) bool {
+func (p *CreateEblDocx) Field17DeepEqual(src string) bool {
 
-	if p.QuantityOfPackages != src {
+	if strings.Compare(p.GrossWeight, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field18DeepEqual(src string) bool {
 
-	if strings.Compare(p.KindOfPackagesGW, src) != 0 {
+	if strings.Compare(p.Measurement, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field19DeepEqual(src string) bool {
 
-	if strings.Compare(p.KindOfPackagesM, src) != 0 {
+	if strings.Compare(p.FreightAndCharges, src) != 0 {
 		return false
 	}
 	return true
 }
 func (p *CreateEblDocx) Field20DeepEqual(src string) bool {
 
-	if strings.Compare(p.DescriptionOfGoods, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field21DeepEqual(src float64) bool {
-
-	if p.GrossWeight != src {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field22DeepEqual(src float64) bool {
-
-	if p.Measurement != src {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field23DeepEqual(src string) bool {
-
-	if strings.Compare(p.FreightAndCharges, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field24DeepEqual(src string) bool {
-
 	if strings.Compare(p.PlaceOfIssue, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *CreateEblDocx) Field25DeepEqual(src int64) bool {
+func (p *CreateEblDocx) Field21DeepEqual(src string) bool {
 
-	if p.DateOfIssue != src {
+	if strings.Compare(p.DateOfIssue, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *CreateEblDocx) Field26DeepEqual(src string) bool {
+func (p *CreateEblDocx) Field22DeepEqual(src string) bool {
 
 	if strings.Compare(p.DeliveryAgent, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *CreateEblDocx) Field27DeepEqual(src int64) bool {
+func (p *CreateEblDocx) Field23DeepEqual(src string) bool {
 
-	if p.ShippedOnBoard != src {
+	if strings.Compare(p.ShippedOnBoard, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *CreateEblDocx) Field28DeepEqual(src int64) bool {
+func (p *CreateEblDocx) Field24DeepEqual(src string) bool {
 
-	if p.NumOfEbl != src {
+	if strings.Compare(p.NumOfEbl, src) != 0 {
 		return false
 	}
 	return true
 }
-func (p *CreateEblDocx) Field29DeepEqual(src int64) bool {
+func (p *CreateEblDocx) Field25DeepEqual(src string) bool {
 
-	if p.DateOfIssueDeadline != src {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field30DeepEqual(src string) bool {
-
-	if strings.Compare(p.Status, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field31DeepEqual(src string) bool {
-
-	if strings.Compare(p.File, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field32DeepEqual(src []string) bool {
-
-	if len(p.ContractFiles) != len(src) {
-		return false
-	}
-	for i, v := range p.ContractFiles {
-		_src := src[i]
-		if strings.Compare(v, _src) != 0 {
-			return false
-		}
-	}
-	return true
-}
-func (p *CreateEblDocx) Field33DeepEqual(src []string) bool {
-
-	if len(p.InvoiceFiles) != len(src) {
-		return false
-	}
-	for i, v := range p.InvoiceFiles {
-		_src := src[i]
-		if strings.Compare(v, _src) != 0 {
-			return false
-		}
-	}
-	return true
-}
-func (p *CreateEblDocx) Field34DeepEqual(src string) bool {
-
-	if strings.Compare(p.TransferCompanyID, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field35DeepEqual(src string) bool {
-
-	if strings.Compare(p.TransferCompanyName, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field36DeepEqual(src string) bool {
-
-	if strings.Compare(p.CompanyID, src) != 0 {
-		return false
-	}
-	return true
-}
-func (p *CreateEblDocx) Field37DeepEqual(src string) bool {
-
-	if strings.Compare(p.CompanyName, src) != 0 {
+	if strings.Compare(p.DateOfIssueDeadline, src) != 0 {
 		return false
 	}
 	return true
