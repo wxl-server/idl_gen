@@ -11463,10 +11463,10 @@ func (p *CreateDocumentResp) Field1DeepEqual(src int64) bool {
 }
 
 type QueryInvoiceListReq struct {
-	Token    string   `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	PageSize int64    `thrift:"pageSize,2,required" frugal:"2,required,i64" json:"pageSize"`
-	PageNum  int64    `thrift:"pageNum,3,required" frugal:"3,required,i64" json:"pageNum"`
-	Invoice  *Invoice `thrift:"invoice,4,required" frugal:"4,required,Invoice" json:"invoice"`
+	Token    string         `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	PageSize int64          `thrift:"pageSize,2,required" frugal:"2,required,i64" json:"pageSize"`
+	PageNum  int64          `thrift:"pageNum,3,required" frugal:"3,required,i64" json:"pageNum"`
+	Invoice  *InvoiceFilter `thrift:"invoice,4,required" frugal:"4,required,InvoiceFilter" json:"invoice"`
 }
 
 func NewQueryInvoiceListReq() *QueryInvoiceListReq {
@@ -11488,9 +11488,9 @@ func (p *QueryInvoiceListReq) GetPageNum() (v int64) {
 	return p.PageNum
 }
 
-var QueryInvoiceListReq_Invoice_DEFAULT *Invoice
+var QueryInvoiceListReq_Invoice_DEFAULT *InvoiceFilter
 
-func (p *QueryInvoiceListReq) GetInvoice() (v *Invoice) {
+func (p *QueryInvoiceListReq) GetInvoice() (v *InvoiceFilter) {
 	if !p.IsSetInvoice() {
 		return QueryInvoiceListReq_Invoice_DEFAULT
 	}
@@ -11505,7 +11505,7 @@ func (p *QueryInvoiceListReq) SetPageSize(val int64) {
 func (p *QueryInvoiceListReq) SetPageNum(val int64) {
 	p.PageNum = val
 }
-func (p *QueryInvoiceListReq) SetInvoice(val *Invoice) {
+func (p *QueryInvoiceListReq) SetInvoice(val *InvoiceFilter) {
 	p.Invoice = val
 }
 
@@ -11663,7 +11663,7 @@ func (p *QueryInvoiceListReq) ReadField3(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *QueryInvoiceListReq) ReadField4(iprot thrift.TProtocol) error {
-	_field := NewInvoice()
+	_field := NewInvoiceFilter()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -11830,7 +11830,7 @@ func (p *QueryInvoiceListReq) Field3DeepEqual(src int64) bool {
 	}
 	return true
 }
-func (p *QueryInvoiceListReq) Field4DeepEqual(src *Invoice) bool {
+func (p *QueryInvoiceListReq) Field4DeepEqual(src *InvoiceFilter) bool {
 
 	if !p.Invoice.DeepEqual(src) {
 		return false
@@ -13813,6 +13813,487 @@ func (p *Invoice) Field4DeepEqual(src InvoiceType) bool {
 func (p *Invoice) Field5DeepEqual(src string) bool {
 
 	if strings.Compare(p.FileHash, src) != 0 {
+		return false
+	}
+	return true
+}
+
+type InvoiceFilter struct {
+	InvoiceNumber *string      `thrift:"InvoiceNumber,1,optional" frugal:"1,optional,string" json:"InvoiceNumber,omitempty"`
+	Amount        *float64     `thrift:"Amount,2,optional" frugal:"2,optional,double" json:"Amount,omitempty"`
+	IssueDate     *int64       `thrift:"IssueDate,3,optional" frugal:"3,optional,i64" json:"IssueDate,omitempty"`
+	Type          *InvoiceType `thrift:"Type,4,optional" frugal:"4,optional,InvoiceType" json:"Type,omitempty"`
+	FileHash      *string      `thrift:"FileHash,5,optional" frugal:"5,optional,string" json:"FileHash,omitempty"`
+}
+
+func NewInvoiceFilter() *InvoiceFilter {
+	return &InvoiceFilter{}
+}
+
+func (p *InvoiceFilter) InitDefault() {
+}
+
+var InvoiceFilter_InvoiceNumber_DEFAULT string
+
+func (p *InvoiceFilter) GetInvoiceNumber() (v string) {
+	if !p.IsSetInvoiceNumber() {
+		return InvoiceFilter_InvoiceNumber_DEFAULT
+	}
+	return *p.InvoiceNumber
+}
+
+var InvoiceFilter_Amount_DEFAULT float64
+
+func (p *InvoiceFilter) GetAmount() (v float64) {
+	if !p.IsSetAmount() {
+		return InvoiceFilter_Amount_DEFAULT
+	}
+	return *p.Amount
+}
+
+var InvoiceFilter_IssueDate_DEFAULT int64
+
+func (p *InvoiceFilter) GetIssueDate() (v int64) {
+	if !p.IsSetIssueDate() {
+		return InvoiceFilter_IssueDate_DEFAULT
+	}
+	return *p.IssueDate
+}
+
+var InvoiceFilter_Type_DEFAULT InvoiceType
+
+func (p *InvoiceFilter) GetType() (v InvoiceType) {
+	if !p.IsSetType() {
+		return InvoiceFilter_Type_DEFAULT
+	}
+	return *p.Type
+}
+
+var InvoiceFilter_FileHash_DEFAULT string
+
+func (p *InvoiceFilter) GetFileHash() (v string) {
+	if !p.IsSetFileHash() {
+		return InvoiceFilter_FileHash_DEFAULT
+	}
+	return *p.FileHash
+}
+func (p *InvoiceFilter) SetInvoiceNumber(val *string) {
+	p.InvoiceNumber = val
+}
+func (p *InvoiceFilter) SetAmount(val *float64) {
+	p.Amount = val
+}
+func (p *InvoiceFilter) SetIssueDate(val *int64) {
+	p.IssueDate = val
+}
+func (p *InvoiceFilter) SetType(val *InvoiceType) {
+	p.Type = val
+}
+func (p *InvoiceFilter) SetFileHash(val *string) {
+	p.FileHash = val
+}
+
+var fieldIDToName_InvoiceFilter = map[int16]string{
+	1: "InvoiceNumber",
+	2: "Amount",
+	3: "IssueDate",
+	4: "Type",
+	5: "FileHash",
+}
+
+func (p *InvoiceFilter) IsSetInvoiceNumber() bool {
+	return p.InvoiceNumber != nil
+}
+
+func (p *InvoiceFilter) IsSetAmount() bool {
+	return p.Amount != nil
+}
+
+func (p *InvoiceFilter) IsSetIssueDate() bool {
+	return p.IssueDate != nil
+}
+
+func (p *InvoiceFilter) IsSetType() bool {
+	return p.Type != nil
+}
+
+func (p *InvoiceFilter) IsSetFileHash() bool {
+	return p.FileHash != nil
+}
+
+func (p *InvoiceFilter) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 2:
+			if fieldTypeId == thrift.DOUBLE {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 3:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.I32 {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_InvoiceFilter[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *InvoiceFilter) ReadField1(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.InvoiceNumber = _field
+	return nil
+}
+func (p *InvoiceFilter) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field *float64
+	if v, err := iprot.ReadDouble(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Amount = _field
+	return nil
+}
+func (p *InvoiceFilter) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.IssueDate = _field
+	return nil
+}
+func (p *InvoiceFilter) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *InvoiceType
+	if v, err := iprot.ReadI32(); err != nil {
+		return err
+	} else {
+		tmp := InvoiceType(v)
+		_field = &tmp
+	}
+	p.Type = _field
+	return nil
+}
+func (p *InvoiceFilter) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.FileHash = _field
+	return nil
+}
+
+func (p *InvoiceFilter) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("InvoiceFilter"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *InvoiceFilter) writeField1(oprot thrift.TProtocol) (err error) {
+	if p.IsSetInvoiceNumber() {
+		if err = oprot.WriteFieldBegin("InvoiceNumber", thrift.STRING, 1); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.InvoiceNumber); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *InvoiceFilter) writeField2(oprot thrift.TProtocol) (err error) {
+	if p.IsSetAmount() {
+		if err = oprot.WriteFieldBegin("Amount", thrift.DOUBLE, 2); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteDouble(*p.Amount); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
+func (p *InvoiceFilter) writeField3(oprot thrift.TProtocol) (err error) {
+	if p.IsSetIssueDate() {
+		if err = oprot.WriteFieldBegin("IssueDate", thrift.I64, 3); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.IssueDate); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *InvoiceFilter) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetType() {
+		if err = oprot.WriteFieldBegin("Type", thrift.I32, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI32(int32(*p.Type)); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
+func (p *InvoiceFilter) writeField5(oprot thrift.TProtocol) (err error) {
+	if p.IsSetFileHash() {
+		if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 5); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.FileHash); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *InvoiceFilter) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("InvoiceFilter(%+v)", *p)
+
+}
+
+func (p *InvoiceFilter) DeepEqual(ano *InvoiceFilter) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.InvoiceNumber) {
+		return false
+	}
+	if !p.Field2DeepEqual(ano.Amount) {
+		return false
+	}
+	if !p.Field3DeepEqual(ano.IssueDate) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.Type) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.FileHash) {
+		return false
+	}
+	return true
+}
+
+func (p *InvoiceFilter) Field1DeepEqual(src *string) bool {
+
+	if p.InvoiceNumber == src {
+		return true
+	} else if p.InvoiceNumber == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.InvoiceNumber, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *InvoiceFilter) Field2DeepEqual(src *float64) bool {
+
+	if p.Amount == src {
+		return true
+	} else if p.Amount == nil || src == nil {
+		return false
+	}
+	if *p.Amount != *src {
+		return false
+	}
+	return true
+}
+func (p *InvoiceFilter) Field3DeepEqual(src *int64) bool {
+
+	if p.IssueDate == src {
+		return true
+	} else if p.IssueDate == nil || src == nil {
+		return false
+	}
+	if *p.IssueDate != *src {
+		return false
+	}
+	return true
+}
+func (p *InvoiceFilter) Field4DeepEqual(src *InvoiceType) bool {
+
+	if p.Type == src {
+		return true
+	} else if p.Type == nil || src == nil {
+		return false
+	}
+	if *p.Type != *src {
+		return false
+	}
+	return true
+}
+func (p *InvoiceFilter) Field5DeepEqual(src *string) bool {
+
+	if p.FileHash == src {
+		return true
+	} else if p.FileHash == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.FileHash, *src) != 0 {
 		return false
 	}
 	return true
