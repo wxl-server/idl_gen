@@ -21,6 +21,12 @@ type Client interface {
 	OperateEbl(ctx context.Context, req *fabric_ebl.OperateEblReq, callOptions ...callopt.Option) (r *fabric_ebl.OperateEblResp, err error)
 	UploadSeal(ctx context.Context, req *fabric_ebl.UploadSealReq, callOptions ...callopt.Option) (r *fabric_ebl.UploadSealResp, err error)
 	CheckToken(ctx context.Context, req *fabric_ebl.CheckTokenReq, callOptions ...callopt.Option) (r *fabric_ebl.CheckTokenResp, err error)
+	CreateInvoice(ctx context.Context, req *fabric_ebl.CreateInvoiceReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateInvoiceResp, err error)
+	CreateContract(ctx context.Context, req *fabric_ebl.CreateContractReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateContractResp, err error)
+	CreateDocument(ctx context.Context, req *fabric_ebl.CreateDocumentReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateDocumentResp, err error)
+	QueryInvoiceList(ctx context.Context, req *fabric_ebl.QueryInvoiceListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryInvoiceListResp, err error)
+	QueryContractList(ctx context.Context, req *fabric_ebl.QueryContractListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryContractListResp, err error)
+	QueryDocumentList(ctx context.Context, req *fabric_ebl.QueryDocumentListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryDocumentListResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -100,4 +106,34 @@ func (p *kFabricEblClient) UploadSeal(ctx context.Context, req *fabric_ebl.Uploa
 func (p *kFabricEblClient) CheckToken(ctx context.Context, req *fabric_ebl.CheckTokenReq, callOptions ...callopt.Option) (r *fabric_ebl.CheckTokenResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.CheckToken(ctx, req)
+}
+
+func (p *kFabricEblClient) CreateInvoice(ctx context.Context, req *fabric_ebl.CreateInvoiceReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateInvoiceResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.CreateInvoice(ctx, req)
+}
+
+func (p *kFabricEblClient) CreateContract(ctx context.Context, req *fabric_ebl.CreateContractReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateContractResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.CreateContract(ctx, req)
+}
+
+func (p *kFabricEblClient) CreateDocument(ctx context.Context, req *fabric_ebl.CreateDocumentReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateDocumentResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.CreateDocument(ctx, req)
+}
+
+func (p *kFabricEblClient) QueryInvoiceList(ctx context.Context, req *fabric_ebl.QueryInvoiceListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryInvoiceListResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryInvoiceList(ctx, req)
+}
+
+func (p *kFabricEblClient) QueryContractList(ctx context.Context, req *fabric_ebl.QueryContractListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryContractListResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryContractList(ctx, req)
+}
+
+func (p *kFabricEblClient) QueryDocumentList(ctx context.Context, req *fabric_ebl.QueryDocumentListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryDocumentListResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryDocumentList(ctx, req)
 }

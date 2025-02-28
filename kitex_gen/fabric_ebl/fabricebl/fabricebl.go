@@ -83,6 +83,48 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"CreateInvoice": kitex.NewMethodInfo(
+		createInvoiceHandler,
+		newFabricEblCreateInvoiceArgs,
+		newFabricEblCreateInvoiceResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"CreateContract": kitex.NewMethodInfo(
+		createContractHandler,
+		newFabricEblCreateContractArgs,
+		newFabricEblCreateContractResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"CreateDocument": kitex.NewMethodInfo(
+		createDocumentHandler,
+		newFabricEblCreateDocumentArgs,
+		newFabricEblCreateDocumentResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"QueryInvoiceList": kitex.NewMethodInfo(
+		queryInvoiceListHandler,
+		newFabricEblQueryInvoiceListArgs,
+		newFabricEblQueryInvoiceListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"QueryContractList": kitex.NewMethodInfo(
+		queryContractListHandler,
+		newFabricEblQueryContractListArgs,
+		newFabricEblQueryContractListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"QueryDocumentList": kitex.NewMethodInfo(
+		queryDocumentListHandler,
+		newFabricEblQueryDocumentListArgs,
+		newFabricEblQueryDocumentListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -329,6 +371,114 @@ func newFabricEblCheckTokenResult() interface{} {
 	return fabric_ebl.NewFabricEblCheckTokenResult()
 }
 
+func createInvoiceHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCreateInvoiceArgs)
+	realResult := result.(*fabric_ebl.FabricEblCreateInvoiceResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CreateInvoice(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblCreateInvoiceArgs() interface{} {
+	return fabric_ebl.NewFabricEblCreateInvoiceArgs()
+}
+
+func newFabricEblCreateInvoiceResult() interface{} {
+	return fabric_ebl.NewFabricEblCreateInvoiceResult()
+}
+
+func createContractHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCreateContractArgs)
+	realResult := result.(*fabric_ebl.FabricEblCreateContractResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CreateContract(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblCreateContractArgs() interface{} {
+	return fabric_ebl.NewFabricEblCreateContractArgs()
+}
+
+func newFabricEblCreateContractResult() interface{} {
+	return fabric_ebl.NewFabricEblCreateContractResult()
+}
+
+func createDocumentHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCreateDocumentArgs)
+	realResult := result.(*fabric_ebl.FabricEblCreateDocumentResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CreateDocument(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblCreateDocumentArgs() interface{} {
+	return fabric_ebl.NewFabricEblCreateDocumentArgs()
+}
+
+func newFabricEblCreateDocumentResult() interface{} {
+	return fabric_ebl.NewFabricEblCreateDocumentResult()
+}
+
+func queryInvoiceListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryInvoiceListArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryInvoiceListResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryInvoiceList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryInvoiceListArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryInvoiceListArgs()
+}
+
+func newFabricEblQueryInvoiceListResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryInvoiceListResult()
+}
+
+func queryContractListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryContractListArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryContractListResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryContractList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryContractListArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryContractListArgs()
+}
+
+func newFabricEblQueryContractListResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryContractListResult()
+}
+
+func queryDocumentListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryDocumentListArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryDocumentListResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryDocumentList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryDocumentListArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryDocumentListArgs()
+}
+
+func newFabricEblQueryDocumentListResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryDocumentListResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -434,6 +584,66 @@ func (p *kClient) CheckToken(ctx context.Context, req *fabric_ebl.CheckTokenReq)
 	_args.Req = req
 	var _result fabric_ebl.FabricEblCheckTokenResult
 	if err = p.c.Call(ctx, "CheckToken", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CreateInvoice(ctx context.Context, req *fabric_ebl.CreateInvoiceReq) (r *fabric_ebl.CreateInvoiceResp, err error) {
+	var _args fabric_ebl.FabricEblCreateInvoiceArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblCreateInvoiceResult
+	if err = p.c.Call(ctx, "CreateInvoice", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CreateContract(ctx context.Context, req *fabric_ebl.CreateContractReq) (r *fabric_ebl.CreateContractResp, err error) {
+	var _args fabric_ebl.FabricEblCreateContractArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblCreateContractResult
+	if err = p.c.Call(ctx, "CreateContract", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CreateDocument(ctx context.Context, req *fabric_ebl.CreateDocumentReq) (r *fabric_ebl.CreateDocumentResp, err error) {
+	var _args fabric_ebl.FabricEblCreateDocumentArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblCreateDocumentResult
+	if err = p.c.Call(ctx, "CreateDocument", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryInvoiceList(ctx context.Context, req *fabric_ebl.QueryInvoiceListReq) (r *fabric_ebl.QueryInvoiceListResp, err error) {
+	var _args fabric_ebl.FabricEblQueryInvoiceListArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryInvoiceListResult
+	if err = p.c.Call(ctx, "QueryInvoiceList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryContractList(ctx context.Context, req *fabric_ebl.QueryContractListReq) (r *fabric_ebl.QueryContractListResp, err error) {
+	var _args fabric_ebl.FabricEblQueryContractListArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryContractListResult
+	if err = p.c.Call(ctx, "QueryContractList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryDocumentList(ctx context.Context, req *fabric_ebl.QueryDocumentListReq) (r *fabric_ebl.QueryDocumentListResp, err error) {
+	var _args fabric_ebl.FabricEblQueryDocumentListArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryDocumentListResult
+	if err = p.c.Call(ctx, "QueryDocumentList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
