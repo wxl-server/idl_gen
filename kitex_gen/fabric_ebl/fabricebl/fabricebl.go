@@ -76,6 +76,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"CheckToken": kitex.NewMethodInfo(
+		checkTokenHandler,
+		newFabricEblCheckTokenArgs,
+		newFabricEblCheckTokenResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -304,6 +311,24 @@ func newFabricEblUploadSealResult() interface{} {
 	return fabric_ebl.NewFabricEblUploadSealResult()
 }
 
+func checkTokenHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCheckTokenArgs)
+	realResult := result.(*fabric_ebl.FabricEblCheckTokenResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CheckToken(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblCheckTokenArgs() interface{} {
+	return fabric_ebl.NewFabricEblCheckTokenArgs()
+}
+
+func newFabricEblCheckTokenResult() interface{} {
+	return fabric_ebl.NewFabricEblCheckTokenResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -399,6 +424,16 @@ func (p *kClient) UploadSeal(ctx context.Context, req *fabric_ebl.UploadSealReq)
 	_args.Req = req
 	var _result fabric_ebl.FabricEblUploadSealResult
 	if err = p.c.Call(ctx, "UploadSeal", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CheckToken(ctx context.Context, req *fabric_ebl.CheckTokenReq) (r *fabric_ebl.CheckTokenResp, err error) {
+	var _args fabric_ebl.FabricEblCheckTokenArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblCheckTokenResult
+	if err = p.c.Call(ctx, "CheckToken", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
