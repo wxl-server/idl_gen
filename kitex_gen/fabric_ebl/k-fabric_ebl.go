@@ -1770,3541 +1770,6 @@ func (p *CreateEblResp) field1Length() int {
 	return l
 }
 
-func (p *Ebl) FastRead(buf []byte) (int, error) {
-
-	var err error
-	var offset int
-	var l int
-	var fieldTypeId thrift.TType
-	var fieldId int16
-	var issetEblNo bool = false
-	var issetOriginCompanyID bool = false
-	var issetOriginCompanyName bool = false
-	var issetShipperCompanyID bool = false
-	var issetShipperCompanyName bool = false
-	var issetConsigneeCompanyID bool = false
-	var issetConsigneeCompanyName bool = false
-	var issetNotifyPartyCompanyID bool = false
-	var issetNotifyPartyCompanyName bool = false
-	var issetPlaceOfReceipt bool = false
-	var issetOceanVessel bool = false
-	var issetPortOfLoading bool = false
-	var issetPortOfDescharge bool = false
-	var issetPlaceOfDestination bool = false
-	var issetPlaceOfDelivery bool = false
-	var issetShippingMarkes bool = false
-	var issetQuantityOfPackages bool = false
-	var issetKindOfPackagesGW bool = false
-	var issetKindOfPackagesM bool = false
-	var issetDescriptionOfGoods bool = false
-	var issetGrossWeight bool = false
-	var issetMeasurement bool = false
-	var issetFreightAndCharges bool = false
-	var issetPlaceOfIssue bool = false
-	var issetDateOfIssue bool = false
-	var issetDeliveryAgent bool = false
-	var issetShippedOnBoard bool = false
-	var issetNumOfEbl bool = false
-	var issetDateOfIssueDeadline bool = false
-	var issetStatus bool = false
-	var issetFile bool = false
-	var issetContractFiles bool = false
-	var issetInvoiceFiles bool = false
-	var issetTransferCompanyID bool = false
-	var issetTransferCompanyName bool = false
-	var issetCompanyID bool = false
-	var issetCompanyName bool = false
-	var issetDocumentFiles bool = false
-	for {
-		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
-		offset += l
-		if err != nil {
-			goto ReadFieldBeginError
-		}
-		if fieldTypeId == thrift.STOP {
-			break
-		}
-		switch fieldId {
-		case 1:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField1(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetEblNo = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 2:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField2(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetOriginCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 3:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField3(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetOriginCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 4:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField4(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShipperCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 5:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField5(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShipperCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 6:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField6(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetConsigneeCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 7:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField7(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetConsigneeCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 8:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField8(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetNotifyPartyCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 9:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField9(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetNotifyPartyCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 10:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField10(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfReceipt = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 11:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField11(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetOceanVessel = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 12:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField12(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPortOfLoading = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 13:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField13(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPortOfDescharge = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 14:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField14(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfDestination = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 15:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField15(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfDelivery = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 16:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField16(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShippingMarkes = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 17:
-			if fieldTypeId == thrift.DOUBLE {
-				l, err = p.FastReadField17(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetQuantityOfPackages = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 18:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField18(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetKindOfPackagesGW = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 19:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField19(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetKindOfPackagesM = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 20:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField20(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDescriptionOfGoods = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 21:
-			if fieldTypeId == thrift.DOUBLE {
-				l, err = p.FastReadField21(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetGrossWeight = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 22:
-			if fieldTypeId == thrift.DOUBLE {
-				l, err = p.FastReadField22(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetMeasurement = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 23:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField23(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetFreightAndCharges = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 24:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField24(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfIssue = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 25:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField25(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDateOfIssue = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 26:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField26(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDeliveryAgent = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 27:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField27(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShippedOnBoard = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 28:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField28(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetNumOfEbl = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 29:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField29(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDateOfIssueDeadline = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 30:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField30(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetStatus = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 31:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField31(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetFile = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 32:
-			if fieldTypeId == thrift.LIST {
-				l, err = p.FastReadField32(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetContractFiles = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 33:
-			if fieldTypeId == thrift.LIST {
-				l, err = p.FastReadField33(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetInvoiceFiles = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 34:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField34(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 35:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField35(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 36:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField36(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 37:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField37(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyName = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 38:
-			if fieldTypeId == thrift.LIST {
-				l, err = p.FastReadField38(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDocumentFiles = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		default:
-			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-			offset += l
-			if err != nil {
-				goto SkipFieldError
-			}
-		}
-	}
-
-	if !issetEblNo {
-		fieldId = 1
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetOriginCompanyID {
-		fieldId = 2
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetOriginCompanyName {
-		fieldId = 3
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShipperCompanyID {
-		fieldId = 4
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShipperCompanyName {
-		fieldId = 5
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetConsigneeCompanyID {
-		fieldId = 6
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetConsigneeCompanyName {
-		fieldId = 7
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNotifyPartyCompanyID {
-		fieldId = 8
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNotifyPartyCompanyName {
-		fieldId = 9
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfReceipt {
-		fieldId = 10
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetOceanVessel {
-		fieldId = 11
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPortOfLoading {
-		fieldId = 12
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPortOfDescharge {
-		fieldId = 13
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfDestination {
-		fieldId = 14
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfDelivery {
-		fieldId = 15
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShippingMarkes {
-		fieldId = 16
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetQuantityOfPackages {
-		fieldId = 17
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetKindOfPackagesGW {
-		fieldId = 18
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetKindOfPackagesM {
-		fieldId = 19
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDescriptionOfGoods {
-		fieldId = 20
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetGrossWeight {
-		fieldId = 21
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetMeasurement {
-		fieldId = 22
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetFreightAndCharges {
-		fieldId = 23
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfIssue {
-		fieldId = 24
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDateOfIssue {
-		fieldId = 25
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDeliveryAgent {
-		fieldId = 26
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShippedOnBoard {
-		fieldId = 27
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNumOfEbl {
-		fieldId = 28
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDateOfIssueDeadline {
-		fieldId = 29
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetStatus {
-		fieldId = 30
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetFile {
-		fieldId = 31
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetContractFiles {
-		fieldId = 32
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetInvoiceFiles {
-		fieldId = 33
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyID {
-		fieldId = 34
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyName {
-		fieldId = 35
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyID {
-		fieldId = 36
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyName {
-		fieldId = 37
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDocumentFiles {
-		fieldId = 38
-		goto RequiredFieldNotSetError
-	}
-	return offset, nil
-ReadFieldBeginError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
-ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_Ebl[fieldId]), err)
-SkipFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
-RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_Ebl[fieldId]))
-}
-
-func (p *Ebl) FastReadField1(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.EblNo = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField2(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.OriginCompanyID = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField3(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.OriginCompanyName = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField4(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShipperCompanyID = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField5(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShipperCompanyName = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField6(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ConsigneeCompanyID = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField7(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ConsigneeCompanyName = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField8(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.NotifyPartyCompanyID = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField9(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.NotifyPartyCompanyName = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField10(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfReceipt = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField11(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.OceanVessel = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField12(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PortOfLoading = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField13(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PortOfDescharge = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField14(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfDestination = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField15(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfDelivery = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField16(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShippingMarkes = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField17(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.QuantityOfPackages = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField18(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.KindOfPackagesGW = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField19(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.KindOfPackagesM = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField20(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DescriptionOfGoods = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField21(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.GrossWeight = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField22(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.Measurement = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField23(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.FreightAndCharges = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField24(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfIssue = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField25(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DateOfIssue = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField26(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DeliveryAgent = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField27(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShippedOnBoard = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField28(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.NumOfEbl = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField29(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DateOfIssueDeadline = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField30(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.Status = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField31(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.File = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField32(buf []byte) (int, error) {
-	offset := 0
-
-	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
-	offset += l
-	if err != nil {
-		return offset, err
-	}
-	_field := make([]int64, 0, size)
-	for i := 0; i < size; i++ {
-		var _elem int64
-		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-			return offset, err
-		} else {
-			offset += l
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	p.ContractFiles = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField33(buf []byte) (int, error) {
-	offset := 0
-
-	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
-	offset += l
-	if err != nil {
-		return offset, err
-	}
-	_field := make([]int64, 0, size)
-	for i := 0; i < size; i++ {
-		var _elem int64
-		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-			return offset, err
-		} else {
-			offset += l
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	p.InvoiceFiles = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField34(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.TransferCompanyID = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField35(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.TransferCompanyName = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField36(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.CompanyID = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField37(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.CompanyName = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastReadField38(buf []byte) (int, error) {
-	offset := 0
-
-	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
-	offset += l
-	if err != nil {
-		return offset, err
-	}
-	_field := make([]int64, 0, size)
-	for i := 0; i < size; i++ {
-		var _elem int64
-		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-			return offset, err
-		} else {
-			offset += l
-			_elem = v
-		}
-
-		_field = append(_field, _elem)
-	}
-	p.DocumentFiles = _field
-	return offset, nil
-}
-
-func (p *Ebl) FastWrite(buf []byte) int {
-	return p.FastWriteNocopy(buf, nil)
-}
-
-func (p *Ebl) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	if p != nil {
-		offset += p.fastWriteField17(buf[offset:], w)
-		offset += p.fastWriteField21(buf[offset:], w)
-		offset += p.fastWriteField22(buf[offset:], w)
-		offset += p.fastWriteField25(buf[offset:], w)
-		offset += p.fastWriteField27(buf[offset:], w)
-		offset += p.fastWriteField28(buf[offset:], w)
-		offset += p.fastWriteField29(buf[offset:], w)
-		offset += p.fastWriteField1(buf[offset:], w)
-		offset += p.fastWriteField2(buf[offset:], w)
-		offset += p.fastWriteField3(buf[offset:], w)
-		offset += p.fastWriteField4(buf[offset:], w)
-		offset += p.fastWriteField5(buf[offset:], w)
-		offset += p.fastWriteField6(buf[offset:], w)
-		offset += p.fastWriteField7(buf[offset:], w)
-		offset += p.fastWriteField8(buf[offset:], w)
-		offset += p.fastWriteField9(buf[offset:], w)
-		offset += p.fastWriteField10(buf[offset:], w)
-		offset += p.fastWriteField11(buf[offset:], w)
-		offset += p.fastWriteField12(buf[offset:], w)
-		offset += p.fastWriteField13(buf[offset:], w)
-		offset += p.fastWriteField14(buf[offset:], w)
-		offset += p.fastWriteField15(buf[offset:], w)
-		offset += p.fastWriteField16(buf[offset:], w)
-		offset += p.fastWriteField18(buf[offset:], w)
-		offset += p.fastWriteField19(buf[offset:], w)
-		offset += p.fastWriteField20(buf[offset:], w)
-		offset += p.fastWriteField23(buf[offset:], w)
-		offset += p.fastWriteField24(buf[offset:], w)
-		offset += p.fastWriteField26(buf[offset:], w)
-		offset += p.fastWriteField30(buf[offset:], w)
-		offset += p.fastWriteField31(buf[offset:], w)
-		offset += p.fastWriteField32(buf[offset:], w)
-		offset += p.fastWriteField33(buf[offset:], w)
-		offset += p.fastWriteField34(buf[offset:], w)
-		offset += p.fastWriteField35(buf[offset:], w)
-		offset += p.fastWriteField36(buf[offset:], w)
-		offset += p.fastWriteField37(buf[offset:], w)
-		offset += p.fastWriteField38(buf[offset:], w)
-	}
-	offset += thrift.Binary.WriteFieldStop(buf[offset:])
-	return offset
-}
-
-func (p *Ebl) BLength() int {
-	l := 0
-	if p != nil {
-		l += p.field1Length()
-		l += p.field2Length()
-		l += p.field3Length()
-		l += p.field4Length()
-		l += p.field5Length()
-		l += p.field6Length()
-		l += p.field7Length()
-		l += p.field8Length()
-		l += p.field9Length()
-		l += p.field10Length()
-		l += p.field11Length()
-		l += p.field12Length()
-		l += p.field13Length()
-		l += p.field14Length()
-		l += p.field15Length()
-		l += p.field16Length()
-		l += p.field17Length()
-		l += p.field18Length()
-		l += p.field19Length()
-		l += p.field20Length()
-		l += p.field21Length()
-		l += p.field22Length()
-		l += p.field23Length()
-		l += p.field24Length()
-		l += p.field25Length()
-		l += p.field26Length()
-		l += p.field27Length()
-		l += p.field28Length()
-		l += p.field29Length()
-		l += p.field30Length()
-		l += p.field31Length()
-		l += p.field32Length()
-		l += p.field33Length()
-		l += p.field34Length()
-		l += p.field35Length()
-		l += p.field36Length()
-		l += p.field37Length()
-		l += p.field38Length()
-	}
-	l += thrift.Binary.FieldStopLength()
-	return l
-}
-
-func (p *Ebl) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.EblNo)
-	return offset
-}
-
-func (p *Ebl) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyID)
-	return offset
-}
-
-func (p *Ebl) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyName)
-	return offset
-}
-
-func (p *Ebl) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyID)
-	return offset
-}
-
-func (p *Ebl) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyName)
-	return offset
-}
-
-func (p *Ebl) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyID)
-	return offset
-}
-
-func (p *Ebl) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyName)
-	return offset
-}
-
-func (p *Ebl) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 8)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyID)
-	return offset
-}
-
-func (p *Ebl) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 9)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyName)
-	return offset
-}
-
-func (p *Ebl) fastWriteField10(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 10)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
-	return offset
-}
-
-func (p *Ebl) fastWriteField11(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 11)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
-	return offset
-}
-
-func (p *Ebl) fastWriteField12(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 12)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
-	return offset
-}
-
-func (p *Ebl) fastWriteField13(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 13)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
-	return offset
-}
-
-func (p *Ebl) fastWriteField14(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 14)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
-	return offset
-}
-
-func (p *Ebl) fastWriteField15(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 15)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
-	return offset
-}
-
-func (p *Ebl) fastWriteField16(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 16)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
-	return offset
-}
-
-func (p *Ebl) fastWriteField17(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 17)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.QuantityOfPackages)
-	return offset
-}
-
-func (p *Ebl) fastWriteField18(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 18)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
-	return offset
-}
-
-func (p *Ebl) fastWriteField19(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 19)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
-	return offset
-}
-
-func (p *Ebl) fastWriteField20(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 20)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
-	return offset
-}
-
-func (p *Ebl) fastWriteField21(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 21)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.GrossWeight)
-	return offset
-}
-
-func (p *Ebl) fastWriteField22(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 22)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.Measurement)
-	return offset
-}
-
-func (p *Ebl) fastWriteField23(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 23)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
-	return offset
-}
-
-func (p *Ebl) fastWriteField24(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 24)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
-	return offset
-}
-
-func (p *Ebl) fastWriteField25(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 25)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssue)
-	return offset
-}
-
-func (p *Ebl) fastWriteField26(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 26)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
-	return offset
-}
-
-func (p *Ebl) fastWriteField27(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 27)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.ShippedOnBoard)
-	return offset
-}
-
-func (p *Ebl) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 28)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
-	return offset
-}
-
-func (p *Ebl) fastWriteField29(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 29)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssueDeadline)
-	return offset
-}
-
-func (p *Ebl) fastWriteField30(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 30)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Status)
-	return offset
-}
-
-func (p *Ebl) fastWriteField31(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 31)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.File)
-	return offset
-}
-
-func (p *Ebl) fastWriteField32(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 32)
-	listBeginOffset := offset
-	offset += thrift.Binary.ListBeginLength()
-	var length int
-	for _, v := range p.ContractFiles {
-		length++
-		offset += thrift.Binary.WriteI64(buf[offset:], v)
-	}
-	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
-	return offset
-}
-
-func (p *Ebl) fastWriteField33(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 33)
-	listBeginOffset := offset
-	offset += thrift.Binary.ListBeginLength()
-	var length int
-	for _, v := range p.InvoiceFiles {
-		length++
-		offset += thrift.Binary.WriteI64(buf[offset:], v)
-	}
-	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
-	return offset
-}
-
-func (p *Ebl) fastWriteField34(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 34)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyID)
-	return offset
-}
-
-func (p *Ebl) fastWriteField35(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 35)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyName)
-	return offset
-}
-
-func (p *Ebl) fastWriteField36(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 36)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyID)
-	return offset
-}
-
-func (p *Ebl) fastWriteField37(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 37)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyName)
-	return offset
-}
-
-func (p *Ebl) fastWriteField38(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 38)
-	listBeginOffset := offset
-	offset += thrift.Binary.ListBeginLength()
-	var length int
-	for _, v := range p.DocumentFiles {
-		length++
-		offset += thrift.Binary.WriteI64(buf[offset:], v)
-	}
-	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
-	return offset
-}
-
-func (p *Ebl) field1Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.EblNo)
-	return l
-}
-
-func (p *Ebl) field2Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyID)
-	return l
-}
-
-func (p *Ebl) field3Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyName)
-	return l
-}
-
-func (p *Ebl) field4Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyID)
-	return l
-}
-
-func (p *Ebl) field5Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyName)
-	return l
-}
-
-func (p *Ebl) field6Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyID)
-	return l
-}
-
-func (p *Ebl) field7Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyName)
-	return l
-}
-
-func (p *Ebl) field8Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyID)
-	return l
-}
-
-func (p *Ebl) field9Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyName)
-	return l
-}
-
-func (p *Ebl) field10Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
-	return l
-}
-
-func (p *Ebl) field11Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
-	return l
-}
-
-func (p *Ebl) field12Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
-	return l
-}
-
-func (p *Ebl) field13Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
-	return l
-}
-
-func (p *Ebl) field14Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
-	return l
-}
-
-func (p *Ebl) field15Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
-	return l
-}
-
-func (p *Ebl) field16Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
-	return l
-}
-
-func (p *Ebl) field17Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
-	return l
-}
-
-func (p *Ebl) field18Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
-	return l
-}
-
-func (p *Ebl) field19Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
-	return l
-}
-
-func (p *Ebl) field20Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
-	return l
-}
-
-func (p *Ebl) field21Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
-	return l
-}
-
-func (p *Ebl) field22Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
-	return l
-}
-
-func (p *Ebl) field23Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
-	return l
-}
-
-func (p *Ebl) field24Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
-	return l
-}
-
-func (p *Ebl) field25Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *Ebl) field26Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
-	return l
-}
-
-func (p *Ebl) field27Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *Ebl) field28Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *Ebl) field29Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *Ebl) field30Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.Status)
-	return l
-}
-
-func (p *Ebl) field31Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.File)
-	return l
-}
-
-func (p *Ebl) field32Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.ListBeginLength()
-	l +=
-		thrift.Binary.I64Length() * len(p.ContractFiles)
-	return l
-}
-
-func (p *Ebl) field33Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.ListBeginLength()
-	l +=
-		thrift.Binary.I64Length() * len(p.InvoiceFiles)
-	return l
-}
-
-func (p *Ebl) field34Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyID)
-	return l
-}
-
-func (p *Ebl) field35Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyName)
-	return l
-}
-
-func (p *Ebl) field36Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.CompanyID)
-	return l
-}
-
-func (p *Ebl) field37Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.CompanyName)
-	return l
-}
-
-func (p *Ebl) field38Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.ListBeginLength()
-	l +=
-		thrift.Binary.I64Length() * len(p.DocumentFiles)
-	return l
-}
-
-func (p *EblFilter) FastRead(buf []byte) (int, error) {
-
-	var err error
-	var offset int
-	var l int
-	var fieldTypeId thrift.TType
-	var fieldId int16
-	var issetEblNo bool = false
-	var issetOriginCompanyID bool = false
-	var issetShipperCompanyID bool = false
-	var issetConsigneeCompanyID bool = false
-	var issetNotifyPartyCompanyID bool = false
-	var issetPlaceOfReceipt bool = false
-	var issetOceanVessel bool = false
-	var issetPortOfLoading bool = false
-	var issetPortOfDescharge bool = false
-	var issetPlaceOfDestination bool = false
-	var issetPlaceOfDelivery bool = false
-	var issetShippingMarkes bool = false
-	var issetQuantityOfPackages bool = false
-	var issetKindOfPackagesGW bool = false
-	var issetKindOfPackagesM bool = false
-	var issetDescriptionOfGoods bool = false
-	var issetGrossWeight bool = false
-	var issetMeasurement bool = false
-	var issetFreightAndCharges bool = false
-	var issetPlaceOfIssue bool = false
-	var issetDateOfIssue bool = false
-	var issetDeliveryAgent bool = false
-	var issetShippedOnBoard bool = false
-	var issetNumOfEbl bool = false
-	var issetDateOfIssueDeadline bool = false
-	var issetStatus bool = false
-	var issetTransferCompanyID bool = false
-	var issetCompanyID bool = false
-	for {
-		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
-		offset += l
-		if err != nil {
-			goto ReadFieldBeginError
-		}
-		if fieldTypeId == thrift.STOP {
-			break
-		}
-		switch fieldId {
-		case 1:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField1(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetEblNo = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 2:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField2(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetOriginCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 3:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField3(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShipperCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 4:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField4(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetConsigneeCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 5:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField5(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetNotifyPartyCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 6:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField6(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfReceipt = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 7:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField7(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetOceanVessel = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 8:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField8(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPortOfLoading = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 9:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField9(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPortOfDescharge = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 10:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField10(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfDestination = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 11:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField11(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfDelivery = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 12:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField12(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShippingMarkes = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 13:
-			if fieldTypeId == thrift.DOUBLE {
-				l, err = p.FastReadField13(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetQuantityOfPackages = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 14:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField14(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetKindOfPackagesGW = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 15:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField15(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetKindOfPackagesM = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 16:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField16(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDescriptionOfGoods = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 17:
-			if fieldTypeId == thrift.DOUBLE {
-				l, err = p.FastReadField17(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetGrossWeight = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 18:
-			if fieldTypeId == thrift.DOUBLE {
-				l, err = p.FastReadField18(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetMeasurement = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 19:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField19(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetFreightAndCharges = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 20:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField20(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetPlaceOfIssue = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 21:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField21(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDateOfIssue = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 22:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField22(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDeliveryAgent = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 23:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField23(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetShippedOnBoard = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 24:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField24(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetNumOfEbl = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 25:
-			if fieldTypeId == thrift.I64 {
-				l, err = p.FastReadField25(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetDateOfIssueDeadline = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 26:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField26(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetStatus = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 27:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField27(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetTransferCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		case 28:
-			if fieldTypeId == thrift.STRING {
-				l, err = p.FastReadField28(buf[offset:])
-				offset += l
-				if err != nil {
-					goto ReadFieldError
-				}
-				issetCompanyID = true
-			} else {
-				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-				offset += l
-				if err != nil {
-					goto SkipFieldError
-				}
-			}
-		default:
-			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
-			offset += l
-			if err != nil {
-				goto SkipFieldError
-			}
-		}
-	}
-
-	if !issetEblNo {
-		fieldId = 1
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetOriginCompanyID {
-		fieldId = 2
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShipperCompanyID {
-		fieldId = 3
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetConsigneeCompanyID {
-		fieldId = 4
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNotifyPartyCompanyID {
-		fieldId = 5
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfReceipt {
-		fieldId = 6
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetOceanVessel {
-		fieldId = 7
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPortOfLoading {
-		fieldId = 8
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPortOfDescharge {
-		fieldId = 9
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfDestination {
-		fieldId = 10
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfDelivery {
-		fieldId = 11
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShippingMarkes {
-		fieldId = 12
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetQuantityOfPackages {
-		fieldId = 13
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetKindOfPackagesGW {
-		fieldId = 14
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetKindOfPackagesM {
-		fieldId = 15
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDescriptionOfGoods {
-		fieldId = 16
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetGrossWeight {
-		fieldId = 17
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetMeasurement {
-		fieldId = 18
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetFreightAndCharges {
-		fieldId = 19
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetPlaceOfIssue {
-		fieldId = 20
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDateOfIssue {
-		fieldId = 21
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDeliveryAgent {
-		fieldId = 22
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetShippedOnBoard {
-		fieldId = 23
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetNumOfEbl {
-		fieldId = 24
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDateOfIssueDeadline {
-		fieldId = 25
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetStatus {
-		fieldId = 26
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetTransferCompanyID {
-		fieldId = 27
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCompanyID {
-		fieldId = 28
-		goto RequiredFieldNotSetError
-	}
-	return offset, nil
-ReadFieldBeginError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
-ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_EblFilter[fieldId]), err)
-SkipFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
-RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_EblFilter[fieldId]))
-}
-
-func (p *EblFilter) FastReadField1(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.EblNo = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField2(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.OriginCompanyID = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField3(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShipperCompanyID = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField4(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ConsigneeCompanyID = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField5(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.NotifyPartyCompanyID = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField6(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfReceipt = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField7(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.OceanVessel = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField8(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PortOfLoading = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField9(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PortOfDescharge = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField10(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfDestination = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField11(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfDelivery = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField12(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShippingMarkes = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField13(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.QuantityOfPackages = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField14(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.KindOfPackagesGW = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField15(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.KindOfPackagesM = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField16(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DescriptionOfGoods = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField17(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.GrossWeight = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField18(buf []byte) (int, error) {
-	offset := 0
-
-	var _field float64
-	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.Measurement = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField19(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.FreightAndCharges = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField20(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.PlaceOfIssue = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField21(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DateOfIssue = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField22(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DeliveryAgent = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField23(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.ShippedOnBoard = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField24(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.NumOfEbl = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField25(buf []byte) (int, error) {
-	offset := 0
-
-	var _field int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.DateOfIssueDeadline = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField26(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.Status = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField27(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.TransferCompanyID = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastReadField28(buf []byte) (int, error) {
-	offset := 0
-
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = v
-	}
-	p.CompanyID = _field
-	return offset, nil
-}
-
-func (p *EblFilter) FastWrite(buf []byte) int {
-	return p.FastWriteNocopy(buf, nil)
-}
-
-func (p *EblFilter) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	if p != nil {
-		offset += p.fastWriteField13(buf[offset:], w)
-		offset += p.fastWriteField17(buf[offset:], w)
-		offset += p.fastWriteField18(buf[offset:], w)
-		offset += p.fastWriteField21(buf[offset:], w)
-		offset += p.fastWriteField23(buf[offset:], w)
-		offset += p.fastWriteField24(buf[offset:], w)
-		offset += p.fastWriteField25(buf[offset:], w)
-		offset += p.fastWriteField1(buf[offset:], w)
-		offset += p.fastWriteField2(buf[offset:], w)
-		offset += p.fastWriteField3(buf[offset:], w)
-		offset += p.fastWriteField4(buf[offset:], w)
-		offset += p.fastWriteField5(buf[offset:], w)
-		offset += p.fastWriteField6(buf[offset:], w)
-		offset += p.fastWriteField7(buf[offset:], w)
-		offset += p.fastWriteField8(buf[offset:], w)
-		offset += p.fastWriteField9(buf[offset:], w)
-		offset += p.fastWriteField10(buf[offset:], w)
-		offset += p.fastWriteField11(buf[offset:], w)
-		offset += p.fastWriteField12(buf[offset:], w)
-		offset += p.fastWriteField14(buf[offset:], w)
-		offset += p.fastWriteField15(buf[offset:], w)
-		offset += p.fastWriteField16(buf[offset:], w)
-		offset += p.fastWriteField19(buf[offset:], w)
-		offset += p.fastWriteField20(buf[offset:], w)
-		offset += p.fastWriteField22(buf[offset:], w)
-		offset += p.fastWriteField26(buf[offset:], w)
-		offset += p.fastWriteField27(buf[offset:], w)
-		offset += p.fastWriteField28(buf[offset:], w)
-	}
-	offset += thrift.Binary.WriteFieldStop(buf[offset:])
-	return offset
-}
-
-func (p *EblFilter) BLength() int {
-	l := 0
-	if p != nil {
-		l += p.field1Length()
-		l += p.field2Length()
-		l += p.field3Length()
-		l += p.field4Length()
-		l += p.field5Length()
-		l += p.field6Length()
-		l += p.field7Length()
-		l += p.field8Length()
-		l += p.field9Length()
-		l += p.field10Length()
-		l += p.field11Length()
-		l += p.field12Length()
-		l += p.field13Length()
-		l += p.field14Length()
-		l += p.field15Length()
-		l += p.field16Length()
-		l += p.field17Length()
-		l += p.field18Length()
-		l += p.field19Length()
-		l += p.field20Length()
-		l += p.field21Length()
-		l += p.field22Length()
-		l += p.field23Length()
-		l += p.field24Length()
-		l += p.field25Length()
-		l += p.field26Length()
-		l += p.field27Length()
-		l += p.field28Length()
-	}
-	l += thrift.Binary.FieldStopLength()
-	return l
-}
-
-func (p *EblFilter) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.EblNo)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyID)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyID)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyID)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyID)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 8)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 9)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField10(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 10)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField11(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 11)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField12(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 12)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField13(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 13)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.QuantityOfPackages)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField14(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 14)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField15(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 15)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField16(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 16)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField17(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 17)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.GrossWeight)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField18(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 18)
-	offset += thrift.Binary.WriteDouble(buf[offset:], p.Measurement)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField19(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 19)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField20(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 20)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField21(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 21)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssue)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField22(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 22)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField23(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 23)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.ShippedOnBoard)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField24(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 24)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField25(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 25)
-	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssueDeadline)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField26(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 26)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Status)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField27(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 27)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyID)
-	return offset
-}
-
-func (p *EblFilter) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
-	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 28)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyID)
-	return offset
-}
-
-func (p *EblFilter) field1Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.EblNo)
-	return l
-}
-
-func (p *EblFilter) field2Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyID)
-	return l
-}
-
-func (p *EblFilter) field3Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyID)
-	return l
-}
-
-func (p *EblFilter) field4Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyID)
-	return l
-}
-
-func (p *EblFilter) field5Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyID)
-	return l
-}
-
-func (p *EblFilter) field6Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
-	return l
-}
-
-func (p *EblFilter) field7Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
-	return l
-}
-
-func (p *EblFilter) field8Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
-	return l
-}
-
-func (p *EblFilter) field9Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
-	return l
-}
-
-func (p *EblFilter) field10Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
-	return l
-}
-
-func (p *EblFilter) field11Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
-	return l
-}
-
-func (p *EblFilter) field12Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
-	return l
-}
-
-func (p *EblFilter) field13Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
-	return l
-}
-
-func (p *EblFilter) field14Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
-	return l
-}
-
-func (p *EblFilter) field15Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
-	return l
-}
-
-func (p *EblFilter) field16Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
-	return l
-}
-
-func (p *EblFilter) field17Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
-	return l
-}
-
-func (p *EblFilter) field18Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.DoubleLength()
-	return l
-}
-
-func (p *EblFilter) field19Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
-	return l
-}
-
-func (p *EblFilter) field20Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
-	return l
-}
-
-func (p *EblFilter) field21Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *EblFilter) field22Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
-	return l
-}
-
-func (p *EblFilter) field23Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *EblFilter) field24Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *EblFilter) field25Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.I64Length()
-	return l
-}
-
-func (p *EblFilter) field26Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.Status)
-	return l
-}
-
-func (p *EblFilter) field27Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyID)
-	return l
-}
-
-func (p *EblFilter) field28Length() int {
-	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.CompanyID)
-	return l
-}
-
 func (p *QueryAllEblListReq) FastRead(buf []byte) (int, error) {
 
 	var err error
@@ -5615,8 +2080,8 @@ func (p *QueryAllEblListResp) FastReadField1(buf []byte) (int, error) {
 	if err != nil {
 		return offset, err
 	}
-	_field := make([]*Ebl, 0, size)
-	values := make([]Ebl, size)
+	_field := make([]*EblExtra, 0, size)
+	values := make([]EblExtra, size)
 	for i := 0; i < size; i++ {
 		_elem := &values[i]
 		_elem.InitDefault()
@@ -6098,8 +2563,8 @@ func (p *QueryEblListResp) FastReadField1(buf []byte) (int, error) {
 	if err != nil {
 		return offset, err
 	}
-	_field := make([]*Ebl, 0, size)
-	values := make([]Ebl, size)
+	_field := make([]*EblExtra, 0, size)
+	values := make([]EblExtra, size)
 	for i := 0; i < size; i++ {
 		_elem := &values[i]
 		_elem.InitDefault()
@@ -11651,6 +8116,5601 @@ func (p *Company) field4Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.I32Length()
+	return l
+}
+
+func (p *Ebl) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetEblNo bool = false
+	var issetOriginCompanyID bool = false
+	var issetOriginCompanyName bool = false
+	var issetShipperCompanyID bool = false
+	var issetShipperCompanyName bool = false
+	var issetConsigneeCompanyID bool = false
+	var issetConsigneeCompanyName bool = false
+	var issetNotifyPartyCompanyID bool = false
+	var issetNotifyPartyCompanyName bool = false
+	var issetPlaceOfReceipt bool = false
+	var issetOceanVessel bool = false
+	var issetPortOfLoading bool = false
+	var issetPortOfDescharge bool = false
+	var issetPlaceOfDestination bool = false
+	var issetPlaceOfDelivery bool = false
+	var issetShippingMarkes bool = false
+	var issetQuantityOfPackages bool = false
+	var issetKindOfPackagesGW bool = false
+	var issetKindOfPackagesM bool = false
+	var issetDescriptionOfGoods bool = false
+	var issetGrossWeight bool = false
+	var issetMeasurement bool = false
+	var issetFreightAndCharges bool = false
+	var issetPlaceOfIssue bool = false
+	var issetDateOfIssue bool = false
+	var issetDeliveryAgent bool = false
+	var issetShippedOnBoard bool = false
+	var issetNumOfEbl bool = false
+	var issetDateOfIssueDeadline bool = false
+	var issetStatus bool = false
+	var issetFile bool = false
+	var issetContractFiles bool = false
+	var issetInvoiceFiles bool = false
+	var issetTransferCompanyID bool = false
+	var issetTransferCompanyName bool = false
+	var issetCompanyID bool = false
+	var issetCompanyName bool = false
+	var issetDocumentFiles bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetEblNo = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOriginCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOriginCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 4:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField4(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShipperCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShipperCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField6(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetConsigneeCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField7(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetConsigneeCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 8:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField8(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNotifyPartyCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 9:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField9(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNotifyPartyCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 10:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField10(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfReceipt = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 11:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField11(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOceanVessel = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 12:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField12(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPortOfLoading = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 13:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField13(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPortOfDescharge = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 14:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField14(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfDestination = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 15:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField15(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfDelivery = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 16:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField16(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShippingMarkes = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 17:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField17(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetQuantityOfPackages = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 18:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField18(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetKindOfPackagesGW = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 19:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField19(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetKindOfPackagesM = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 20:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField20(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDescriptionOfGoods = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 21:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField21(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetGrossWeight = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 22:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField22(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetMeasurement = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 23:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField23(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetFreightAndCharges = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 24:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField24(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfIssue = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 25:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField25(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDateOfIssue = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 26:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField26(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDeliveryAgent = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 27:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField27(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShippedOnBoard = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 28:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField28(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNumOfEbl = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 29:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField29(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDateOfIssueDeadline = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 30:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField30(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetStatus = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 31:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField31(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetFile = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 32:
+			if fieldTypeId == thrift.LIST {
+				l, err = p.FastReadField32(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetContractFiles = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 33:
+			if fieldTypeId == thrift.LIST {
+				l, err = p.FastReadField33(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetInvoiceFiles = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 34:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField34(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetTransferCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 35:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField35(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetTransferCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 36:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField36(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 37:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField37(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 38:
+			if fieldTypeId == thrift.LIST {
+				l, err = p.FastReadField38(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDocumentFiles = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetEblNo {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOriginCompanyID {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOriginCompanyName {
+		fieldId = 3
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShipperCompanyID {
+		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShipperCompanyName {
+		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetConsigneeCompanyID {
+		fieldId = 6
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetConsigneeCompanyName {
+		fieldId = 7
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNotifyPartyCompanyID {
+		fieldId = 8
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNotifyPartyCompanyName {
+		fieldId = 9
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfReceipt {
+		fieldId = 10
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOceanVessel {
+		fieldId = 11
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPortOfLoading {
+		fieldId = 12
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPortOfDescharge {
+		fieldId = 13
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfDestination {
+		fieldId = 14
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfDelivery {
+		fieldId = 15
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShippingMarkes {
+		fieldId = 16
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetQuantityOfPackages {
+		fieldId = 17
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetKindOfPackagesGW {
+		fieldId = 18
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetKindOfPackagesM {
+		fieldId = 19
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDescriptionOfGoods {
+		fieldId = 20
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetGrossWeight {
+		fieldId = 21
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetMeasurement {
+		fieldId = 22
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFreightAndCharges {
+		fieldId = 23
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfIssue {
+		fieldId = 24
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDateOfIssue {
+		fieldId = 25
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDeliveryAgent {
+		fieldId = 26
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShippedOnBoard {
+		fieldId = 27
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNumOfEbl {
+		fieldId = 28
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDateOfIssueDeadline {
+		fieldId = 29
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetStatus {
+		fieldId = 30
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFile {
+		fieldId = 31
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetContractFiles {
+		fieldId = 32
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetInvoiceFiles {
+		fieldId = 33
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferCompanyID {
+		fieldId = 34
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferCompanyName {
+		fieldId = 35
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetCompanyID {
+		fieldId = 36
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetCompanyName {
+		fieldId = 37
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDocumentFiles {
+		fieldId = 38
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_Ebl[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_Ebl[fieldId]))
+}
+
+func (p *Ebl) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.EblNo = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OriginCompanyID = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField3(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OriginCompanyName = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField4(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShipperCompanyID = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShipperCompanyName = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField6(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ConsigneeCompanyID = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField7(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ConsigneeCompanyName = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField8(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NotifyPartyCompanyID = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField9(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NotifyPartyCompanyName = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField10(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfReceipt = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField11(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OceanVessel = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField12(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PortOfLoading = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField13(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PortOfDescharge = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField14(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfDestination = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField15(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfDelivery = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField16(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShippingMarkes = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField17(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.QuantityOfPackages = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField18(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.KindOfPackagesGW = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField19(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.KindOfPackagesM = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField20(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DescriptionOfGoods = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField21(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.GrossWeight = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField22(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Measurement = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField23(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.FreightAndCharges = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField24(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfIssue = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField25(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DateOfIssue = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField26(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DeliveryAgent = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField27(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShippedOnBoard = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField28(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NumOfEbl = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField29(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DateOfIssueDeadline = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField30(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Status = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField31(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.File = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField32(buf []byte) (int, error) {
+	offset := 0
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
+		return offset, err
+	}
+	_field := make([]int64, 0, size)
+	for i := 0; i < size; i++ {
+		var _elem int64
+		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
+	}
+	p.ContractFiles = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField33(buf []byte) (int, error) {
+	offset := 0
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
+		return offset, err
+	}
+	_field := make([]int64, 0, size)
+	for i := 0; i < size; i++ {
+		var _elem int64
+		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
+	}
+	p.InvoiceFiles = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField34(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.TransferCompanyID = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField35(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.TransferCompanyName = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField36(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.CompanyID = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField37(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.CompanyName = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastReadField38(buf []byte) (int, error) {
+	offset := 0
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
+		return offset, err
+	}
+	_field := make([]int64, 0, size)
+	for i := 0; i < size; i++ {
+		var _elem int64
+		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
+	}
+	p.DocumentFiles = _field
+	return offset, nil
+}
+
+func (p *Ebl) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *Ebl) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField17(buf[offset:], w)
+		offset += p.fastWriteField21(buf[offset:], w)
+		offset += p.fastWriteField22(buf[offset:], w)
+		offset += p.fastWriteField25(buf[offset:], w)
+		offset += p.fastWriteField27(buf[offset:], w)
+		offset += p.fastWriteField28(buf[offset:], w)
+		offset += p.fastWriteField29(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField3(buf[offset:], w)
+		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
+		offset += p.fastWriteField6(buf[offset:], w)
+		offset += p.fastWriteField7(buf[offset:], w)
+		offset += p.fastWriteField8(buf[offset:], w)
+		offset += p.fastWriteField9(buf[offset:], w)
+		offset += p.fastWriteField10(buf[offset:], w)
+		offset += p.fastWriteField11(buf[offset:], w)
+		offset += p.fastWriteField12(buf[offset:], w)
+		offset += p.fastWriteField13(buf[offset:], w)
+		offset += p.fastWriteField14(buf[offset:], w)
+		offset += p.fastWriteField15(buf[offset:], w)
+		offset += p.fastWriteField16(buf[offset:], w)
+		offset += p.fastWriteField18(buf[offset:], w)
+		offset += p.fastWriteField19(buf[offset:], w)
+		offset += p.fastWriteField20(buf[offset:], w)
+		offset += p.fastWriteField23(buf[offset:], w)
+		offset += p.fastWriteField24(buf[offset:], w)
+		offset += p.fastWriteField26(buf[offset:], w)
+		offset += p.fastWriteField30(buf[offset:], w)
+		offset += p.fastWriteField31(buf[offset:], w)
+		offset += p.fastWriteField32(buf[offset:], w)
+		offset += p.fastWriteField33(buf[offset:], w)
+		offset += p.fastWriteField34(buf[offset:], w)
+		offset += p.fastWriteField35(buf[offset:], w)
+		offset += p.fastWriteField36(buf[offset:], w)
+		offset += p.fastWriteField37(buf[offset:], w)
+		offset += p.fastWriteField38(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *Ebl) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+		l += p.field3Length()
+		l += p.field4Length()
+		l += p.field5Length()
+		l += p.field6Length()
+		l += p.field7Length()
+		l += p.field8Length()
+		l += p.field9Length()
+		l += p.field10Length()
+		l += p.field11Length()
+		l += p.field12Length()
+		l += p.field13Length()
+		l += p.field14Length()
+		l += p.field15Length()
+		l += p.field16Length()
+		l += p.field17Length()
+		l += p.field18Length()
+		l += p.field19Length()
+		l += p.field20Length()
+		l += p.field21Length()
+		l += p.field22Length()
+		l += p.field23Length()
+		l += p.field24Length()
+		l += p.field25Length()
+		l += p.field26Length()
+		l += p.field27Length()
+		l += p.field28Length()
+		l += p.field29Length()
+		l += p.field30Length()
+		l += p.field31Length()
+		l += p.field32Length()
+		l += p.field33Length()
+		l += p.field34Length()
+		l += p.field35Length()
+		l += p.field36Length()
+		l += p.field37Length()
+		l += p.field38Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *Ebl) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.EblNo)
+	return offset
+}
+
+func (p *Ebl) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyID)
+	return offset
+}
+
+func (p *Ebl) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyName)
+	return offset
+}
+
+func (p *Ebl) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyID)
+	return offset
+}
+
+func (p *Ebl) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyName)
+	return offset
+}
+
+func (p *Ebl) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyID)
+	return offset
+}
+
+func (p *Ebl) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyName)
+	return offset
+}
+
+func (p *Ebl) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 8)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyID)
+	return offset
+}
+
+func (p *Ebl) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 9)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyName)
+	return offset
+}
+
+func (p *Ebl) fastWriteField10(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 10)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
+	return offset
+}
+
+func (p *Ebl) fastWriteField11(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 11)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
+	return offset
+}
+
+func (p *Ebl) fastWriteField12(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 12)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
+	return offset
+}
+
+func (p *Ebl) fastWriteField13(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 13)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
+	return offset
+}
+
+func (p *Ebl) fastWriteField14(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 14)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
+	return offset
+}
+
+func (p *Ebl) fastWriteField15(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 15)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
+	return offset
+}
+
+func (p *Ebl) fastWriteField16(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 16)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
+	return offset
+}
+
+func (p *Ebl) fastWriteField17(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 17)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.QuantityOfPackages)
+	return offset
+}
+
+func (p *Ebl) fastWriteField18(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 18)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
+	return offset
+}
+
+func (p *Ebl) fastWriteField19(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 19)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
+	return offset
+}
+
+func (p *Ebl) fastWriteField20(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 20)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
+	return offset
+}
+
+func (p *Ebl) fastWriteField21(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 21)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.GrossWeight)
+	return offset
+}
+
+func (p *Ebl) fastWriteField22(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 22)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.Measurement)
+	return offset
+}
+
+func (p *Ebl) fastWriteField23(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 23)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
+	return offset
+}
+
+func (p *Ebl) fastWriteField24(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 24)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
+	return offset
+}
+
+func (p *Ebl) fastWriteField25(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 25)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssue)
+	return offset
+}
+
+func (p *Ebl) fastWriteField26(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 26)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
+	return offset
+}
+
+func (p *Ebl) fastWriteField27(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 27)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.ShippedOnBoard)
+	return offset
+}
+
+func (p *Ebl) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 28)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
+	return offset
+}
+
+func (p *Ebl) fastWriteField29(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 29)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssueDeadline)
+	return offset
+}
+
+func (p *Ebl) fastWriteField30(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 30)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Status)
+	return offset
+}
+
+func (p *Ebl) fastWriteField31(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 31)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.File)
+	return offset
+}
+
+func (p *Ebl) fastWriteField32(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 32)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.ContractFiles {
+		length++
+		offset += thrift.Binary.WriteI64(buf[offset:], v)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
+	return offset
+}
+
+func (p *Ebl) fastWriteField33(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 33)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.InvoiceFiles {
+		length++
+		offset += thrift.Binary.WriteI64(buf[offset:], v)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
+	return offset
+}
+
+func (p *Ebl) fastWriteField34(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 34)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyID)
+	return offset
+}
+
+func (p *Ebl) fastWriteField35(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 35)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyName)
+	return offset
+}
+
+func (p *Ebl) fastWriteField36(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 36)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyID)
+	return offset
+}
+
+func (p *Ebl) fastWriteField37(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 37)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyName)
+	return offset
+}
+
+func (p *Ebl) fastWriteField38(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 38)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.DocumentFiles {
+		length++
+		offset += thrift.Binary.WriteI64(buf[offset:], v)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
+	return offset
+}
+
+func (p *Ebl) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.EblNo)
+	return l
+}
+
+func (p *Ebl) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyID)
+	return l
+}
+
+func (p *Ebl) field3Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyName)
+	return l
+}
+
+func (p *Ebl) field4Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyID)
+	return l
+}
+
+func (p *Ebl) field5Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyName)
+	return l
+}
+
+func (p *Ebl) field6Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyID)
+	return l
+}
+
+func (p *Ebl) field7Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyName)
+	return l
+}
+
+func (p *Ebl) field8Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyID)
+	return l
+}
+
+func (p *Ebl) field9Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyName)
+	return l
+}
+
+func (p *Ebl) field10Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
+	return l
+}
+
+func (p *Ebl) field11Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
+	return l
+}
+
+func (p *Ebl) field12Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
+	return l
+}
+
+func (p *Ebl) field13Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
+	return l
+}
+
+func (p *Ebl) field14Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
+	return l
+}
+
+func (p *Ebl) field15Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
+	return l
+}
+
+func (p *Ebl) field16Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
+	return l
+}
+
+func (p *Ebl) field17Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *Ebl) field18Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
+	return l
+}
+
+func (p *Ebl) field19Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
+	return l
+}
+
+func (p *Ebl) field20Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
+	return l
+}
+
+func (p *Ebl) field21Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *Ebl) field22Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *Ebl) field23Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
+	return l
+}
+
+func (p *Ebl) field24Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
+	return l
+}
+
+func (p *Ebl) field25Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *Ebl) field26Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
+	return l
+}
+
+func (p *Ebl) field27Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *Ebl) field28Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *Ebl) field29Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *Ebl) field30Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Status)
+	return l
+}
+
+func (p *Ebl) field31Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.File)
+	return l
+}
+
+func (p *Ebl) field32Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.ListBeginLength()
+	l +=
+		thrift.Binary.I64Length() * len(p.ContractFiles)
+	return l
+}
+
+func (p *Ebl) field33Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.ListBeginLength()
+	l +=
+		thrift.Binary.I64Length() * len(p.InvoiceFiles)
+	return l
+}
+
+func (p *Ebl) field34Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyID)
+	return l
+}
+
+func (p *Ebl) field35Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyName)
+	return l
+}
+
+func (p *Ebl) field36Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.CompanyID)
+	return l
+}
+
+func (p *Ebl) field37Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.CompanyName)
+	return l
+}
+
+func (p *Ebl) field38Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.ListBeginLength()
+	l +=
+		thrift.Binary.I64Length() * len(p.DocumentFiles)
+	return l
+}
+
+func (p *EblExtra) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetEblNo bool = false
+	var issetOriginCompanyID bool = false
+	var issetOriginCompanyName bool = false
+	var issetShipperCompanyID bool = false
+	var issetShipperCompanyName bool = false
+	var issetConsigneeCompanyID bool = false
+	var issetConsigneeCompanyName bool = false
+	var issetNotifyPartyCompanyID bool = false
+	var issetNotifyPartyCompanyName bool = false
+	var issetPlaceOfReceipt bool = false
+	var issetOceanVessel bool = false
+	var issetPortOfLoading bool = false
+	var issetPortOfDescharge bool = false
+	var issetPlaceOfDestination bool = false
+	var issetPlaceOfDelivery bool = false
+	var issetShippingMarkes bool = false
+	var issetQuantityOfPackages bool = false
+	var issetKindOfPackagesGW bool = false
+	var issetKindOfPackagesM bool = false
+	var issetDescriptionOfGoods bool = false
+	var issetGrossWeight bool = false
+	var issetMeasurement bool = false
+	var issetFreightAndCharges bool = false
+	var issetPlaceOfIssue bool = false
+	var issetDateOfIssue bool = false
+	var issetDeliveryAgent bool = false
+	var issetShippedOnBoard bool = false
+	var issetNumOfEbl bool = false
+	var issetDateOfIssueDeadline bool = false
+	var issetStatus bool = false
+	var issetFile bool = false
+	var issetContractFiles bool = false
+	var issetInvoiceFiles bool = false
+	var issetTransferCompanyID bool = false
+	var issetTransferCompanyName bool = false
+	var issetCompanyID bool = false
+	var issetCompanyName bool = false
+	var issetDocumentFiles bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetEblNo = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOriginCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOriginCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 4:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField4(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShipperCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShipperCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField6(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetConsigneeCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField7(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetConsigneeCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 8:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField8(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNotifyPartyCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 9:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField9(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNotifyPartyCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 10:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField10(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfReceipt = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 11:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField11(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOceanVessel = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 12:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField12(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPortOfLoading = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 13:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField13(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPortOfDescharge = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 14:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField14(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfDestination = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 15:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField15(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfDelivery = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 16:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField16(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShippingMarkes = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 17:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField17(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetQuantityOfPackages = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 18:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField18(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetKindOfPackagesGW = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 19:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField19(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetKindOfPackagesM = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 20:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField20(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDescriptionOfGoods = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 21:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField21(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetGrossWeight = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 22:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField22(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetMeasurement = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 23:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField23(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetFreightAndCharges = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 24:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField24(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfIssue = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 25:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField25(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDateOfIssue = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 26:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField26(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDeliveryAgent = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 27:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField27(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShippedOnBoard = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 28:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField28(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNumOfEbl = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 29:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField29(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDateOfIssueDeadline = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 30:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField30(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetStatus = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 31:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField31(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetFile = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 32:
+			if fieldTypeId == thrift.LIST {
+				l, err = p.FastReadField32(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetContractFiles = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 33:
+			if fieldTypeId == thrift.LIST {
+				l, err = p.FastReadField33(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetInvoiceFiles = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 34:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField34(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetTransferCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 35:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField35(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetTransferCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 36:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField36(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 37:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField37(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetCompanyName = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 38:
+			if fieldTypeId == thrift.LIST {
+				l, err = p.FastReadField38(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDocumentFiles = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetEblNo {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOriginCompanyID {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOriginCompanyName {
+		fieldId = 3
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShipperCompanyID {
+		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShipperCompanyName {
+		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetConsigneeCompanyID {
+		fieldId = 6
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetConsigneeCompanyName {
+		fieldId = 7
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNotifyPartyCompanyID {
+		fieldId = 8
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNotifyPartyCompanyName {
+		fieldId = 9
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfReceipt {
+		fieldId = 10
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOceanVessel {
+		fieldId = 11
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPortOfLoading {
+		fieldId = 12
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPortOfDescharge {
+		fieldId = 13
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfDestination {
+		fieldId = 14
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfDelivery {
+		fieldId = 15
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShippingMarkes {
+		fieldId = 16
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetQuantityOfPackages {
+		fieldId = 17
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetKindOfPackagesGW {
+		fieldId = 18
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetKindOfPackagesM {
+		fieldId = 19
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDescriptionOfGoods {
+		fieldId = 20
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetGrossWeight {
+		fieldId = 21
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetMeasurement {
+		fieldId = 22
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFreightAndCharges {
+		fieldId = 23
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfIssue {
+		fieldId = 24
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDateOfIssue {
+		fieldId = 25
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDeliveryAgent {
+		fieldId = 26
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShippedOnBoard {
+		fieldId = 27
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNumOfEbl {
+		fieldId = 28
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDateOfIssueDeadline {
+		fieldId = 29
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetStatus {
+		fieldId = 30
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFile {
+		fieldId = 31
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetContractFiles {
+		fieldId = 32
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetInvoiceFiles {
+		fieldId = 33
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferCompanyID {
+		fieldId = 34
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferCompanyName {
+		fieldId = 35
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetCompanyID {
+		fieldId = 36
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetCompanyName {
+		fieldId = 37
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDocumentFiles {
+		fieldId = 38
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_EblExtra[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_EblExtra[fieldId]))
+}
+
+func (p *EblExtra) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.EblNo = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OriginCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField3(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OriginCompanyName = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField4(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShipperCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShipperCompanyName = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField6(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ConsigneeCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField7(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ConsigneeCompanyName = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField8(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NotifyPartyCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField9(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NotifyPartyCompanyName = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField10(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfReceipt = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField11(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OceanVessel = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField12(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PortOfLoading = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField13(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PortOfDescharge = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField14(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfDestination = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField15(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfDelivery = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField16(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShippingMarkes = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField17(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.QuantityOfPackages = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField18(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.KindOfPackagesGW = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField19(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.KindOfPackagesM = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField20(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DescriptionOfGoods = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField21(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.GrossWeight = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField22(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Measurement = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField23(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.FreightAndCharges = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField24(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfIssue = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField25(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DateOfIssue = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField26(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DeliveryAgent = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField27(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShippedOnBoard = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField28(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NumOfEbl = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField29(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DateOfIssueDeadline = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField30(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Status = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField31(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.File = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField32(buf []byte) (int, error) {
+	offset := 0
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
+		return offset, err
+	}
+	_field := make([]*Contract, 0, size)
+	values := make([]Contract, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+		if l, err := _elem.FastRead(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+		}
+
+		_field = append(_field, _elem)
+	}
+	p.ContractFiles = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField33(buf []byte) (int, error) {
+	offset := 0
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
+		return offset, err
+	}
+	_field := make([]*Invoice, 0, size)
+	values := make([]Invoice, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+		if l, err := _elem.FastRead(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+		}
+
+		_field = append(_field, _elem)
+	}
+	p.InvoiceFiles = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField34(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.TransferCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField35(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.TransferCompanyName = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField36(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.CompanyID = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField37(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.CompanyName = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastReadField38(buf []byte) (int, error) {
+	offset := 0
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
+		return offset, err
+	}
+	_field := make([]*Document, 0, size)
+	values := make([]Document, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+		if l, err := _elem.FastRead(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+		}
+
+		_field = append(_field, _elem)
+	}
+	p.DocumentFiles = _field
+	return offset, nil
+}
+
+func (p *EblExtra) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *EblExtra) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField17(buf[offset:], w)
+		offset += p.fastWriteField21(buf[offset:], w)
+		offset += p.fastWriteField22(buf[offset:], w)
+		offset += p.fastWriteField25(buf[offset:], w)
+		offset += p.fastWriteField27(buf[offset:], w)
+		offset += p.fastWriteField28(buf[offset:], w)
+		offset += p.fastWriteField29(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField3(buf[offset:], w)
+		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
+		offset += p.fastWriteField6(buf[offset:], w)
+		offset += p.fastWriteField7(buf[offset:], w)
+		offset += p.fastWriteField8(buf[offset:], w)
+		offset += p.fastWriteField9(buf[offset:], w)
+		offset += p.fastWriteField10(buf[offset:], w)
+		offset += p.fastWriteField11(buf[offset:], w)
+		offset += p.fastWriteField12(buf[offset:], w)
+		offset += p.fastWriteField13(buf[offset:], w)
+		offset += p.fastWriteField14(buf[offset:], w)
+		offset += p.fastWriteField15(buf[offset:], w)
+		offset += p.fastWriteField16(buf[offset:], w)
+		offset += p.fastWriteField18(buf[offset:], w)
+		offset += p.fastWriteField19(buf[offset:], w)
+		offset += p.fastWriteField20(buf[offset:], w)
+		offset += p.fastWriteField23(buf[offset:], w)
+		offset += p.fastWriteField24(buf[offset:], w)
+		offset += p.fastWriteField26(buf[offset:], w)
+		offset += p.fastWriteField30(buf[offset:], w)
+		offset += p.fastWriteField31(buf[offset:], w)
+		offset += p.fastWriteField32(buf[offset:], w)
+		offset += p.fastWriteField33(buf[offset:], w)
+		offset += p.fastWriteField34(buf[offset:], w)
+		offset += p.fastWriteField35(buf[offset:], w)
+		offset += p.fastWriteField36(buf[offset:], w)
+		offset += p.fastWriteField37(buf[offset:], w)
+		offset += p.fastWriteField38(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *EblExtra) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+		l += p.field3Length()
+		l += p.field4Length()
+		l += p.field5Length()
+		l += p.field6Length()
+		l += p.field7Length()
+		l += p.field8Length()
+		l += p.field9Length()
+		l += p.field10Length()
+		l += p.field11Length()
+		l += p.field12Length()
+		l += p.field13Length()
+		l += p.field14Length()
+		l += p.field15Length()
+		l += p.field16Length()
+		l += p.field17Length()
+		l += p.field18Length()
+		l += p.field19Length()
+		l += p.field20Length()
+		l += p.field21Length()
+		l += p.field22Length()
+		l += p.field23Length()
+		l += p.field24Length()
+		l += p.field25Length()
+		l += p.field26Length()
+		l += p.field27Length()
+		l += p.field28Length()
+		l += p.field29Length()
+		l += p.field30Length()
+		l += p.field31Length()
+		l += p.field32Length()
+		l += p.field33Length()
+		l += p.field34Length()
+		l += p.field35Length()
+		l += p.field36Length()
+		l += p.field37Length()
+		l += p.field38Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *EblExtra) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.EblNo)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyID)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyName)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyID)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyName)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyID)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyName)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 8)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyID)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 9)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyName)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField10(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 10)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField11(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 11)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField12(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 12)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField13(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 13)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField14(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 14)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField15(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 15)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField16(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 16)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField17(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 17)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.QuantityOfPackages)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField18(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 18)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField19(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 19)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField20(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 20)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField21(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 21)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.GrossWeight)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField22(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 22)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.Measurement)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField23(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 23)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField24(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 24)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField25(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 25)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssue)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField26(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 26)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField27(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 27)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.ShippedOnBoard)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 28)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField29(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 29)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssueDeadline)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField30(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 30)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Status)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField31(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 31)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.File)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField32(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 32)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.ContractFiles {
+		length++
+		offset += v.FastWriteNocopy(buf[offset:], w)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRUCT, length)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField33(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 33)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.InvoiceFiles {
+		length++
+		offset += v.FastWriteNocopy(buf[offset:], w)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRUCT, length)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField34(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 34)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyID)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField35(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 35)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyName)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField36(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 36)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyID)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField37(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 37)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyName)
+	return offset
+}
+
+func (p *EblExtra) fastWriteField38(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 38)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.DocumentFiles {
+		length++
+		offset += v.FastWriteNocopy(buf[offset:], w)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRUCT, length)
+	return offset
+}
+
+func (p *EblExtra) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.EblNo)
+	return l
+}
+
+func (p *EblExtra) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyID)
+	return l
+}
+
+func (p *EblExtra) field3Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyName)
+	return l
+}
+
+func (p *EblExtra) field4Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyID)
+	return l
+}
+
+func (p *EblExtra) field5Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyName)
+	return l
+}
+
+func (p *EblExtra) field6Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyID)
+	return l
+}
+
+func (p *EblExtra) field7Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyName)
+	return l
+}
+
+func (p *EblExtra) field8Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyID)
+	return l
+}
+
+func (p *EblExtra) field9Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyName)
+	return l
+}
+
+func (p *EblExtra) field10Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
+	return l
+}
+
+func (p *EblExtra) field11Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
+	return l
+}
+
+func (p *EblExtra) field12Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
+	return l
+}
+
+func (p *EblExtra) field13Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
+	return l
+}
+
+func (p *EblExtra) field14Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
+	return l
+}
+
+func (p *EblExtra) field15Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
+	return l
+}
+
+func (p *EblExtra) field16Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
+	return l
+}
+
+func (p *EblExtra) field17Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *EblExtra) field18Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
+	return l
+}
+
+func (p *EblExtra) field19Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
+	return l
+}
+
+func (p *EblExtra) field20Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
+	return l
+}
+
+func (p *EblExtra) field21Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *EblExtra) field22Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *EblExtra) field23Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
+	return l
+}
+
+func (p *EblExtra) field24Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
+	return l
+}
+
+func (p *EblExtra) field25Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblExtra) field26Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
+	return l
+}
+
+func (p *EblExtra) field27Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblExtra) field28Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblExtra) field29Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblExtra) field30Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Status)
+	return l
+}
+
+func (p *EblExtra) field31Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.File)
+	return l
+}
+
+func (p *EblExtra) field32Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.ListBeginLength()
+	for _, v := range p.ContractFiles {
+		_ = v
+		l += v.BLength()
+	}
+	return l
+}
+
+func (p *EblExtra) field33Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.ListBeginLength()
+	for _, v := range p.InvoiceFiles {
+		_ = v
+		l += v.BLength()
+	}
+	return l
+}
+
+func (p *EblExtra) field34Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyID)
+	return l
+}
+
+func (p *EblExtra) field35Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyName)
+	return l
+}
+
+func (p *EblExtra) field36Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.CompanyID)
+	return l
+}
+
+func (p *EblExtra) field37Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.CompanyName)
+	return l
+}
+
+func (p *EblExtra) field38Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.ListBeginLength()
+	for _, v := range p.DocumentFiles {
+		_ = v
+		l += v.BLength()
+	}
+	return l
+}
+
+func (p *EblFilter) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetEblNo bool = false
+	var issetOriginCompanyID bool = false
+	var issetShipperCompanyID bool = false
+	var issetConsigneeCompanyID bool = false
+	var issetNotifyPartyCompanyID bool = false
+	var issetPlaceOfReceipt bool = false
+	var issetOceanVessel bool = false
+	var issetPortOfLoading bool = false
+	var issetPortOfDescharge bool = false
+	var issetPlaceOfDestination bool = false
+	var issetPlaceOfDelivery bool = false
+	var issetShippingMarkes bool = false
+	var issetQuantityOfPackages bool = false
+	var issetKindOfPackagesGW bool = false
+	var issetKindOfPackagesM bool = false
+	var issetDescriptionOfGoods bool = false
+	var issetGrossWeight bool = false
+	var issetMeasurement bool = false
+	var issetFreightAndCharges bool = false
+	var issetPlaceOfIssue bool = false
+	var issetDateOfIssue bool = false
+	var issetDeliveryAgent bool = false
+	var issetShippedOnBoard bool = false
+	var issetNumOfEbl bool = false
+	var issetDateOfIssueDeadline bool = false
+	var issetStatus bool = false
+	var issetTransferCompanyID bool = false
+	var issetCompanyID bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetEblNo = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOriginCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShipperCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 4:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField4(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetConsigneeCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNotifyPartyCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField6(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfReceipt = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField7(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetOceanVessel = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 8:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField8(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPortOfLoading = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 9:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField9(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPortOfDescharge = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 10:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField10(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfDestination = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 11:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField11(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfDelivery = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 12:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField12(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShippingMarkes = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 13:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField13(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetQuantityOfPackages = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 14:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField14(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetKindOfPackagesGW = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 15:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField15(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetKindOfPackagesM = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 16:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField16(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDescriptionOfGoods = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 17:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField17(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetGrossWeight = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 18:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField18(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetMeasurement = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 19:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField19(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetFreightAndCharges = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 20:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField20(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetPlaceOfIssue = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 21:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField21(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDateOfIssue = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 22:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField22(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDeliveryAgent = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 23:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField23(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetShippedOnBoard = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 24:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField24(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetNumOfEbl = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 25:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField25(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDateOfIssueDeadline = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 26:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField26(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetStatus = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 27:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField27(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetTransferCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 28:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField28(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetCompanyID = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetEblNo {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOriginCompanyID {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShipperCompanyID {
+		fieldId = 3
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetConsigneeCompanyID {
+		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNotifyPartyCompanyID {
+		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfReceipt {
+		fieldId = 6
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOceanVessel {
+		fieldId = 7
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPortOfLoading {
+		fieldId = 8
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPortOfDescharge {
+		fieldId = 9
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfDestination {
+		fieldId = 10
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfDelivery {
+		fieldId = 11
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShippingMarkes {
+		fieldId = 12
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetQuantityOfPackages {
+		fieldId = 13
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetKindOfPackagesGW {
+		fieldId = 14
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetKindOfPackagesM {
+		fieldId = 15
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDescriptionOfGoods {
+		fieldId = 16
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetGrossWeight {
+		fieldId = 17
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetMeasurement {
+		fieldId = 18
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFreightAndCharges {
+		fieldId = 19
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetPlaceOfIssue {
+		fieldId = 20
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDateOfIssue {
+		fieldId = 21
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDeliveryAgent {
+		fieldId = 22
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetShippedOnBoard {
+		fieldId = 23
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetNumOfEbl {
+		fieldId = 24
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetDateOfIssueDeadline {
+		fieldId = 25
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetStatus {
+		fieldId = 26
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferCompanyID {
+		fieldId = 27
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetCompanyID {
+		fieldId = 28
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_EblFilter[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_EblFilter[fieldId]))
+}
+
+func (p *EblFilter) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.EblNo = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OriginCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField3(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShipperCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField4(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ConsigneeCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NotifyPartyCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField6(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfReceipt = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField7(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.OceanVessel = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField8(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PortOfLoading = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField9(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PortOfDescharge = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField10(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfDestination = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField11(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfDelivery = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField12(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShippingMarkes = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField13(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.QuantityOfPackages = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField14(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.KindOfPackagesGW = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField15(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.KindOfPackagesM = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField16(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DescriptionOfGoods = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField17(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.GrossWeight = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField18(buf []byte) (int, error) {
+	offset := 0
+
+	var _field float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Measurement = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField19(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.FreightAndCharges = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField20(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.PlaceOfIssue = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField21(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DateOfIssue = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField22(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DeliveryAgent = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField23(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.ShippedOnBoard = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField24(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.NumOfEbl = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField25(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.DateOfIssueDeadline = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField26(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Status = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField27(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.TransferCompanyID = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastReadField28(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.CompanyID = _field
+	return offset, nil
+}
+
+func (p *EblFilter) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *EblFilter) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField13(buf[offset:], w)
+		offset += p.fastWriteField17(buf[offset:], w)
+		offset += p.fastWriteField18(buf[offset:], w)
+		offset += p.fastWriteField21(buf[offset:], w)
+		offset += p.fastWriteField23(buf[offset:], w)
+		offset += p.fastWriteField24(buf[offset:], w)
+		offset += p.fastWriteField25(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField3(buf[offset:], w)
+		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
+		offset += p.fastWriteField6(buf[offset:], w)
+		offset += p.fastWriteField7(buf[offset:], w)
+		offset += p.fastWriteField8(buf[offset:], w)
+		offset += p.fastWriteField9(buf[offset:], w)
+		offset += p.fastWriteField10(buf[offset:], w)
+		offset += p.fastWriteField11(buf[offset:], w)
+		offset += p.fastWriteField12(buf[offset:], w)
+		offset += p.fastWriteField14(buf[offset:], w)
+		offset += p.fastWriteField15(buf[offset:], w)
+		offset += p.fastWriteField16(buf[offset:], w)
+		offset += p.fastWriteField19(buf[offset:], w)
+		offset += p.fastWriteField20(buf[offset:], w)
+		offset += p.fastWriteField22(buf[offset:], w)
+		offset += p.fastWriteField26(buf[offset:], w)
+		offset += p.fastWriteField27(buf[offset:], w)
+		offset += p.fastWriteField28(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *EblFilter) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+		l += p.field3Length()
+		l += p.field4Length()
+		l += p.field5Length()
+		l += p.field6Length()
+		l += p.field7Length()
+		l += p.field8Length()
+		l += p.field9Length()
+		l += p.field10Length()
+		l += p.field11Length()
+		l += p.field12Length()
+		l += p.field13Length()
+		l += p.field14Length()
+		l += p.field15Length()
+		l += p.field16Length()
+		l += p.field17Length()
+		l += p.field18Length()
+		l += p.field19Length()
+		l += p.field20Length()
+		l += p.field21Length()
+		l += p.field22Length()
+		l += p.field23Length()
+		l += p.field24Length()
+		l += p.field25Length()
+		l += p.field26Length()
+		l += p.field27Length()
+		l += p.field28Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *EblFilter) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.EblNo)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OriginCompanyID)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShipperCompanyID)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ConsigneeCompanyID)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.NotifyPartyCompanyID)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfReceipt)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.OceanVessel)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 8)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfLoading)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 9)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PortOfDescharge)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField10(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 10)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDestination)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField11(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 11)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfDelivery)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField12(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 12)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ShippingMarkes)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField13(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 13)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.QuantityOfPackages)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField14(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 14)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesGW)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField15(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 15)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.KindOfPackagesM)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField16(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 16)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DescriptionOfGoods)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField17(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 17)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.GrossWeight)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField18(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 18)
+	offset += thrift.Binary.WriteDouble(buf[offset:], p.Measurement)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField19(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 19)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FreightAndCharges)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField20(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 20)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.PlaceOfIssue)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField21(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 21)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssue)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField22(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 22)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DeliveryAgent)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField23(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 23)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.ShippedOnBoard)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField24(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 24)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.NumOfEbl)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField25(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 25)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.DateOfIssueDeadline)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField26(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 26)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Status)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField27(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 27)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferCompanyID)
+	return offset
+}
+
+func (p *EblFilter) fastWriteField28(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 28)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.CompanyID)
+	return offset
+}
+
+func (p *EblFilter) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.EblNo)
+	return l
+}
+
+func (p *EblFilter) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OriginCompanyID)
+	return l
+}
+
+func (p *EblFilter) field3Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShipperCompanyID)
+	return l
+}
+
+func (p *EblFilter) field4Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ConsigneeCompanyID)
+	return l
+}
+
+func (p *EblFilter) field5Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.NotifyPartyCompanyID)
+	return l
+}
+
+func (p *EblFilter) field6Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfReceipt)
+	return l
+}
+
+func (p *EblFilter) field7Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.OceanVessel)
+	return l
+}
+
+func (p *EblFilter) field8Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PortOfLoading)
+	return l
+}
+
+func (p *EblFilter) field9Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PortOfDescharge)
+	return l
+}
+
+func (p *EblFilter) field10Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDestination)
+	return l
+}
+
+func (p *EblFilter) field11Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfDelivery)
+	return l
+}
+
+func (p *EblFilter) field12Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.ShippingMarkes)
+	return l
+}
+
+func (p *EblFilter) field13Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *EblFilter) field14Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesGW)
+	return l
+}
+
+func (p *EblFilter) field15Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.KindOfPackagesM)
+	return l
+}
+
+func (p *EblFilter) field16Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.DescriptionOfGoods)
+	return l
+}
+
+func (p *EblFilter) field17Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *EblFilter) field18Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.DoubleLength()
+	return l
+}
+
+func (p *EblFilter) field19Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.FreightAndCharges)
+	return l
+}
+
+func (p *EblFilter) field20Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.PlaceOfIssue)
+	return l
+}
+
+func (p *EblFilter) field21Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblFilter) field22Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.DeliveryAgent)
+	return l
+}
+
+func (p *EblFilter) field23Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblFilter) field24Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblFilter) field25Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblFilter) field26Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Status)
+	return l
+}
+
+func (p *EblFilter) field27Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.TransferCompanyID)
+	return l
+}
+
+func (p *EblFilter) field28Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.CompanyID)
 	return l
 }
 
