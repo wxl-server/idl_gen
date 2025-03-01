@@ -14867,11 +14867,12 @@ func (p *Contract) Field7DeepEqual(src *string) bool {
 }
 
 type ContractFilter struct {
-	ContractNumber *string        `thrift:"ContractNumber,1,optional" frugal:"1,optional,string" json:"ContractNumber,omitempty"`
-	SignDate       *int64         `thrift:"SignDate,2,optional" frugal:"2,optional,i64" json:"SignDate,omitempty"`
-	EffectiveDate  *int64         `thrift:"EffectiveDate,3,optional" frugal:"3,optional,i64" json:"EffectiveDate,omitempty"`
-	Amount         *float64       `thrift:"Amount,4,optional" frugal:"4,optional,double" json:"Amount,omitempty"`
-	Status         ContractStatus `thrift:"Status,5,required" frugal:"5,required,ContractStatus" json:"Status"`
+	ContractNumber *string         `thrift:"ContractNumber,1,optional" frugal:"1,optional,string" json:"ContractNumber,omitempty"`
+	SignDate       *int64          `thrift:"SignDate,2,optional" frugal:"2,optional,i64" json:"SignDate,omitempty"`
+	EffectiveDate  *int64          `thrift:"EffectiveDate,3,optional" frugal:"3,optional,i64" json:"EffectiveDate,omitempty"`
+	Amount         *float64        `thrift:"Amount,4,optional" frugal:"4,optional,double" json:"Amount,omitempty"`
+	Status         *ContractStatus `thrift:"Status,5,optional" frugal:"5,optional,ContractStatus" json:"Status,omitempty"`
+	FileHash       *string         `thrift:"FileHash,6,optional" frugal:"6,optional,string" json:"FileHash,omitempty"`
 }
 
 func NewContractFilter() *ContractFilter {
@@ -14917,8 +14918,22 @@ func (p *ContractFilter) GetAmount() (v float64) {
 	return *p.Amount
 }
 
+var ContractFilter_Status_DEFAULT ContractStatus
+
 func (p *ContractFilter) GetStatus() (v ContractStatus) {
-	return p.Status
+	if !p.IsSetStatus() {
+		return ContractFilter_Status_DEFAULT
+	}
+	return *p.Status
+}
+
+var ContractFilter_FileHash_DEFAULT string
+
+func (p *ContractFilter) GetFileHash() (v string) {
+	if !p.IsSetFileHash() {
+		return ContractFilter_FileHash_DEFAULT
+	}
+	return *p.FileHash
 }
 func (p *ContractFilter) SetContractNumber(val *string) {
 	p.ContractNumber = val
@@ -14932,8 +14947,11 @@ func (p *ContractFilter) SetEffectiveDate(val *int64) {
 func (p *ContractFilter) SetAmount(val *float64) {
 	p.Amount = val
 }
-func (p *ContractFilter) SetStatus(val ContractStatus) {
+func (p *ContractFilter) SetStatus(val *ContractStatus) {
 	p.Status = val
+}
+func (p *ContractFilter) SetFileHash(val *string) {
+	p.FileHash = val
 }
 
 var fieldIDToName_ContractFilter = map[int16]string{
@@ -14942,6 +14960,7 @@ var fieldIDToName_ContractFilter = map[int16]string{
 	3: "EffectiveDate",
 	4: "Amount",
 	5: "Status",
+	6: "FileHash",
 }
 
 func (p *ContractFilter) IsSetContractNumber() bool {
@@ -14960,11 +14979,18 @@ func (p *ContractFilter) IsSetAmount() bool {
 	return p.Amount != nil
 }
 
+func (p *ContractFilter) IsSetStatus() bool {
+	return p.Status != nil
+}
+
+func (p *ContractFilter) IsSetFileHash() bool {
+	return p.FileHash != nil
+}
+
 func (p *ContractFilter) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
-	var issetStatus bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -15017,7 +15043,14 @@ func (p *ContractFilter) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField5(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetStatus = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField6(iprot); err != nil {
+					goto ReadFieldError
+				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -15034,10 +15067,6 @@ func (p *ContractFilter) Read(iprot thrift.TProtocol) (err error) {
 		goto ReadStructEndError
 	}
 
-	if !issetStatus {
-		fieldId = 5
-		goto RequiredFieldNotSetError
-	}
 	return nil
 ReadStructBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
@@ -15052,8 +15081,6 @@ ReadFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
-RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_ContractFilter[fieldId]))
 }
 
 func (p *ContractFilter) ReadField1(iprot thrift.TProtocol) error {
@@ -15102,13 +15129,25 @@ func (p *ContractFilter) ReadField4(iprot thrift.TProtocol) error {
 }
 func (p *ContractFilter) ReadField5(iprot thrift.TProtocol) error {
 
-	var _field ContractStatus
+	var _field *ContractStatus
 	if v, err := iprot.ReadI32(); err != nil {
 		return err
 	} else {
-		_field = ContractStatus(v)
+		tmp := ContractStatus(v)
+		_field = &tmp
 	}
 	p.Status = _field
+	return nil
+}
+func (p *ContractFilter) ReadField6(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.FileHash = _field
 	return nil
 }
 
@@ -15137,6 +15176,10 @@ func (p *ContractFilter) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField5(oprot); err != nil {
 			fieldId = 5
+			goto WriteFieldError
+		}
+		if err = p.writeField6(oprot); err != nil {
+			fieldId = 6
 			goto WriteFieldError
 		}
 	}
@@ -15234,20 +15277,41 @@ WriteFieldEndError:
 }
 
 func (p *ContractFilter) writeField5(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("Status", thrift.I32, 5); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI32(int32(p.Status)); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetStatus() {
+		if err = oprot.WriteFieldBegin("Status", thrift.I32, 5); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI32(int32(*p.Status)); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *ContractFilter) writeField6(oprot thrift.TProtocol) (err error) {
+	if p.IsSetFileHash() {
+		if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 6); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.FileHash); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
 }
 
 func (p *ContractFilter) String() string {
@@ -15277,6 +15341,9 @@ func (p *ContractFilter) DeepEqual(ano *ContractFilter) bool {
 		return false
 	}
 	if !p.Field5DeepEqual(ano.Status) {
+		return false
+	}
+	if !p.Field6DeepEqual(ano.FileHash) {
 		return false
 	}
 	return true
@@ -15330,9 +15397,26 @@ func (p *ContractFilter) Field4DeepEqual(src *float64) bool {
 	}
 	return true
 }
-func (p *ContractFilter) Field5DeepEqual(src ContractStatus) bool {
+func (p *ContractFilter) Field5DeepEqual(src *ContractStatus) bool {
 
-	if p.Status != src {
+	if p.Status == src {
+		return true
+	} else if p.Status == nil || src == nil {
+		return false
+	}
+	if *p.Status != *src {
+		return false
+	}
+	return true
+}
+func (p *ContractFilter) Field6DeepEqual(src *string) bool {
+
+	if p.FileHash == src {
+		return true
+	} else if p.FileHash == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.FileHash, *src) != 0 {
 		return false
 	}
 	return true
@@ -15787,6 +15871,7 @@ type DocumentFilter struct {
 	DocType     *DocType `thrift:"DocType,1,optional" frugal:"1,optional,DocType" json:"DocType,omitempty"`
 	DocNumber   *string  `thrift:"DocNumber,2,optional" frugal:"2,optional,string" json:"DocNumber,omitempty"`
 	RelatedDate *int64   `thrift:"RelatedDate,3,optional" frugal:"3,optional,i64" json:"RelatedDate,omitempty"`
+	FileHash    *string  `thrift:"FileHash,4,optional" frugal:"4,optional,string" json:"FileHash,omitempty"`
 }
 
 func NewDocumentFilter() *DocumentFilter {
@@ -15822,6 +15907,15 @@ func (p *DocumentFilter) GetRelatedDate() (v int64) {
 	}
 	return *p.RelatedDate
 }
+
+var DocumentFilter_FileHash_DEFAULT string
+
+func (p *DocumentFilter) GetFileHash() (v string) {
+	if !p.IsSetFileHash() {
+		return DocumentFilter_FileHash_DEFAULT
+	}
+	return *p.FileHash
+}
 func (p *DocumentFilter) SetDocType(val *DocType) {
 	p.DocType = val
 }
@@ -15831,11 +15925,15 @@ func (p *DocumentFilter) SetDocNumber(val *string) {
 func (p *DocumentFilter) SetRelatedDate(val *int64) {
 	p.RelatedDate = val
 }
+func (p *DocumentFilter) SetFileHash(val *string) {
+	p.FileHash = val
+}
 
 var fieldIDToName_DocumentFilter = map[int16]string{
 	1: "DocType",
 	2: "DocNumber",
 	3: "RelatedDate",
+	4: "FileHash",
 }
 
 func (p *DocumentFilter) IsSetDocType() bool {
@@ -15848,6 +15946,10 @@ func (p *DocumentFilter) IsSetDocNumber() bool {
 
 func (p *DocumentFilter) IsSetRelatedDate() bool {
 	return p.RelatedDate != nil
+}
+
+func (p *DocumentFilter) IsSetFileHash() bool {
+	return p.FileHash != nil
 }
 
 func (p *DocumentFilter) Read(iprot thrift.TProtocol) (err error) {
@@ -15888,6 +15990,14 @@ func (p *DocumentFilter) Read(iprot thrift.TProtocol) (err error) {
 		case 3:
 			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField4(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -15956,6 +16066,17 @@ func (p *DocumentFilter) ReadField3(iprot thrift.TProtocol) error {
 	p.RelatedDate = _field
 	return nil
 }
+func (p *DocumentFilter) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.FileHash = _field
+	return nil
+}
 
 func (p *DocumentFilter) Write(oprot thrift.TProtocol) (err error) {
 
@@ -15974,6 +16095,10 @@ func (p *DocumentFilter) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField3(oprot); err != nil {
 			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
 			goto WriteFieldError
 		}
 	}
@@ -16051,6 +16176,25 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
 }
 
+func (p *DocumentFilter) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetFileHash() {
+		if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.FileHash); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
 func (p *DocumentFilter) String() string {
 	if p == nil {
 		return "<nil>"
@@ -16072,6 +16216,9 @@ func (p *DocumentFilter) DeepEqual(ano *DocumentFilter) bool {
 		return false
 	}
 	if !p.Field3DeepEqual(ano.RelatedDate) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.FileHash) {
 		return false
 	}
 	return true
@@ -16109,6 +16256,18 @@ func (p *DocumentFilter) Field3DeepEqual(src *int64) bool {
 		return false
 	}
 	if *p.RelatedDate != *src {
+		return false
+	}
+	return true
+}
+func (p *DocumentFilter) Field4DeepEqual(src *string) bool {
+
+	if p.FileHash == src {
+		return true
+	} else if p.FileHash == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.FileHash, *src) != 0 {
 		return false
 	}
 	return true
