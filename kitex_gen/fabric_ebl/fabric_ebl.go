@@ -12103,10 +12103,10 @@ func (p *QueryInvoiceListResp) Field2DeepEqual(src int64) bool {
 }
 
 type QueryContractListReq struct {
-	Token    string    `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	PageSize int64     `thrift:"pageSize,2,required" frugal:"2,required,i64" json:"pageSize"`
-	PageNum  int64     `thrift:"pageNum,3,required" frugal:"3,required,i64" json:"pageNum"`
-	Contract *Contract `thrift:"contract,4,required" frugal:"4,required,Contract" json:"contract"`
+	Token    string          `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	PageSize int64           `thrift:"pageSize,2,required" frugal:"2,required,i64" json:"pageSize"`
+	PageNum  int64           `thrift:"pageNum,3,required" frugal:"3,required,i64" json:"pageNum"`
+	Contract *ContractFilter `thrift:"contract,4,optional" frugal:"4,optional,ContractFilter" json:"contract,omitempty"`
 }
 
 func NewQueryContractListReq() *QueryContractListReq {
@@ -12128,9 +12128,9 @@ func (p *QueryContractListReq) GetPageNum() (v int64) {
 	return p.PageNum
 }
 
-var QueryContractListReq_Contract_DEFAULT *Contract
+var QueryContractListReq_Contract_DEFAULT *ContractFilter
 
-func (p *QueryContractListReq) GetContract() (v *Contract) {
+func (p *QueryContractListReq) GetContract() (v *ContractFilter) {
 	if !p.IsSetContract() {
 		return QueryContractListReq_Contract_DEFAULT
 	}
@@ -12145,7 +12145,7 @@ func (p *QueryContractListReq) SetPageSize(val int64) {
 func (p *QueryContractListReq) SetPageNum(val int64) {
 	p.PageNum = val
 }
-func (p *QueryContractListReq) SetContract(val *Contract) {
+func (p *QueryContractListReq) SetContract(val *ContractFilter) {
 	p.Contract = val
 }
 
@@ -12167,7 +12167,6 @@ func (p *QueryContractListReq) Read(iprot thrift.TProtocol) (err error) {
 	var issetToken bool = false
 	var issetPageSize bool = false
 	var issetPageNum bool = false
-	var issetContract bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -12215,7 +12214,6 @@ func (p *QueryContractListReq) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField4(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetContract = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -12244,11 +12242,6 @@ func (p *QueryContractListReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetPageNum {
 		fieldId = 3
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetContract {
-		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -12303,7 +12296,7 @@ func (p *QueryContractListReq) ReadField3(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *QueryContractListReq) ReadField4(iprot thrift.TProtocol) error {
-	_field := NewContract()
+	_field := NewContractFilter()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -12404,14 +12397,16 @@ WriteFieldEndError:
 }
 
 func (p *QueryContractListReq) writeField4(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("contract", thrift.STRUCT, 4); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := p.Contract.Write(oprot); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetContract() {
+		if err = oprot.WriteFieldBegin("contract", thrift.STRUCT, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := p.Contract.Write(oprot); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -12470,7 +12465,7 @@ func (p *QueryContractListReq) Field3DeepEqual(src int64) bool {
 	}
 	return true
 }
-func (p *QueryContractListReq) Field4DeepEqual(src *Contract) bool {
+func (p *QueryContractListReq) Field4DeepEqual(src *ContractFilter) bool {
 
 	if !p.Contract.DeepEqual(src) {
 		return false
@@ -12743,10 +12738,10 @@ func (p *QueryContractListResp) Field2DeepEqual(src int64) bool {
 }
 
 type QueryDocumentListReq struct {
-	Token    string    `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	PageSize int64     `thrift:"pageSize,2,required" frugal:"2,required,i64" json:"pageSize"`
-	PageNum  int64     `thrift:"pageNum,3,required" frugal:"3,required,i64" json:"pageNum"`
-	Document *Document `thrift:"document,4,required" frugal:"4,required,Document" json:"document"`
+	Token    string          `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	PageSize int64           `thrift:"pageSize,2,required" frugal:"2,required,i64" json:"pageSize"`
+	PageNum  int64           `thrift:"pageNum,3,required" frugal:"3,required,i64" json:"pageNum"`
+	Document *DocumentFilter `thrift:"document,4,optional" frugal:"4,optional,DocumentFilter" json:"document,omitempty"`
 }
 
 func NewQueryDocumentListReq() *QueryDocumentListReq {
@@ -12768,9 +12763,9 @@ func (p *QueryDocumentListReq) GetPageNum() (v int64) {
 	return p.PageNum
 }
 
-var QueryDocumentListReq_Document_DEFAULT *Document
+var QueryDocumentListReq_Document_DEFAULT *DocumentFilter
 
-func (p *QueryDocumentListReq) GetDocument() (v *Document) {
+func (p *QueryDocumentListReq) GetDocument() (v *DocumentFilter) {
 	if !p.IsSetDocument() {
 		return QueryDocumentListReq_Document_DEFAULT
 	}
@@ -12785,7 +12780,7 @@ func (p *QueryDocumentListReq) SetPageSize(val int64) {
 func (p *QueryDocumentListReq) SetPageNum(val int64) {
 	p.PageNum = val
 }
-func (p *QueryDocumentListReq) SetDocument(val *Document) {
+func (p *QueryDocumentListReq) SetDocument(val *DocumentFilter) {
 	p.Document = val
 }
 
@@ -12807,7 +12802,6 @@ func (p *QueryDocumentListReq) Read(iprot thrift.TProtocol) (err error) {
 	var issetToken bool = false
 	var issetPageSize bool = false
 	var issetPageNum bool = false
-	var issetDocument bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -12855,7 +12849,6 @@ func (p *QueryDocumentListReq) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField4(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetDocument = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -12884,11 +12877,6 @@ func (p *QueryDocumentListReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetPageNum {
 		fieldId = 3
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDocument {
-		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -12943,7 +12931,7 @@ func (p *QueryDocumentListReq) ReadField3(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *QueryDocumentListReq) ReadField4(iprot thrift.TProtocol) error {
-	_field := NewDocument()
+	_field := NewDocumentFilter()
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
@@ -13044,14 +13032,16 @@ WriteFieldEndError:
 }
 
 func (p *QueryDocumentListReq) writeField4(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("document", thrift.STRUCT, 4); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := p.Document.Write(oprot); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetDocument() {
+		if err = oprot.WriteFieldBegin("document", thrift.STRUCT, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := p.Document.Write(oprot); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -13110,7 +13100,7 @@ func (p *QueryDocumentListReq) Field3DeepEqual(src int64) bool {
 	}
 	return true
 }
-func (p *QueryDocumentListReq) Field4DeepEqual(src *Document) bool {
+func (p *QueryDocumentListReq) Field4DeepEqual(src *DocumentFilter) bool {
 
 	if !p.Document.DeepEqual(src) {
 		return false
@@ -14885,6 +14875,478 @@ func (p *Contract) Field7DeepEqual(src *string) bool {
 	return true
 }
 
+type ContractFilter struct {
+	ContractNumber *string        `thrift:"ContractNumber,1,optional" frugal:"1,optional,string" json:"ContractNumber,omitempty"`
+	SignDate       *int64         `thrift:"SignDate,2,optional" frugal:"2,optional,i64" json:"SignDate,omitempty"`
+	EffectiveDate  *int64         `thrift:"EffectiveDate,3,optional" frugal:"3,optional,i64" json:"EffectiveDate,omitempty"`
+	Amount         *float64       `thrift:"Amount,4,optional" frugal:"4,optional,double" json:"Amount,omitempty"`
+	Status         ContractStatus `thrift:"Status,5,required" frugal:"5,required,ContractStatus" json:"Status"`
+}
+
+func NewContractFilter() *ContractFilter {
+	return &ContractFilter{}
+}
+
+func (p *ContractFilter) InitDefault() {
+}
+
+var ContractFilter_ContractNumber_DEFAULT string
+
+func (p *ContractFilter) GetContractNumber() (v string) {
+	if !p.IsSetContractNumber() {
+		return ContractFilter_ContractNumber_DEFAULT
+	}
+	return *p.ContractNumber
+}
+
+var ContractFilter_SignDate_DEFAULT int64
+
+func (p *ContractFilter) GetSignDate() (v int64) {
+	if !p.IsSetSignDate() {
+		return ContractFilter_SignDate_DEFAULT
+	}
+	return *p.SignDate
+}
+
+var ContractFilter_EffectiveDate_DEFAULT int64
+
+func (p *ContractFilter) GetEffectiveDate() (v int64) {
+	if !p.IsSetEffectiveDate() {
+		return ContractFilter_EffectiveDate_DEFAULT
+	}
+	return *p.EffectiveDate
+}
+
+var ContractFilter_Amount_DEFAULT float64
+
+func (p *ContractFilter) GetAmount() (v float64) {
+	if !p.IsSetAmount() {
+		return ContractFilter_Amount_DEFAULT
+	}
+	return *p.Amount
+}
+
+func (p *ContractFilter) GetStatus() (v ContractStatus) {
+	return p.Status
+}
+func (p *ContractFilter) SetContractNumber(val *string) {
+	p.ContractNumber = val
+}
+func (p *ContractFilter) SetSignDate(val *int64) {
+	p.SignDate = val
+}
+func (p *ContractFilter) SetEffectiveDate(val *int64) {
+	p.EffectiveDate = val
+}
+func (p *ContractFilter) SetAmount(val *float64) {
+	p.Amount = val
+}
+func (p *ContractFilter) SetStatus(val ContractStatus) {
+	p.Status = val
+}
+
+var fieldIDToName_ContractFilter = map[int16]string{
+	1: "ContractNumber",
+	2: "SignDate",
+	3: "EffectiveDate",
+	4: "Amount",
+	5: "Status",
+}
+
+func (p *ContractFilter) IsSetContractNumber() bool {
+	return p.ContractNumber != nil
+}
+
+func (p *ContractFilter) IsSetSignDate() bool {
+	return p.SignDate != nil
+}
+
+func (p *ContractFilter) IsSetEffectiveDate() bool {
+	return p.EffectiveDate != nil
+}
+
+func (p *ContractFilter) IsSetAmount() bool {
+	return p.Amount != nil
+}
+
+func (p *ContractFilter) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetStatus bool = false
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 3:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.DOUBLE {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.I32 {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetStatus = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	if !issetStatus {
+		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ContractFilter[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+RequiredFieldNotSetError:
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_ContractFilter[fieldId]))
+}
+
+func (p *ContractFilter) ReadField1(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.ContractNumber = _field
+	return nil
+}
+func (p *ContractFilter) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.SignDate = _field
+	return nil
+}
+func (p *ContractFilter) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.EffectiveDate = _field
+	return nil
+}
+func (p *ContractFilter) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *float64
+	if v, err := iprot.ReadDouble(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Amount = _field
+	return nil
+}
+func (p *ContractFilter) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field ContractStatus
+	if v, err := iprot.ReadI32(); err != nil {
+		return err
+	} else {
+		_field = ContractStatus(v)
+	}
+	p.Status = _field
+	return nil
+}
+
+func (p *ContractFilter) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("ContractFilter"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *ContractFilter) writeField1(oprot thrift.TProtocol) (err error) {
+	if p.IsSetContractNumber() {
+		if err = oprot.WriteFieldBegin("ContractNumber", thrift.STRING, 1); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.ContractNumber); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *ContractFilter) writeField2(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSignDate() {
+		if err = oprot.WriteFieldBegin("SignDate", thrift.I64, 2); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.SignDate); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
+func (p *ContractFilter) writeField3(oprot thrift.TProtocol) (err error) {
+	if p.IsSetEffectiveDate() {
+		if err = oprot.WriteFieldBegin("EffectiveDate", thrift.I64, 3); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.EffectiveDate); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *ContractFilter) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetAmount() {
+		if err = oprot.WriteFieldBegin("Amount", thrift.DOUBLE, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteDouble(*p.Amount); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
+func (p *ContractFilter) writeField5(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("Status", thrift.I32, 5); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI32(int32(p.Status)); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *ContractFilter) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("ContractFilter(%+v)", *p)
+
+}
+
+func (p *ContractFilter) DeepEqual(ano *ContractFilter) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.ContractNumber) {
+		return false
+	}
+	if !p.Field2DeepEqual(ano.SignDate) {
+		return false
+	}
+	if !p.Field3DeepEqual(ano.EffectiveDate) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.Amount) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.Status) {
+		return false
+	}
+	return true
+}
+
+func (p *ContractFilter) Field1DeepEqual(src *string) bool {
+
+	if p.ContractNumber == src {
+		return true
+	} else if p.ContractNumber == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.ContractNumber, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *ContractFilter) Field2DeepEqual(src *int64) bool {
+
+	if p.SignDate == src {
+		return true
+	} else if p.SignDate == nil || src == nil {
+		return false
+	}
+	if *p.SignDate != *src {
+		return false
+	}
+	return true
+}
+func (p *ContractFilter) Field3DeepEqual(src *int64) bool {
+
+	if p.EffectiveDate == src {
+		return true
+	} else if p.EffectiveDate == nil || src == nil {
+		return false
+	}
+	if *p.EffectiveDate != *src {
+		return false
+	}
+	return true
+}
+func (p *ContractFilter) Field4DeepEqual(src *float64) bool {
+
+	if p.Amount == src {
+		return true
+	} else if p.Amount == nil || src == nil {
+		return false
+	}
+	if *p.Amount != *src {
+		return false
+	}
+	return true
+}
+func (p *ContractFilter) Field5DeepEqual(src ContractStatus) bool {
+
+	if p.Status != src {
+		return false
+	}
+	return true
+}
+
 type Document struct {
 	DocType     DocType `thrift:"DocType,1,required" frugal:"1,required,DocType" json:"DocType"`
 	DocNumber   string  `thrift:"DocNumber,2,required" frugal:"2,required,string" json:"DocNumber"`
@@ -15334,6 +15796,337 @@ func (p *Document) Field5DeepEqual(src *string) bool {
 		return false
 	}
 	if strings.Compare(*p.Extra, *src) != 0 {
+		return false
+	}
+	return true
+}
+
+type DocumentFilter struct {
+	DocType     *DocType `thrift:"DocType,1,optional" frugal:"1,optional,DocType" json:"DocType,omitempty"`
+	DocNumber   *string  `thrift:"DocNumber,2,optional" frugal:"2,optional,string" json:"DocNumber,omitempty"`
+	RelatedDate *int64   `thrift:"RelatedDate,3,optional" frugal:"3,optional,i64" json:"RelatedDate,omitempty"`
+}
+
+func NewDocumentFilter() *DocumentFilter {
+	return &DocumentFilter{}
+}
+
+func (p *DocumentFilter) InitDefault() {
+}
+
+var DocumentFilter_DocType_DEFAULT DocType
+
+func (p *DocumentFilter) GetDocType() (v DocType) {
+	if !p.IsSetDocType() {
+		return DocumentFilter_DocType_DEFAULT
+	}
+	return *p.DocType
+}
+
+var DocumentFilter_DocNumber_DEFAULT string
+
+func (p *DocumentFilter) GetDocNumber() (v string) {
+	if !p.IsSetDocNumber() {
+		return DocumentFilter_DocNumber_DEFAULT
+	}
+	return *p.DocNumber
+}
+
+var DocumentFilter_RelatedDate_DEFAULT int64
+
+func (p *DocumentFilter) GetRelatedDate() (v int64) {
+	if !p.IsSetRelatedDate() {
+		return DocumentFilter_RelatedDate_DEFAULT
+	}
+	return *p.RelatedDate
+}
+func (p *DocumentFilter) SetDocType(val *DocType) {
+	p.DocType = val
+}
+func (p *DocumentFilter) SetDocNumber(val *string) {
+	p.DocNumber = val
+}
+func (p *DocumentFilter) SetRelatedDate(val *int64) {
+	p.RelatedDate = val
+}
+
+var fieldIDToName_DocumentFilter = map[int16]string{
+	1: "DocType",
+	2: "DocNumber",
+	3: "RelatedDate",
+}
+
+func (p *DocumentFilter) IsSetDocType() bool {
+	return p.DocType != nil
+}
+
+func (p *DocumentFilter) IsSetDocNumber() bool {
+	return p.DocNumber != nil
+}
+
+func (p *DocumentFilter) IsSetRelatedDate() bool {
+	return p.RelatedDate != nil
+}
+
+func (p *DocumentFilter) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.I32 {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 3:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_DocumentFilter[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *DocumentFilter) ReadField1(iprot thrift.TProtocol) error {
+
+	var _field *DocType
+	if v, err := iprot.ReadI32(); err != nil {
+		return err
+	} else {
+		tmp := DocType(v)
+		_field = &tmp
+	}
+	p.DocType = _field
+	return nil
+}
+func (p *DocumentFilter) ReadField2(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.DocNumber = _field
+	return nil
+}
+func (p *DocumentFilter) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.RelatedDate = _field
+	return nil
+}
+
+func (p *DocumentFilter) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("DocumentFilter"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *DocumentFilter) writeField1(oprot thrift.TProtocol) (err error) {
+	if p.IsSetDocType() {
+		if err = oprot.WriteFieldBegin("DocType", thrift.I32, 1); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI32(int32(*p.DocType)); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *DocumentFilter) writeField2(oprot thrift.TProtocol) (err error) {
+	if p.IsSetDocNumber() {
+		if err = oprot.WriteFieldBegin("DocNumber", thrift.STRING, 2); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.DocNumber); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
+func (p *DocumentFilter) writeField3(oprot thrift.TProtocol) (err error) {
+	if p.IsSetRelatedDate() {
+		if err = oprot.WriteFieldBegin("RelatedDate", thrift.I64, 3); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.RelatedDate); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *DocumentFilter) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("DocumentFilter(%+v)", *p)
+
+}
+
+func (p *DocumentFilter) DeepEqual(ano *DocumentFilter) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.DocType) {
+		return false
+	}
+	if !p.Field2DeepEqual(ano.DocNumber) {
+		return false
+	}
+	if !p.Field3DeepEqual(ano.RelatedDate) {
+		return false
+	}
+	return true
+}
+
+func (p *DocumentFilter) Field1DeepEqual(src *DocType) bool {
+
+	if p.DocType == src {
+		return true
+	} else if p.DocType == nil || src == nil {
+		return false
+	}
+	if *p.DocType != *src {
+		return false
+	}
+	return true
+}
+func (p *DocumentFilter) Field2DeepEqual(src *string) bool {
+
+	if p.DocNumber == src {
+		return true
+	} else if p.DocNumber == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.DocNumber, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *DocumentFilter) Field3DeepEqual(src *int64) bool {
+
+	if p.RelatedDate == src {
+		return true
+	} else if p.RelatedDate == nil || src == nil {
+		return false
+	}
+	if *p.RelatedDate != *src {
 		return false
 	}
 	return true

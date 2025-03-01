@@ -8255,7 +8255,6 @@ func (p *QueryContractListReq) FastRead(buf []byte) (int, error) {
 	var issetToken bool = false
 	var issetPageSize bool = false
 	var issetPageNum bool = false
-	var issetContract bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -8318,7 +8317,6 @@ func (p *QueryContractListReq) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetContract = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -8347,11 +8345,6 @@ func (p *QueryContractListReq) FastRead(buf []byte) (int, error) {
 
 	if !issetPageNum {
 		fieldId = 3
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetContract {
-		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -8409,7 +8402,7 @@ func (p *QueryContractListReq) FastReadField3(buf []byte) (int, error) {
 
 func (p *QueryContractListReq) FastReadField4(buf []byte) (int, error) {
 	offset := 0
-	_field := NewContract()
+	_field := NewContractFilter()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {
@@ -8470,8 +8463,10 @@ func (p *QueryContractListReq) fastWriteField3(buf []byte, w thrift.NocopyWriter
 
 func (p *QueryContractListReq) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 4)
-	offset += p.Contract.FastWriteNocopy(buf[offset:], w)
+	if p.IsSetContract() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 4)
+		offset += p.Contract.FastWriteNocopy(buf[offset:], w)
+	}
 	return offset
 }
 
@@ -8498,8 +8493,10 @@ func (p *QueryContractListReq) field3Length() int {
 
 func (p *QueryContractListReq) field4Length() int {
 	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += p.Contract.BLength()
+	if p.IsSetContract() {
+		l += thrift.Binary.FieldBeginLength()
+		l += p.Contract.BLength()
+	}
 	return l
 }
 
@@ -8693,7 +8690,6 @@ func (p *QueryDocumentListReq) FastRead(buf []byte) (int, error) {
 	var issetToken bool = false
 	var issetPageSize bool = false
 	var issetPageNum bool = false
-	var issetDocument bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -8756,7 +8752,6 @@ func (p *QueryDocumentListReq) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetDocument = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -8785,11 +8780,6 @@ func (p *QueryDocumentListReq) FastRead(buf []byte) (int, error) {
 
 	if !issetPageNum {
 		fieldId = 3
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetDocument {
-		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -8847,7 +8837,7 @@ func (p *QueryDocumentListReq) FastReadField3(buf []byte) (int, error) {
 
 func (p *QueryDocumentListReq) FastReadField4(buf []byte) (int, error) {
 	offset := 0
-	_field := NewDocument()
+	_field := NewDocumentFilter()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
 	} else {
@@ -8908,8 +8898,10 @@ func (p *QueryDocumentListReq) fastWriteField3(buf []byte, w thrift.NocopyWriter
 
 func (p *QueryDocumentListReq) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 4)
-	offset += p.Document.FastWriteNocopy(buf[offset:], w)
+	if p.IsSetDocument() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 4)
+		offset += p.Document.FastWriteNocopy(buf[offset:], w)
+	}
 	return offset
 }
 
@@ -8936,8 +8928,10 @@ func (p *QueryDocumentListReq) field3Length() int {
 
 func (p *QueryDocumentListReq) field4Length() int {
 	l := 0
-	l += thrift.Binary.FieldBeginLength()
-	l += p.Document.BLength()
+	if p.IsSetDocument() {
+		l += thrift.Binary.FieldBeginLength()
+		l += p.Document.BLength()
+	}
 	return l
 }
 
@@ -10138,6 +10132,306 @@ func (p *Contract) field7Length() int {
 	return l
 }
 
+func (p *ContractFilter) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetStatus bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 3:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 4:
+			if fieldTypeId == thrift.DOUBLE {
+				l, err = p.FastReadField4(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 5:
+			if fieldTypeId == thrift.I32 {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetStatus = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetStatus {
+		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_ContractFilter[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_ContractFilter[fieldId]))
+}
+
+func (p *ContractFilter) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.ContractNumber = _field
+	return offset, nil
+}
+
+func (p *ContractFilter) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.SignDate = _field
+	return offset, nil
+}
+
+func (p *ContractFilter) FastReadField3(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.EffectiveDate = _field
+	return offset, nil
+}
+
+func (p *ContractFilter) FastReadField4(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *float64
+	if v, l, err := thrift.Binary.ReadDouble(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.Amount = _field
+	return offset, nil
+}
+
+func (p *ContractFilter) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field ContractStatus
+	if v, l, err := thrift.Binary.ReadI32(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+
+		_field = ContractStatus(v)
+	}
+	p.Status = _field
+	return offset, nil
+}
+
+func (p *ContractFilter) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *ContractFilter) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField3(buf[offset:], w)
+		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *ContractFilter) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+		l += p.field3Length()
+		l += p.field4Length()
+		l += p.field5Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *ContractFilter) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetContractNumber() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.ContractNumber)
+	}
+	return offset
+}
+
+func (p *ContractFilter) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetSignDate() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 2)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.SignDate)
+	}
+	return offset
+}
+
+func (p *ContractFilter) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetEffectiveDate() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 3)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.EffectiveDate)
+	}
+	return offset
+}
+
+func (p *ContractFilter) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetAmount() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.DOUBLE, 4)
+		offset += thrift.Binary.WriteDouble(buf[offset:], *p.Amount)
+	}
+	return offset
+}
+
+func (p *ContractFilter) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I32, 5)
+	offset += thrift.Binary.WriteI32(buf[offset:], int32(p.Status))
+	return offset
+}
+
+func (p *ContractFilter) field1Length() int {
+	l := 0
+	if p.IsSetContractNumber() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.ContractNumber)
+	}
+	return l
+}
+
+func (p *ContractFilter) field2Length() int {
+	l := 0
+	if p.IsSetSignDate() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.I64Length()
+	}
+	return l
+}
+
+func (p *ContractFilter) field3Length() int {
+	l := 0
+	if p.IsSetEffectiveDate() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.I64Length()
+	}
+	return l
+}
+
+func (p *ContractFilter) field4Length() int {
+	l := 0
+	if p.IsSetAmount() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.DoubleLength()
+	}
+	return l
+}
+
+func (p *ContractFilter) field5Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I32Length()
+	return l
+}
+
 func (p *Document) FastRead(buf []byte) (int, error) {
 
 	var err error
@@ -10440,6 +10734,207 @@ func (p *Document) field5Length() int {
 	if p.IsSetExtra() {
 		l += thrift.Binary.FieldBeginLength()
 		l += thrift.Binary.StringLengthNocopy(*p.Extra)
+	}
+	return l
+}
+
+func (p *DocumentFilter) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.I32 {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 3:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_DocumentFilter[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *DocumentFilter) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *DocType
+	if v, l, err := thrift.Binary.ReadI32(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+
+		tmp := DocType(v)
+		_field = &tmp
+	}
+	p.DocType = _field
+	return offset, nil
+}
+
+func (p *DocumentFilter) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.DocNumber = _field
+	return offset, nil
+}
+
+func (p *DocumentFilter) FastReadField3(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.RelatedDate = _field
+	return offset, nil
+}
+
+func (p *DocumentFilter) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *DocumentFilter) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField3(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+		offset += p.fastWriteField2(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *DocumentFilter) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+		l += p.field3Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *DocumentFilter) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetDocType() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I32, 1)
+		offset += thrift.Binary.WriteI32(buf[offset:], int32(*p.DocType))
+	}
+	return offset
+}
+
+func (p *DocumentFilter) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetDocNumber() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.DocNumber)
+	}
+	return offset
+}
+
+func (p *DocumentFilter) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetRelatedDate() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 3)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.RelatedDate)
+	}
+	return offset
+}
+
+func (p *DocumentFilter) field1Length() int {
+	l := 0
+	if p.IsSetDocType() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.I32Length()
+	}
+	return l
+}
+
+func (p *DocumentFilter) field2Length() int {
+	l := 0
+	if p.IsSetDocNumber() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.DocNumber)
+	}
+	return l
+}
+
+func (p *DocumentFilter) field3Length() int {
+	l := 0
+	if p.IsSetRelatedDate() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.I64Length()
 	}
 	return l
 }
