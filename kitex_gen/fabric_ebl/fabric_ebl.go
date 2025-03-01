@@ -13379,8 +13379,8 @@ type Invoice struct {
 	Type          InvoiceType `thrift:"Type,4,required" frugal:"4,required,InvoiceType" json:"Type"`
 	FileHash      string      `thrift:"FileHash,5,required" frugal:"5,required,string" json:"FileHash"`
 	Extra         *string     `thrift:"extra,6,optional" frugal:"6,optional,string" json:"extra,omitempty"`
-	CreatedAt     int64       `thrift:"CreatedAt,7,required" frugal:"7,required,i64" json:"CreatedAt"`
-	UpdatedAt     int64       `thrift:"UpdatedAt,8,required" frugal:"8,required,i64" json:"UpdatedAt"`
+	CreatedAt     *int64      `thrift:"CreatedAt,7,optional" frugal:"7,optional,i64" json:"CreatedAt,omitempty"`
+	UpdatedAt     *int64      `thrift:"UpdatedAt,8,optional" frugal:"8,optional,i64" json:"UpdatedAt,omitempty"`
 }
 
 func NewInvoice() *Invoice {
@@ -13419,12 +13419,22 @@ func (p *Invoice) GetExtra() (v string) {
 	return *p.Extra
 }
 
+var Invoice_CreatedAt_DEFAULT int64
+
 func (p *Invoice) GetCreatedAt() (v int64) {
-	return p.CreatedAt
+	if !p.IsSetCreatedAt() {
+		return Invoice_CreatedAt_DEFAULT
+	}
+	return *p.CreatedAt
 }
 
+var Invoice_UpdatedAt_DEFAULT int64
+
 func (p *Invoice) GetUpdatedAt() (v int64) {
-	return p.UpdatedAt
+	if !p.IsSetUpdatedAt() {
+		return Invoice_UpdatedAt_DEFAULT
+	}
+	return *p.UpdatedAt
 }
 func (p *Invoice) SetInvoiceNumber(val string) {
 	p.InvoiceNumber = val
@@ -13444,10 +13454,10 @@ func (p *Invoice) SetFileHash(val string) {
 func (p *Invoice) SetExtra(val *string) {
 	p.Extra = val
 }
-func (p *Invoice) SetCreatedAt(val int64) {
+func (p *Invoice) SetCreatedAt(val *int64) {
 	p.CreatedAt = val
 }
-func (p *Invoice) SetUpdatedAt(val int64) {
+func (p *Invoice) SetUpdatedAt(val *int64) {
 	p.UpdatedAt = val
 }
 
@@ -13466,6 +13476,14 @@ func (p *Invoice) IsSetExtra() bool {
 	return p.Extra != nil
 }
 
+func (p *Invoice) IsSetCreatedAt() bool {
+	return p.CreatedAt != nil
+}
+
+func (p *Invoice) IsSetUpdatedAt() bool {
+	return p.UpdatedAt != nil
+}
+
 func (p *Invoice) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
@@ -13475,8 +13493,6 @@ func (p *Invoice) Read(iprot thrift.TProtocol) (err error) {
 	var issetIssueDate bool = false
 	var issetType bool = false
 	var issetFileHash bool = false
-	var issetCreatedAt bool = false
-	var issetUpdatedAt bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -13550,7 +13566,6 @@ func (p *Invoice) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField7(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetCreatedAt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -13559,7 +13574,6 @@ func (p *Invoice) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField8(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetUpdatedAt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -13598,16 +13612,6 @@ func (p *Invoice) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetFileHash {
 		fieldId = 5
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCreatedAt {
-		fieldId = 7
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetUpdatedAt {
-		fieldId = 8
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -13696,22 +13700,22 @@ func (p *Invoice) ReadField6(iprot thrift.TProtocol) error {
 }
 func (p *Invoice) ReadField7(iprot thrift.TProtocol) error {
 
-	var _field int64
+	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = &v
 	}
 	p.CreatedAt = _field
 	return nil
 }
 func (p *Invoice) ReadField8(iprot thrift.TProtocol) error {
 
-	var _field int64
+	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = &v
 	}
 	p.UpdatedAt = _field
 	return nil
@@ -13879,14 +13883,16 @@ WriteFieldEndError:
 }
 
 func (p *Invoice) writeField7(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("CreatedAt", thrift.I64, 7); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.CreatedAt); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetCreatedAt() {
+		if err = oprot.WriteFieldBegin("CreatedAt", thrift.I64, 7); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedAt); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -13896,14 +13902,16 @@ WriteFieldEndError:
 }
 
 func (p *Invoice) writeField8(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("UpdatedAt", thrift.I64, 8); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.UpdatedAt); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetUpdatedAt() {
+		if err = oprot.WriteFieldBegin("UpdatedAt", thrift.I64, 8); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.UpdatedAt); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -14000,16 +14008,26 @@ func (p *Invoice) Field6DeepEqual(src *string) bool {
 	}
 	return true
 }
-func (p *Invoice) Field7DeepEqual(src int64) bool {
+func (p *Invoice) Field7DeepEqual(src *int64) bool {
 
-	if p.CreatedAt != src {
+	if p.CreatedAt == src {
+		return true
+	} else if p.CreatedAt == nil || src == nil {
+		return false
+	}
+	if *p.CreatedAt != *src {
 		return false
 	}
 	return true
 }
-func (p *Invoice) Field8DeepEqual(src int64) bool {
+func (p *Invoice) Field8DeepEqual(src *int64) bool {
 
-	if p.UpdatedAt != src {
+	if p.UpdatedAt == src {
+		return true
+	} else if p.UpdatedAt == nil || src == nil {
+		return false
+	}
+	if *p.UpdatedAt != *src {
 		return false
 	}
 	return true
@@ -14504,8 +14522,8 @@ type Contract struct {
 	Status         ContractStatus `thrift:"Status,5,required" frugal:"5,required,ContractStatus" json:"Status"`
 	FileHash       string         `thrift:"FileHash,6,required" frugal:"6,required,string" json:"FileHash"`
 	Extra          *string        `thrift:"extra,7,optional" frugal:"7,optional,string" json:"extra,omitempty"`
-	CreatedAt      int64          `thrift:"CreatedAt,8,required" frugal:"8,required,i64" json:"CreatedAt"`
-	UpdatedAt      int64          `thrift:"UpdatedAt,9,required" frugal:"9,required,i64" json:"UpdatedAt"`
+	CreatedAt      *int64         `thrift:"CreatedAt,8,optional" frugal:"8,optional,i64" json:"CreatedAt,omitempty"`
+	UpdatedAt      *int64         `thrift:"UpdatedAt,9,optional" frugal:"9,optional,i64" json:"UpdatedAt,omitempty"`
 }
 
 func NewContract() *Contract {
@@ -14548,12 +14566,22 @@ func (p *Contract) GetExtra() (v string) {
 	return *p.Extra
 }
 
+var Contract_CreatedAt_DEFAULT int64
+
 func (p *Contract) GetCreatedAt() (v int64) {
-	return p.CreatedAt
+	if !p.IsSetCreatedAt() {
+		return Contract_CreatedAt_DEFAULT
+	}
+	return *p.CreatedAt
 }
 
+var Contract_UpdatedAt_DEFAULT int64
+
 func (p *Contract) GetUpdatedAt() (v int64) {
-	return p.UpdatedAt
+	if !p.IsSetUpdatedAt() {
+		return Contract_UpdatedAt_DEFAULT
+	}
+	return *p.UpdatedAt
 }
 func (p *Contract) SetContractNumber(val string) {
 	p.ContractNumber = val
@@ -14576,10 +14604,10 @@ func (p *Contract) SetFileHash(val string) {
 func (p *Contract) SetExtra(val *string) {
 	p.Extra = val
 }
-func (p *Contract) SetCreatedAt(val int64) {
+func (p *Contract) SetCreatedAt(val *int64) {
 	p.CreatedAt = val
 }
-func (p *Contract) SetUpdatedAt(val int64) {
+func (p *Contract) SetUpdatedAt(val *int64) {
 	p.UpdatedAt = val
 }
 
@@ -14599,6 +14627,14 @@ func (p *Contract) IsSetExtra() bool {
 	return p.Extra != nil
 }
 
+func (p *Contract) IsSetCreatedAt() bool {
+	return p.CreatedAt != nil
+}
+
+func (p *Contract) IsSetUpdatedAt() bool {
+	return p.UpdatedAt != nil
+}
+
 func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
@@ -14609,8 +14645,6 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 	var issetAmount bool = false
 	var issetStatus bool = false
 	var issetFileHash bool = false
-	var issetCreatedAt bool = false
-	var issetUpdatedAt bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -14693,7 +14727,6 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField8(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetCreatedAt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -14702,7 +14735,6 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField9(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetUpdatedAt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -14746,16 +14778,6 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetFileHash {
 		fieldId = 6
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCreatedAt {
-		fieldId = 8
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetUpdatedAt {
-		fieldId = 9
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -14855,22 +14877,22 @@ func (p *Contract) ReadField7(iprot thrift.TProtocol) error {
 }
 func (p *Contract) ReadField8(iprot thrift.TProtocol) error {
 
-	var _field int64
+	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = &v
 	}
 	p.CreatedAt = _field
 	return nil
 }
 func (p *Contract) ReadField9(iprot thrift.TProtocol) error {
 
-	var _field int64
+	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = &v
 	}
 	p.UpdatedAt = _field
 	return nil
@@ -15059,14 +15081,16 @@ WriteFieldEndError:
 }
 
 func (p *Contract) writeField8(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("CreatedAt", thrift.I64, 8); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.CreatedAt); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetCreatedAt() {
+		if err = oprot.WriteFieldBegin("CreatedAt", thrift.I64, 8); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedAt); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -15076,14 +15100,16 @@ WriteFieldEndError:
 }
 
 func (p *Contract) writeField9(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("UpdatedAt", thrift.I64, 9); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.UpdatedAt); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetUpdatedAt() {
+		if err = oprot.WriteFieldBegin("UpdatedAt", thrift.I64, 9); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.UpdatedAt); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -15190,16 +15216,26 @@ func (p *Contract) Field7DeepEqual(src *string) bool {
 	}
 	return true
 }
-func (p *Contract) Field8DeepEqual(src int64) bool {
+func (p *Contract) Field8DeepEqual(src *int64) bool {
 
-	if p.CreatedAt != src {
+	if p.CreatedAt == src {
+		return true
+	} else if p.CreatedAt == nil || src == nil {
+		return false
+	}
+	if *p.CreatedAt != *src {
 		return false
 	}
 	return true
 }
-func (p *Contract) Field9DeepEqual(src int64) bool {
+func (p *Contract) Field9DeepEqual(src *int64) bool {
 
-	if p.UpdatedAt != src {
+	if p.UpdatedAt == src {
+		return true
+	} else if p.UpdatedAt == nil || src == nil {
+		return false
+	}
+	if *p.UpdatedAt != *src {
 		return false
 	}
 	return true
@@ -15767,8 +15803,8 @@ type Document struct {
 	RelatedDate int64   `thrift:"RelatedDate,3,required" frugal:"3,required,i64" json:"RelatedDate"`
 	FileHash    string  `thrift:"FileHash,4,required" frugal:"4,required,string" json:"FileHash"`
 	Extra       *string `thrift:"extra,5,optional" frugal:"5,optional,string" json:"extra,omitempty"`
-	CreatedAt   int64   `thrift:"CreatedAt,6,required" frugal:"6,required,i64" json:"CreatedAt"`
-	UpdatedAt   int64   `thrift:"UpdatedAt,7,required" frugal:"7,required,i64" json:"UpdatedAt"`
+	CreatedAt   *int64  `thrift:"CreatedAt,6,optional" frugal:"6,optional,i64" json:"CreatedAt,omitempty"`
+	UpdatedAt   *int64  `thrift:"UpdatedAt,7,optional" frugal:"7,optional,i64" json:"UpdatedAt,omitempty"`
 }
 
 func NewDocument() *Document {
@@ -15803,12 +15839,22 @@ func (p *Document) GetExtra() (v string) {
 	return *p.Extra
 }
 
+var Document_CreatedAt_DEFAULT int64
+
 func (p *Document) GetCreatedAt() (v int64) {
-	return p.CreatedAt
+	if !p.IsSetCreatedAt() {
+		return Document_CreatedAt_DEFAULT
+	}
+	return *p.CreatedAt
 }
 
+var Document_UpdatedAt_DEFAULT int64
+
 func (p *Document) GetUpdatedAt() (v int64) {
-	return p.UpdatedAt
+	if !p.IsSetUpdatedAt() {
+		return Document_UpdatedAt_DEFAULT
+	}
+	return *p.UpdatedAt
 }
 func (p *Document) SetDocType(val DocType) {
 	p.DocType = val
@@ -15825,10 +15871,10 @@ func (p *Document) SetFileHash(val string) {
 func (p *Document) SetExtra(val *string) {
 	p.Extra = val
 }
-func (p *Document) SetCreatedAt(val int64) {
+func (p *Document) SetCreatedAt(val *int64) {
 	p.CreatedAt = val
 }
-func (p *Document) SetUpdatedAt(val int64) {
+func (p *Document) SetUpdatedAt(val *int64) {
 	p.UpdatedAt = val
 }
 
@@ -15846,6 +15892,14 @@ func (p *Document) IsSetExtra() bool {
 	return p.Extra != nil
 }
 
+func (p *Document) IsSetCreatedAt() bool {
+	return p.CreatedAt != nil
+}
+
+func (p *Document) IsSetUpdatedAt() bool {
+	return p.UpdatedAt != nil
+}
+
 func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
@@ -15854,8 +15908,6 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 	var issetDocNumber bool = false
 	var issetRelatedDate bool = false
 	var issetFileHash bool = false
-	var issetCreatedAt bool = false
-	var issetUpdatedAt bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -15920,7 +15972,6 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField6(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetCreatedAt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -15929,7 +15980,6 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField7(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetUpdatedAt = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -15963,16 +16013,6 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetFileHash {
 		fieldId = 4
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetCreatedAt {
-		fieldId = 6
-		goto RequiredFieldNotSetError
-	}
-
-	if !issetUpdatedAt {
-		fieldId = 7
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -16050,22 +16090,22 @@ func (p *Document) ReadField5(iprot thrift.TProtocol) error {
 }
 func (p *Document) ReadField6(iprot thrift.TProtocol) error {
 
-	var _field int64
+	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = &v
 	}
 	p.CreatedAt = _field
 	return nil
 }
 func (p *Document) ReadField7(iprot thrift.TProtocol) error {
 
-	var _field int64
+	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		_field = v
+		_field = &v
 	}
 	p.UpdatedAt = _field
 	return nil
@@ -16212,14 +16252,16 @@ WriteFieldEndError:
 }
 
 func (p *Document) writeField6(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("CreatedAt", thrift.I64, 6); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.CreatedAt); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetCreatedAt() {
+		if err = oprot.WriteFieldBegin("CreatedAt", thrift.I64, 6); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedAt); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -16229,14 +16271,16 @@ WriteFieldEndError:
 }
 
 func (p *Document) writeField7(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("UpdatedAt", thrift.I64, 7); err != nil {
-		goto WriteFieldBeginError
-	}
-	if err := oprot.WriteI64(p.UpdatedAt); err != nil {
-		return err
-	}
-	if err = oprot.WriteFieldEnd(); err != nil {
-		goto WriteFieldEndError
+	if p.IsSetUpdatedAt() {
+		if err = oprot.WriteFieldBegin("UpdatedAt", thrift.I64, 7); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.UpdatedAt); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
 	}
 	return nil
 WriteFieldBeginError:
@@ -16323,16 +16367,26 @@ func (p *Document) Field5DeepEqual(src *string) bool {
 	}
 	return true
 }
-func (p *Document) Field6DeepEqual(src int64) bool {
+func (p *Document) Field6DeepEqual(src *int64) bool {
 
-	if p.CreatedAt != src {
+	if p.CreatedAt == src {
+		return true
+	} else if p.CreatedAt == nil || src == nil {
+		return false
+	}
+	if *p.CreatedAt != *src {
 		return false
 	}
 	return true
 }
-func (p *Document) Field7DeepEqual(src int64) bool {
+func (p *Document) Field7DeepEqual(src *int64) bool {
 
-	if p.UpdatedAt != src {
+	if p.UpdatedAt == src {
+		return true
+	} else if p.UpdatedAt == nil || src == nil {
+		return false
+	}
+	if *p.UpdatedAt != *src {
 		return false
 	}
 	return true
