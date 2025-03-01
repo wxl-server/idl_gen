@@ -2381,7 +2381,7 @@ func (p *Ebl) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 38:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.LIST {
 				l, err = p.FastReadField38(buf[offset:])
 				offset += l
 				if err != nil {
@@ -3145,12 +3145,22 @@ func (p *Ebl) FastReadField37(buf []byte) (int, error) {
 func (p *Ebl) FastReadField38(buf []byte) (int, error) {
 	offset := 0
 
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
 		return offset, err
-	} else {
-		offset += l
-		_field = v
+	}
+	_field := make([]int64, 0, size)
+	for i := 0; i < size; i++ {
+		var _elem int64
+		if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
 	}
 	p.DocumentFiles = _field
 	return offset, nil
@@ -3527,8 +3537,15 @@ func (p *Ebl) fastWriteField37(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *Ebl) fastWriteField38(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 38)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.DocumentFiles)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 38)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.DocumentFiles {
+		length++
+		offset += thrift.Binary.WriteI64(buf[offset:], v)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.I64, length)
 	return offset
 }
 
@@ -3798,7 +3815,9 @@ func (p *Ebl) field37Length() int {
 func (p *Ebl) field38Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.DocumentFiles)
+	l += thrift.Binary.ListBeginLength()
+	l +=
+		thrift.Binary.I64Length() * len(p.DocumentFiles)
 	return l
 }
 

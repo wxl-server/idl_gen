@@ -3000,7 +3000,7 @@ type Ebl struct {
 	TransferCompanyName    string  `thrift:"transferCompanyName,35,required" frugal:"35,required,string" json:"transferCompanyName"`
 	CompanyID              string  `thrift:"companyID,36,required" frugal:"36,required,string" json:"companyID"`
 	CompanyName            string  `thrift:"companyName,37,required" frugal:"37,required,string" json:"companyName"`
-	DocumentFiles          string  `thrift:"documentFiles,38,required" frugal:"38,required,string" json:"documentFiles"`
+	DocumentFiles          []int64 `thrift:"documentFiles,38,required" frugal:"38,required,list<i64>" json:"documentFiles"`
 }
 
 func NewEbl() *Ebl {
@@ -3158,7 +3158,7 @@ func (p *Ebl) GetCompanyName() (v string) {
 	return p.CompanyName
 }
 
-func (p *Ebl) GetDocumentFiles() (v string) {
+func (p *Ebl) GetDocumentFiles() (v []int64) {
 	return p.DocumentFiles
 }
 func (p *Ebl) SetEblNo(val string) {
@@ -3272,7 +3272,7 @@ func (p *Ebl) SetCompanyID(val string) {
 func (p *Ebl) SetCompanyName(val string) {
 	p.CompanyName = val
 }
-func (p *Ebl) SetDocumentFiles(val string) {
+func (p *Ebl) SetDocumentFiles(val []int64) {
 	p.DocumentFiles = val
 }
 
@@ -3708,7 +3708,7 @@ func (p *Ebl) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 38:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.LIST {
 				if err = p.ReadField38(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -4368,12 +4368,24 @@ func (p *Ebl) ReadField37(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *Ebl) ReadField38(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
+	_, size, err := iprot.ReadListBegin()
+	if err != nil {
 		return err
-	} else {
-		_field = v
+	}
+	_field := make([]int64, 0, size)
+	for i := 0; i < size; i++ {
+
+		var _elem int64
+		if v, err := iprot.ReadI64(); err != nil {
+			return err
+		} else {
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
+	}
+	if err := iprot.ReadListEnd(); err != nil {
+		return err
 	}
 	p.DocumentFiles = _field
 	return nil
@@ -5202,10 +5214,18 @@ WriteFieldEndError:
 }
 
 func (p *Ebl) writeField38(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("documentFiles", thrift.STRING, 38); err != nil {
+	if err = oprot.WriteFieldBegin("documentFiles", thrift.LIST, 38); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.DocumentFiles); err != nil {
+	if err := oprot.WriteListBegin(thrift.I64, len(p.DocumentFiles)); err != nil {
+		return err
+	}
+	for _, v := range p.DocumentFiles {
+		if err := oprot.WriteI64(v); err != nil {
+			return err
+		}
+	}
+	if err := oprot.WriteListEnd(); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -5620,10 +5640,16 @@ func (p *Ebl) Field37DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *Ebl) Field38DeepEqual(src string) bool {
+func (p *Ebl) Field38DeepEqual(src []int64) bool {
 
-	if strings.Compare(p.DocumentFiles, src) != 0 {
+	if len(p.DocumentFiles) != len(src) {
 		return false
+	}
+	for i, v := range p.DocumentFiles {
+		_src := src[i]
+		if v != _src {
+			return false
+		}
 	}
 	return true
 }
