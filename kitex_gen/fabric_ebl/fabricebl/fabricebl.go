@@ -125,6 +125,27 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"GetInvoice": kitex.NewMethodInfo(
+		getInvoiceHandler,
+		newFabricEblGetInvoiceArgs,
+		newFabricEblGetInvoiceResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"GetContract": kitex.NewMethodInfo(
+		getContractHandler,
+		newFabricEblGetContractArgs,
+		newFabricEblGetContractResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"GetDocument": kitex.NewMethodInfo(
+		getDocumentHandler,
+		newFabricEblGetDocumentArgs,
+		newFabricEblGetDocumentResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -479,6 +500,60 @@ func newFabricEblQueryDocumentListResult() interface{} {
 	return fabric_ebl.NewFabricEblQueryDocumentListResult()
 }
 
+func getInvoiceHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblGetInvoiceArgs)
+	realResult := result.(*fabric_ebl.FabricEblGetInvoiceResult)
+	success, err := handler.(fabric_ebl.FabricEbl).GetInvoice(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblGetInvoiceArgs() interface{} {
+	return fabric_ebl.NewFabricEblGetInvoiceArgs()
+}
+
+func newFabricEblGetInvoiceResult() interface{} {
+	return fabric_ebl.NewFabricEblGetInvoiceResult()
+}
+
+func getContractHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblGetContractArgs)
+	realResult := result.(*fabric_ebl.FabricEblGetContractResult)
+	success, err := handler.(fabric_ebl.FabricEbl).GetContract(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblGetContractArgs() interface{} {
+	return fabric_ebl.NewFabricEblGetContractArgs()
+}
+
+func newFabricEblGetContractResult() interface{} {
+	return fabric_ebl.NewFabricEblGetContractResult()
+}
+
+func getDocumentHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblGetDocumentArgs)
+	realResult := result.(*fabric_ebl.FabricEblGetDocumentResult)
+	success, err := handler.(fabric_ebl.FabricEbl).GetDocument(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblGetDocumentArgs() interface{} {
+	return fabric_ebl.NewFabricEblGetDocumentArgs()
+}
+
+func newFabricEblGetDocumentResult() interface{} {
+	return fabric_ebl.NewFabricEblGetDocumentResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -644,6 +719,36 @@ func (p *kClient) QueryDocumentList(ctx context.Context, req *fabric_ebl.QueryDo
 	_args.Req = req
 	var _result fabric_ebl.FabricEblQueryDocumentListResult
 	if err = p.c.Call(ctx, "QueryDocumentList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetInvoice(ctx context.Context, req *fabric_ebl.GetInvoiceReq) (r *fabric_ebl.GetInvoiceResp, err error) {
+	var _args fabric_ebl.FabricEblGetInvoiceArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblGetInvoiceResult
+	if err = p.c.Call(ctx, "GetInvoice", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetContract(ctx context.Context, req *fabric_ebl.GetContractReq) (r *fabric_ebl.GetContractResp, err error) {
+	var _args fabric_ebl.FabricEblGetContractArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblGetContractResult
+	if err = p.c.Call(ctx, "GetContract", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) GetDocument(ctx context.Context, req *fabric_ebl.GetDocumentReq) (r *fabric_ebl.GetDocumentResp, err error) {
+	var _args fabric_ebl.FabricEblGetDocumentArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblGetDocumentResult
+	if err = p.c.Call(ctx, "GetDocument", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

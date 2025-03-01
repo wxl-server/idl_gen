@@ -5599,6 +5599,795 @@ func (p *QueryDocumentListResp) field2Length() int {
 	return l
 }
 
+func (p *GetInvoiceReq) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetToken bool = false
+	var issetId bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetId = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetToken {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetId {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetInvoiceReq[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_GetInvoiceReq[fieldId]))
+}
+
+func (p *GetInvoiceReq) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Token = _field
+	return offset, nil
+}
+
+func (p *GetInvoiceReq) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Id = _field
+	return offset, nil
+}
+
+func (p *GetInvoiceReq) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *GetInvoiceReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *GetInvoiceReq) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *GetInvoiceReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
+	return offset
+}
+
+func (p *GetInvoiceReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 2)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.Id)
+	return offset
+}
+
+func (p *GetInvoiceReq) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Token)
+	return l
+}
+
+func (p *GetInvoiceReq) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *GetInvoiceResp) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetInvoice bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetInvoice = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetInvoice {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetInvoiceResp[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_GetInvoiceResp[fieldId]))
+}
+
+func (p *GetInvoiceResp) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+	_field := NewInvoice()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Invoice = _field
+	return offset, nil
+}
+
+func (p *GetInvoiceResp) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *GetInvoiceResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *GetInvoiceResp) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *GetInvoiceResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
+	offset += p.Invoice.FastWriteNocopy(buf[offset:], w)
+	return offset
+}
+
+func (p *GetInvoiceResp) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += p.Invoice.BLength()
+	return l
+}
+
+func (p *GetContractReq) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetToken bool = false
+	var issetId bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetId = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetToken {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetId {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetContractReq[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_GetContractReq[fieldId]))
+}
+
+func (p *GetContractReq) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Token = _field
+	return offset, nil
+}
+
+func (p *GetContractReq) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Id = _field
+	return offset, nil
+}
+
+func (p *GetContractReq) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *GetContractReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *GetContractReq) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *GetContractReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
+	return offset
+}
+
+func (p *GetContractReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 2)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.Id)
+	return offset
+}
+
+func (p *GetContractReq) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Token)
+	return l
+}
+
+func (p *GetContractReq) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *GetContractResp) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetContract bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetContract = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetContract {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetContractResp[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_GetContractResp[fieldId]))
+}
+
+func (p *GetContractResp) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+	_field := NewContract()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Contract = _field
+	return offset, nil
+}
+
+func (p *GetContractResp) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *GetContractResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *GetContractResp) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *GetContractResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
+	offset += p.Contract.FastWriteNocopy(buf[offset:], w)
+	return offset
+}
+
+func (p *GetContractResp) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += p.Contract.BLength()
+	return l
+}
+
+func (p *GetDocumentReq) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetToken bool = false
+	var issetId bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 2:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetId = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetToken {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetId {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetDocumentReq[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_GetDocumentReq[fieldId]))
+}
+
+func (p *GetDocumentReq) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Token = _field
+	return offset, nil
+}
+
+func (p *GetDocumentReq) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Id = _field
+	return offset, nil
+}
+
+func (p *GetDocumentReq) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *GetDocumentReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *GetDocumentReq) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+		l += p.field2Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *GetDocumentReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 1)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
+	return offset
+}
+
+func (p *GetDocumentReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 2)
+	offset += thrift.Binary.WriteI64(buf[offset:], p.Id)
+	return offset
+}
+
+func (p *GetDocumentReq) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Token)
+	return l
+}
+
+func (p *GetDocumentReq) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *GetDocumentResp) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	var issetDocument bool = false
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetDocument = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	if !issetDocument {
+		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_GetDocumentResp[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+RequiredFieldNotSetError:
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_GetDocumentResp[fieldId]))
+}
+
+func (p *GetDocumentResp) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+	_field := NewDocument()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Document = _field
+	return offset, nil
+}
+
+func (p *GetDocumentResp) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *GetDocumentResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *GetDocumentResp) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *GetDocumentResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
+	offset += p.Document.FastWriteNocopy(buf[offset:], w)
+	return offset
+}
+
+func (p *GetDocumentResp) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += p.Document.BLength()
+	return l
+}
+
 func (p *Invoice) FastRead(buf []byte) (int, error) {
 
 	var err error
@@ -16882,6 +17671,600 @@ func (p *FabricEblQueryDocumentListResult) field0Length() int {
 	return l
 }
 
+func (p *FabricEblGetInvoiceArgs) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblGetInvoiceArgs[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *FabricEblGetInvoiceArgs) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+	_field := NewGetInvoiceReq()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Req = _field
+	return offset, nil
+}
+
+func (p *FabricEblGetInvoiceArgs) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *FabricEblGetInvoiceArgs) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *FabricEblGetInvoiceArgs) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *FabricEblGetInvoiceArgs) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
+	offset += p.Req.FastWriteNocopy(buf[offset:], w)
+	return offset
+}
+
+func (p *FabricEblGetInvoiceArgs) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += p.Req.BLength()
+	return l
+}
+
+func (p *FabricEblGetInvoiceResult) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 0:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField0(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblGetInvoiceResult[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *FabricEblGetInvoiceResult) FastReadField0(buf []byte) (int, error) {
+	offset := 0
+	_field := NewGetInvoiceResp()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Success = _field
+	return offset, nil
+}
+
+func (p *FabricEblGetInvoiceResult) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *FabricEblGetInvoiceResult) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField0(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *FabricEblGetInvoiceResult) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field0Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *FabricEblGetInvoiceResult) fastWriteField0(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetSuccess() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 0)
+		offset += p.Success.FastWriteNocopy(buf[offset:], w)
+	}
+	return offset
+}
+
+func (p *FabricEblGetInvoiceResult) field0Length() int {
+	l := 0
+	if p.IsSetSuccess() {
+		l += thrift.Binary.FieldBeginLength()
+		l += p.Success.BLength()
+	}
+	return l
+}
+
+func (p *FabricEblGetContractArgs) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblGetContractArgs[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *FabricEblGetContractArgs) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+	_field := NewGetContractReq()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Req = _field
+	return offset, nil
+}
+
+func (p *FabricEblGetContractArgs) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *FabricEblGetContractArgs) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *FabricEblGetContractArgs) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *FabricEblGetContractArgs) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
+	offset += p.Req.FastWriteNocopy(buf[offset:], w)
+	return offset
+}
+
+func (p *FabricEblGetContractArgs) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += p.Req.BLength()
+	return l
+}
+
+func (p *FabricEblGetContractResult) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 0:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField0(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblGetContractResult[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *FabricEblGetContractResult) FastReadField0(buf []byte) (int, error) {
+	offset := 0
+	_field := NewGetContractResp()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Success = _field
+	return offset, nil
+}
+
+func (p *FabricEblGetContractResult) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *FabricEblGetContractResult) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField0(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *FabricEblGetContractResult) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field0Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *FabricEblGetContractResult) fastWriteField0(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetSuccess() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 0)
+		offset += p.Success.FastWriteNocopy(buf[offset:], w)
+	}
+	return offset
+}
+
+func (p *FabricEblGetContractResult) field0Length() int {
+	l := 0
+	if p.IsSetSuccess() {
+		l += thrift.Binary.FieldBeginLength()
+		l += p.Success.BLength()
+	}
+	return l
+}
+
+func (p *FabricEblGetDocumentArgs) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField1(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblGetDocumentArgs[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *FabricEblGetDocumentArgs) FastReadField1(buf []byte) (int, error) {
+	offset := 0
+	_field := NewGetDocumentReq()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Req = _field
+	return offset, nil
+}
+
+func (p *FabricEblGetDocumentArgs) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *FabricEblGetDocumentArgs) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField1(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *FabricEblGetDocumentArgs) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field1Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *FabricEblGetDocumentArgs) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
+	offset += p.Req.FastWriteNocopy(buf[offset:], w)
+	return offset
+}
+
+func (p *FabricEblGetDocumentArgs) field1Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += p.Req.BLength()
+	return l
+}
+
+func (p *FabricEblGetDocumentResult) FastRead(buf []byte) (int, error) {
+
+	var err error
+	var offset int
+	var l int
+	var fieldTypeId thrift.TType
+	var fieldId int16
+	for {
+		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
+		offset += l
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+		switch fieldId {
+		case 0:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField0(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+			offset += l
+			if err != nil {
+				goto SkipFieldError
+			}
+		}
+	}
+
+	return offset, nil
+ReadFieldBeginError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblGetDocumentResult[fieldId]), err)
+SkipFieldError:
+	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+}
+
+func (p *FabricEblGetDocumentResult) FastReadField0(buf []byte) (int, error) {
+	offset := 0
+	_field := NewGetDocumentResp()
+	if l, err := _field.FastRead(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+	}
+	p.Success = _field
+	return offset, nil
+}
+
+func (p *FabricEblGetDocumentResult) FastWrite(buf []byte) int {
+	return p.FastWriteNocopy(buf, nil)
+}
+
+func (p *FabricEblGetDocumentResult) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p != nil {
+		offset += p.fastWriteField0(buf[offset:], w)
+	}
+	offset += thrift.Binary.WriteFieldStop(buf[offset:])
+	return offset
+}
+
+func (p *FabricEblGetDocumentResult) BLength() int {
+	l := 0
+	if p != nil {
+		l += p.field0Length()
+	}
+	l += thrift.Binary.FieldStopLength()
+	return l
+}
+
+func (p *FabricEblGetDocumentResult) fastWriteField0(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetSuccess() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 0)
+		offset += p.Success.FastWriteNocopy(buf[offset:], w)
+	}
+	return offset
+}
+
+func (p *FabricEblGetDocumentResult) field0Length() int {
+	l := 0
+	if p.IsSetSuccess() {
+		l += thrift.Binary.FieldBeginLength()
+		l += p.Success.BLength()
+	}
+	return l
+}
+
 func (p *FabricEblCreateCompanyArgs) GetFirstArgument() interface{} {
 	return p.Req
 }
@@ -17007,5 +18390,29 @@ func (p *FabricEblQueryDocumentListArgs) GetFirstArgument() interface{} {
 }
 
 func (p *FabricEblQueryDocumentListResult) GetResult() interface{} {
+	return p.Success
+}
+
+func (p *FabricEblGetInvoiceArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+func (p *FabricEblGetInvoiceResult) GetResult() interface{} {
+	return p.Success
+}
+
+func (p *FabricEblGetContractArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+func (p *FabricEblGetContractResult) GetResult() interface{} {
+	return p.Success
+}
+
+func (p *FabricEblGetDocumentArgs) GetFirstArgument() interface{} {
+	return p.Req
+}
+
+func (p *FabricEblGetDocumentResult) GetResult() interface{} {
 	return p.Success
 }

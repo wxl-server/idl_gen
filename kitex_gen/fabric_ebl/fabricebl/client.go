@@ -27,6 +27,9 @@ type Client interface {
 	QueryInvoiceList(ctx context.Context, req *fabric_ebl.QueryInvoiceListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryInvoiceListResp, err error)
 	QueryContractList(ctx context.Context, req *fabric_ebl.QueryContractListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryContractListResp, err error)
 	QueryDocumentList(ctx context.Context, req *fabric_ebl.QueryDocumentListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryDocumentListResp, err error)
+	GetInvoice(ctx context.Context, req *fabric_ebl.GetInvoiceReq, callOptions ...callopt.Option) (r *fabric_ebl.GetInvoiceResp, err error)
+	GetContract(ctx context.Context, req *fabric_ebl.GetContractReq, callOptions ...callopt.Option) (r *fabric_ebl.GetContractResp, err error)
+	GetDocument(ctx context.Context, req *fabric_ebl.GetDocumentReq, callOptions ...callopt.Option) (r *fabric_ebl.GetDocumentResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -136,4 +139,19 @@ func (p *kFabricEblClient) QueryContractList(ctx context.Context, req *fabric_eb
 func (p *kFabricEblClient) QueryDocumentList(ctx context.Context, req *fabric_ebl.QueryDocumentListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryDocumentListResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.QueryDocumentList(ctx, req)
+}
+
+func (p *kFabricEblClient) GetInvoice(ctx context.Context, req *fabric_ebl.GetInvoiceReq, callOptions ...callopt.Option) (r *fabric_ebl.GetInvoiceResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetInvoice(ctx, req)
+}
+
+func (p *kFabricEblClient) GetContract(ctx context.Context, req *fabric_ebl.GetContractReq, callOptions ...callopt.Option) (r *fabric_ebl.GetContractResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetContract(ctx, req)
+}
+
+func (p *kFabricEblClient) GetDocument(ctx context.Context, req *fabric_ebl.GetDocumentReq, callOptions ...callopt.Option) (r *fabric_ebl.GetDocumentResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetDocument(ctx, req)
 }
