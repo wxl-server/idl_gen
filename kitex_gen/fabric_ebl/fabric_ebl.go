@@ -14295,7 +14295,7 @@ type Contract struct {
 	EffectiveDate  int64          `thrift:"EffectiveDate,3,required" frugal:"3,required,i64" json:"EffectiveDate"`
 	Amount         float64        `thrift:"Amount,4,required" frugal:"4,required,double" json:"Amount"`
 	Status         ContractStatus `thrift:"Status,5,required" frugal:"5,required,ContractStatus" json:"Status"`
-	FileHash       *string        `thrift:"FileHash,6,optional" frugal:"6,optional,string" json:"FileHash,omitempty"`
+	FileHash       string         `thrift:"FileHash,6,required" frugal:"6,required,string" json:"FileHash"`
 	Extra          *string        `thrift:"extra,7,optional" frugal:"7,optional,string" json:"extra,omitempty"`
 }
 
@@ -14326,13 +14326,8 @@ func (p *Contract) GetStatus() (v ContractStatus) {
 	return p.Status
 }
 
-var Contract_FileHash_DEFAULT string
-
 func (p *Contract) GetFileHash() (v string) {
-	if !p.IsSetFileHash() {
-		return Contract_FileHash_DEFAULT
-	}
-	return *p.FileHash
+	return p.FileHash
 }
 
 var Contract_Extra_DEFAULT string
@@ -14358,7 +14353,7 @@ func (p *Contract) SetAmount(val float64) {
 func (p *Contract) SetStatus(val ContractStatus) {
 	p.Status = val
 }
-func (p *Contract) SetFileHash(val *string) {
+func (p *Contract) SetFileHash(val string) {
 	p.FileHash = val
 }
 func (p *Contract) SetExtra(val *string) {
@@ -14375,10 +14370,6 @@ var fieldIDToName_Contract = map[int16]string{
 	7: "extra",
 }
 
-func (p *Contract) IsSetFileHash() bool {
-	return p.FileHash != nil
-}
-
 func (p *Contract) IsSetExtra() bool {
 	return p.Extra != nil
 }
@@ -14392,6 +14383,7 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 	var issetEffectiveDate bool = false
 	var issetAmount bool = false
 	var issetStatus bool = false
+	var issetFileHash bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -14457,6 +14449,7 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField6(iprot); err != nil {
 					goto ReadFieldError
 				}
+				issetFileHash = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -14503,6 +14496,11 @@ func (p *Contract) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetStatus {
 		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFileHash {
+		fieldId = 6
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -14580,11 +14578,11 @@ func (p *Contract) ReadField5(iprot thrift.TProtocol) error {
 }
 func (p *Contract) ReadField6(iprot thrift.TProtocol) error {
 
-	var _field *string
+	var _field string
 	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
-		_field = &v
+		_field = v
 	}
 	p.FileHash = _field
 	return nil
@@ -14740,16 +14738,14 @@ WriteFieldEndError:
 }
 
 func (p *Contract) writeField6(oprot thrift.TProtocol) (err error) {
-	if p.IsSetFileHash() {
-		if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 6); err != nil {
-			goto WriteFieldBeginError
-		}
-		if err := oprot.WriteString(*p.FileHash); err != nil {
-			return err
-		}
-		if err = oprot.WriteFieldEnd(); err != nil {
-			goto WriteFieldEndError
-		}
+	if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 6); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.FileHash); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
 	}
 	return nil
 WriteFieldBeginError:
@@ -14850,14 +14846,9 @@ func (p *Contract) Field5DeepEqual(src ContractStatus) bool {
 	}
 	return true
 }
-func (p *Contract) Field6DeepEqual(src *string) bool {
+func (p *Contract) Field6DeepEqual(src string) bool {
 
-	if p.FileHash == src {
-		return true
-	} else if p.FileHash == nil || src == nil {
-		return false
-	}
-	if strings.Compare(*p.FileHash, *src) != 0 {
+	if strings.Compare(p.FileHash, src) != 0 {
 		return false
 	}
 	return true
@@ -15351,7 +15342,7 @@ type Document struct {
 	DocType     DocType `thrift:"DocType,1,required" frugal:"1,required,DocType" json:"DocType"`
 	DocNumber   string  `thrift:"DocNumber,2,required" frugal:"2,required,string" json:"DocNumber"`
 	RelatedDate int64   `thrift:"RelatedDate,3,required" frugal:"3,required,i64" json:"RelatedDate"`
-	FileHash    *string `thrift:"FileHash,4,optional" frugal:"4,optional,string" json:"FileHash,omitempty"`
+	FileHash    string  `thrift:"FileHash,4,required" frugal:"4,required,string" json:"FileHash"`
 	Extra       *string `thrift:"extra,5,optional" frugal:"5,optional,string" json:"extra,omitempty"`
 }
 
@@ -15374,13 +15365,8 @@ func (p *Document) GetRelatedDate() (v int64) {
 	return p.RelatedDate
 }
 
-var Document_FileHash_DEFAULT string
-
 func (p *Document) GetFileHash() (v string) {
-	if !p.IsSetFileHash() {
-		return Document_FileHash_DEFAULT
-	}
-	return *p.FileHash
+	return p.FileHash
 }
 
 var Document_Extra_DEFAULT string
@@ -15400,7 +15386,7 @@ func (p *Document) SetDocNumber(val string) {
 func (p *Document) SetRelatedDate(val int64) {
 	p.RelatedDate = val
 }
-func (p *Document) SetFileHash(val *string) {
+func (p *Document) SetFileHash(val string) {
 	p.FileHash = val
 }
 func (p *Document) SetExtra(val *string) {
@@ -15415,10 +15401,6 @@ var fieldIDToName_Document = map[int16]string{
 	5: "extra",
 }
 
-func (p *Document) IsSetFileHash() bool {
-	return p.FileHash != nil
-}
-
 func (p *Document) IsSetExtra() bool {
 	return p.Extra != nil
 }
@@ -15430,6 +15412,7 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 	var issetDocType bool = false
 	var issetDocNumber bool = false
 	var issetRelatedDate bool = false
+	var issetFileHash bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -15477,6 +15460,7 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField4(iprot); err != nil {
 					goto ReadFieldError
 				}
+				issetFileHash = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -15513,6 +15497,11 @@ func (p *Document) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetRelatedDate {
 		fieldId = 3
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFileHash {
+		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -15568,11 +15557,11 @@ func (p *Document) ReadField3(iprot thrift.TProtocol) error {
 }
 func (p *Document) ReadField4(iprot thrift.TProtocol) error {
 
-	var _field *string
+	var _field string
 	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
-		_field = &v
+		_field = v
 	}
 	p.FileHash = _field
 	return nil
@@ -15686,16 +15675,14 @@ WriteFieldEndError:
 }
 
 func (p *Document) writeField4(oprot thrift.TProtocol) (err error) {
-	if p.IsSetFileHash() {
-		if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 4); err != nil {
-			goto WriteFieldBeginError
-		}
-		if err := oprot.WriteString(*p.FileHash); err != nil {
-			return err
-		}
-		if err = oprot.WriteFieldEnd(); err != nil {
-			goto WriteFieldEndError
-		}
+	if err = oprot.WriteFieldBegin("FileHash", thrift.STRING, 4); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.FileHash); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
 	}
 	return nil
 WriteFieldBeginError:
@@ -15776,14 +15763,9 @@ func (p *Document) Field3DeepEqual(src int64) bool {
 	}
 	return true
 }
-func (p *Document) Field4DeepEqual(src *string) bool {
+func (p *Document) Field4DeepEqual(src string) bool {
 
-	if p.FileHash == src {
-		return true
-	} else if p.FileHash == nil || src == nil {
-		return false
-	}
-	if strings.Compare(*p.FileHash, *src) != 0 {
+	if strings.Compare(p.FileHash, src) != 0 {
 		return false
 	}
 	return true

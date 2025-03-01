@@ -9736,6 +9736,7 @@ func (p *Contract) FastRead(buf []byte) (int, error) {
 	var issetEffectiveDate bool = false
 	var issetAmount bool = false
 	var issetStatus bool = false
+	var issetFileHash bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -9828,6 +9829,7 @@ func (p *Contract) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
+				issetFileHash = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -9880,6 +9882,11 @@ func (p *Contract) FastRead(buf []byte) (int, error) {
 
 	if !issetStatus {
 		fieldId = 5
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFileHash {
+		fieldId = 6
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -9967,12 +9974,12 @@ func (p *Contract) FastReadField5(buf []byte) (int, error) {
 func (p *Contract) FastReadField6(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *string
+	var _field string
 	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
-		_field = &v
+		_field = v
 	}
 	p.FileHash = _field
 	return offset, nil
@@ -10063,10 +10070,8 @@ func (p *Contract) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *Contract) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetFileHash() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
-		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.FileHash)
-	}
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FileHash)
 	return offset
 }
 
@@ -10116,10 +10121,8 @@ func (p *Contract) field5Length() int {
 
 func (p *Contract) field6Length() int {
 	l := 0
-	if p.IsSetFileHash() {
-		l += thrift.Binary.FieldBeginLength()
-		l += thrift.Binary.StringLengthNocopy(*p.FileHash)
-	}
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.FileHash)
 	return l
 }
 
@@ -10442,6 +10445,7 @@ func (p *Document) FastRead(buf []byte) (int, error) {
 	var issetDocType bool = false
 	var issetDocNumber bool = false
 	var issetRelatedDate bool = false
+	var issetFileHash bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -10504,6 +10508,7 @@ func (p *Document) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
+				issetFileHash = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -10546,6 +10551,11 @@ func (p *Document) FastRead(buf []byte) (int, error) {
 
 	if !issetRelatedDate {
 		fieldId = 3
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetFileHash {
+		fieldId = 4
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -10605,12 +10615,12 @@ func (p *Document) FastReadField3(buf []byte) (int, error) {
 func (p *Document) FastReadField4(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *string
+	var _field string
 	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
-		_field = &v
+		_field = v
 	}
 	p.FileHash = _field
 	return offset, nil
@@ -10683,10 +10693,8 @@ func (p *Document) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *Document) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetFileHash() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
-		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.FileHash)
-	}
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.FileHash)
 	return offset
 }
 
@@ -10722,10 +10730,8 @@ func (p *Document) field3Length() int {
 
 func (p *Document) field4Length() int {
 	l := 0
-	if p.IsSetFileHash() {
-		l += thrift.Binary.FieldBeginLength()
-		l += thrift.Binary.StringLengthNocopy(*p.FileHash)
-	}
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.FileHash)
 	return l
 }
 
