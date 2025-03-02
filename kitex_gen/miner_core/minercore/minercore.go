@@ -27,13 +27,6 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
-	"QueryJobDetail": kitex.NewMethodInfo(
-		queryJobDetailHandler,
-		newMinerCoreQueryJobDetailArgs,
-		newMinerCoreQueryJobDetailResult,
-		false,
-		kitex.WithStreamingMode(kitex.StreamingNone),
-	),
 	"SignUp": kitex.NewMethodInfo(
 		signUpHandler,
 		newMinerCoreSignUpArgs,
@@ -150,24 +143,6 @@ func newMinerCoreCreateJobResult() interface{} {
 	return miner_core.NewMinerCoreCreateJobResult()
 }
 
-func queryJobDetailHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*miner_core.MinerCoreQueryJobDetailArgs)
-	realResult := result.(*miner_core.MinerCoreQueryJobDetailResult)
-	success, err := handler.(miner_core.MinerCore).QueryJobDetail(ctx, realArg.Req)
-	if err != nil {
-		return err
-	}
-	realResult.Success = success
-	return nil
-}
-func newMinerCoreQueryJobDetailArgs() interface{} {
-	return miner_core.NewMinerCoreQueryJobDetailArgs()
-}
-
-func newMinerCoreQueryJobDetailResult() interface{} {
-	return miner_core.NewMinerCoreQueryJobDetailResult()
-}
-
 func signUpHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	realArg := arg.(*miner_core.MinerCoreSignUpArgs)
 	realResult := result.(*miner_core.MinerCoreSignUpResult)
@@ -229,16 +204,6 @@ func (p *kClient) CreateJob(ctx context.Context, req *miner_core.CreateJobReq) (
 	_args.Req = req
 	var _result miner_core.MinerCoreCreateJobResult
 	if err = p.c.Call(ctx, "CreateJob", &_args, &_result); err != nil {
-		return
-	}
-	return _result.GetSuccess(), nil
-}
-
-func (p *kClient) QueryJobDetail(ctx context.Context, req *miner_core.QueryJobDetailReq) (r *miner_core.QueryJobDetailResp, err error) {
-	var _args miner_core.MinerCoreQueryJobDetailArgs
-	_args.Req = req
-	var _result miner_core.MinerCoreQueryJobDetailResult
-	if err = p.c.Call(ctx, "QueryJobDetail", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
