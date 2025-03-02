@@ -20,6 +20,20 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"SignUp": kitex.NewMethodInfo(
+		signUpHandler,
+		newMinerCoreSignUpArgs,
+		newMinerCoreSignUpResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"Login": kitex.NewMethodInfo(
+		loginHandler,
+		newMinerCoreLoginArgs,
+		newMinerCoreLoginResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -104,6 +118,42 @@ func newMinerCoreQueryJobListResult() interface{} {
 	return miner_core.NewMinerCoreQueryJobListResult()
 }
 
+func signUpHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreSignUpArgs)
+	realResult := result.(*miner_core.MinerCoreSignUpResult)
+	success, err := handler.(miner_core.MinerCore).SignUp(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreSignUpArgs() interface{} {
+	return miner_core.NewMinerCoreSignUpArgs()
+}
+
+func newMinerCoreSignUpResult() interface{} {
+	return miner_core.NewMinerCoreSignUpResult()
+}
+
+func loginHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreLoginArgs)
+	realResult := result.(*miner_core.MinerCoreLoginResult)
+	success, err := handler.(miner_core.MinerCore).Login(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreLoginArgs() interface{} {
+	return miner_core.NewMinerCoreLoginArgs()
+}
+
+func newMinerCoreLoginResult() interface{} {
+	return miner_core.NewMinerCoreLoginResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -119,6 +169,26 @@ func (p *kClient) QueryJobList(ctx context.Context, req *miner_core.QueryJobList
 	_args.Req = req
 	var _result miner_core.MinerCoreQueryJobListResult
 	if err = p.c.Call(ctx, "QueryJobList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) SignUp(ctx context.Context, req *miner_core.SignUpReq) (r *miner_core.SignUpResp, err error) {
+	var _args miner_core.MinerCoreSignUpArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreSignUpResult
+	if err = p.c.Call(ctx, "SignUp", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) Login(ctx context.Context, req *miner_core.LoginReq) (r *miner_core.LoginResp, err error) {
+	var _args miner_core.MinerCoreLoginArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreLoginResult
+	if err = p.c.Call(ctx, "Login", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
