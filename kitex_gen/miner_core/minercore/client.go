@@ -12,6 +12,7 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	QueryJobList(ctx context.Context, req *miner_core.QueryJobListReq, callOptions ...callopt.Option) (r *miner_core.QueryJobListResp, err error)
+	CreateJob(ctx context.Context, req *miner_core.CreateJobReq, callOptions ...callopt.Option) (r *miner_core.CreateJobResp, err error)
 	SignUp(ctx context.Context, req *miner_core.SignUpReq, callOptions ...callopt.Option) (r *miner_core.SignUpResp, err error)
 	Login(ctx context.Context, req *miner_core.LoginReq, callOptions ...callopt.Option) (r *miner_core.LoginResp, err error)
 }
@@ -48,6 +49,11 @@ type kMinerCoreClient struct {
 func (p *kMinerCoreClient) QueryJobList(ctx context.Context, req *miner_core.QueryJobListReq, callOptions ...callopt.Option) (r *miner_core.QueryJobListResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.QueryJobList(ctx, req)
+}
+
+func (p *kMinerCoreClient) CreateJob(ctx context.Context, req *miner_core.CreateJobReq, callOptions ...callopt.Option) (r *miner_core.CreateJobResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.CreateJob(ctx, req)
 }
 
 func (p *kMinerCoreClient) SignUp(ctx context.Context, req *miner_core.SignUpReq, callOptions ...callopt.Option) (r *miner_core.SignUpResp, err error) {
