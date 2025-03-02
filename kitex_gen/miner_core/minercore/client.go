@@ -13,6 +13,7 @@ import (
 type Client interface {
 	SignUp(ctx context.Context, req *miner_core.SignUpReq, callOptions ...callopt.Option) (r *miner_core.SignUpResp, err error)
 	Login(ctx context.Context, req *miner_core.LoginReq, callOptions ...callopt.Option) (r *miner_core.LoginResp, err error)
+	QueryUserList(ctx context.Context, req *miner_core.QueryUserListReq, callOptions ...callopt.Option) (r *miner_core.QueryUserListResp, err error)
 	QueryJobList(ctx context.Context, req *miner_core.QueryJobListReq, callOptions ...callopt.Option) (r *miner_core.QueryJobListResp, err error)
 	CreateJob(ctx context.Context, req *miner_core.CreateJobReq, callOptions ...callopt.Option) (r *miner_core.CreateJobResp, err error)
 	DeleteJob(ctx context.Context, req *miner_core.DeleteJobReq, callOptions ...callopt.Option) (r *miner_core.DeleteJobResp, err error)
@@ -56,6 +57,11 @@ func (p *kMinerCoreClient) SignUp(ctx context.Context, req *miner_core.SignUpReq
 func (p *kMinerCoreClient) Login(ctx context.Context, req *miner_core.LoginReq, callOptions ...callopt.Option) (r *miner_core.LoginResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.Login(ctx, req)
+}
+
+func (p *kMinerCoreClient) QueryUserList(ctx context.Context, req *miner_core.QueryUserListReq, callOptions ...callopt.Option) (r *miner_core.QueryUserListResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryUserList(ctx, req)
 }
 
 func (p *kMinerCoreClient) QueryJobList(ctx context.Context, req *miner_core.QueryJobListReq, callOptions ...callopt.Option) (r *miner_core.QueryJobListResp, err error) {
