@@ -1541,7 +1541,7 @@ func (p *CreateJobResp) field1Length() int {
 	return l
 }
 
-func (p *DeleteJobResp) FastRead(buf []byte) (int, error) {
+func (p *DeleteJobReq) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -1549,6 +1549,7 @@ func (p *DeleteJobResp) FastRead(buf []byte) (int, error) {
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetId bool = false
+	var issetToken bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -1574,6 +1575,21 @@ func (p *DeleteJobResp) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField2(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
 		default:
 			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 			offset += l
@@ -1587,18 +1603,23 @@ func (p *DeleteJobResp) FastRead(buf []byte) (int, error) {
 		fieldId = 1
 		goto RequiredFieldNotSetError
 	}
+
+	if !issetToken {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
 	return offset, nil
 ReadFieldBeginError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_DeleteJobResp[fieldId]), err)
+	return offset, thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_DeleteJobReq[fieldId]), err)
 SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 RequiredFieldNotSetError:
-	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_DeleteJobResp[fieldId]))
+	return offset, thrift.NewProtocolException(thrift.INVALID_DATA, fmt.Sprintf("required field %s is not set", fieldIDToName_DeleteJobReq[fieldId]))
 }
 
-func (p *DeleteJobResp) FastReadField1(buf []byte) (int, error) {
+func (p *DeleteJobReq) FastReadField1(buf []byte) (int, error) {
 	offset := 0
 
 	var _field int64
@@ -1612,43 +1633,73 @@ func (p *DeleteJobResp) FastReadField1(buf []byte) (int, error) {
 	return offset, nil
 }
 
-func (p *DeleteJobResp) FastWrite(buf []byte) int {
+func (p *DeleteJobReq) FastReadField2(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Token = _field
+	return offset, nil
+}
+
+func (p *DeleteJobReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *DeleteJobResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *DeleteJobReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
+		offset += p.fastWriteField2(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
 }
 
-func (p *DeleteJobResp) BLength() int {
+func (p *DeleteJobReq) BLength() int {
 	l := 0
 	if p != nil {
 		l += p.field1Length()
+		l += p.field2Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
 }
 
-func (p *DeleteJobResp) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
+func (p *DeleteJobReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 1)
 	offset += thrift.Binary.WriteI64(buf[offset:], p.Id)
 	return offset
 }
 
-func (p *DeleteJobResp) field1Length() int {
+func (p *DeleteJobReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 2)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
+	return offset
+}
+
+func (p *DeleteJobReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.I64Length()
 	return l
 }
 
-func (p *DeleteJobReq) FastRead(buf []byte) (int, error) {
+func (p *DeleteJobReq) field2Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Token)
+	return l
+}
+
+func (p *DeleteJobResp) FastRead(buf []byte) (int, error) {
 
 	var err error
 	var offset int
@@ -1678,11 +1729,11 @@ SkipFieldError:
 	return offset, thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 }
 
-func (p *DeleteJobReq) FastWrite(buf []byte) int {
+func (p *DeleteJobResp) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
 
-func (p *DeleteJobReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
+func (p *DeleteJobResp) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	if p != nil {
 	}
@@ -1690,7 +1741,7 @@ func (p *DeleteJobReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
-func (p *DeleteJobReq) BLength() int {
+func (p *DeleteJobResp) BLength() int {
 	l := 0
 	if p != nil {
 	}

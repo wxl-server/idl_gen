@@ -2511,33 +2511,43 @@ func (p *CreateJobResp) Field1DeepEqual(src int64) bool {
 	return true
 }
 
-type DeleteJobResp struct {
-	Id int64 `thrift:"id,1,required" frugal:"1,required,i64" json:"id"`
+type DeleteJobReq struct {
+	Id    int64  `thrift:"id,1,required" frugal:"1,required,i64" json:"id"`
+	Token string `thrift:"token,2,required" frugal:"2,required,string" json:"token"`
 }
 
-func NewDeleteJobResp() *DeleteJobResp {
-	return &DeleteJobResp{}
+func NewDeleteJobReq() *DeleteJobReq {
+	return &DeleteJobReq{}
 }
 
-func (p *DeleteJobResp) InitDefault() {
+func (p *DeleteJobReq) InitDefault() {
 }
 
-func (p *DeleteJobResp) GetId() (v int64) {
+func (p *DeleteJobReq) GetId() (v int64) {
 	return p.Id
 }
-func (p *DeleteJobResp) SetId(val int64) {
+
+func (p *DeleteJobReq) GetToken() (v string) {
+	return p.Token
+}
+func (p *DeleteJobReq) SetId(val int64) {
 	p.Id = val
 }
-
-var fieldIDToName_DeleteJobResp = map[int16]string{
-	1: "id",
+func (p *DeleteJobReq) SetToken(val string) {
+	p.Token = val
 }
 
-func (p *DeleteJobResp) Read(iprot thrift.TProtocol) (err error) {
+var fieldIDToName_DeleteJobReq = map[int16]string{
+	1: "id",
+	2: "token",
+}
+
+func (p *DeleteJobReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetId bool = false
+	var issetToken bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -2562,6 +2572,15 @@ func (p *DeleteJobResp) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 2:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField2(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -2579,13 +2598,18 @@ func (p *DeleteJobResp) Read(iprot thrift.TProtocol) (err error) {
 		fieldId = 1
 		goto RequiredFieldNotSetError
 	}
+
+	if !issetToken {
+		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
 	return nil
 ReadStructBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
 ReadFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
 ReadFieldError:
-	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_DeleteJobResp[fieldId]), err)
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_DeleteJobReq[fieldId]), err)
 SkipFieldError:
 	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
 
@@ -2594,10 +2618,10 @@ ReadFieldEndError:
 ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 RequiredFieldNotSetError:
-	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_DeleteJobResp[fieldId]))
+	return thrift.NewTProtocolExceptionWithType(thrift.INVALID_DATA, fmt.Errorf("required field %s is not set", fieldIDToName_DeleteJobReq[fieldId]))
 }
 
-func (p *DeleteJobResp) ReadField1(iprot thrift.TProtocol) error {
+func (p *DeleteJobReq) ReadField1(iprot thrift.TProtocol) error {
 
 	var _field int64
 	if v, err := iprot.ReadI64(); err != nil {
@@ -2608,16 +2632,31 @@ func (p *DeleteJobResp) ReadField1(iprot thrift.TProtocol) error {
 	p.Id = _field
 	return nil
 }
+func (p *DeleteJobReq) ReadField2(iprot thrift.TProtocol) error {
 
-func (p *DeleteJobResp) Write(oprot thrift.TProtocol) (err error) {
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Token = _field
+	return nil
+}
+
+func (p *DeleteJobReq) Write(oprot thrift.TProtocol) (err error) {
 
 	var fieldId int16
-	if err = oprot.WriteStructBegin("DeleteJobResp"); err != nil {
+	if err = oprot.WriteStructBegin("DeleteJobReq"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
 		if err = p.writeField1(oprot); err != nil {
 			fieldId = 1
+			goto WriteFieldError
+		}
+		if err = p.writeField2(oprot); err != nil {
+			fieldId = 2
 			goto WriteFieldError
 		}
 	}
@@ -2638,7 +2677,7 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *DeleteJobResp) writeField1(oprot thrift.TProtocol) (err error) {
+func (p *DeleteJobReq) writeField1(oprot thrift.TProtocol) (err error) {
 	if err = oprot.WriteFieldBegin("id", thrift.I64, 1); err != nil {
 		goto WriteFieldBeginError
 	}
@@ -2655,15 +2694,32 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
 }
 
-func (p *DeleteJobResp) String() string {
+func (p *DeleteJobReq) writeField2(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("token", thrift.STRING, 2); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Token); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
+}
+
+func (p *DeleteJobReq) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("DeleteJobResp(%+v)", *p)
+	return fmt.Sprintf("DeleteJobReq(%+v)", *p)
 
 }
 
-func (p *DeleteJobResp) DeepEqual(ano *DeleteJobResp) bool {
+func (p *DeleteJobReq) DeepEqual(ano *DeleteJobReq) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
@@ -2672,30 +2728,40 @@ func (p *DeleteJobResp) DeepEqual(ano *DeleteJobResp) bool {
 	if !p.Field1DeepEqual(ano.Id) {
 		return false
 	}
+	if !p.Field2DeepEqual(ano.Token) {
+		return false
+	}
 	return true
 }
 
-func (p *DeleteJobResp) Field1DeepEqual(src int64) bool {
+func (p *DeleteJobReq) Field1DeepEqual(src int64) bool {
 
 	if p.Id != src {
 		return false
 	}
 	return true
 }
+func (p *DeleteJobReq) Field2DeepEqual(src string) bool {
 
-type DeleteJobReq struct {
+	if strings.Compare(p.Token, src) != 0 {
+		return false
+	}
+	return true
 }
 
-func NewDeleteJobReq() *DeleteJobReq {
-	return &DeleteJobReq{}
+type DeleteJobResp struct {
 }
 
-func (p *DeleteJobReq) InitDefault() {
+func NewDeleteJobResp() *DeleteJobResp {
+	return &DeleteJobResp{}
 }
 
-var fieldIDToName_DeleteJobReq = map[int16]string{}
+func (p *DeleteJobResp) InitDefault() {
+}
 
-func (p *DeleteJobReq) Read(iprot thrift.TProtocol) (err error) {
+var fieldIDToName_DeleteJobResp = map[int16]string{}
+
+func (p *DeleteJobResp) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
@@ -2737,9 +2803,9 @@ ReadStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 }
 
-func (p *DeleteJobReq) Write(oprot thrift.TProtocol) (err error) {
+func (p *DeleteJobResp) Write(oprot thrift.TProtocol) (err error) {
 
-	if err = oprot.WriteStructBegin("DeleteJobReq"); err != nil {
+	if err = oprot.WriteStructBegin("DeleteJobResp"); err != nil {
 		goto WriteStructBeginError
 	}
 	if p != nil {
@@ -2759,15 +2825,15 @@ WriteStructEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
 }
 
-func (p *DeleteJobReq) String() string {
+func (p *DeleteJobResp) String() string {
 	if p == nil {
 		return "<nil>"
 	}
-	return fmt.Sprintf("DeleteJobReq(%+v)", *p)
+	return fmt.Sprintf("DeleteJobResp(%+v)", *p)
 
 }
 
-func (p *DeleteJobReq) DeepEqual(ano *DeleteJobReq) bool {
+func (p *DeleteJobResp) DeepEqual(ano *DeleteJobResp) bool {
 	if p == ano {
 		return true
 	} else if p == nil || ano == nil {
