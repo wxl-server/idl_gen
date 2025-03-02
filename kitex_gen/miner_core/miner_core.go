@@ -4657,10 +4657,10 @@ func (p *AllowValues) Field2DeepEqual(src string) bool {
 }
 
 type RunTaskReq struct {
-	JobId           int64  `thrift:"job_id,1,required" frugal:"1,required,i64" json:"job_id"`
-	Rules           *Rule  `thrift:"rules,2,required" frugal:"2,required,Rule" json:"rules"`
-	LogicExpression string `thrift:"logic_expression,3,required" frugal:"3,required,string" json:"logic_expression"`
-	Limit           int64  `thrift:"limit,4,required" frugal:"4,required,i64" json:"limit"`
+	JobId           int64   `thrift:"job_id,1,required" frugal:"1,required,i64" json:"job_id"`
+	Rules           []*Rule `thrift:"rules,2,required" frugal:"2,required,list<Rule>" json:"rules"`
+	LogicExpression string  `thrift:"logic_expression,3,required" frugal:"3,required,string" json:"logic_expression"`
+	Limit           int64   `thrift:"limit,4,required" frugal:"4,required,i64" json:"limit"`
 }
 
 func NewRunTaskReq() *RunTaskReq {
@@ -4674,12 +4674,7 @@ func (p *RunTaskReq) GetJobId() (v int64) {
 	return p.JobId
 }
 
-var RunTaskReq_Rules_DEFAULT *Rule
-
-func (p *RunTaskReq) GetRules() (v *Rule) {
-	if !p.IsSetRules() {
-		return RunTaskReq_Rules_DEFAULT
-	}
+func (p *RunTaskReq) GetRules() (v []*Rule) {
 	return p.Rules
 }
 
@@ -4693,7 +4688,7 @@ func (p *RunTaskReq) GetLimit() (v int64) {
 func (p *RunTaskReq) SetJobId(val int64) {
 	p.JobId = val
 }
-func (p *RunTaskReq) SetRules(val *Rule) {
+func (p *RunTaskReq) SetRules(val []*Rule) {
 	p.Rules = val
 }
 func (p *RunTaskReq) SetLogicExpression(val string) {
@@ -4708,10 +4703,6 @@ var fieldIDToName_RunTaskReq = map[int16]string{
 	2: "rules",
 	3: "logic_expression",
 	4: "limit",
-}
-
-func (p *RunTaskReq) IsSetRules() bool {
-	return p.Rules != nil
 }
 
 func (p *RunTaskReq) Read(iprot thrift.TProtocol) (err error) {
@@ -4747,7 +4738,7 @@ func (p *RunTaskReq) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 2:
-			if fieldTypeId == thrift.STRUCT {
+			if fieldTypeId == thrift.LIST {
 				if err = p.ReadField2(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -4835,8 +4826,23 @@ func (p *RunTaskReq) ReadField1(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *RunTaskReq) ReadField2(iprot thrift.TProtocol) error {
-	_field := NewRule()
-	if err := _field.Read(iprot); err != nil {
+	_, size, err := iprot.ReadListBegin()
+	if err != nil {
+		return err
+	}
+	_field := make([]*Rule, 0, size)
+	values := make([]Rule, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+
+		if err := _elem.Read(iprot); err != nil {
+			return err
+		}
+
+		_field = append(_field, _elem)
+	}
+	if err := iprot.ReadListEnd(); err != nil {
 		return err
 	}
 	p.Rules = _field
@@ -4924,10 +4930,18 @@ WriteFieldEndError:
 }
 
 func (p *RunTaskReq) writeField2(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("rules", thrift.STRUCT, 2); err != nil {
+	if err = oprot.WriteFieldBegin("rules", thrift.LIST, 2); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := p.Rules.Write(oprot); err != nil {
+	if err := oprot.WriteListBegin(thrift.STRUCT, len(p.Rules)); err != nil {
+		return err
+	}
+	for _, v := range p.Rules {
+		if err := v.Write(oprot); err != nil {
+			return err
+		}
+	}
+	if err := oprot.WriteListEnd(); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -5010,10 +5024,16 @@ func (p *RunTaskReq) Field1DeepEqual(src int64) bool {
 	}
 	return true
 }
-func (p *RunTaskReq) Field2DeepEqual(src *Rule) bool {
+func (p *RunTaskReq) Field2DeepEqual(src []*Rule) bool {
 
-	if !p.Rules.DeepEqual(src) {
+	if len(p.Rules) != len(src) {
 		return false
+	}
+	for i, v := range p.Rules {
+		_src := src[i]
+		if !v.DeepEqual(_src) {
+			return false
+		}
 	}
 	return true
 }

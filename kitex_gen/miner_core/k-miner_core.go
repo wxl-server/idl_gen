@@ -2993,7 +2993,7 @@ func (p *RunTaskReq) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 2:
-			if fieldTypeId == thrift.STRUCT {
+			if fieldTypeId == thrift.LIST {
 				l, err = p.FastReadField2(buf[offset:])
 				offset += l
 				if err != nil {
@@ -3092,11 +3092,24 @@ func (p *RunTaskReq) FastReadField1(buf []byte) (int, error) {
 
 func (p *RunTaskReq) FastReadField2(buf []byte) (int, error) {
 	offset := 0
-	_field := NewRule()
-	if l, err := _field.FastRead(buf[offset:]); err != nil {
+
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
 		return offset, err
-	} else {
-		offset += l
+	}
+	_field := make([]*Rule, 0, size)
+	values := make([]Rule, size)
+	for i := 0; i < size; i++ {
+		_elem := &values[i]
+		_elem.InitDefault()
+		if l, err := _elem.FastRead(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+		}
+
+		_field = append(_field, _elem)
 	}
 	p.Rules = _field
 	return offset, nil
@@ -3167,8 +3180,15 @@ func (p *RunTaskReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *RunTaskReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 2)
-	offset += p.Rules.FastWriteNocopy(buf[offset:], w)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 2)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.Rules {
+		length++
+		offset += v.FastWriteNocopy(buf[offset:], w)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRUCT, length)
 	return offset
 }
 
@@ -3196,7 +3216,11 @@ func (p *RunTaskReq) field1Length() int {
 func (p *RunTaskReq) field2Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += p.Rules.BLength()
+	l += thrift.Binary.ListBeginLength()
+	for _, v := range p.Rules {
+		_ = v
+		l += v.BLength()
+	}
 	return l
 }
 
