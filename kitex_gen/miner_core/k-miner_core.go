@@ -98,7 +98,7 @@ func (p *QueryJobListReq) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 5:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				l, err = p.FastReadField5(buf[offset:])
 				offset += l
 				if err != nil {
@@ -245,14 +245,14 @@ func (p *QueryJobListReq) FastReadField4(buf []byte) (int, error) {
 func (p *QueryJobListReq) FastReadField5(buf []byte) (int, error) {
 	offset := 0
 
-	var _field *int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
 	} else {
 		offset += l
 		_field = &v
 	}
-	p.Id = _field
+	p.Name = _field
 	return offset, nil
 }
 
@@ -307,12 +307,12 @@ func (p *QueryJobListReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
 		offset += p.fastWriteField2(buf[offset:], w)
-		offset += p.fastWriteField5(buf[offset:], w)
 		offset += p.fastWriteField6(buf[offset:], w)
 		offset += p.fastWriteField7(buf[offset:], w)
 		offset += p.fastWriteField8(buf[offset:], w)
 		offset += p.fastWriteField3(buf[offset:], w)
 		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -368,9 +368,9 @@ func (p *QueryJobListReq) fastWriteField4(buf []byte, w thrift.NocopyWriter) int
 
 func (p *QueryJobListReq) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetId() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 5)
-		offset += thrift.Binary.WriteI64(buf[offset:], *p.Id)
+	if p.IsSetName() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.Name)
 	}
 	return offset
 }
@@ -436,9 +436,9 @@ func (p *QueryJobListReq) field4Length() int {
 
 func (p *QueryJobListReq) field5Length() int {
 	l := 0
-	if p.IsSetId() {
+	if p.IsSetName() {
 		l += thrift.Binary.FieldBeginLength()
-		l += thrift.Binary.I64Length()
+		l += thrift.Binary.StringLengthNocopy(*p.Name)
 	}
 	return l
 }

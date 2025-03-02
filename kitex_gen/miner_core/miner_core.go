@@ -130,7 +130,7 @@ type QueryJobListReq struct {
 	PageSize       int64      `thrift:"page_size,2,required" frugal:"2,required,i64" json:"page_size"`
 	OrderBy        *JobColumn `thrift:"order_by,3,optional" frugal:"3,optional,JobColumn" json:"order_by,omitempty"`
 	Order          *Order     `thrift:"order,4,optional" frugal:"4,optional,Order" json:"order,omitempty"`
-	Id             *int64     `thrift:"id,5,optional" frugal:"5,optional,i64" json:"id,omitempty"`
+	Name           *string    `thrift:"name,5,optional" frugal:"5,optional,string" json:"name,omitempty"`
 	CreatedBy      *int64     `thrift:"created_by,6,optional" frugal:"6,optional,i64" json:"created_by,omitempty"`
 	CreatedAtStart *int64     `thrift:"created_at_start,7,optional" frugal:"7,optional,i64" json:"created_at_start,omitempty"`
 	CreatedAtEnd   *int64     `thrift:"created_at_end,8,optional" frugal:"8,optional,i64" json:"created_at_end,omitempty"`
@@ -169,13 +169,13 @@ func (p *QueryJobListReq) GetOrder() (v Order) {
 	return *p.Order
 }
 
-var QueryJobListReq_Id_DEFAULT int64
+var QueryJobListReq_Name_DEFAULT string
 
-func (p *QueryJobListReq) GetId() (v int64) {
-	if !p.IsSetId() {
-		return QueryJobListReq_Id_DEFAULT
+func (p *QueryJobListReq) GetName() (v string) {
+	if !p.IsSetName() {
+		return QueryJobListReq_Name_DEFAULT
 	}
-	return *p.Id
+	return *p.Name
 }
 
 var QueryJobListReq_CreatedBy_DEFAULT int64
@@ -216,8 +216,8 @@ func (p *QueryJobListReq) SetOrderBy(val *JobColumn) {
 func (p *QueryJobListReq) SetOrder(val *Order) {
 	p.Order = val
 }
-func (p *QueryJobListReq) SetId(val *int64) {
-	p.Id = val
+func (p *QueryJobListReq) SetName(val *string) {
+	p.Name = val
 }
 func (p *QueryJobListReq) SetCreatedBy(val *int64) {
 	p.CreatedBy = val
@@ -234,7 +234,7 @@ var fieldIDToName_QueryJobListReq = map[int16]string{
 	2: "page_size",
 	3: "order_by",
 	4: "order",
-	5: "id",
+	5: "name",
 	6: "created_by",
 	7: "created_at_start",
 	8: "created_at_end",
@@ -248,8 +248,8 @@ func (p *QueryJobListReq) IsSetOrder() bool {
 	return p.Order != nil
 }
 
-func (p *QueryJobListReq) IsSetId() bool {
-	return p.Id != nil
+func (p *QueryJobListReq) IsSetName() bool {
+	return p.Name != nil
 }
 
 func (p *QueryJobListReq) IsSetCreatedBy() bool {
@@ -320,7 +320,7 @@ func (p *QueryJobListReq) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 5:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField5(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -439,13 +439,13 @@ func (p *QueryJobListReq) ReadField4(iprot thrift.TProtocol) error {
 }
 func (p *QueryJobListReq) ReadField5(iprot thrift.TProtocol) error {
 
-	var _field *int64
-	if v, err := iprot.ReadI64(); err != nil {
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
 		return err
 	} else {
 		_field = &v
 	}
-	p.Id = _field
+	p.Name = _field
 	return nil
 }
 func (p *QueryJobListReq) ReadField6(iprot thrift.TProtocol) error {
@@ -612,11 +612,11 @@ WriteFieldEndError:
 }
 
 func (p *QueryJobListReq) writeField5(oprot thrift.TProtocol) (err error) {
-	if p.IsSetId() {
-		if err = oprot.WriteFieldBegin("id", thrift.I64, 5); err != nil {
+	if p.IsSetName() {
+		if err = oprot.WriteFieldBegin("name", thrift.STRING, 5); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := oprot.WriteI64(*p.Id); err != nil {
+		if err := oprot.WriteString(*p.Name); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -713,7 +713,7 @@ func (p *QueryJobListReq) DeepEqual(ano *QueryJobListReq) bool {
 	if !p.Field4DeepEqual(ano.Order) {
 		return false
 	}
-	if !p.Field5DeepEqual(ano.Id) {
+	if !p.Field5DeepEqual(ano.Name) {
 		return false
 	}
 	if !p.Field6DeepEqual(ano.CreatedBy) {
@@ -766,14 +766,14 @@ func (p *QueryJobListReq) Field4DeepEqual(src *Order) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field5DeepEqual(src *int64) bool {
+func (p *QueryJobListReq) Field5DeepEqual(src *string) bool {
 
-	if p.Id == src {
+	if p.Name == src {
 		return true
-	} else if p.Id == nil || src == nil {
+	} else if p.Name == nil || src == nil {
 		return false
 	}
-	if *p.Id != *src {
+	if strings.Compare(*p.Name, *src) != 0 {
 		return false
 	}
 	return true
