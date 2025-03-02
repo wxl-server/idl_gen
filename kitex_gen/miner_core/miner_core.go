@@ -1082,6 +1082,7 @@ func (p *QueryJobListResp) Field2DeepEqual(src int64) bool {
 type CreateJobReq struct {
 	Name        string  `thrift:"name,1,required" frugal:"1,required,string" json:"name"`
 	Description *string `thrift:"description,2,optional" frugal:"2,optional,string" json:"description,omitempty"`
+	Token       string  `thrift:"token,3,required" frugal:"3,required,string" json:"token"`
 }
 
 func NewCreateJobReq() *CreateJobReq {
@@ -1103,16 +1104,24 @@ func (p *CreateJobReq) GetDescription() (v string) {
 	}
 	return *p.Description
 }
+
+func (p *CreateJobReq) GetToken() (v string) {
+	return p.Token
+}
 func (p *CreateJobReq) SetName(val string) {
 	p.Name = val
 }
 func (p *CreateJobReq) SetDescription(val *string) {
 	p.Description = val
 }
+func (p *CreateJobReq) SetToken(val string) {
+	p.Token = val
+}
 
 var fieldIDToName_CreateJobReq = map[int16]string{
 	1: "name",
 	2: "description",
+	3: "token",
 }
 
 func (p *CreateJobReq) IsSetDescription() bool {
@@ -1124,6 +1133,7 @@ func (p *CreateJobReq) Read(iprot thrift.TProtocol) (err error) {
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetName bool = false
+	var issetToken bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -1156,6 +1166,15 @@ func (p *CreateJobReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -1171,6 +1190,11 @@ func (p *CreateJobReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetName {
 		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetToken {
+		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -1213,6 +1237,17 @@ func (p *CreateJobReq) ReadField2(iprot thrift.TProtocol) error {
 	p.Description = _field
 	return nil
 }
+func (p *CreateJobReq) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Token = _field
+	return nil
+}
 
 func (p *CreateJobReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -1227,6 +1262,10 @@ func (p *CreateJobReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField2(oprot); err != nil {
 			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
 			goto WriteFieldError
 		}
 	}
@@ -1283,6 +1322,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
+func (p *CreateJobReq) writeField3(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("token", thrift.STRING, 3); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Token); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
 func (p *CreateJobReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -1303,6 +1359,9 @@ func (p *CreateJobReq) DeepEqual(ano *CreateJobReq) bool {
 	if !p.Field2DeepEqual(ano.Description) {
 		return false
 	}
+	if !p.Field3DeepEqual(ano.Token) {
+		return false
+	}
 	return true
 }
 
@@ -1321,6 +1380,13 @@ func (p *CreateJobReq) Field2DeepEqual(src *string) bool {
 		return false
 	}
 	if strings.Compare(*p.Description, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *CreateJobReq) Field3DeepEqual(src string) bool {
+
+	if strings.Compare(p.Token, src) != 0 {
 		return false
 	}
 	return true

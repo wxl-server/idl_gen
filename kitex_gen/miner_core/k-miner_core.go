@@ -658,6 +658,7 @@ func (p *CreateJobReq) FastRead(buf []byte) (int, error) {
 	var fieldTypeId thrift.TType
 	var fieldId int16
 	var issetName bool = false
+	var issetToken bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -697,6 +698,21 @@ func (p *CreateJobReq) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
 		default:
 			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 			offset += l
@@ -708,6 +724,11 @@ func (p *CreateJobReq) FastRead(buf []byte) (int, error) {
 
 	if !issetName {
 		fieldId = 1
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetToken {
+		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -749,6 +770,20 @@ func (p *CreateJobReq) FastReadField2(buf []byte) (int, error) {
 	return offset, nil
 }
 
+func (p *CreateJobReq) FastReadField3(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.Token = _field
+	return offset, nil
+}
+
 func (p *CreateJobReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
@@ -758,6 +793,7 @@ func (p *CreateJobReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int {
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
 		offset += p.fastWriteField2(buf[offset:], w)
+		offset += p.fastWriteField3(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -768,6 +804,7 @@ func (p *CreateJobReq) BLength() int {
 	if p != nil {
 		l += p.field1Length()
 		l += p.field2Length()
+		l += p.field3Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -789,6 +826,13 @@ func (p *CreateJobReq) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 	return offset
 }
 
+func (p *CreateJobReq) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.Token)
+	return offset
+}
+
 func (p *CreateJobReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
@@ -802,6 +846,13 @@ func (p *CreateJobReq) field2Length() int {
 		l += thrift.Binary.FieldBeginLength()
 		l += thrift.Binary.StringLengthNocopy(*p.Description)
 	}
+	return l
+}
+
+func (p *CreateJobReq) field3Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.Token)
 	return l
 }
 
