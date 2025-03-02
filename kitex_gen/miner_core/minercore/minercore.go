@@ -62,6 +62,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"RunTask": kitex.NewMethodInfo(
+		runTaskHandler,
+		newMinerCoreRunTaskArgs,
+		newMinerCoreRunTaskResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -254,6 +261,24 @@ func newMinerCoreQueryIndicatorListResult() interface{} {
 	return miner_core.NewMinerCoreQueryIndicatorListResult()
 }
 
+func runTaskHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreRunTaskArgs)
+	realResult := result.(*miner_core.MinerCoreRunTaskResult)
+	success, err := handler.(miner_core.MinerCore).RunTask(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreRunTaskArgs() interface{} {
+	return miner_core.NewMinerCoreRunTaskArgs()
+}
+
+func newMinerCoreRunTaskResult() interface{} {
+	return miner_core.NewMinerCoreRunTaskResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -329,6 +354,16 @@ func (p *kClient) QueryIndicatorList(ctx context.Context, req *miner_core.QueryI
 	_args.Req = req
 	var _result miner_core.MinerCoreQueryIndicatorListResult
 	if err = p.c.Call(ctx, "QueryIndicatorList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) RunTask(ctx context.Context, req *miner_core.RunTaskReq) (r *miner_core.RunTaskResp, err error) {
+	var _args miner_core.MinerCoreRunTaskArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreRunTaskResult
+	if err = p.c.Call(ctx, "RunTask", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
