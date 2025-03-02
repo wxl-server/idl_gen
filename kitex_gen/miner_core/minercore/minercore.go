@@ -41,6 +41,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"DeleteJob": kitex.NewMethodInfo(
+		deleteJobHandler,
+		newMinerCoreDeleteJobArgs,
+		newMinerCoreDeleteJobResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 	"QueryIndicatorList": kitex.NewMethodInfo(
 		queryIndicatorListHandler,
 		newMinerCoreQueryIndicatorListArgs,
@@ -186,6 +193,24 @@ func newMinerCoreCreateJobResult() interface{} {
 	return miner_core.NewMinerCoreCreateJobResult()
 }
 
+func deleteJobHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreDeleteJobArgs)
+	realResult := result.(*miner_core.MinerCoreDeleteJobResult)
+	success, err := handler.(miner_core.MinerCore).DeleteJob(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreDeleteJobArgs() interface{} {
+	return miner_core.NewMinerCoreDeleteJobArgs()
+}
+
+func newMinerCoreDeleteJobResult() interface{} {
+	return miner_core.NewMinerCoreDeleteJobResult()
+}
+
 func queryIndicatorListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	realArg := arg.(*miner_core.MinerCoreQueryIndicatorListArgs)
 	realResult := result.(*miner_core.MinerCoreQueryIndicatorListResult)
@@ -249,6 +274,16 @@ func (p *kClient) CreateJob(ctx context.Context, req *miner_core.CreateJobReq) (
 	_args.Req = req
 	var _result miner_core.MinerCoreCreateJobResult
 	if err = p.c.Call(ctx, "CreateJob", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) DeleteJob(ctx context.Context, req *miner_core.DeleteJobReq) (r *miner_core.DeleteJobResp, err error) {
+	var _args miner_core.MinerCoreDeleteJobArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreDeleteJobResult
+	if err = p.c.Call(ctx, "DeleteJob", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
