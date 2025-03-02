@@ -13,6 +13,20 @@ import (
 var errInvalidMessageType = errors.New("invalid message type for service method handler")
 
 var serviceMethods = map[string]kitex.MethodInfo{
+	"SignUp": kitex.NewMethodInfo(
+		signUpHandler,
+		newMinerCoreSignUpArgs,
+		newMinerCoreSignUpResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"Login": kitex.NewMethodInfo(
+		loginHandler,
+		newMinerCoreLoginArgs,
+		newMinerCoreLoginResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 	"QueryJobList": kitex.NewMethodInfo(
 		queryJobListHandler,
 		newMinerCoreQueryJobListArgs,
@@ -27,17 +41,10 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
-	"SignUp": kitex.NewMethodInfo(
-		signUpHandler,
-		newMinerCoreSignUpArgs,
-		newMinerCoreSignUpResult,
-		false,
-		kitex.WithStreamingMode(kitex.StreamingNone),
-	),
-	"Login": kitex.NewMethodInfo(
-		loginHandler,
-		newMinerCoreLoginArgs,
-		newMinerCoreLoginResult,
+	"QueryIndicatorList": kitex.NewMethodInfo(
+		queryIndicatorListHandler,
+		newMinerCoreQueryIndicatorListArgs,
+		newMinerCoreQueryIndicatorListResult,
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
@@ -107,42 +114,6 @@ func newServiceInfo(hasStreaming bool, keepStreamingMethods bool, keepNonStreami
 	return svcInfo
 }
 
-func queryJobListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*miner_core.MinerCoreQueryJobListArgs)
-	realResult := result.(*miner_core.MinerCoreQueryJobListResult)
-	success, err := handler.(miner_core.MinerCore).QueryJobList(ctx, realArg.Req)
-	if err != nil {
-		return err
-	}
-	realResult.Success = success
-	return nil
-}
-func newMinerCoreQueryJobListArgs() interface{} {
-	return miner_core.NewMinerCoreQueryJobListArgs()
-}
-
-func newMinerCoreQueryJobListResult() interface{} {
-	return miner_core.NewMinerCoreQueryJobListResult()
-}
-
-func createJobHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
-	realArg := arg.(*miner_core.MinerCoreCreateJobArgs)
-	realResult := result.(*miner_core.MinerCoreCreateJobResult)
-	success, err := handler.(miner_core.MinerCore).CreateJob(ctx, realArg.Req)
-	if err != nil {
-		return err
-	}
-	realResult.Success = success
-	return nil
-}
-func newMinerCoreCreateJobArgs() interface{} {
-	return miner_core.NewMinerCoreCreateJobArgs()
-}
-
-func newMinerCoreCreateJobResult() interface{} {
-	return miner_core.NewMinerCoreCreateJobResult()
-}
-
 func signUpHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	realArg := arg.(*miner_core.MinerCoreSignUpArgs)
 	realResult := result.(*miner_core.MinerCoreSignUpResult)
@@ -179,6 +150,60 @@ func newMinerCoreLoginResult() interface{} {
 	return miner_core.NewMinerCoreLoginResult()
 }
 
+func queryJobListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreQueryJobListArgs)
+	realResult := result.(*miner_core.MinerCoreQueryJobListResult)
+	success, err := handler.(miner_core.MinerCore).QueryJobList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreQueryJobListArgs() interface{} {
+	return miner_core.NewMinerCoreQueryJobListArgs()
+}
+
+func newMinerCoreQueryJobListResult() interface{} {
+	return miner_core.NewMinerCoreQueryJobListResult()
+}
+
+func createJobHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreCreateJobArgs)
+	realResult := result.(*miner_core.MinerCoreCreateJobResult)
+	success, err := handler.(miner_core.MinerCore).CreateJob(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreCreateJobArgs() interface{} {
+	return miner_core.NewMinerCoreCreateJobArgs()
+}
+
+func newMinerCoreCreateJobResult() interface{} {
+	return miner_core.NewMinerCoreCreateJobResult()
+}
+
+func queryIndicatorListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreQueryIndicatorListArgs)
+	realResult := result.(*miner_core.MinerCoreQueryIndicatorListResult)
+	success, err := handler.(miner_core.MinerCore).QueryIndicatorList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreQueryIndicatorListArgs() interface{} {
+	return miner_core.NewMinerCoreQueryIndicatorListArgs()
+}
+
+func newMinerCoreQueryIndicatorListResult() interface{} {
+	return miner_core.NewMinerCoreQueryIndicatorListResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -187,6 +212,26 @@ func newServiceClient(c client.Client) *kClient {
 	return &kClient{
 		c: c,
 	}
+}
+
+func (p *kClient) SignUp(ctx context.Context, req *miner_core.SignUpReq) (r *miner_core.SignUpResp, err error) {
+	var _args miner_core.MinerCoreSignUpArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreSignUpResult
+	if err = p.c.Call(ctx, "SignUp", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) Login(ctx context.Context, req *miner_core.LoginReq) (r *miner_core.LoginResp, err error) {
+	var _args miner_core.MinerCoreLoginArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreLoginResult
+	if err = p.c.Call(ctx, "Login", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
 }
 
 func (p *kClient) QueryJobList(ctx context.Context, req *miner_core.QueryJobListReq) (r *miner_core.QueryJobListResp, err error) {
@@ -209,21 +254,11 @@ func (p *kClient) CreateJob(ctx context.Context, req *miner_core.CreateJobReq) (
 	return _result.GetSuccess(), nil
 }
 
-func (p *kClient) SignUp(ctx context.Context, req *miner_core.SignUpReq) (r *miner_core.SignUpResp, err error) {
-	var _args miner_core.MinerCoreSignUpArgs
+func (p *kClient) QueryIndicatorList(ctx context.Context, req *miner_core.QueryIndicatorListReq) (r *miner_core.QueryIndicatorListResp, err error) {
+	var _args miner_core.MinerCoreQueryIndicatorListArgs
 	_args.Req = req
-	var _result miner_core.MinerCoreSignUpResult
-	if err = p.c.Call(ctx, "SignUp", &_args, &_result); err != nil {
-		return
-	}
-	return _result.GetSuccess(), nil
-}
-
-func (p *kClient) Login(ctx context.Context, req *miner_core.LoginReq) (r *miner_core.LoginResp, err error) {
-	var _args miner_core.MinerCoreLoginArgs
-	_args.Req = req
-	var _result miner_core.MinerCoreLoginResult
-	if err = p.c.Call(ctx, "Login", &_args, &_result); err != nil {
+	var _result miner_core.MinerCoreQueryIndicatorListResult
+	if err = p.c.Call(ctx, "QueryIndicatorList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
