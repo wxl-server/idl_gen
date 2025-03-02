@@ -98,7 +98,7 @@ func (p *QueryJobListReq) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 5:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				l, err = p.FastReadField5(buf[offset:])
 				offset += l
 				if err != nil {
@@ -112,7 +112,7 @@ func (p *QueryJobListReq) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 6:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				l, err = p.FastReadField6(buf[offset:])
 				offset += l
 				if err != nil {
@@ -142,6 +142,20 @@ func (p *QueryJobListReq) FastRead(buf []byte) (int, error) {
 		case 8:
 			if fieldTypeId == thrift.I64 {
 				l, err = p.FastReadField8(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 9:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField9(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
@@ -245,6 +259,20 @@ func (p *QueryJobListReq) FastReadField4(buf []byte) (int, error) {
 func (p *QueryJobListReq) FastReadField5(buf []byte) (int, error) {
 	offset := 0
 
+	var _field *int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.Id = _field
+	return offset, nil
+}
+
+func (p *QueryJobListReq) FastReadField6(buf []byte) (int, error) {
+	offset := 0
+
 	var _field *string
 	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
 		return offset, err
@@ -253,20 +281,6 @@ func (p *QueryJobListReq) FastReadField5(buf []byte) (int, error) {
 		_field = &v
 	}
 	p.Name = _field
-	return offset, nil
-}
-
-func (p *QueryJobListReq) FastReadField6(buf []byte) (int, error) {
-	offset := 0
-
-	var _field *int64
-	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
-		return offset, err
-	} else {
-		offset += l
-		_field = &v
-	}
-	p.CreatedBy = _field
 	return offset, nil
 }
 
@@ -280,11 +294,25 @@ func (p *QueryJobListReq) FastReadField7(buf []byte) (int, error) {
 		offset += l
 		_field = &v
 	}
-	p.CreatedAtStart = _field
+	p.CreatedBy = _field
 	return offset, nil
 }
 
 func (p *QueryJobListReq) FastReadField8(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.CreatedAtStart = _field
+	return offset, nil
+}
+
+func (p *QueryJobListReq) FastReadField9(buf []byte) (int, error) {
 	offset := 0
 
 	var _field *int64
@@ -307,12 +335,13 @@ func (p *QueryJobListReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int
 	if p != nil {
 		offset += p.fastWriteField1(buf[offset:], w)
 		offset += p.fastWriteField2(buf[offset:], w)
-		offset += p.fastWriteField6(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
 		offset += p.fastWriteField7(buf[offset:], w)
 		offset += p.fastWriteField8(buf[offset:], w)
+		offset += p.fastWriteField9(buf[offset:], w)
 		offset += p.fastWriteField3(buf[offset:], w)
 		offset += p.fastWriteField4(buf[offset:], w)
-		offset += p.fastWriteField5(buf[offset:], w)
+		offset += p.fastWriteField6(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -329,6 +358,7 @@ func (p *QueryJobListReq) BLength() int {
 		l += p.field6Length()
 		l += p.field7Length()
 		l += p.field8Length()
+		l += p.field9Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -368,35 +398,44 @@ func (p *QueryJobListReq) fastWriteField4(buf []byte, w thrift.NocopyWriter) int
 
 func (p *QueryJobListReq) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetName() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
-		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.Name)
+	if p.IsSetId() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 5)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.Id)
 	}
 	return offset
 }
 
 func (p *QueryJobListReq) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetCreatedBy() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 6)
-		offset += thrift.Binary.WriteI64(buf[offset:], *p.CreatedBy)
+	if p.IsSetName() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.Name)
 	}
 	return offset
 }
 
 func (p *QueryJobListReq) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetCreatedAtStart() {
+	if p.IsSetCreatedBy() {
 		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 7)
-		offset += thrift.Binary.WriteI64(buf[offset:], *p.CreatedAtStart)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.CreatedBy)
 	}
 	return offset
 }
 
 func (p *QueryJobListReq) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	if p.IsSetCreatedAtEnd() {
+	if p.IsSetCreatedAtStart() {
 		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 8)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.CreatedAtStart)
+	}
+	return offset
+}
+
+func (p *QueryJobListReq) fastWriteField9(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetCreatedAtEnd() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 9)
 		offset += thrift.Binary.WriteI64(buf[offset:], *p.CreatedAtEnd)
 	}
 	return offset
@@ -436,6 +475,15 @@ func (p *QueryJobListReq) field4Length() int {
 
 func (p *QueryJobListReq) field5Length() int {
 	l := 0
+	if p.IsSetId() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.I64Length()
+	}
+	return l
+}
+
+func (p *QueryJobListReq) field6Length() int {
+	l := 0
 	if p.IsSetName() {
 		l += thrift.Binary.FieldBeginLength()
 		l += thrift.Binary.StringLengthNocopy(*p.Name)
@@ -443,7 +491,7 @@ func (p *QueryJobListReq) field5Length() int {
 	return l
 }
 
-func (p *QueryJobListReq) field6Length() int {
+func (p *QueryJobListReq) field7Length() int {
 	l := 0
 	if p.IsSetCreatedBy() {
 		l += thrift.Binary.FieldBeginLength()
@@ -452,7 +500,7 @@ func (p *QueryJobListReq) field6Length() int {
 	return l
 }
 
-func (p *QueryJobListReq) field7Length() int {
+func (p *QueryJobListReq) field8Length() int {
 	l := 0
 	if p.IsSetCreatedAtStart() {
 		l += thrift.Binary.FieldBeginLength()
@@ -461,7 +509,7 @@ func (p *QueryJobListReq) field7Length() int {
 	return l
 }
 
-func (p *QueryJobListReq) field8Length() int {
+func (p *QueryJobListReq) field9Length() int {
 	l := 0
 	if p.IsSetCreatedAtEnd() {
 		l += thrift.Binary.FieldBeginLength()

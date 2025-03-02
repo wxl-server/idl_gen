@@ -130,10 +130,11 @@ type QueryJobListReq struct {
 	PageSize       int64      `thrift:"page_size,2,required" frugal:"2,required,i64" json:"page_size"`
 	OrderBy        *JobColumn `thrift:"order_by,3,optional" frugal:"3,optional,JobColumn" json:"order_by,omitempty"`
 	Order          *Order     `thrift:"order,4,optional" frugal:"4,optional,Order" json:"order,omitempty"`
-	Name           *string    `thrift:"name,5,optional" frugal:"5,optional,string" json:"name,omitempty"`
-	CreatedBy      *int64     `thrift:"created_by,6,optional" frugal:"6,optional,i64" json:"created_by,omitempty"`
-	CreatedAtStart *int64     `thrift:"created_at_start,7,optional" frugal:"7,optional,i64" json:"created_at_start,omitempty"`
-	CreatedAtEnd   *int64     `thrift:"created_at_end,8,optional" frugal:"8,optional,i64" json:"created_at_end,omitempty"`
+	Id             *int64     `thrift:"id,5,optional" frugal:"5,optional,i64" json:"id,omitempty"`
+	Name           *string    `thrift:"name,6,optional" frugal:"6,optional,string" json:"name,omitempty"`
+	CreatedBy      *int64     `thrift:"created_by,7,optional" frugal:"7,optional,i64" json:"created_by,omitempty"`
+	CreatedAtStart *int64     `thrift:"created_at_start,8,optional" frugal:"8,optional,i64" json:"created_at_start,omitempty"`
+	CreatedAtEnd   *int64     `thrift:"created_at_end,9,optional" frugal:"9,optional,i64" json:"created_at_end,omitempty"`
 }
 
 func NewQueryJobListReq() *QueryJobListReq {
@@ -167,6 +168,15 @@ func (p *QueryJobListReq) GetOrder() (v Order) {
 		return QueryJobListReq_Order_DEFAULT
 	}
 	return *p.Order
+}
+
+var QueryJobListReq_Id_DEFAULT int64
+
+func (p *QueryJobListReq) GetId() (v int64) {
+	if !p.IsSetId() {
+		return QueryJobListReq_Id_DEFAULT
+	}
+	return *p.Id
 }
 
 var QueryJobListReq_Name_DEFAULT string
@@ -216,6 +226,9 @@ func (p *QueryJobListReq) SetOrderBy(val *JobColumn) {
 func (p *QueryJobListReq) SetOrder(val *Order) {
 	p.Order = val
 }
+func (p *QueryJobListReq) SetId(val *int64) {
+	p.Id = val
+}
 func (p *QueryJobListReq) SetName(val *string) {
 	p.Name = val
 }
@@ -234,10 +247,11 @@ var fieldIDToName_QueryJobListReq = map[int16]string{
 	2: "page_size",
 	3: "order_by",
 	4: "order",
-	5: "name",
-	6: "created_by",
-	7: "created_at_start",
-	8: "created_at_end",
+	5: "id",
+	6: "name",
+	7: "created_by",
+	8: "created_at_start",
+	9: "created_at_end",
 }
 
 func (p *QueryJobListReq) IsSetOrderBy() bool {
@@ -246,6 +260,10 @@ func (p *QueryJobListReq) IsSetOrderBy() bool {
 
 func (p *QueryJobListReq) IsSetOrder() bool {
 	return p.Order != nil
+}
+
+func (p *QueryJobListReq) IsSetId() bool {
+	return p.Id != nil
 }
 
 func (p *QueryJobListReq) IsSetName() bool {
@@ -320,7 +338,7 @@ func (p *QueryJobListReq) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 5:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField5(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -328,7 +346,7 @@ func (p *QueryJobListReq) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 6:
-			if fieldTypeId == thrift.I64 {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField6(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -346,6 +364,14 @@ func (p *QueryJobListReq) Read(iprot thrift.TProtocol) (err error) {
 		case 8:
 			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField8(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 9:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField9(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -439,6 +465,17 @@ func (p *QueryJobListReq) ReadField4(iprot thrift.TProtocol) error {
 }
 func (p *QueryJobListReq) ReadField5(iprot thrift.TProtocol) error {
 
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Id = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField6(iprot thrift.TProtocol) error {
+
 	var _field *string
 	if v, err := iprot.ReadString(); err != nil {
 		return err
@@ -446,17 +483,6 @@ func (p *QueryJobListReq) ReadField5(iprot thrift.TProtocol) error {
 		_field = &v
 	}
 	p.Name = _field
-	return nil
-}
-func (p *QueryJobListReq) ReadField6(iprot thrift.TProtocol) error {
-
-	var _field *int64
-	if v, err := iprot.ReadI64(); err != nil {
-		return err
-	} else {
-		_field = &v
-	}
-	p.CreatedBy = _field
 	return nil
 }
 func (p *QueryJobListReq) ReadField7(iprot thrift.TProtocol) error {
@@ -467,10 +493,21 @@ func (p *QueryJobListReq) ReadField7(iprot thrift.TProtocol) error {
 	} else {
 		_field = &v
 	}
-	p.CreatedAtStart = _field
+	p.CreatedBy = _field
 	return nil
 }
 func (p *QueryJobListReq) ReadField8(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.CreatedAtStart = _field
+	return nil
+}
+func (p *QueryJobListReq) ReadField9(iprot thrift.TProtocol) error {
 
 	var _field *int64
 	if v, err := iprot.ReadI64(); err != nil {
@@ -519,6 +556,10 @@ func (p *QueryJobListReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField8(oprot); err != nil {
 			fieldId = 8
+			goto WriteFieldError
+		}
+		if err = p.writeField9(oprot); err != nil {
+			fieldId = 9
 			goto WriteFieldError
 		}
 	}
@@ -612,11 +653,11 @@ WriteFieldEndError:
 }
 
 func (p *QueryJobListReq) writeField5(oprot thrift.TProtocol) (err error) {
-	if p.IsSetName() {
-		if err = oprot.WriteFieldBegin("name", thrift.STRING, 5); err != nil {
+	if p.IsSetId() {
+		if err = oprot.WriteFieldBegin("id", thrift.I64, 5); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := oprot.WriteString(*p.Name); err != nil {
+		if err := oprot.WriteI64(*p.Id); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -631,11 +672,11 @@ WriteFieldEndError:
 }
 
 func (p *QueryJobListReq) writeField6(oprot thrift.TProtocol) (err error) {
-	if p.IsSetCreatedBy() {
-		if err = oprot.WriteFieldBegin("created_by", thrift.I64, 6); err != nil {
+	if p.IsSetName() {
+		if err = oprot.WriteFieldBegin("name", thrift.STRING, 6); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := oprot.WriteI64(*p.CreatedBy); err != nil {
+		if err := oprot.WriteString(*p.Name); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -650,11 +691,11 @@ WriteFieldEndError:
 }
 
 func (p *QueryJobListReq) writeField7(oprot thrift.TProtocol) (err error) {
-	if p.IsSetCreatedAtStart() {
-		if err = oprot.WriteFieldBegin("created_at_start", thrift.I64, 7); err != nil {
+	if p.IsSetCreatedBy() {
+		if err = oprot.WriteFieldBegin("created_by", thrift.I64, 7); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := oprot.WriteI64(*p.CreatedAtStart); err != nil {
+		if err := oprot.WriteI64(*p.CreatedBy); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -669,11 +710,11 @@ WriteFieldEndError:
 }
 
 func (p *QueryJobListReq) writeField8(oprot thrift.TProtocol) (err error) {
-	if p.IsSetCreatedAtEnd() {
-		if err = oprot.WriteFieldBegin("created_at_end", thrift.I64, 8); err != nil {
+	if p.IsSetCreatedAtStart() {
+		if err = oprot.WriteFieldBegin("created_at_start", thrift.I64, 8); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := oprot.WriteI64(*p.CreatedAtEnd); err != nil {
+		if err := oprot.WriteI64(*p.CreatedAtStart); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -685,6 +726,25 @@ WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 8 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 8 end error: ", p), err)
+}
+
+func (p *QueryJobListReq) writeField9(oprot thrift.TProtocol) (err error) {
+	if p.IsSetCreatedAtEnd() {
+		if err = oprot.WriteFieldBegin("created_at_end", thrift.I64, 9); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.CreatedAtEnd); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 9 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 9 end error: ", p), err)
 }
 
 func (p *QueryJobListReq) String() string {
@@ -713,16 +773,19 @@ func (p *QueryJobListReq) DeepEqual(ano *QueryJobListReq) bool {
 	if !p.Field4DeepEqual(ano.Order) {
 		return false
 	}
-	if !p.Field5DeepEqual(ano.Name) {
+	if !p.Field5DeepEqual(ano.Id) {
 		return false
 	}
-	if !p.Field6DeepEqual(ano.CreatedBy) {
+	if !p.Field6DeepEqual(ano.Name) {
 		return false
 	}
-	if !p.Field7DeepEqual(ano.CreatedAtStart) {
+	if !p.Field7DeepEqual(ano.CreatedBy) {
 		return false
 	}
-	if !p.Field8DeepEqual(ano.CreatedAtEnd) {
+	if !p.Field8DeepEqual(ano.CreatedAtStart) {
+		return false
+	}
+	if !p.Field9DeepEqual(ano.CreatedAtEnd) {
 		return false
 	}
 	return true
@@ -766,7 +829,19 @@ func (p *QueryJobListReq) Field4DeepEqual(src *Order) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field5DeepEqual(src *string) bool {
+func (p *QueryJobListReq) Field5DeepEqual(src *int64) bool {
+
+	if p.Id == src {
+		return true
+	} else if p.Id == nil || src == nil {
+		return false
+	}
+	if *p.Id != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryJobListReq) Field6DeepEqual(src *string) bool {
 
 	if p.Name == src {
 		return true
@@ -778,7 +853,7 @@ func (p *QueryJobListReq) Field5DeepEqual(src *string) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field6DeepEqual(src *int64) bool {
+func (p *QueryJobListReq) Field7DeepEqual(src *int64) bool {
 
 	if p.CreatedBy == src {
 		return true
@@ -790,7 +865,7 @@ func (p *QueryJobListReq) Field6DeepEqual(src *int64) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field7DeepEqual(src *int64) bool {
+func (p *QueryJobListReq) Field8DeepEqual(src *int64) bool {
 
 	if p.CreatedAtStart == src {
 		return true
@@ -802,7 +877,7 @@ func (p *QueryJobListReq) Field7DeepEqual(src *int64) bool {
 	}
 	return true
 }
-func (p *QueryJobListReq) Field8DeepEqual(src *int64) bool {
+func (p *QueryJobListReq) Field9DeepEqual(src *int64) bool {
 
 	if p.CreatedAtEnd == src {
 		return true
