@@ -4736,8 +4736,9 @@ func (p *OperateEblResp) DeepEqual(ano *OperateEblResp) bool {
 }
 
 type UploadSealReq struct {
-	Token string       `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	Seal  *CompanySeal `thrift:"seal,2,required" frugal:"2,required,CompanySeal" json:"seal"`
+	Token          string       `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	Seal           *CompanySeal `thrift:"seal,2,required" frugal:"2,required,CompanySeal" json:"seal"`
+	OriginFileName string       `thrift:"originFileName,3,required" frugal:"3,required,string" json:"originFileName"`
 }
 
 func NewUploadSealReq() *UploadSealReq {
@@ -4759,16 +4760,24 @@ func (p *UploadSealReq) GetSeal() (v *CompanySeal) {
 	}
 	return p.Seal
 }
+
+func (p *UploadSealReq) GetOriginFileName() (v string) {
+	return p.OriginFileName
+}
 func (p *UploadSealReq) SetToken(val string) {
 	p.Token = val
 }
 func (p *UploadSealReq) SetSeal(val *CompanySeal) {
 	p.Seal = val
 }
+func (p *UploadSealReq) SetOriginFileName(val string) {
+	p.OriginFileName = val
+}
 
 var fieldIDToName_UploadSealReq = map[int16]string{
 	1: "token",
 	2: "seal",
+	3: "originFileName",
 }
 
 func (p *UploadSealReq) IsSetSeal() bool {
@@ -4781,6 +4790,7 @@ func (p *UploadSealReq) Read(iprot thrift.TProtocol) (err error) {
 	var fieldId int16
 	var issetToken bool = false
 	var issetSeal bool = false
+	var issetOriginFileName bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -4814,6 +4824,15 @@ func (p *UploadSealReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 3:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetOriginFileName = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -4834,6 +4853,11 @@ func (p *UploadSealReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetSeal {
 		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetOriginFileName {
+		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -4873,6 +4897,17 @@ func (p *UploadSealReq) ReadField2(iprot thrift.TProtocol) error {
 	p.Seal = _field
 	return nil
 }
+func (p *UploadSealReq) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.OriginFileName = _field
+	return nil
+}
 
 func (p *UploadSealReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -4887,6 +4922,10 @@ func (p *UploadSealReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField2(oprot); err != nil {
 			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
 			goto WriteFieldError
 		}
 	}
@@ -4941,6 +4980,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
+func (p *UploadSealReq) writeField3(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("originFileName", thrift.STRING, 3); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.OriginFileName); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
 func (p *UploadSealReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -4961,6 +5017,9 @@ func (p *UploadSealReq) DeepEqual(ano *UploadSealReq) bool {
 	if !p.Field2DeepEqual(ano.Seal) {
 		return false
 	}
+	if !p.Field3DeepEqual(ano.OriginFileName) {
+		return false
+	}
 	return true
 }
 
@@ -4974,6 +5033,13 @@ func (p *UploadSealReq) Field1DeepEqual(src string) bool {
 func (p *UploadSealReq) Field2DeepEqual(src *CompanySeal) bool {
 
 	if !p.Seal.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+func (p *UploadSealReq) Field3DeepEqual(src string) bool {
+
+	if strings.Compare(p.OriginFileName, src) != 0 {
 		return false
 	}
 	return true
