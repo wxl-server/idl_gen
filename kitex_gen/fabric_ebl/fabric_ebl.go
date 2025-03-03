@@ -4339,9 +4339,10 @@ func (p *QueryEblListResp) Field3DeepEqual(src string) bool {
 }
 
 type OperateEblReq struct {
-	Token string        `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	EblNo string        `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
-	Type  OperationType `thrift:"type,3,required" frugal:"3,required,OperationType" json:"type"`
+	Token  string        `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	EblNo  string        `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
+	Type   OperationType `thrift:"type,3,required" frugal:"3,required,OperationType" json:"type"`
+	SealId *int64        `thrift:"sealId,4,optional" frugal:"4,optional,i64" json:"sealId,omitempty"`
 }
 
 func NewOperateEblReq() *OperateEblReq {
@@ -4362,6 +4363,15 @@ func (p *OperateEblReq) GetEblNo() (v string) {
 func (p *OperateEblReq) GetType() (v OperationType) {
 	return p.Type
 }
+
+var OperateEblReq_SealId_DEFAULT int64
+
+func (p *OperateEblReq) GetSealId() (v int64) {
+	if !p.IsSetSealId() {
+		return OperateEblReq_SealId_DEFAULT
+	}
+	return *p.SealId
+}
 func (p *OperateEblReq) SetToken(val string) {
 	p.Token = val
 }
@@ -4371,11 +4381,19 @@ func (p *OperateEblReq) SetEblNo(val string) {
 func (p *OperateEblReq) SetType(val OperationType) {
 	p.Type = val
 }
+func (p *OperateEblReq) SetSealId(val *int64) {
+	p.SealId = val
+}
 
 var fieldIDToName_OperateEblReq = map[int16]string{
 	1: "token",
 	2: "eblNo",
 	3: "type",
+	4: "sealId",
+}
+
+func (p *OperateEblReq) IsSetSealId() bool {
+	return p.SealId != nil
 }
 
 func (p *OperateEblReq) Read(iprot thrift.TProtocol) (err error) {
@@ -4424,6 +4442,14 @@ func (p *OperateEblReq) Read(iprot thrift.TProtocol) (err error) {
 					goto ReadFieldError
 				}
 				issetType = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -4505,6 +4531,17 @@ func (p *OperateEblReq) ReadField3(iprot thrift.TProtocol) error {
 	p.Type = _field
 	return nil
 }
+func (p *OperateEblReq) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.SealId = _field
+	return nil
+}
 
 func (p *OperateEblReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -4523,6 +4560,10 @@ func (p *OperateEblReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField3(oprot); err != nil {
 			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
 			goto WriteFieldError
 		}
 	}
@@ -4594,6 +4635,25 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
 }
 
+func (p *OperateEblReq) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSealId() {
+		if err = oprot.WriteFieldBegin("sealId", thrift.I64, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.SealId); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
 func (p *OperateEblReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -4617,6 +4677,9 @@ func (p *OperateEblReq) DeepEqual(ano *OperateEblReq) bool {
 	if !p.Field3DeepEqual(ano.Type) {
 		return false
 	}
+	if !p.Field4DeepEqual(ano.SealId) {
+		return false
+	}
 	return true
 }
 
@@ -4637,6 +4700,18 @@ func (p *OperateEblReq) Field2DeepEqual(src string) bool {
 func (p *OperateEblReq) Field3DeepEqual(src OperationType) bool {
 
 	if p.Type != src {
+		return false
+	}
+	return true
+}
+func (p *OperateEblReq) Field4DeepEqual(src *int64) bool {
+
+	if p.SealId == src {
+		return true
+	} else if p.SealId == nil || src == nil {
+		return false
+	}
+	if *p.SealId != *src {
 		return false
 	}
 	return true
