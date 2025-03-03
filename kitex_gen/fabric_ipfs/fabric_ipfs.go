@@ -2116,8 +2116,9 @@ func (p *CreateEblDocx) Field25DeepEqual(src string) bool {
 }
 
 type SealEblReq struct {
-	Token string         `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	Ebl   *CreateEblDocx `thrift:"ebl,2,required" frugal:"2,required,CreateEblDocx" json:"ebl"`
+	Token  string         `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	Ebl    *CreateEblDocx `thrift:"ebl,2,required" frugal:"2,required,CreateEblDocx" json:"ebl"`
+	SealId int64          `thrift:"sealId,3,required" frugal:"3,required,i64" json:"sealId"`
 }
 
 func NewSealEblReq() *SealEblReq {
@@ -2139,16 +2140,24 @@ func (p *SealEblReq) GetEbl() (v *CreateEblDocx) {
 	}
 	return p.Ebl
 }
+
+func (p *SealEblReq) GetSealId() (v int64) {
+	return p.SealId
+}
 func (p *SealEblReq) SetToken(val string) {
 	p.Token = val
 }
 func (p *SealEblReq) SetEbl(val *CreateEblDocx) {
 	p.Ebl = val
 }
+func (p *SealEblReq) SetSealId(val int64) {
+	p.SealId = val
+}
 
 var fieldIDToName_SealEblReq = map[int16]string{
 	1: "token",
 	2: "ebl",
+	3: "sealId",
 }
 
 func (p *SealEblReq) IsSetEbl() bool {
@@ -2161,6 +2170,7 @@ func (p *SealEblReq) Read(iprot thrift.TProtocol) (err error) {
 	var fieldId int16
 	var issetToken bool = false
 	var issetEbl bool = false
+	var issetSealId bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -2194,6 +2204,15 @@ func (p *SealEblReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 3:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetSealId = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -2214,6 +2233,11 @@ func (p *SealEblReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetEbl {
 		fieldId = 2
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetSealId {
+		fieldId = 3
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -2253,6 +2277,17 @@ func (p *SealEblReq) ReadField2(iprot thrift.TProtocol) error {
 	p.Ebl = _field
 	return nil
 }
+func (p *SealEblReq) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.SealId = _field
+	return nil
+}
 
 func (p *SealEblReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -2267,6 +2302,10 @@ func (p *SealEblReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField2(oprot); err != nil {
 			fieldId = 2
+			goto WriteFieldError
+		}
+		if err = p.writeField3(oprot); err != nil {
+			fieldId = 3
 			goto WriteFieldError
 		}
 	}
@@ -2321,6 +2360,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 2 end error: ", p), err)
 }
 
+func (p *SealEblReq) writeField3(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("sealId", thrift.I64, 3); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI64(p.SealId); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
 func (p *SealEblReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -2341,6 +2397,9 @@ func (p *SealEblReq) DeepEqual(ano *SealEblReq) bool {
 	if !p.Field2DeepEqual(ano.Ebl) {
 		return false
 	}
+	if !p.Field3DeepEqual(ano.SealId) {
+		return false
+	}
 	return true
 }
 
@@ -2354,6 +2413,13 @@ func (p *SealEblReq) Field1DeepEqual(src string) bool {
 func (p *SealEblReq) Field2DeepEqual(src *CreateEblDocx) bool {
 
 	if !p.Ebl.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+func (p *SealEblReq) Field3DeepEqual(src int64) bool {
+
+	if p.SealId != src {
 		return false
 	}
 	return true
