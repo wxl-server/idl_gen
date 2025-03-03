@@ -62,6 +62,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"QueryTaskList": kitex.NewMethodInfo(
+		queryTaskListHandler,
+		newMinerCoreQueryTaskListArgs,
+		newMinerCoreQueryTaskListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 	"RunTask": kitex.NewMethodInfo(
 		runTaskHandler,
 		newMinerCoreRunTaskArgs,
@@ -261,6 +268,24 @@ func newMinerCoreQueryIndicatorListResult() interface{} {
 	return miner_core.NewMinerCoreQueryIndicatorListResult()
 }
 
+func queryTaskListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*miner_core.MinerCoreQueryTaskListArgs)
+	realResult := result.(*miner_core.MinerCoreQueryTaskListResult)
+	success, err := handler.(miner_core.MinerCore).QueryTaskList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newMinerCoreQueryTaskListArgs() interface{} {
+	return miner_core.NewMinerCoreQueryTaskListArgs()
+}
+
+func newMinerCoreQueryTaskListResult() interface{} {
+	return miner_core.NewMinerCoreQueryTaskListResult()
+}
+
 func runTaskHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
 	realArg := arg.(*miner_core.MinerCoreRunTaskArgs)
 	realResult := result.(*miner_core.MinerCoreRunTaskResult)
@@ -354,6 +379,16 @@ func (p *kClient) QueryIndicatorList(ctx context.Context, req *miner_core.QueryI
 	_args.Req = req
 	var _result miner_core.MinerCoreQueryIndicatorListResult
 	if err = p.c.Call(ctx, "QueryIndicatorList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryTaskList(ctx context.Context, req *miner_core.QueryTaskListReq) (r *miner_core.QueryTaskListResp, err error) {
+	var _args miner_core.MinerCoreQueryTaskListArgs
+	_args.Req = req
+	var _result miner_core.MinerCoreQueryTaskListResult
+	if err = p.c.Call(ctx, "QueryTaskList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

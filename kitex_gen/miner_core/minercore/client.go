@@ -18,6 +18,7 @@ type Client interface {
 	CreateJob(ctx context.Context, req *miner_core.CreateJobReq, callOptions ...callopt.Option) (r *miner_core.CreateJobResp, err error)
 	DeleteJob(ctx context.Context, req *miner_core.DeleteJobReq, callOptions ...callopt.Option) (r *miner_core.DeleteJobResp, err error)
 	QueryIndicatorList(ctx context.Context, req *miner_core.QueryIndicatorListReq, callOptions ...callopt.Option) (r *miner_core.QueryIndicatorListResp, err error)
+	QueryTaskList(ctx context.Context, req *miner_core.QueryTaskListReq, callOptions ...callopt.Option) (r *miner_core.QueryTaskListResp, err error)
 	RunTask(ctx context.Context, req *miner_core.RunTaskReq, callOptions ...callopt.Option) (r *miner_core.RunTaskResp, err error)
 }
 
@@ -83,6 +84,11 @@ func (p *kMinerCoreClient) DeleteJob(ctx context.Context, req *miner_core.Delete
 func (p *kMinerCoreClient) QueryIndicatorList(ctx context.Context, req *miner_core.QueryIndicatorListReq, callOptions ...callopt.Option) (r *miner_core.QueryIndicatorListResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.QueryIndicatorList(ctx, req)
+}
+
+func (p *kMinerCoreClient) QueryTaskList(ctx context.Context, req *miner_core.QueryTaskListReq, callOptions ...callopt.Option) (r *miner_core.QueryTaskListResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryTaskList(ctx, req)
 }
 
 func (p *kMinerCoreClient) RunTask(ctx context.Context, req *miner_core.RunTaskReq, callOptions ...callopt.Option) (r *miner_core.RunTaskResp, err error) {
