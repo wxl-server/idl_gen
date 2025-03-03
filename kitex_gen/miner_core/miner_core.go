@@ -4058,6 +4058,7 @@ type RunTaskReq struct {
 	Rules           []*Rule `thrift:"rules,2,required" frugal:"2,required,list<Rule>" json:"rules"`
 	LogicExpression string  `thrift:"logic_expression,3,required" frugal:"3,required,string" json:"logic_expression"`
 	Limit           int64   `thrift:"limit,4,required" frugal:"4,required,i64" json:"limit"`
+	Token           string  `thrift:"token,5,required" frugal:"5,required,string" json:"token"`
 }
 
 func NewRunTaskReq() *RunTaskReq {
@@ -4082,6 +4083,10 @@ func (p *RunTaskReq) GetLogicExpression() (v string) {
 func (p *RunTaskReq) GetLimit() (v int64) {
 	return p.Limit
 }
+
+func (p *RunTaskReq) GetToken() (v string) {
+	return p.Token
+}
 func (p *RunTaskReq) SetJobId(val int64) {
 	p.JobId = val
 }
@@ -4094,12 +4099,16 @@ func (p *RunTaskReq) SetLogicExpression(val string) {
 func (p *RunTaskReq) SetLimit(val int64) {
 	p.Limit = val
 }
+func (p *RunTaskReq) SetToken(val string) {
+	p.Token = val
+}
 
 var fieldIDToName_RunTaskReq = map[int16]string{
 	1: "job_id",
 	2: "rules",
 	3: "logic_expression",
 	4: "limit",
+	5: "token",
 }
 
 func (p *RunTaskReq) Read(iprot thrift.TProtocol) (err error) {
@@ -4110,6 +4119,7 @@ func (p *RunTaskReq) Read(iprot thrift.TProtocol) (err error) {
 	var issetRules bool = false
 	var issetLogicExpression bool = false
 	var issetLimit bool = false
+	var issetToken bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -4161,6 +4171,15 @@ func (p *RunTaskReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetToken = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -4191,6 +4210,11 @@ func (p *RunTaskReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetLimit {
 		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetToken {
+		fieldId = 5
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -4267,6 +4291,17 @@ func (p *RunTaskReq) ReadField4(iprot thrift.TProtocol) error {
 	p.Limit = _field
 	return nil
 }
+func (p *RunTaskReq) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.Token = _field
+	return nil
+}
 
 func (p *RunTaskReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -4289,6 +4324,10 @@ func (p *RunTaskReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField4(oprot); err != nil {
 			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
 			goto WriteFieldError
 		}
 	}
@@ -4385,6 +4424,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
 }
 
+func (p *RunTaskReq) writeField5(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("token", thrift.STRING, 5); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.Token); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
 func (p *RunTaskReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -4409,6 +4465,9 @@ func (p *RunTaskReq) DeepEqual(ano *RunTaskReq) bool {
 		return false
 	}
 	if !p.Field4DeepEqual(ano.Limit) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.Token) {
 		return false
 	}
 	return true
@@ -4444,6 +4503,13 @@ func (p *RunTaskReq) Field3DeepEqual(src string) bool {
 func (p *RunTaskReq) Field4DeepEqual(src int64) bool {
 
 	if p.Limit != src {
+		return false
+	}
+	return true
+}
+func (p *RunTaskReq) Field5DeepEqual(src string) bool {
+
+	if strings.Compare(p.Token, src) != 0 {
 		return false
 	}
 	return true
