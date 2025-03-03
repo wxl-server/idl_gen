@@ -30,6 +30,8 @@ type Client interface {
 	GetInvoice(ctx context.Context, req *fabric_ebl.GetInvoiceReq, callOptions ...callopt.Option) (r *fabric_ebl.GetInvoiceResp, err error)
 	GetContract(ctx context.Context, req *fabric_ebl.GetContractReq, callOptions ...callopt.Option) (r *fabric_ebl.GetContractResp, err error)
 	GetDocument(ctx context.Context, req *fabric_ebl.GetDocumentReq, callOptions ...callopt.Option) (r *fabric_ebl.GetDocumentResp, err error)
+	QuerySeal(ctx context.Context, req *fabric_ebl.QuerySealReq, callOptions ...callopt.Option) (r *fabric_ebl.QuerySealResp, err error)
+	DeleteSeal(ctx context.Context, req *fabric_ebl.DeleteSealReq, callOptions ...callopt.Option) (r *fabric_ebl.DeleteSealResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -154,4 +156,14 @@ func (p *kFabricEblClient) GetContract(ctx context.Context, req *fabric_ebl.GetC
 func (p *kFabricEblClient) GetDocument(ctx context.Context, req *fabric_ebl.GetDocumentReq, callOptions ...callopt.Option) (r *fabric_ebl.GetDocumentResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.GetDocument(ctx, req)
+}
+
+func (p *kFabricEblClient) QuerySeal(ctx context.Context, req *fabric_ebl.QuerySealReq, callOptions ...callopt.Option) (r *fabric_ebl.QuerySealResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QuerySeal(ctx, req)
+}
+
+func (p *kFabricEblClient) DeleteSeal(ctx context.Context, req *fabric_ebl.DeleteSealReq, callOptions ...callopt.Option) (r *fabric_ebl.DeleteSealResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.DeleteSeal(ctx, req)
 }

@@ -146,6 +146,20 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"QuerySeal": kitex.NewMethodInfo(
+		querySealHandler,
+		newFabricEblQuerySealArgs,
+		newFabricEblQuerySealResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"DeleteSeal": kitex.NewMethodInfo(
+		deleteSealHandler,
+		newFabricEblDeleteSealArgs,
+		newFabricEblDeleteSealResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -554,6 +568,42 @@ func newFabricEblGetDocumentResult() interface{} {
 	return fabric_ebl.NewFabricEblGetDocumentResult()
 }
 
+func querySealHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQuerySealArgs)
+	realResult := result.(*fabric_ebl.FabricEblQuerySealResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QuerySeal(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQuerySealArgs() interface{} {
+	return fabric_ebl.NewFabricEblQuerySealArgs()
+}
+
+func newFabricEblQuerySealResult() interface{} {
+	return fabric_ebl.NewFabricEblQuerySealResult()
+}
+
+func deleteSealHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblDeleteSealArgs)
+	realResult := result.(*fabric_ebl.FabricEblDeleteSealResult)
+	success, err := handler.(fabric_ebl.FabricEbl).DeleteSeal(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblDeleteSealArgs() interface{} {
+	return fabric_ebl.NewFabricEblDeleteSealArgs()
+}
+
+func newFabricEblDeleteSealResult() interface{} {
+	return fabric_ebl.NewFabricEblDeleteSealResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -749,6 +799,26 @@ func (p *kClient) GetDocument(ctx context.Context, req *fabric_ebl.GetDocumentRe
 	_args.Req = req
 	var _result fabric_ebl.FabricEblGetDocumentResult
 	if err = p.c.Call(ctx, "GetDocument", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QuerySeal(ctx context.Context, req *fabric_ebl.QuerySealReq) (r *fabric_ebl.QuerySealResp, err error) {
+	var _args fabric_ebl.FabricEblQuerySealArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQuerySealResult
+	if err = p.c.Call(ctx, "QuerySeal", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) DeleteSeal(ctx context.Context, req *fabric_ebl.DeleteSealReq) (r *fabric_ebl.DeleteSealResp, err error) {
+	var _args fabric_ebl.FabricEblDeleteSealArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblDeleteSealResult
+	if err = p.c.Call(ctx, "DeleteSeal", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
