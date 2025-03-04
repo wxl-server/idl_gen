@@ -71,15 +71,16 @@ func (p *FileType) Value() (driver.Value, error) {
 type OperationType int64
 
 const (
-	OperationType_Submit   OperationType = 1
-	OperationType_Approve  OperationType = 2
-	OperationType_Reject   OperationType = 3
-	OperationType_Retreat  OperationType = 4
-	OperationType_Seal     OperationType = 5
-	OperationType_Issue    OperationType = 6
-	OperationType_Accept   OperationType = 7
-	OperationType_Transfer OperationType = 8
-	OperationType_Redeem   OperationType = 9
+	OperationType_Submit         OperationType = 1
+	OperationType_Approve        OperationType = 2
+	OperationType_Reject         OperationType = 3
+	OperationType_Retreat        OperationType = 4
+	OperationType_Seal           OperationType = 5
+	OperationType_Issue          OperationType = 6
+	OperationType_AcceptIssue    OperationType = 7
+	OperationType_Transfer       OperationType = 8
+	OperationType_Redeem         OperationType = 9
+	OperationType_AcceptTransfer OperationType = 10
 )
 
 func (p OperationType) String() string {
@@ -96,12 +97,14 @@ func (p OperationType) String() string {
 		return "Seal"
 	case OperationType_Issue:
 		return "Issue"
-	case OperationType_Accept:
-		return "Accept"
+	case OperationType_AcceptIssue:
+		return "AcceptIssue"
 	case OperationType_Transfer:
 		return "Transfer"
 	case OperationType_Redeem:
 		return "Redeem"
+	case OperationType_AcceptTransfer:
+		return "AcceptTransfer"
 	}
 	return "<UNSET>"
 }
@@ -120,12 +123,14 @@ func OperationTypeFromString(s string) (OperationType, error) {
 		return OperationType_Seal, nil
 	case "Issue":
 		return OperationType_Issue, nil
-	case "Accept":
-		return OperationType_Accept, nil
+	case "AcceptIssue":
+		return OperationType_AcceptIssue, nil
 	case "Transfer":
 		return OperationType_Transfer, nil
 	case "Redeem":
 		return OperationType_Redeem, nil
+	case "AcceptTransfer":
+		return OperationType_AcceptTransfer, nil
 	}
 	return OperationType(0), fmt.Errorf("not a valid OperationType string")
 }
