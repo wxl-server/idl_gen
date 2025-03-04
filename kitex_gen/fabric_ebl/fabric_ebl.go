@@ -81,6 +81,7 @@ const (
 	OperationType_Transfer       OperationType = 8
 	OperationType_Redeem         OperationType = 9
 	OperationType_AcceptTransfer OperationType = 10
+	OperationType_Refuse         OperationType = 11
 )
 
 func (p OperationType) String() string {
@@ -105,6 +106,8 @@ func (p OperationType) String() string {
 		return "Redeem"
 	case OperationType_AcceptTransfer:
 		return "AcceptTransfer"
+	case OperationType_Refuse:
+		return "Refuse"
 	}
 	return "<UNSET>"
 }
@@ -131,6 +134,8 @@ func OperationTypeFromString(s string) (OperationType, error) {
 		return OperationType_Redeem, nil
 	case "AcceptTransfer":
 		return OperationType_AcceptTransfer, nil
+	case "Refuse":
+		return OperationType_Refuse, nil
 	}
 	return OperationType(0), fmt.Errorf("not a valid OperationType string")
 }
