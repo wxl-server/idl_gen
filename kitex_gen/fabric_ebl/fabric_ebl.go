@@ -4339,10 +4339,11 @@ func (p *QueryEblListResp) Field3DeepEqual(src string) bool {
 }
 
 type OperateEblReq struct {
-	Token  string        `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	EblNo  string        `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
-	Type   OperationType `thrift:"type,3,required" frugal:"3,required,OperationType" json:"type"`
-	SealId *int64        `thrift:"sealId,4,optional" frugal:"4,optional,i64" json:"sealId,omitempty"`
+	Token             string        `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	EblNo             string        `thrift:"eblNo,2,required" frugal:"2,required,string" json:"eblNo"`
+	Type              OperationType `thrift:"type,3,required" frugal:"3,required,OperationType" json:"type"`
+	SealId            *int64        `thrift:"sealId,4,optional" frugal:"4,optional,i64" json:"sealId,omitempty"`
+	TransferCompanyId *int64        `thrift:"transferCompanyId,5,optional" frugal:"5,optional,i64" json:"transferCompanyId,omitempty"`
 }
 
 func NewOperateEblReq() *OperateEblReq {
@@ -4372,6 +4373,15 @@ func (p *OperateEblReq) GetSealId() (v int64) {
 	}
 	return *p.SealId
 }
+
+var OperateEblReq_TransferCompanyId_DEFAULT int64
+
+func (p *OperateEblReq) GetTransferCompanyId() (v int64) {
+	if !p.IsSetTransferCompanyId() {
+		return OperateEblReq_TransferCompanyId_DEFAULT
+	}
+	return *p.TransferCompanyId
+}
 func (p *OperateEblReq) SetToken(val string) {
 	p.Token = val
 }
@@ -4384,16 +4394,24 @@ func (p *OperateEblReq) SetType(val OperationType) {
 func (p *OperateEblReq) SetSealId(val *int64) {
 	p.SealId = val
 }
+func (p *OperateEblReq) SetTransferCompanyId(val *int64) {
+	p.TransferCompanyId = val
+}
 
 var fieldIDToName_OperateEblReq = map[int16]string{
 	1: "token",
 	2: "eblNo",
 	3: "type",
 	4: "sealId",
+	5: "transferCompanyId",
 }
 
 func (p *OperateEblReq) IsSetSealId() bool {
 	return p.SealId != nil
+}
+
+func (p *OperateEblReq) IsSetTransferCompanyId() bool {
+	return p.TransferCompanyId != nil
 }
 
 func (p *OperateEblReq) Read(iprot thrift.TProtocol) (err error) {
@@ -4448,6 +4466,14 @@ func (p *OperateEblReq) Read(iprot thrift.TProtocol) (err error) {
 		case 4:
 			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField5(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -4542,6 +4568,17 @@ func (p *OperateEblReq) ReadField4(iprot thrift.TProtocol) error {
 	p.SealId = _field
 	return nil
 }
+func (p *OperateEblReq) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.TransferCompanyId = _field
+	return nil
+}
 
 func (p *OperateEblReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -4564,6 +4601,10 @@ func (p *OperateEblReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField4(oprot); err != nil {
 			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
 			goto WriteFieldError
 		}
 	}
@@ -4654,6 +4695,25 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
 }
 
+func (p *OperateEblReq) writeField5(oprot thrift.TProtocol) (err error) {
+	if p.IsSetTransferCompanyId() {
+		if err = oprot.WriteFieldBegin("transferCompanyId", thrift.I64, 5); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.TransferCompanyId); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
 func (p *OperateEblReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -4678,6 +4738,9 @@ func (p *OperateEblReq) DeepEqual(ano *OperateEblReq) bool {
 		return false
 	}
 	if !p.Field4DeepEqual(ano.SealId) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.TransferCompanyId) {
 		return false
 	}
 	return true
@@ -4712,6 +4775,18 @@ func (p *OperateEblReq) Field4DeepEqual(src *int64) bool {
 		return false
 	}
 	if *p.SealId != *src {
+		return false
+	}
+	return true
+}
+func (p *OperateEblReq) Field5DeepEqual(src *int64) bool {
+
+	if p.TransferCompanyId == src {
+		return true
+	} else if p.TransferCompanyId == nil || src == nil {
+		return false
+	}
+	if *p.TransferCompanyId != *src {
 		return false
 	}
 	return true
