@@ -2213,6 +2213,7 @@ func (p *QueryEblListReq) FastRead(buf []byte) (int, error) {
 	var fieldId int16
 	var issetToken bool = false
 	var issetEblFilter bool = false
+	var issetType bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -2281,6 +2282,21 @@ func (p *QueryEblListReq) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
+		case 5:
+			if fieldTypeId == thrift.I32 {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetType = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
 		default:
 			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 			offset += l
@@ -2297,6 +2313,11 @@ func (p *QueryEblListReq) FastRead(buf []byte) (int, error) {
 
 	if !issetEblFilter {
 		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetType {
+		fieldId = 5
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -2364,6 +2385,21 @@ func (p *QueryEblListReq) FastReadField4(buf []byte) (int, error) {
 	return offset, nil
 }
 
+func (p *QueryEblListReq) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field QueryEblType
+	if v, l, err := thrift.Binary.ReadI32(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+
+		_field = QueryEblType(v)
+	}
+	p.Type = _field
+	return offset, nil
+}
+
 func (p *QueryEblListReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
@@ -2375,6 +2411,7 @@ func (p *QueryEblListReq) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int
 		offset += p.fastWriteField1(buf[offset:], w)
 		offset += p.fastWriteField3(buf[offset:], w)
 		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -2387,6 +2424,7 @@ func (p *QueryEblListReq) BLength() int {
 		l += p.field2Length()
 		l += p.field3Length()
 		l += p.field4Length()
+		l += p.field5Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -2424,6 +2462,13 @@ func (p *QueryEblListReq) fastWriteField4(buf []byte, w thrift.NocopyWriter) int
 	return offset
 }
 
+func (p *QueryEblListReq) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I32, 5)
+	offset += thrift.Binary.WriteI32(buf[offset:], int32(p.Type))
+	return offset
+}
+
 func (p *QueryEblListReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
@@ -2453,6 +2498,13 @@ func (p *QueryEblListReq) field4Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += p.EblFilter.BLength()
+	return l
+}
+
+func (p *QueryEblListReq) field5Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.I32Length()
 	return l
 }
 

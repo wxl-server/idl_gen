@@ -160,6 +160,53 @@ func (p *OperationType) Value() (driver.Value, error) {
 	return int64(*p), nil
 }
 
+type QueryEblType int64
+
+const (
+	QueryEblType_Manage        QueryEblType = 1
+	QueryEblType_TransferIssue QueryEblType = 2
+	QueryEblType_Accept        QueryEblType = 3
+)
+
+func (p QueryEblType) String() string {
+	switch p {
+	case QueryEblType_Manage:
+		return "Manage"
+	case QueryEblType_TransferIssue:
+		return "TransferIssue"
+	case QueryEblType_Accept:
+		return "Accept"
+	}
+	return "<UNSET>"
+}
+
+func QueryEblTypeFromString(s string) (QueryEblType, error) {
+	switch s {
+	case "Manage":
+		return QueryEblType_Manage, nil
+	case "TransferIssue":
+		return QueryEblType_TransferIssue, nil
+	case "Accept":
+		return QueryEblType_Accept, nil
+	}
+	return QueryEblType(0), fmt.Errorf("not a valid QueryEblType string")
+}
+
+func QueryEblTypePtr(v QueryEblType) *QueryEblType { return &v }
+func (p *QueryEblType) Scan(value interface{}) (err error) {
+	var result sql.NullInt64
+	err = result.Scan(value)
+	*p = QueryEblType(result.Int64)
+	return
+}
+
+func (p *QueryEblType) Value() (driver.Value, error) {
+	if p == nil {
+		return nil, nil
+	}
+	return int64(*p), nil
+}
+
 type CompanyType int64
 
 const (
@@ -3630,10 +3677,11 @@ func (p *QueryAllEblListResp) Field3DeepEqual(src string) bool {
 }
 
 type QueryEblListReq struct {
-	Token     string     `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
-	PageSize  *int64     `thrift:"pageSize,2,optional" frugal:"2,optional,i64" json:"pageSize,omitempty"`
-	Bookmark  *string    `thrift:"bookmark,3,optional" frugal:"3,optional,string" json:"bookmark,omitempty"`
-	EblFilter *EblFilter `thrift:"eblFilter,4,required" frugal:"4,required,EblFilter" json:"eblFilter"`
+	Token     string       `thrift:"token,1,required" frugal:"1,required,string" json:"token"`
+	PageSize  *int64       `thrift:"pageSize,2,optional" frugal:"2,optional,i64" json:"pageSize,omitempty"`
+	Bookmark  *string      `thrift:"bookmark,3,optional" frugal:"3,optional,string" json:"bookmark,omitempty"`
+	EblFilter *EblFilter   `thrift:"eblFilter,4,required" frugal:"4,required,EblFilter" json:"eblFilter"`
+	Type      QueryEblType `thrift:"type,5,required" frugal:"5,required,QueryEblType" json:"type"`
 }
 
 func NewQueryEblListReq() *QueryEblListReq {
@@ -3673,6 +3721,10 @@ func (p *QueryEblListReq) GetEblFilter() (v *EblFilter) {
 	}
 	return p.EblFilter
 }
+
+func (p *QueryEblListReq) GetType() (v QueryEblType) {
+	return p.Type
+}
 func (p *QueryEblListReq) SetToken(val string) {
 	p.Token = val
 }
@@ -3685,12 +3737,16 @@ func (p *QueryEblListReq) SetBookmark(val *string) {
 func (p *QueryEblListReq) SetEblFilter(val *EblFilter) {
 	p.EblFilter = val
 }
+func (p *QueryEblListReq) SetType(val QueryEblType) {
+	p.Type = val
+}
 
 var fieldIDToName_QueryEblListReq = map[int16]string{
 	1: "token",
 	2: "pageSize",
 	3: "bookmark",
 	4: "eblFilter",
+	5: "type",
 }
 
 func (p *QueryEblListReq) IsSetPageSize() bool {
@@ -3711,6 +3767,7 @@ func (p *QueryEblListReq) Read(iprot thrift.TProtocol) (err error) {
 	var fieldId int16
 	var issetToken bool = false
 	var issetEblFilter bool = false
+	var issetType bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -3760,6 +3817,15 @@ func (p *QueryEblListReq) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 5:
+			if fieldTypeId == thrift.I32 {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetType = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -3780,6 +3846,11 @@ func (p *QueryEblListReq) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetEblFilter {
 		fieldId = 4
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetType {
+		fieldId = 5
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -3841,6 +3912,17 @@ func (p *QueryEblListReq) ReadField4(iprot thrift.TProtocol) error {
 	p.EblFilter = _field
 	return nil
 }
+func (p *QueryEblListReq) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field QueryEblType
+	if v, err := iprot.ReadI32(); err != nil {
+		return err
+	} else {
+		_field = QueryEblType(v)
+	}
+	p.Type = _field
+	return nil
+}
 
 func (p *QueryEblListReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -3863,6 +3945,10 @@ func (p *QueryEblListReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField4(oprot); err != nil {
 			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
 			goto WriteFieldError
 		}
 	}
@@ -3955,6 +4041,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
 }
 
+func (p *QueryEblListReq) writeField5(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("type", thrift.I32, 5); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteI32(int32(p.Type)); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
 func (p *QueryEblListReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -3979,6 +4082,9 @@ func (p *QueryEblListReq) DeepEqual(ano *QueryEblListReq) bool {
 		return false
 	}
 	if !p.Field4DeepEqual(ano.EblFilter) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.Type) {
 		return false
 	}
 	return true
@@ -4018,6 +4124,13 @@ func (p *QueryEblListReq) Field3DeepEqual(src *string) bool {
 func (p *QueryEblListReq) Field4DeepEqual(src *EblFilter) bool {
 
 	if !p.EblFilter.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+func (p *QueryEblListReq) Field5DeepEqual(src QueryEblType) bool {
+
+	if p.Type != src {
 		return false
 	}
 	return true
