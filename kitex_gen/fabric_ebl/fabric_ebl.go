@@ -19185,6 +19185,7 @@ type EblTransferLog struct {
 	TransferToCompanyID     string `thrift:"transferToCompanyID,4,required" frugal:"4,required,string" json:"transferToCompanyID"`
 	TransferToCompanyName   string `thrift:"transferToCompanyName,5,required" frugal:"5,required,string" json:"transferToCompanyName"`
 	TransferTime            int64  `thrift:"transferTime,6,required" frugal:"6,required,i64" json:"transferTime"`
+	TransferType            string `thrift:"transferType,7,required" frugal:"7,required,string" json:"transferType"`
 }
 
 func NewEblTransferLog() *EblTransferLog {
@@ -19217,6 +19218,10 @@ func (p *EblTransferLog) GetTransferToCompanyName() (v string) {
 func (p *EblTransferLog) GetTransferTime() (v int64) {
 	return p.TransferTime
 }
+
+func (p *EblTransferLog) GetTransferType() (v string) {
+	return p.TransferType
+}
 func (p *EblTransferLog) SetTransFerEblNo(val string) {
 	p.TransFerEblNo = val
 }
@@ -19235,6 +19240,9 @@ func (p *EblTransferLog) SetTransferToCompanyName(val string) {
 func (p *EblTransferLog) SetTransferTime(val int64) {
 	p.TransferTime = val
 }
+func (p *EblTransferLog) SetTransferType(val string) {
+	p.TransferType = val
+}
 
 var fieldIDToName_EblTransferLog = map[int16]string{
 	1: "transFerEblNo",
@@ -19243,6 +19251,7 @@ var fieldIDToName_EblTransferLog = map[int16]string{
 	4: "transferToCompanyID",
 	5: "transferToCompanyName",
 	6: "transferTime",
+	7: "transferType",
 }
 
 func (p *EblTransferLog) Read(iprot thrift.TProtocol) (err error) {
@@ -19255,6 +19264,7 @@ func (p *EblTransferLog) Read(iprot thrift.TProtocol) (err error) {
 	var issetTransferToCompanyID bool = false
 	var issetTransferToCompanyName bool = false
 	var issetTransferTime bool = false
+	var issetTransferType bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -19324,6 +19334,15 @@ func (p *EblTransferLog) Read(iprot thrift.TProtocol) (err error) {
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField7(iprot); err != nil {
+					goto ReadFieldError
+				}
+				issetTransferType = true
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
 		default:
 			if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
@@ -19364,6 +19383,11 @@ func (p *EblTransferLog) Read(iprot thrift.TProtocol) (err error) {
 
 	if !issetTransferTime {
 		fieldId = 6
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferType {
+		fieldId = 7
 		goto RequiredFieldNotSetError
 	}
 	return nil
@@ -19450,6 +19474,17 @@ func (p *EblTransferLog) ReadField6(iprot thrift.TProtocol) error {
 	p.TransferTime = _field
 	return nil
 }
+func (p *EblTransferLog) ReadField7(iprot thrift.TProtocol) error {
+
+	var _field string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = v
+	}
+	p.TransferType = _field
+	return nil
+}
 
 func (p *EblTransferLog) Write(oprot thrift.TProtocol) (err error) {
 
@@ -19480,6 +19515,10 @@ func (p *EblTransferLog) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField6(oprot); err != nil {
 			fieldId = 6
+			goto WriteFieldError
+		}
+		if err = p.writeField7(oprot); err != nil {
+			fieldId = 7
 			goto WriteFieldError
 		}
 	}
@@ -19602,6 +19641,23 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
 }
 
+func (p *EblTransferLog) writeField7(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("transferType", thrift.STRING, 7); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := oprot.WriteString(p.TransferType); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 end error: ", p), err)
+}
+
 func (p *EblTransferLog) String() string {
 	if p == nil {
 		return "<nil>"
@@ -19632,6 +19688,9 @@ func (p *EblTransferLog) DeepEqual(ano *EblTransferLog) bool {
 		return false
 	}
 	if !p.Field6DeepEqual(ano.TransferTime) {
+		return false
+	}
+	if !p.Field7DeepEqual(ano.TransferType) {
 		return false
 	}
 	return true
@@ -19675,6 +19734,13 @@ func (p *EblTransferLog) Field5DeepEqual(src string) bool {
 func (p *EblTransferLog) Field6DeepEqual(src int64) bool {
 
 	if p.TransferTime != src {
+		return false
+	}
+	return true
+}
+func (p *EblTransferLog) Field7DeepEqual(src string) bool {
+
+	if strings.Compare(p.TransferType, src) != 0 {
 		return false
 	}
 	return true

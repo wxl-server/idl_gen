@@ -12748,6 +12748,7 @@ func (p *EblTransferLog) FastRead(buf []byte) (int, error) {
 	var issetTransferToCompanyID bool = false
 	var issetTransferToCompanyName bool = false
 	var issetTransferTime bool = false
+	var issetTransferType bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -12848,6 +12849,21 @@ func (p *EblTransferLog) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField7(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+				issetTransferType = true
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
 		default:
 			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 			offset += l
@@ -12884,6 +12900,11 @@ func (p *EblTransferLog) FastRead(buf []byte) (int, error) {
 
 	if !issetTransferTime {
 		fieldId = 6
+		goto RequiredFieldNotSetError
+	}
+
+	if !issetTransferType {
+		fieldId = 7
 		goto RequiredFieldNotSetError
 	}
 	return offset, nil
@@ -12981,6 +13002,20 @@ func (p *EblTransferLog) FastReadField6(buf []byte) (int, error) {
 	return offset, nil
 }
 
+func (p *EblTransferLog) FastReadField7(buf []byte) (int, error) {
+	offset := 0
+
+	var _field string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = v
+	}
+	p.TransferType = _field
+	return offset, nil
+}
+
 func (p *EblTransferLog) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
@@ -12994,6 +13029,7 @@ func (p *EblTransferLog) FastWriteNocopy(buf []byte, w thrift.NocopyWriter) int 
 		offset += p.fastWriteField3(buf[offset:], w)
 		offset += p.fastWriteField4(buf[offset:], w)
 		offset += p.fastWriteField5(buf[offset:], w)
+		offset += p.fastWriteField7(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -13008,6 +13044,7 @@ func (p *EblTransferLog) BLength() int {
 		l += p.field4Length()
 		l += p.field5Length()
 		l += p.field6Length()
+		l += p.field7Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -13055,6 +13092,13 @@ func (p *EblTransferLog) fastWriteField6(buf []byte, w thrift.NocopyWriter) int 
 	return offset
 }
 
+func (p *EblTransferLog) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
+	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.TransferType)
+	return offset
+}
+
 func (p *EblTransferLog) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
@@ -13094,6 +13138,13 @@ func (p *EblTransferLog) field6Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
 	l += thrift.Binary.I64Length()
+	return l
+}
+
+func (p *EblTransferLog) field7Length() int {
+	l := 0
+	l += thrift.Binary.FieldBeginLength()
+	l += thrift.Binary.StringLengthNocopy(p.TransferType)
 	return l
 }
 
