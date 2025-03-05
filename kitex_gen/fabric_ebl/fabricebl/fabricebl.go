@@ -160,6 +160,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"QueryEblTransferLog": kitex.NewMethodInfo(
+		queryEblTransferLogHandler,
+		newFabricEblQueryEblTransferLogArgs,
+		newFabricEblQueryEblTransferLogResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -604,6 +611,24 @@ func newFabricEblDeleteSealResult() interface{} {
 	return fabric_ebl.NewFabricEblDeleteSealResult()
 }
 
+func queryEblTransferLogHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryEblTransferLogArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryEblTransferLogResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryEblTransferLog(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryEblTransferLogArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryEblTransferLogArgs()
+}
+
+func newFabricEblQueryEblTransferLogResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryEblTransferLogResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -819,6 +844,16 @@ func (p *kClient) DeleteSeal(ctx context.Context, req *fabric_ebl.DeleteSealReq)
 	_args.Req = req
 	var _result fabric_ebl.FabricEblDeleteSealResult
 	if err = p.c.Call(ctx, "DeleteSeal", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryEblTransferLog(ctx context.Context, req *fabric_ebl.QueryEblTransferLogReq) (r *fabric_ebl.QueryEblTransferLogResp, err error) {
+	var _args fabric_ebl.FabricEblQueryEblTransferLogArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryEblTransferLogResult
+	if err = p.c.Call(ctx, "QueryEblTransferLog", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

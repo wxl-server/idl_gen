@@ -24368,6 +24368,8 @@ type FabricEbl interface {
 	QuerySeal(ctx context.Context, req *QuerySealReq) (r *QuerySealResp, err error)
 
 	DeleteSeal(ctx context.Context, req *DeleteSealReq) (r *DeleteSealResp, err error)
+
+	QueryEblTransferLog(ctx context.Context, req *QueryEblTransferLogReq) (r *QueryEblTransferLogResp, err error)
 }
 
 type FabricEblCreateCompanyArgs struct {
@@ -31545,6 +31547,348 @@ func (p *FabricEblDeleteSealResult) DeepEqual(ano *FabricEblDeleteSealResult) bo
 }
 
 func (p *FabricEblDeleteSealResult) Field0DeepEqual(src *DeleteSealResp) bool {
+
+	if !p.Success.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+
+type FabricEblQueryEblTransferLogArgs struct {
+	Req *QueryEblTransferLogReq `thrift:"req,1" frugal:"1,default,QueryEblTransferLogReq" json:"req"`
+}
+
+func NewFabricEblQueryEblTransferLogArgs() *FabricEblQueryEblTransferLogArgs {
+	return &FabricEblQueryEblTransferLogArgs{}
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) InitDefault() {
+}
+
+var FabricEblQueryEblTransferLogArgs_Req_DEFAULT *QueryEblTransferLogReq
+
+func (p *FabricEblQueryEblTransferLogArgs) GetReq() (v *QueryEblTransferLogReq) {
+	if !p.IsSetReq() {
+		return FabricEblQueryEblTransferLogArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+func (p *FabricEblQueryEblTransferLogArgs) SetReq(val *QueryEblTransferLogReq) {
+	p.Req = val
+}
+
+var fieldIDToName_FabricEblQueryEblTransferLogArgs = map[int16]string{
+	1: "req",
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblQueryEblTransferLogArgs[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) ReadField1(iprot thrift.TProtocol) error {
+	_field := NewQueryEblTransferLogReq()
+	if err := _field.Read(iprot); err != nil {
+		return err
+	}
+	p.Req = _field
+	return nil
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("QueryEblTransferLog_args"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("req", thrift.STRUCT, 1); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := p.Req.Write(oprot); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("FabricEblQueryEblTransferLogArgs(%+v)", *p)
+
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) DeepEqual(ano *FabricEblQueryEblTransferLogArgs) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field1DeepEqual(ano.Req) {
+		return false
+	}
+	return true
+}
+
+func (p *FabricEblQueryEblTransferLogArgs) Field1DeepEqual(src *QueryEblTransferLogReq) bool {
+
+	if !p.Req.DeepEqual(src) {
+		return false
+	}
+	return true
+}
+
+type FabricEblQueryEblTransferLogResult struct {
+	Success *QueryEblTransferLogResp `thrift:"success,0,optional" frugal:"0,optional,QueryEblTransferLogResp" json:"success,omitempty"`
+}
+
+func NewFabricEblQueryEblTransferLogResult() *FabricEblQueryEblTransferLogResult {
+	return &FabricEblQueryEblTransferLogResult{}
+}
+
+func (p *FabricEblQueryEblTransferLogResult) InitDefault() {
+}
+
+var FabricEblQueryEblTransferLogResult_Success_DEFAULT *QueryEblTransferLogResp
+
+func (p *FabricEblQueryEblTransferLogResult) GetSuccess() (v *QueryEblTransferLogResp) {
+	if !p.IsSetSuccess() {
+		return FabricEblQueryEblTransferLogResult_Success_DEFAULT
+	}
+	return p.Success
+}
+func (p *FabricEblQueryEblTransferLogResult) SetSuccess(x interface{}) {
+	p.Success = x.(*QueryEblTransferLogResp)
+}
+
+var fieldIDToName_FabricEblQueryEblTransferLogResult = map[int16]string{
+	0: "success",
+}
+
+func (p *FabricEblQueryEblTransferLogResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *FabricEblQueryEblTransferLogResult) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 0:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField0(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_FabricEblQueryEblTransferLogResult[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblTransferLogResult) ReadField0(iprot thrift.TProtocol) error {
+	_field := NewQueryEblTransferLogResp()
+	if err := _field.Read(iprot); err != nil {
+		return err
+	}
+	p.Success = _field
+	return nil
+}
+
+func (p *FabricEblQueryEblTransferLogResult) Write(oprot thrift.TProtocol) (err error) {
+
+	var fieldId int16
+	if err = oprot.WriteStructBegin("QueryEblTransferLog_result"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField0(oprot); err != nil {
+			fieldId = 0
+			goto WriteFieldError
+		}
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblTransferLogResult) writeField0(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSuccess() {
+		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := p.Success.Write(oprot); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 0 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
+}
+
+func (p *FabricEblQueryEblTransferLogResult) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("FabricEblQueryEblTransferLogResult(%+v)", *p)
+
+}
+
+func (p *FabricEblQueryEblTransferLogResult) DeepEqual(ano *FabricEblQueryEblTransferLogResult) bool {
+	if p == ano {
+		return true
+	} else if p == nil || ano == nil {
+		return false
+	}
+	if !p.Field0DeepEqual(ano.Success) {
+		return false
+	}
+	return true
+}
+
+func (p *FabricEblQueryEblTransferLogResult) Field0DeepEqual(src *QueryEblTransferLogResp) bool {
 
 	if !p.Success.DeepEqual(src) {
 		return false
