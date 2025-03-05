@@ -167,6 +167,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"CreateCompanyUser": kitex.NewMethodInfo(
+		createCompanyUserHandler,
+		newFabricEblCreateCompanyUserArgs,
+		newFabricEblCreateCompanyUserResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -629,6 +636,24 @@ func newFabricEblQueryEblTransferLogResult() interface{} {
 	return fabric_ebl.NewFabricEblQueryEblTransferLogResult()
 }
 
+func createCompanyUserHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblCreateCompanyUserArgs)
+	realResult := result.(*fabric_ebl.FabricEblCreateCompanyUserResult)
+	success, err := handler.(fabric_ebl.FabricEbl).CreateCompanyUser(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblCreateCompanyUserArgs() interface{} {
+	return fabric_ebl.NewFabricEblCreateCompanyUserArgs()
+}
+
+func newFabricEblCreateCompanyUserResult() interface{} {
+	return fabric_ebl.NewFabricEblCreateCompanyUserResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -854,6 +879,16 @@ func (p *kClient) QueryEblTransferLog(ctx context.Context, req *fabric_ebl.Query
 	_args.Req = req
 	var _result fabric_ebl.FabricEblQueryEblTransferLogResult
 	if err = p.c.Call(ctx, "QueryEblTransferLog", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) CreateCompanyUser(ctx context.Context, req *fabric_ebl.CreateCompanyUserReq) (r *fabric_ebl.CreateCompanyUserResp, err error) {
+	var _args fabric_ebl.FabricEblCreateCompanyUserArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblCreateCompanyUserResult
+	if err = p.c.Call(ctx, "CreateCompanyUser", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

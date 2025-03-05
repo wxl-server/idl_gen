@@ -33,6 +33,7 @@ type Client interface {
 	QuerySeal(ctx context.Context, req *fabric_ebl.QuerySealReq, callOptions ...callopt.Option) (r *fabric_ebl.QuerySealResp, err error)
 	DeleteSeal(ctx context.Context, req *fabric_ebl.DeleteSealReq, callOptions ...callopt.Option) (r *fabric_ebl.DeleteSealResp, err error)
 	QueryEblTransferLog(ctx context.Context, req *fabric_ebl.QueryEblTransferLogReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblTransferLogResp, err error)
+	CreateCompanyUser(ctx context.Context, req *fabric_ebl.CreateCompanyUserReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyUserResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -172,4 +173,9 @@ func (p *kFabricEblClient) DeleteSeal(ctx context.Context, req *fabric_ebl.Delet
 func (p *kFabricEblClient) QueryEblTransferLog(ctx context.Context, req *fabric_ebl.QueryEblTransferLogReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblTransferLogResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.QueryEblTransferLog(ctx, req)
+}
+
+func (p *kFabricEblClient) CreateCompanyUser(ctx context.Context, req *fabric_ebl.CreateCompanyUserReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyUserResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.CreateCompanyUser(ctx, req)
 }
