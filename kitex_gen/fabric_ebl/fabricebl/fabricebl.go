@@ -174,6 +174,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"QueryCompanyUserList": kitex.NewMethodInfo(
+		queryCompanyUserListHandler,
+		newFabricEblQueryCompanyUserListArgs,
+		newFabricEblQueryCompanyUserListResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -654,6 +661,24 @@ func newFabricEblCreateCompanyUserResult() interface{} {
 	return fabric_ebl.NewFabricEblCreateCompanyUserResult()
 }
 
+func queryCompanyUserListHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryCompanyUserListArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryCompanyUserListResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryCompanyUserList(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryCompanyUserListArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryCompanyUserListArgs()
+}
+
+func newFabricEblQueryCompanyUserListResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryCompanyUserListResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -889,6 +914,16 @@ func (p *kClient) CreateCompanyUser(ctx context.Context, req *fabric_ebl.CreateC
 	_args.Req = req
 	var _result fabric_ebl.FabricEblCreateCompanyUserResult
 	if err = p.c.Call(ctx, "CreateCompanyUser", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryCompanyUserList(ctx context.Context, req *fabric_ebl.QueryCompanyUserListReq) (r *fabric_ebl.QueryCompanyUserListResp, err error) {
+	var _args fabric_ebl.FabricEblQueryCompanyUserListArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryCompanyUserListResult
+	if err = p.c.Call(ctx, "QueryCompanyUserList", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
