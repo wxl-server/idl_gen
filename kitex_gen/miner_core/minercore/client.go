@@ -20,6 +20,7 @@ type Client interface {
 	QueryIndicatorList(ctx context.Context, req *miner_core.QueryIndicatorListReq, callOptions ...callopt.Option) (r *miner_core.QueryIndicatorListResp, err error)
 	QueryTaskList(ctx context.Context, req *miner_core.QueryTaskListReq, callOptions ...callopt.Option) (r *miner_core.QueryTaskListResp, err error)
 	RunTask(ctx context.Context, req *miner_core.RunTaskReq, callOptions ...callopt.Option) (r *miner_core.RunTaskResp, err error)
+	QueryTaskResultList(ctx context.Context, req *miner_core.QueryTaskResultListReq, callOptions ...callopt.Option) (r *miner_core.QueryTaskResultListResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -94,4 +95,9 @@ func (p *kMinerCoreClient) QueryTaskList(ctx context.Context, req *miner_core.Qu
 func (p *kMinerCoreClient) RunTask(ctx context.Context, req *miner_core.RunTaskReq, callOptions ...callopt.Option) (r *miner_core.RunTaskResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.RunTask(ctx, req)
+}
+
+func (p *kMinerCoreClient) QueryTaskResultList(ctx context.Context, req *miner_core.QueryTaskResultListReq, callOptions ...callopt.Option) (r *miner_core.QueryTaskResultListResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryTaskResultList(ctx, req)
 }
