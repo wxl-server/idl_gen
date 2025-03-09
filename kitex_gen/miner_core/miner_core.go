@@ -3479,7 +3479,8 @@ func (p *QueryIndicatorListResp) Field1DeepEqual(src []*FirstLevelIndicator) boo
 type QueryTaskListReq struct {
 	PageNum  int64  `thrift:"page_num,1,required" frugal:"1,required,i64" json:"page_num"`
 	PageSize int64  `thrift:"page_size,2,required" frugal:"2,required,i64" json:"page_size"`
-	JobId    *int64 `thrift:"job_id,3,optional" frugal:"3,optional,i64" json:"job_id,omitempty"`
+	Id       *int64 `thrift:"id,3,optional" frugal:"3,optional,i64" json:"id,omitempty"`
+	JobId    *int64 `thrift:"job_id,4,optional" frugal:"4,optional,i64" json:"job_id,omitempty"`
 }
 
 func NewQueryTaskListReq() *QueryTaskListReq {
@@ -3497,6 +3498,15 @@ func (p *QueryTaskListReq) GetPageSize() (v int64) {
 	return p.PageSize
 }
 
+var QueryTaskListReq_Id_DEFAULT int64
+
+func (p *QueryTaskListReq) GetId() (v int64) {
+	if !p.IsSetId() {
+		return QueryTaskListReq_Id_DEFAULT
+	}
+	return *p.Id
+}
+
 var QueryTaskListReq_JobId_DEFAULT int64
 
 func (p *QueryTaskListReq) GetJobId() (v int64) {
@@ -3511,6 +3521,9 @@ func (p *QueryTaskListReq) SetPageNum(val int64) {
 func (p *QueryTaskListReq) SetPageSize(val int64) {
 	p.PageSize = val
 }
+func (p *QueryTaskListReq) SetId(val *int64) {
+	p.Id = val
+}
 func (p *QueryTaskListReq) SetJobId(val *int64) {
 	p.JobId = val
 }
@@ -3518,7 +3531,12 @@ func (p *QueryTaskListReq) SetJobId(val *int64) {
 var fieldIDToName_QueryTaskListReq = map[int16]string{
 	1: "page_num",
 	2: "page_size",
-	3: "job_id",
+	3: "id",
+	4: "job_id",
+}
+
+func (p *QueryTaskListReq) IsSetId() bool {
+	return p.Id != nil
 }
 
 func (p *QueryTaskListReq) IsSetJobId() bool {
@@ -3567,6 +3585,14 @@ func (p *QueryTaskListReq) Read(iprot thrift.TProtocol) (err error) {
 		case 3:
 			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.I64 {
+				if err = p.ReadField4(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -3642,6 +3668,17 @@ func (p *QueryTaskListReq) ReadField3(iprot thrift.TProtocol) error {
 	} else {
 		_field = &v
 	}
+	p.Id = _field
+	return nil
+}
+func (p *QueryTaskListReq) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *int64
+	if v, err := iprot.ReadI64(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
 	p.JobId = _field
 	return nil
 }
@@ -3663,6 +3700,10 @@ func (p *QueryTaskListReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField3(oprot); err != nil {
 			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
 			goto WriteFieldError
 		}
 	}
@@ -3718,11 +3759,11 @@ WriteFieldEndError:
 }
 
 func (p *QueryTaskListReq) writeField3(oprot thrift.TProtocol) (err error) {
-	if p.IsSetJobId() {
-		if err = oprot.WriteFieldBegin("job_id", thrift.I64, 3); err != nil {
+	if p.IsSetId() {
+		if err = oprot.WriteFieldBegin("id", thrift.I64, 3); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := oprot.WriteI64(*p.JobId); err != nil {
+		if err := oprot.WriteI64(*p.Id); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -3734,6 +3775,25 @@ WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *QueryTaskListReq) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetJobId() {
+		if err = oprot.WriteFieldBegin("job_id", thrift.I64, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteI64(*p.JobId); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
 }
 
 func (p *QueryTaskListReq) String() string {
@@ -3756,7 +3816,10 @@ func (p *QueryTaskListReq) DeepEqual(ano *QueryTaskListReq) bool {
 	if !p.Field2DeepEqual(ano.PageSize) {
 		return false
 	}
-	if !p.Field3DeepEqual(ano.JobId) {
+	if !p.Field3DeepEqual(ano.Id) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.JobId) {
 		return false
 	}
 	return true
@@ -3777,6 +3840,18 @@ func (p *QueryTaskListReq) Field2DeepEqual(src int64) bool {
 	return true
 }
 func (p *QueryTaskListReq) Field3DeepEqual(src *int64) bool {
+
+	if p.Id == src {
+		return true
+	} else if p.Id == nil || src == nil {
+		return false
+	}
+	if *p.Id != *src {
+		return false
+	}
+	return true
+}
+func (p *QueryTaskListReq) Field4DeepEqual(src *int64) bool {
 
 	if p.JobId == src {
 		return true
