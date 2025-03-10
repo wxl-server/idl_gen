@@ -35,6 +35,7 @@ type Client interface {
 	QueryEblTransferLog(ctx context.Context, req *fabric_ebl.QueryEblTransferLogReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblTransferLogResp, err error)
 	CreateCompanyUser(ctx context.Context, req *fabric_ebl.CreateCompanyUserReq, callOptions ...callopt.Option) (r *fabric_ebl.CreateCompanyUserResp, err error)
 	QueryCompanyUserList(ctx context.Context, req *fabric_ebl.QueryCompanyUserListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryCompanyUserListResp, err error)
+	QueryEblDetail(ctx context.Context, req *fabric_ebl.QueryEblDetailReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblDetailResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -184,4 +185,9 @@ func (p *kFabricEblClient) CreateCompanyUser(ctx context.Context, req *fabric_eb
 func (p *kFabricEblClient) QueryCompanyUserList(ctx context.Context, req *fabric_ebl.QueryCompanyUserListReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryCompanyUserListResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.QueryCompanyUserList(ctx, req)
+}
+
+func (p *kFabricEblClient) QueryEblDetail(ctx context.Context, req *fabric_ebl.QueryEblDetailReq, callOptions ...callopt.Option) (r *fabric_ebl.QueryEblDetailResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.QueryEblDetail(ctx, req)
 }

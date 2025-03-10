@@ -181,6 +181,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"QueryEblDetail": kitex.NewMethodInfo(
+		queryEblDetailHandler,
+		newFabricEblQueryEblDetailArgs,
+		newFabricEblQueryEblDetailResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -679,6 +686,24 @@ func newFabricEblQueryCompanyUserListResult() interface{} {
 	return fabric_ebl.NewFabricEblQueryCompanyUserListResult()
 }
 
+func queryEblDetailHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*fabric_ebl.FabricEblQueryEblDetailArgs)
+	realResult := result.(*fabric_ebl.FabricEblQueryEblDetailResult)
+	success, err := handler.(fabric_ebl.FabricEbl).QueryEblDetail(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newFabricEblQueryEblDetailArgs() interface{} {
+	return fabric_ebl.NewFabricEblQueryEblDetailArgs()
+}
+
+func newFabricEblQueryEblDetailResult() interface{} {
+	return fabric_ebl.NewFabricEblQueryEblDetailResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -924,6 +949,16 @@ func (p *kClient) QueryCompanyUserList(ctx context.Context, req *fabric_ebl.Quer
 	_args.Req = req
 	var _result fabric_ebl.FabricEblQueryCompanyUserListResult
 	if err = p.c.Call(ctx, "QueryCompanyUserList", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) QueryEblDetail(ctx context.Context, req *fabric_ebl.QueryEblDetailReq) (r *fabric_ebl.QueryEblDetailResp, err error) {
+	var _args fabric_ebl.FabricEblQueryEblDetailArgs
+	_args.Req = req
+	var _result fabric_ebl.FabricEblQueryEblDetailResult
+	if err = p.c.Call(ctx, "QueryEblDetail", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil
