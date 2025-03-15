@@ -6000,7 +6000,7 @@ func (p *Product) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 3:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.LIST {
 				l, err = p.FastReadField3(buf[offset:])
 				offset += l
 				if err != nil {
@@ -6271,12 +6271,22 @@ func (p *Product) FastReadField2(buf []byte) (int, error) {
 func (p *Product) FastReadField3(buf []byte) (int, error) {
 	offset := 0
 
-	var _field string
-	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+	_, size, l, err := thrift.Binary.ReadListBegin(buf[offset:])
+	offset += l
+	if err != nil {
 		return offset, err
-	} else {
-		offset += l
-		_field = v
+	}
+	_field := make([]string, 0, size)
+	for i := 0; i < size; i++ {
+		var _elem string
+		if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+			return offset, err
+		} else {
+			offset += l
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
 	}
 	p.ImageUrls = _field
 	return offset, nil
@@ -6516,8 +6526,15 @@ func (p *Product) fastWriteField2(buf []byte, w thrift.NocopyWriter) int {
 
 func (p *Product) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
-	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
-	offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, p.ImageUrls)
+	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.LIST, 3)
+	listBeginOffset := offset
+	offset += thrift.Binary.ListBeginLength()
+	var length int
+	for _, v := range p.ImageUrls {
+		length++
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, v)
+	}
+	thrift.Binary.WriteListBegin(buf[listBeginOffset:], thrift.STRING, length)
 	return offset
 }
 
@@ -6638,7 +6655,11 @@ func (p *Product) field2Length() int {
 func (p *Product) field3Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += thrift.Binary.StringLengthNocopy(p.ImageUrls)
+	l += thrift.Binary.ListBeginLength()
+	for _, v := range p.ImageUrls {
+		_ = v
+		l += thrift.Binary.StringLengthNocopy(v)
+	}
 	return l
 }
 

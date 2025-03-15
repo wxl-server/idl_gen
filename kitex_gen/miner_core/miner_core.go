@@ -9040,21 +9040,21 @@ func (p *TaskResult_) Field3DeepEqual(src *Product) bool {
 }
 
 type Product struct {
-	ProductId           int64   `thrift:"product_id,1,required" frugal:"1,required,i64" json:"product_id"`
-	ProductName         string  `thrift:"product_name,2,required" frugal:"2,required,string" json:"product_name"`
-	ImageUrls           string  `thrift:"image_urls,3,required" frugal:"3,required,string" json:"image_urls"`
-	ShopImageUrl        string  `thrift:"shop_image_url,4,required" frugal:"4,required,string" json:"shop_image_url"`
-	ShopId              int64   `thrift:"shop_id,5,required" frugal:"5,required,i64" json:"shop_id"`
-	Status              int64   `thrift:"status,6,required" frugal:"6,required,i64" json:"status"`
-	ShopName            string  `thrift:"shop_name,7,required" frugal:"7,required,string" json:"shop_name"`
-	BrandId             *int64  `thrift:"brand_id,8,optional" frugal:"8,optional,i64" json:"brand_id,omitempty"`
-	BrandName           *string `thrift:"brand_name,9,optional" frugal:"9,optional,string" json:"brand_name,omitempty"`
-	IsBrandAuthorized   *int64  `thrift:"is_brand_authorized,10,optional" frugal:"10,optional,i64" json:"is_brand_authorized,omitempty"`
-	LogoModelBrandId    *int64  `thrift:"logo_model_brand_id,11,optional" frugal:"11,optional,i64" json:"logo_model_brand_id,omitempty"`
-	LogoModelBrandName  *string `thrift:"logo_model_brand_name,12,optional" frugal:"12,optional,string" json:"logo_model_brand_name,omitempty"`
-	ImageModelBrandId   *int64  `thrift:"image_model_brand_id,13,optional" frugal:"13,optional,i64" json:"image_model_brand_id,omitempty"`
-	ImageModelBrandName *string `thrift:"image_model_brand_name,14,optional" frugal:"14,optional,string" json:"image_model_brand_name,omitempty"`
-	Extra               *string `thrift:"extra,15,optional" frugal:"15,optional,string" json:"extra,omitempty"`
+	ProductId           int64    `thrift:"product_id,1,required" frugal:"1,required,i64" json:"product_id"`
+	ProductName         string   `thrift:"product_name,2,required" frugal:"2,required,string" json:"product_name"`
+	ImageUrls           []string `thrift:"image_urls,3,required" frugal:"3,required,list<string>" json:"image_urls"`
+	ShopImageUrl        string   `thrift:"shop_image_url,4,required" frugal:"4,required,string" json:"shop_image_url"`
+	ShopId              int64    `thrift:"shop_id,5,required" frugal:"5,required,i64" json:"shop_id"`
+	Status              int64    `thrift:"status,6,required" frugal:"6,required,i64" json:"status"`
+	ShopName            string   `thrift:"shop_name,7,required" frugal:"7,required,string" json:"shop_name"`
+	BrandId             *int64   `thrift:"brand_id,8,optional" frugal:"8,optional,i64" json:"brand_id,omitempty"`
+	BrandName           *string  `thrift:"brand_name,9,optional" frugal:"9,optional,string" json:"brand_name,omitempty"`
+	IsBrandAuthorized   *int64   `thrift:"is_brand_authorized,10,optional" frugal:"10,optional,i64" json:"is_brand_authorized,omitempty"`
+	LogoModelBrandId    *int64   `thrift:"logo_model_brand_id,11,optional" frugal:"11,optional,i64" json:"logo_model_brand_id,omitempty"`
+	LogoModelBrandName  *string  `thrift:"logo_model_brand_name,12,optional" frugal:"12,optional,string" json:"logo_model_brand_name,omitempty"`
+	ImageModelBrandId   *int64   `thrift:"image_model_brand_id,13,optional" frugal:"13,optional,i64" json:"image_model_brand_id,omitempty"`
+	ImageModelBrandName *string  `thrift:"image_model_brand_name,14,optional" frugal:"14,optional,string" json:"image_model_brand_name,omitempty"`
+	Extra               *string  `thrift:"extra,15,optional" frugal:"15,optional,string" json:"extra,omitempty"`
 }
 
 func NewProduct() *Product {
@@ -9072,7 +9072,7 @@ func (p *Product) GetProductName() (v string) {
 	return p.ProductName
 }
 
-func (p *Product) GetImageUrls() (v string) {
+func (p *Product) GetImageUrls() (v []string) {
 	return p.ImageUrls
 }
 
@@ -9169,7 +9169,7 @@ func (p *Product) SetProductId(val int64) {
 func (p *Product) SetProductName(val string) {
 	p.ProductName = val
 }
-func (p *Product) SetImageUrls(val string) {
+func (p *Product) SetImageUrls(val []string) {
 	p.ImageUrls = val
 }
 func (p *Product) SetShopImageUrl(val string) {
@@ -9304,7 +9304,7 @@ func (p *Product) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 3:
-			if fieldTypeId == thrift.STRING {
+			if fieldTypeId == thrift.LIST {
 				if err = p.ReadField3(iprot); err != nil {
 					goto ReadFieldError
 				}
@@ -9500,12 +9500,24 @@ func (p *Product) ReadField2(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *Product) ReadField3(iprot thrift.TProtocol) error {
-
-	var _field string
-	if v, err := iprot.ReadString(); err != nil {
+	_, size, err := iprot.ReadListBegin()
+	if err != nil {
 		return err
-	} else {
-		_field = v
+	}
+	_field := make([]string, 0, size)
+	for i := 0; i < size; i++ {
+
+		var _elem string
+		if v, err := iprot.ReadString(); err != nil {
+			return err
+		} else {
+			_elem = v
+		}
+
+		_field = append(_field, _elem)
+	}
+	if err := iprot.ReadListEnd(); err != nil {
+		return err
 	}
 	p.ImageUrls = _field
 	return nil
@@ -9763,10 +9775,18 @@ WriteFieldEndError:
 }
 
 func (p *Product) writeField3(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("image_urls", thrift.STRING, 3); err != nil {
+	if err = oprot.WriteFieldBegin("image_urls", thrift.LIST, 3); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteString(p.ImageUrls); err != nil {
+	if err := oprot.WriteListBegin(thrift.STRING, len(p.ImageUrls)); err != nil {
+		return err
+	}
+	for _, v := range p.ImageUrls {
+		if err := oprot.WriteString(v); err != nil {
+			return err
+		}
+	}
+	if err := oprot.WriteListEnd(); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -10075,10 +10095,16 @@ func (p *Product) Field2DeepEqual(src string) bool {
 	}
 	return true
 }
-func (p *Product) Field3DeepEqual(src string) bool {
+func (p *Product) Field3DeepEqual(src []string) bool {
 
-	if strings.Compare(p.ImageUrls, src) != 0 {
+	if len(p.ImageUrls) != len(src) {
 		return false
+	}
+	for i, v := range p.ImageUrls {
+		_src := src[i]
+		if strings.Compare(v, _src) != 0 {
+			return false
+		}
 	}
 	return true
 }
