@@ -93,6 +93,20 @@ func (p *UpdateMockProducerQpsReq) FastRead(buf []byte) (int, error) {
 					goto SkipFieldError
 				}
 			}
+		case 5:
+			if fieldTypeId == thrift.I64 {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
 		default:
 			l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 			offset += l
@@ -167,6 +181,20 @@ func (p *UpdateMockProducerQpsReq) FastReadField4(buf []byte) (int, error) {
 	return offset, nil
 }
 
+func (p *UpdateMockProducerQpsReq) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *int64
+	if v, l, err := thrift.Binary.ReadI64(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.Test = _field
+	return offset, nil
+}
+
 func (p *UpdateMockProducerQpsReq) FastWrite(buf []byte) int {
 	return p.FastWriteNocopy(buf, nil)
 }
@@ -178,6 +206,7 @@ func (p *UpdateMockProducerQpsReq) FastWriteNocopy(buf []byte, w thrift.NocopyWr
 		offset += p.fastWriteField2(buf[offset:], w)
 		offset += p.fastWriteField3(buf[offset:], w)
 		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -190,6 +219,7 @@ func (p *UpdateMockProducerQpsReq) BLength() int {
 		l += p.field2Length()
 		l += p.field3Length()
 		l += p.field4Length()
+		l += p.field5Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -231,6 +261,15 @@ func (p *UpdateMockProducerQpsReq) fastWriteField4(buf []byte, w thrift.NocopyWr
 	return offset
 }
 
+func (p *UpdateMockProducerQpsReq) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetTest() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.I64, 5)
+		offset += thrift.Binary.WriteI64(buf[offset:], *p.Test)
+	}
+	return offset
+}
+
 func (p *UpdateMockProducerQpsReq) field1Length() int {
 	l := 0
 	if p.IsSetProductBaseInfoQps() {
@@ -261,6 +300,15 @@ func (p *UpdateMockProducerQpsReq) field3Length() int {
 func (p *UpdateMockProducerQpsReq) field4Length() int {
 	l := 0
 	if p.IsSetProductImageModelInfoQps() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.I64Length()
+	}
+	return l
+}
+
+func (p *UpdateMockProducerQpsReq) field5Length() int {
+	l := 0
+	if p.IsSetTest() {
 		l += thrift.Binary.FieldBeginLength()
 		l += thrift.Binary.I64Length()
 	}
