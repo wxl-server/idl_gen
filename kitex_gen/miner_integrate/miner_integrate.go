@@ -13,6 +13,8 @@ type UpdateMockProducerQpsReq struct {
 	ProductShopInfoQps       *int64 `thrift:"product_shop_info_qps,2,optional" frugal:"2,optional,i64" json:"product_shop_info_qps,omitempty"`
 	ProductLogoModelInfoQps  *int64 `thrift:"product_logo_model_info_qps,3,optional" frugal:"3,optional,i64" json:"product_logo_model_info_qps,omitempty"`
 	ProductImageModelInfoQps *int64 `thrift:"product_image_model_info_qps,4,optional" frugal:"4,optional,i64" json:"product_image_model_info_qps,omitempty"`
+	SetProducer              *bool  `thrift:"set_producer,5,optional" frugal:"5,optional,bool" json:"set_producer,omitempty"`
+	SetConsumer              *bool  `thrift:"set_consumer,6,optional" frugal:"6,optional,bool" json:"set_consumer,omitempty"`
 }
 
 func NewUpdateMockProducerQpsReq() *UpdateMockProducerQpsReq {
@@ -57,6 +59,24 @@ func (p *UpdateMockProducerQpsReq) GetProductImageModelInfoQps() (v int64) {
 	}
 	return *p.ProductImageModelInfoQps
 }
+
+var UpdateMockProducerQpsReq_SetProducer_DEFAULT bool
+
+func (p *UpdateMockProducerQpsReq) GetSetProducer() (v bool) {
+	if !p.IsSetSetProducer() {
+		return UpdateMockProducerQpsReq_SetProducer_DEFAULT
+	}
+	return *p.SetProducer
+}
+
+var UpdateMockProducerQpsReq_SetConsumer_DEFAULT bool
+
+func (p *UpdateMockProducerQpsReq) GetSetConsumer() (v bool) {
+	if !p.IsSetSetConsumer() {
+		return UpdateMockProducerQpsReq_SetConsumer_DEFAULT
+	}
+	return *p.SetConsumer
+}
 func (p *UpdateMockProducerQpsReq) SetProductBaseInfoQps(val *int64) {
 	p.ProductBaseInfoQps = val
 }
@@ -69,12 +89,20 @@ func (p *UpdateMockProducerQpsReq) SetProductLogoModelInfoQps(val *int64) {
 func (p *UpdateMockProducerQpsReq) SetProductImageModelInfoQps(val *int64) {
 	p.ProductImageModelInfoQps = val
 }
+func (p *UpdateMockProducerQpsReq) SetSetProducer(val *bool) {
+	p.SetProducer = val
+}
+func (p *UpdateMockProducerQpsReq) SetSetConsumer(val *bool) {
+	p.SetConsumer = val
+}
 
 var fieldIDToName_UpdateMockProducerQpsReq = map[int16]string{
 	1: "product_base_info_qps",
 	2: "product_shop_info_qps",
 	3: "product_logo_model_info_qps",
 	4: "product_image_model_info_qps",
+	5: "set_producer",
+	6: "set_consumer",
 }
 
 func (p *UpdateMockProducerQpsReq) IsSetProductBaseInfoQps() bool {
@@ -91,6 +119,14 @@ func (p *UpdateMockProducerQpsReq) IsSetProductLogoModelInfoQps() bool {
 
 func (p *UpdateMockProducerQpsReq) IsSetProductImageModelInfoQps() bool {
 	return p.ProductImageModelInfoQps != nil
+}
+
+func (p *UpdateMockProducerQpsReq) IsSetSetProducer() bool {
+	return p.SetProducer != nil
+}
+
+func (p *UpdateMockProducerQpsReq) IsSetSetConsumer() bool {
+	return p.SetConsumer != nil
 }
 
 func (p *UpdateMockProducerQpsReq) Read(iprot thrift.TProtocol) (err error) {
@@ -139,6 +175,22 @@ func (p *UpdateMockProducerQpsReq) Read(iprot thrift.TProtocol) (err error) {
 		case 4:
 			if fieldTypeId == thrift.I64 {
 				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.BOOL {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 6:
+			if fieldTypeId == thrift.BOOL {
+				if err = p.ReadField6(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -217,6 +269,28 @@ func (p *UpdateMockProducerQpsReq) ReadField4(iprot thrift.TProtocol) error {
 	p.ProductImageModelInfoQps = _field
 	return nil
 }
+func (p *UpdateMockProducerQpsReq) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field *bool
+	if v, err := iprot.ReadBool(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.SetProducer = _field
+	return nil
+}
+func (p *UpdateMockProducerQpsReq) ReadField6(iprot thrift.TProtocol) error {
+
+	var _field *bool
+	if v, err := iprot.ReadBool(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.SetConsumer = _field
+	return nil
+}
 
 func (p *UpdateMockProducerQpsReq) Write(oprot thrift.TProtocol) (err error) {
 
@@ -239,6 +313,14 @@ func (p *UpdateMockProducerQpsReq) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField4(oprot); err != nil {
 			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
+			goto WriteFieldError
+		}
+		if err = p.writeField6(oprot); err != nil {
+			fieldId = 6
 			goto WriteFieldError
 		}
 	}
@@ -335,6 +417,44 @@ WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
 }
 
+func (p *UpdateMockProducerQpsReq) writeField5(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSetProducer() {
+		if err = oprot.WriteFieldBegin("set_producer", thrift.BOOL, 5); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteBool(*p.SetProducer); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *UpdateMockProducerQpsReq) writeField6(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSetConsumer() {
+		if err = oprot.WriteFieldBegin("set_consumer", thrift.BOOL, 6); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteBool(*p.SetConsumer); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
+}
+
 func (p *UpdateMockProducerQpsReq) String() string {
 	if p == nil {
 		return "<nil>"
@@ -359,6 +479,12 @@ func (p *UpdateMockProducerQpsReq) DeepEqual(ano *UpdateMockProducerQpsReq) bool
 		return false
 	}
 	if !p.Field4DeepEqual(ano.ProductImageModelInfoQps) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.SetProducer) {
+		return false
+	}
+	if !p.Field6DeepEqual(ano.SetConsumer) {
 		return false
 	}
 	return true
@@ -408,6 +534,30 @@ func (p *UpdateMockProducerQpsReq) Field4DeepEqual(src *int64) bool {
 		return false
 	}
 	if *p.ProductImageModelInfoQps != *src {
+		return false
+	}
+	return true
+}
+func (p *UpdateMockProducerQpsReq) Field5DeepEqual(src *bool) bool {
+
+	if p.SetProducer == src {
+		return true
+	} else if p.SetProducer == nil || src == nil {
+		return false
+	}
+	if *p.SetProducer != *src {
+		return false
+	}
+	return true
+}
+func (p *UpdateMockProducerQpsReq) Field6DeepEqual(src *bool) bool {
+
+	if p.SetConsumer == src {
+		return true
+	} else if p.SetConsumer == nil || src == nil {
+		return false
+	}
+	if *p.SetConsumer != *src {
 		return false
 	}
 	return true
