@@ -10,7 +10,7 @@ import (
 )
 
 type CreateEblDocxReq struct {
-	Ebl *CreateEblDocx `thrift:"ebl,1,required" frugal:"1,required,CreateEblDocx" json:"ebl"`
+	Ebl1 *CreateEblDocx `thrift:"ebl1,1,required" frugal:"1,required,CreateEblDocx" json:"ebl1"`
 }
 
 func NewCreateEblDocxReq() *CreateEblDocxReq {
@@ -20,31 +20,31 @@ func NewCreateEblDocxReq() *CreateEblDocxReq {
 func (p *CreateEblDocxReq) InitDefault() {
 }
 
-var CreateEblDocxReq_Ebl_DEFAULT *CreateEblDocx
+var CreateEblDocxReq_Ebl1_DEFAULT *CreateEblDocx
 
-func (p *CreateEblDocxReq) GetEbl() (v *CreateEblDocx) {
-	if !p.IsSetEbl() {
-		return CreateEblDocxReq_Ebl_DEFAULT
+func (p *CreateEblDocxReq) GetEbl1() (v *CreateEblDocx) {
+	if !p.IsSetEbl1() {
+		return CreateEblDocxReq_Ebl1_DEFAULT
 	}
-	return p.Ebl
+	return p.Ebl1
 }
-func (p *CreateEblDocxReq) SetEbl(val *CreateEblDocx) {
-	p.Ebl = val
+func (p *CreateEblDocxReq) SetEbl1(val *CreateEblDocx) {
+	p.Ebl1 = val
 }
 
 var fieldIDToName_CreateEblDocxReq = map[int16]string{
-	1: "ebl",
+	1: "ebl1",
 }
 
-func (p *CreateEblDocxReq) IsSetEbl() bool {
-	return p.Ebl != nil
+func (p *CreateEblDocxReq) IsSetEbl1() bool {
+	return p.Ebl1 != nil
 }
 
 func (p *CreateEblDocxReq) Read(iprot thrift.TProtocol) (err error) {
 
 	var fieldTypeId thrift.TType
 	var fieldId int16
-	var issetEbl bool = false
+	var issetEbl1 bool = false
 
 	if _, err = iprot.ReadStructBegin(); err != nil {
 		goto ReadStructBeginError
@@ -65,7 +65,7 @@ func (p *CreateEblDocxReq) Read(iprot thrift.TProtocol) (err error) {
 				if err = p.ReadField1(iprot); err != nil {
 					goto ReadFieldError
 				}
-				issetEbl = true
+				issetEbl1 = true
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
 				goto SkipFieldError
 			}
@@ -82,7 +82,7 @@ func (p *CreateEblDocxReq) Read(iprot thrift.TProtocol) (err error) {
 		goto ReadStructEndError
 	}
 
-	if !issetEbl {
+	if !issetEbl1 {
 		fieldId = 1
 		goto RequiredFieldNotSetError
 	}
@@ -109,7 +109,7 @@ func (p *CreateEblDocxReq) ReadField1(iprot thrift.TProtocol) error {
 	if err := _field.Read(iprot); err != nil {
 		return err
 	}
-	p.Ebl = _field
+	p.Ebl1 = _field
 	return nil
 }
 
@@ -143,10 +143,10 @@ WriteStructEndError:
 }
 
 func (p *CreateEblDocxReq) writeField1(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("ebl", thrift.STRUCT, 1); err != nil {
+	if err = oprot.WriteFieldBegin("ebl1", thrift.STRUCT, 1); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := p.Ebl.Write(oprot); err != nil {
+	if err := p.Ebl1.Write(oprot); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {
@@ -173,7 +173,7 @@ func (p *CreateEblDocxReq) DeepEqual(ano *CreateEblDocxReq) bool {
 	} else if p == nil || ano == nil {
 		return false
 	}
-	if !p.Field1DeepEqual(ano.Ebl) {
+	if !p.Field1DeepEqual(ano.Ebl1) {
 		return false
 	}
 	return true
@@ -181,7 +181,7 @@ func (p *CreateEblDocxReq) DeepEqual(ano *CreateEblDocxReq) bool {
 
 func (p *CreateEblDocxReq) Field1DeepEqual(src *CreateEblDocx) bool {
 
-	if !p.Ebl.DeepEqual(src) {
+	if !p.Ebl1.DeepEqual(src) {
 		return false
 	}
 	return true

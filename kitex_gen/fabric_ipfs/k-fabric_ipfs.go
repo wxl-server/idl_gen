@@ -27,7 +27,7 @@ func (p *CreateEblDocxReq) FastRead(buf []byte) (int, error) {
 	var l int
 	var fieldTypeId thrift.TType
 	var fieldId int16
-	var issetEbl bool = false
+	var issetEbl1 bool = false
 	for {
 		fieldTypeId, fieldId, l, err = thrift.Binary.ReadFieldBegin(buf[offset:])
 		offset += l
@@ -45,7 +45,7 @@ func (p *CreateEblDocxReq) FastRead(buf []byte) (int, error) {
 				if err != nil {
 					goto ReadFieldError
 				}
-				issetEbl = true
+				issetEbl1 = true
 			} else {
 				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
 				offset += l
@@ -62,7 +62,7 @@ func (p *CreateEblDocxReq) FastRead(buf []byte) (int, error) {
 		}
 	}
 
-	if !issetEbl {
+	if !issetEbl1 {
 		fieldId = 1
 		goto RequiredFieldNotSetError
 	}
@@ -85,7 +85,7 @@ func (p *CreateEblDocxReq) FastReadField1(buf []byte) (int, error) {
 	} else {
 		offset += l
 	}
-	p.Ebl = _field
+	p.Ebl1 = _field
 	return offset, nil
 }
 
@@ -114,14 +114,14 @@ func (p *CreateEblDocxReq) BLength() int {
 func (p *CreateEblDocxReq) fastWriteField1(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
 	offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 1)
-	offset += p.Ebl.FastWriteNocopy(buf[offset:], w)
+	offset += p.Ebl1.FastWriteNocopy(buf[offset:], w)
 	return offset
 }
 
 func (p *CreateEblDocxReq) field1Length() int {
 	l := 0
 	l += thrift.Binary.FieldBeginLength()
-	l += p.Ebl.BLength()
+	l += p.Ebl1.BLength()
 	return l
 }
 
